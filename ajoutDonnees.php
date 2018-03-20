@@ -1,7 +1,6 @@
 <?php
 include 'BDD/bdd.php';
 $bdd=connexionbd();
-
 ?>
 
 <!DOCTYPE html>
@@ -358,7 +357,5 @@ $bdd=connexionbd();
 			</fieldset>
 		</p>
 		</form>
-
-
-
 	</body>
+</html>
