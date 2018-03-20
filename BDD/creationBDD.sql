@@ -88,6 +88,20 @@ create table Individu (
         REFERENCES Taxonomie (id)
 );
 
+create table Pool(
+  identiant varchar(10) PRIMARY KEY
+);
+
+create table PoolIn(
+  idIndividu int,
+  identifiantPool varchar(10),
+  CONSTRAINT PoolIn_PK PRIMARY KEY(idIndividu,identifiantPool),
+  CONSTRAINT idIndividu_poolIn_FK FOREIGN KEY (idIndividu)
+    REFERENCES Individu(id),
+  CONSTRAINT identifiantPool_poolIn_FK FOREIGN KEY (identifiantPool)
+    REFERENCES Pool(identiant)
+);
+
 create table Gene (
     nom varchar(20) PRIMARY KEY
 );
