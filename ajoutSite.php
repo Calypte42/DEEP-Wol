@@ -76,10 +76,10 @@ $bdd=connexionbd();
 				<input type="number" id ="temperature" name="temperature" size = "5"/> °C</br></br> <!-- a voir pour rajouter un pas (pour decimal) step =""-->
 
 				<label>Type de sol</label>
-				<input type="text" id ="systemeHydro" name="systemeHydro" size="20"/></br></br>
+				<input type="text" id ="typeSol" name="typeSol" size="20"/></br></br>
 				<!-- Mettre number -->
 				<label>Distance à l'entrée</label>
-				<input type="number" id ="systemeHydro" name="systemeHydro" size="10"/> m</br></br> <!-- a voir pour rajouter un pas (pour decimal) step =""-->
+				<input type="number" id ="distanceEntree" name="distanceEntree" size="10"/> m</br></br> <!-- a voir pour rajouter un pas (pour decimal) step =""-->
 
 				<label>Présence d'eau</label>
 				<input type="radio" id ="presenceEauOui" name="presenceEau" value="oui"/>
