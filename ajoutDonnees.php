@@ -18,13 +18,13 @@ $bdd=connexionbd();
 	<body>
 		<!-- FORMULAIRE D'AJOUT DE GROTTE -->
 
-		<form  id="ajoutGrotte"  method="post" action = ""> <!-- reference au forumlaire -->
+		<form  id="ajoutGrotte"  method="post" action = ""> <!-- reference au formulaire -->
 		<p> <!-- car balise input ou select ne peut pas etre imbriquee directement dans form -->
 			<fieldset>
 			<legend>Ajout d'une grotte</legend>
 			</br>
 				<label>Nom de la grotte</label>          <!-- Changer les size par rapport à la base de donnees -->
-				<input required type="text" id ="nomGrotte" name="nomGrotte" size="15"/> * </br></br>
+				<input required type="text" id ="nomGrotte" name="nomGrotte" size="50"/> * </br></br>
 
 				<label>Type de cavité</label>  <!-- menu deroulant : a preciser les valeurs -->
 					<select name="typeCavite" id="typeCavite">
@@ -36,16 +36,16 @@ $bdd=connexionbd();
 		        </br></br>
 
 				<label>Latitude</label>
-				<input type="text" id ="latitude" name="latitude" size="15" placeholder = "30° N"/></br></br>  <!-- type text pour simplifier la saisie -->
+				<input type="text" id ="latitude" name="latitude" size="10" placeholder = "30° N"/></br></br>  <!-- type text pour simplifier la saisie -->
 
 				<label>Longitude</label>
-				<input type="text" id ="longitude" name="longitude" size="15" placeholder = "20° O"/></br></br>  <!-- type text pour simplifier la saisie -->
+				<input type="text" id ="longitude" name="longitude" size="10" placeholder = "20° O"/></br></br>  <!-- type text pour simplifier la saisie -->
 
 				<label>Type d'accès</label>
-				<input type="text" id ="typeAcces" name="typeAcces" size="15"/></br></br>
+				<input type="text" id ="typeAcces" name="typeAcces" size="20"/></br></br>
 
 				<label>Système hydrographique</label>
-				<input type="text" id ="systemeHydro" name="systemeHydro" size="15"/></br></br>
+				<input type="text" id ="systemeHydro" name="systemeHydro" size="30"/></br></br>
 
 				<label>Accès au public </label>
 				<!--Ne pas mettre le meme id, rajouter la value
@@ -71,7 +71,7 @@ $bdd=connexionbd();
 
 		<!-- FORMULAIRE D'AJOUT DE SITE -->
 
-		<form  id="ajoutSite"  method="post" action = ""> <!-- reference au forumlaire -->
+		<form  id="ajoutSite"  method="post" action = ""> <!-- reference au formulaire -->
 		<p>
 			<fieldset>
 			<legend>Ajout d'un site</legend>
@@ -81,7 +81,7 @@ $bdd=connexionbd();
 
 				/* on veut recuperer les valeurs de grotte deja existantes dans la bdd */
 
-				echo "<label for='grotte'>Grotte : </label>";
+				echo "<label for='grotte'>Grotte</label>";
 				echo "<select name='grotte'>"; /* On cree une liste deroulante vide */
 
 				$requete='SELECT NomCavite from Grotte ORDER BY NomCavite';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
@@ -97,31 +97,49 @@ $bdd=connexionbd();
 
 				</br></br>
 
-				<label>Equipe spéleo</label>
-				<input type="text" id ="equipe" name="equipe" size="15"/></br></br>
+				<!-- <label>Equipe spéleo</label>
+				<input type="text" id ="equipe" name="equipe" size="15"/></br></br>-->
 
+				<?php
+
+				/* on veut recuperer les valeurs de grotte deja existantes dans la bdd */
+
+				echo "<label for='equipeSpeleo'>Equipe spéléo </label>";
+				echo "<select name='equipeSpeleo'>"; /* On cree une liste deroulante vide */
+
+				$requete='SELECT * from EquipeSpeleo';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
+				$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
+				foreach ($value as $array) { /* On parcourt les resultats possibles */
+					foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
+						echo "<option>$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
+					}
+				}
+
+				echo "</select>";
+				?>	
+					
+				(si pas dans la liste alors l'ajouter) <input type = "button" value = "ajouter une équipe"> <!-- rajout d'un bouton ajout d'une nouvelle équipe -->	
+				
+				</br></br>
+				
 				<label>Numéro de site</label>
-				<input required = "required" type="text" id ="numSite" name="numSite" size="15"/> * </br></br>
+				<input required = "required" type="text" id ="numSite" name="numSite" size="40"/> * </br></br>
 
 				<label>Profondeur</label>
 				<!-- Mettre number -->
-				<input type="number" id ="profondeur" name="profondeur" size = "5" placeholder="15"/></br></br>
+				<input type="number" id ="profondeur" name="profondeur" size = "5"/></br></br> <!-- a voir pour rajouter un pas (pour decimal) step =""-->
 
 				<!-- Mettre number -->
 				<label>Temperature</label>
-				<input type="number" id ="temperature" name="temperature" size = "5" placeholder = "10°C"/>°C</br></br> <!-- type text pour simplifier la saisie -->
+				<input type="number" id ="temperature" name="temperature" size = "5"/> °C</br></br> <!-- a voir pour rajouter un pas (pour decimal) step =""-->
 
 				<label>Type de sol</label>
-				<input type="text" id ="systemeHydro" name="systemeHydro" size="15"/></br></br>
+				<input type="text" id ="systemeHydro" name="systemeHydro" size="20"/></br></br>
 				<!-- Mettre number -->
-				<label>Distance à l'entrée (en mètre)</label>
-				<input type="number" id ="systemeHydro" name="systemeHydro" size="15"/></br></br>
+				<label>Distance à l'entrée</label>
+				<input type="number" id ="systemeHydro" name="systemeHydro" size="10"/> m</br></br> <!-- a voir pour rajouter un pas (pour decimal) step =""-->
 
 				<label>Présence d'eau</label>
-				<!--
-				<input type="radio" id ="presenceEeau" name="presenceEeau"/> oui
-				<input type = "radio" id = "presenceEeau" name = "presenceEeau"> non -->
-
 				<input type="radio" id ="presenceEauOui" name="presenceEau" value="oui"/>
 				<label for="presenceEauOui">oui</label>
 				<input type = "radio" id = "presenceEauNon" name = "presenceEau" value="non">
@@ -141,7 +159,7 @@ $bdd=connexionbd();
 
 		<!-- FORMULAIRE D'AJOUT DE PIEGE -->
 
-		<form  id="ajoutPiege"  method="post" action = ""> <!-- reference au forumlaire -->
+		<form  id="ajoutPiege"  method="post" action = ""> <!-- reference au formulaire -->
 		<p>
 			<fieldset>
 			<legend>Ajout d'un piège</legend>
@@ -188,7 +206,7 @@ $bdd=connexionbd();
 				</br></br>
 
 				<label>Code du piège</label>
-				<input type="text" id ="CodePiege" name="CodePiege" size="15"/></br></br>
+				<input type="text" id ="CodePiege" name="CodePiege" size="20"/></br></br>
 
 				<label>Date de pose</label>
 				<input type="date" id ="datePose" name="datePose"/></br></br>
@@ -200,13 +218,13 @@ $bdd=connexionbd();
 				<input type="date" id ="dateRecup" name="dateRecup"/></br></br> <!-- type text pour simplifier la saisie -->
 
 				<label>Heure de récupération</label>
-				<input type="time" id ="heureRecup" name="heureRecup" size="15"/></br></br>
+				<input type="time" id ="heureRecup" name="heureRecup"/></br></br>
 
 				<label>Date de tri</label>
 				<input type="date" id ="dateTri" name="dateTri"/></br></br>
 
 				<label>Problèmes recontrés</label> </br>
-				<textarea id="probleme" name="probleme" rows = "5" cols = "30"></textarea>
+				<textarea id="probleme" name="probleme" rows = "5" cols = "40"></textarea>
 
 				</br>
 				</br>
@@ -222,7 +240,7 @@ $bdd=connexionbd();
 
 		<!-- FORMULAIRE D'AJOUT D'INDIVIDU -->
 
-		<form  id="ajoutIndividu"  method="post" action = ""> <!-- reference au forumlaire -->
+		<form  id="ajoutIndividu"  method="post" action = ""> <!-- reference au formulaire -->
 		<p>
 			<fieldset>
 			<legend>Ajout d'un individu</legend>
@@ -249,11 +267,11 @@ $bdd=connexionbd();
 				</br></br>
 
 				<label>Numéro de l'individu</label>
-				<input type="text" id ="numIndiv" name="numIndiv" size="15"/></br></br> <!-- recuperer la valeur precedemment remplie -->
+				<input type="text" id ="numIndiv" name="numIndiv" size="20"/></br></br> <!-- recuperer la valeur precedemment remplie -->
 
 				<label>Forme de stockage</label>  <!-- menu deroulant -->
 					<select name="formeStockage" id="formeStockage">
-						<option value="individuEntier" selected = "selected">Individu entier</option> <!-- par défaut -->
+						<option selected value="individuEntier">Individu entier</option> <!-- par défaut -->
 						<option value="ADNextraitChelex">ADN extrait chelex</option>
 						<option value="ADNextraitColonne">ADN extrait colonne</option>
 						<option value="EnrichissementGenomeBacterien">Enrichissement génome bactérien</option>
@@ -262,7 +280,7 @@ $bdd=connexionbd();
 		        </br></br>
 
 				<label>Lieu de stockage</label>
-				<input type="text" id ="lieuStockage" name="lieuStockage" size="15"/></br></br>
+				<input type="text" id ="lieuStockage" name="lieuStockage" size="20"/></br></br>
 
 				<label>Niveau d'identification</label>  <!-- menu deroulant -->
 					<select name="formeStockage" id="formeStockage">
@@ -273,7 +291,7 @@ $bdd=connexionbd();
 		        </br></br>
 
 				<label>Infecté par bactérie</label>  <!-- menu deroulant -->
-					<select name="infectionBacterie" id="InfectionBacterie">
+					<select name="infectionBacterie" id="infectionBacterie">
 						<option value="oui">oui</option>
 						<option value="non">non</option>
 						<option selected value="nonDetermine">non déterminé</option>
@@ -290,29 +308,29 @@ $bdd=connexionbd();
 
 		<!-- FORMULAIRE D'AJOUT DE LA TAXONOMIE -->
 
-		<form  id="ajoutTaxonomie"  method="post" action = ""> <!-- reference au forumlaire -->
+		<form  id="ajoutTaxonomie"  method="post" action = ""> <!-- reference au formulaire -->
 		<p>
 			<fieldset>
 			<legend>Ajout d'une taxonomie</legend>
 			</br>
 
 				<label>Classe</label>
-				<input type="text" id ="classeTaxo" name="classeTaxo" size="15"/></br></br>
+				<input type="text" id ="classeTaxo" name="classeTaxo" size="40"/></br></br>
 
 		        <label>Ordre</label>
-				<input type="text" id ="ordreTaxo" name="ordreTaxo" size="15"/></br></br>
+				<input type="text" id ="ordreTaxo" name="ordreTaxo" size="40"/></br></br>
 
 		        <label>Famille</label>
-				<input type="text" id ="familleTaxo" name="familleTaxo" size="15"/></br></br>
+				<input type="text" id ="familleTaxo" name="familleTaxo" size="40"/></br></br>
 
 		        <label>Sous-famille</label>
-				<input type="text" id ="sousFamilleTaxo" name="sousFamilleTaxo" size="15"/></br></br>
+				<input type="text" id ="sousFamilleTaxo" name="sousFamilleTaxo" size="40"/></br></br>
 
 		        <label>Genre</label>
-				<input type="text" id ="genreTaxo" name="genreTaxo" size="15"/></br></br>
+				<input type="text" id ="genreTaxo" name="genreTaxo" size="40"/></br></br>
 
 		        <label>Espèce</label>
-				<input type="text" id ="especeTaxo" name="especeTaxo" size="15"/></br></br>
+				<input type="text" id ="especeTaxo" name="especeTaxo" size="40"/></br></br>
 
 		        <label>Photo</label>
 				<input type="file" id ="photo" name="photo" size="15" placeholder = "lien de la photo"/></br></br>
@@ -324,14 +342,14 @@ $bdd=connexionbd();
 
 		<!-- FORMULAIRE D'AJOUT D'UN GENE -->
 
-		<form  id="ajoutGene"  method="post" action = ""> <!-- reference au forumlaire -->
+		<form  id="ajoutGene"  method="post" action = ""> <!-- reference au formulaire -->
 		<p>
 			<fieldset>
 			<legend>Ajout d'un gène</legend>
 			</br>
 
 				<label>Nom</label>
-				<input type="text" id ="nomGene" name="nomGene" size="15"/></br></br>
+				<input type="text" id ="nomGene" name="nomGene" size="20"/></br></br>
 
 		        </br>
 
