@@ -9,6 +9,8 @@ drop table Electrophoregramme;*/
 drop table CorrespondanceGeneBacterie;
 drop table Gene;
 drop table Bacterie;
+drop table PoolIn;
+drop table Pool;
 drop table Individu;
 drop table Taxonomie;
 drop table Personne;

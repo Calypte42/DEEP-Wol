@@ -12,11 +12,11 @@ $bdd=connexionbd();
 		<script type="text/javascript" src=""></script>
 		<link rel = 'stylesheet' href = 'css/style.css' type='text/css' />
 	</head>
-	
+
 	<body>
 		<!-- FORMULAIRE D'AJOUT DE GROTTE -->
 
-		<form  id="ajoutGrotte"  method="post" action = ""> <!-- reference au formulaire -->
+		<form  id="ajoutGrotte"  method="GET" action = "ajoutGrotteWS.php"> <!-- reference au formulaire -->
 		<p> <!-- car balise input ou select ne peut pas etre imbriquee directement dans form -->
 			<fieldset>
 			<legend>Ajout d'une grotte</legend>
@@ -50,16 +50,16 @@ $bdd=connexionbd();
 				<input type="radio" id ="accesPublic" name="accesPublic"/> oui
 				<input type = "radio" id = "accesPublic" name = "accesPublic"> non-->
 
-				<input type="radio" id ="accesPublicOui" name="accesPublic" value="oui"/>
+				<input type="radio" id ="accesPublicOui" name="accesPublic" value="true"/>
 				<label for="accesPublicOui">oui</label>
-				<input type = "radio" id = "accesPublicNon" name = "accesPublic" value="non">
+				<input type = "radio" id = "accesPublicNon" name = "accesPublic" value="false">
 				<label for="accesPublicNon">non</label>
 
 				</br>
 				</br>
 
-				<input type="submit" name="nom" value=" Valider et ajouter une nouvelle grotte"> &nbsp;&nbsp;
-				<input type="submit" name="nom" value=" Valider et aller à la page suivante">
+				<input type="submit" name="nom" value="Valider et ajouter une nouvelle grotte"> &nbsp;&nbsp;
+				<input type="submit" name="nom" value="Valider et aller à la page suivante">
 
 			</fieldset>
 		</p>

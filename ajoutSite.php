@@ -12,7 +12,7 @@ $bdd=connexionbd();
 		<script type="text/javascript" src=""></script>
 		<link rel = 'stylesheet' href = 'css/style.css' type='text/css' />
 	</head>
-	
+
 	<body>
 		<!-- FORMULAIRE D'AJOUT DE SITE -->
 
@@ -58,12 +58,12 @@ $bdd=connexionbd();
 				}
 
 				echo "</select>";
-				?>	
-			
-				(si pas dans la liste alors l'ajouter) <input type = "button" value = "ajouter une équipe"> <!-- rajout d'un bouton ajout d'une nouvelle équipe -->	
-		
+				?>
+
+				(si pas dans la liste alors l'ajouter) <input type = "button" value = "ajouter une équipe"> <!-- rajout d'un bouton ajout d'une nouvelle équipe -->
+
 				</br></br>
-		
+
 				<label>Numéro de site</label>
 				<input required = "required" type="text" id ="numSite" name="numSite" size="40"/> * </br></br>
 
@@ -82,9 +82,9 @@ $bdd=connexionbd();
 				<input type="number" id ="distanceEntree" name="distanceEntree" size="10"/> m</br></br> <!-- a voir pour rajouter un pas (pour decimal) step =""-->
 
 				<label>Présence d'eau</label>
-				<input type="radio" id ="presenceEauOui" name="presenceEau" value="oui"/>
+				<input type="radio" id ="presenceEauOui" name="presenceEau" value="true"/>
 				<label for="presenceEauOui">oui</label>
-				<input type = "radio" id = "presenceEauNon" name = "presenceEau" value="non">
+				<input type = "radio" id = "presenceEauNon" name = "presenceEau" value="false">
 				<label for="presenceEauNon">non</label>
 
 				</br>
