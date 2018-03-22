@@ -9,7 +9,7 @@ $bdd=connexionbd();
 	<head>
 		<meta charset="utf-8" />
 		<title>ajoutDonnées</title>
-		<script type="text/javascript" src=""></script>
+		<script type="text/javascript" src="javascript/script.js"></script>
 		<link rel = 'stylesheet' href = 'css/style.css' type='text/css' />
 	</head>
 
@@ -47,7 +47,7 @@ $bdd=connexionbd();
 				/* on veut recuperer les valeurs de grotte deja existantes dans la bdd */
 
 				echo "<label for='equipeSpeleo'>Equipe spéléo </label>";
-				echo "<select name='equipeSpeleo'>"; /* On cree une liste deroulante vide */
+				echo "<select name='equipeSpeleo' id='equipeSpeleo'>"; /* On cree une liste deroulante vide */
 
 				$requete='SELECT * from EquipeSpeleo';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
 				$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
@@ -60,7 +60,7 @@ $bdd=connexionbd();
 				echo "</select>";
 				?>
 
-				(si pas dans la liste alors l'ajouter) <input type = "button" value = "ajouter une équipe"> <!-- rajout d'un bouton ajout d'une nouvelle équipe -->
+				(si pas dans la liste alors l'ajouter) <input type = "button" id="affichageAjoutEquipe" value = "ajouter une équipe"> <!-- rajout d'un bouton ajout d'une nouvelle équipe -->
 
 				</br></br>
 
@@ -96,5 +96,14 @@ $bdd=connexionbd();
 			</fieldset>
 		</p>
 		</form>
+
+        <div id="divEquipeSpeleo" style="display:none;">
+            <form  id="formEquipeSpeleo"  method="POST">
+                <label>Equipe spéleo</label>
+                <input type="text" id="codeEquipe" name="codeEquipe" required size="20"/> *
+                <button type="submit">Ajouter une équipe</button>
+            </form>
+        </div>
+
 	</body>
 </html>
