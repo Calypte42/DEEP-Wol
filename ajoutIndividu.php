@@ -10,10 +10,17 @@ $bdd=connexionbd();
 		<meta charset="utf-8" />
 		<title>ajoutDonnées</title>
 		<script type="text/javascript" src=""></script>
-		<link rel = 'stylesheet' href = 'css/style.css' type='text/css' />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><!-- style Bootstrap v3.3.7 -->
+		<link rel = 'stylesheet' href = 'CSS/entete.css' type='text/css' />
+		<link rel = 'stylesheet' href = 'CSS/menuVertical.css' type='text/css' />
 	</head>
 	
 	<body>
+	
+	<?php
+	include 'HTML/entete.html';
+	include 'HTML/menuVertical.html'
+	?>
 		<!-- FORMULAIRE D'AJOUT D'INDIVIDU -->
 
 		<form  id="ajoutIndividu"  method="post" action = ""> <!-- reference au formulaire -->

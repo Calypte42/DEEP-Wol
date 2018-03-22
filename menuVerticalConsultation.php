@@ -50,12 +50,5 @@ include'HTML/entete.html';
 				</div>
 			</div>
 		</form>
-		
-		<!--<div id="barreDeRecherche">
-		    <form action="">
-			<input class="champ" type="text" placeholder="Recherche..."/>
-			<button class = "iconeRecherche" type="submit"><img src="IMAGES/recherche.png" height="32"/></button>
-		    </form>
-		</div>-->
 	</body>
 </html>
