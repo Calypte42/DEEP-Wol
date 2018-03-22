@@ -12,7 +12,7 @@ $bdd=connexionbd();
 		<script type="text/javascript" src=""></script>
 		<link rel = 'stylesheet' href = 'css/style.css' type='text/css' />
 	</head>
-	
+
 	<body>
 		<!-- FORMULAIRE D'AJOUT D'INDIVIDU -->
 
@@ -60,7 +60,7 @@ $bdd=connexionbd();
 				?>
 
 				</br></br>
-				
+
 				<?php
 
 				/* on veut recuperer les valeurs de code de piege deja existantes dans la bdd */
@@ -92,8 +92,8 @@ $bdd=connexionbd();
 						<option value="EnrichissementGenomeBacterien">Enrichissement génome bactérien</option>
 						<option value="Pool">Pool</option>
 					</select>
-				
-				(si selection de pool alors envoi vers formulaire) <input type = "button" value = "ajouter un pool"> 
+
+				(si selection de pool alors envoi vers formulaire) <input type = "button" value = "ajouter un pool">
 
 		        </br></br>
 
@@ -140,9 +140,9 @@ $bdd=connexionbd();
 
 					echo "</select>";
 					?>
-					
+
 					</br></br>
-					
+
 					<?php
 
 					/* on veut recuperer les valeurs de ordre deja existantes dans la bdd */
@@ -160,9 +160,9 @@ $bdd=connexionbd();
 
 					echo "</select>";
 					?>
-					
+
 					</br></br>
-					
+
 					<?php
 
 					/* on veut recuperer les valeurs de famille deja existantes dans la bdd */
@@ -182,7 +182,7 @@ $bdd=connexionbd();
 					?>
 
 					</br></br>
-					
+
 					<?php
 
 					/* on veut recuperer les valeurs de sous-famille deja existantes dans la bdd */
@@ -200,9 +200,9 @@ $bdd=connexionbd();
 
 					echo "</select>";
 					?>
-					
+
 					</br></br>
-					
+
 					<?php
 
 					/* on veut recuperer les valeurs de genre deja existantes dans la bdd */
@@ -220,9 +220,9 @@ $bdd=connexionbd();
 
 					echo "</select>";
 					?>
-					
+
 					</br></br>
-					
+
 					<?php
 
 					/* on veut recuperer les valeurs de genre deja existantes dans la bdd */
@@ -244,9 +244,9 @@ $bdd=connexionbd();
 					</fieldset>
 				</form>
 				</br>
-				
-				<input type="submit" name="nom" value=" Valider et ajouter un nouvel individu">
-				
+
+				<input type="submit" name="nom" value="Valider et ajouter un nouvel individu">
+
 			</fieldset>
 		</p>
 		</form>
