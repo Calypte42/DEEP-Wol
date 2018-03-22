@@ -114,7 +114,48 @@ $bdd=connexionbd();
 						<option value="non">non</option>
 						<option selected value="nonDetermine">non déterminé</option>
 					</select>
+				
+				</br></br>
+				<?php
 
+				/* on veut recuperer les valeurs de grotte deja existantes dans la bdd */
+
+				echo "<label for='nomAuteur'>Auteur : nom </label>";
+				echo "<select name='nomAuteur'>"; /* On cree une liste deroulante vide */
+
+				$requete='SELECT nom from Personne ORDER BY nom';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
+				$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
+				foreach ($value as $array) { /* On parcourt les resultats possibles */
+					foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
+						echo "<option>$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
+					}
+				}
+				echo "</select>";
+				?>
+				
+				&nbsp;
+				
+				<?php
+
+				/* on veut recuperer les valeurs de grotte deja existantes dans la bdd */
+
+				echo "<label for='prenomAuteur'>prénom </label>";
+				echo "<select name='prenomAuteur'>"; /* On cree une liste deroulante vide */
+
+				$requete='SELECT prenom from Personne ORDER BY nom';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
+				$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
+				foreach ($value as $array) { /* On parcourt les resultats possibles */
+					foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
+						echo "<option>$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
+					}
+				}
+				echo "</select>";
+				?>
+				
+				&nbsp;&nbsp;
+				
+				<input type = "button" value = "ajouter un auteur"> 
+				
 		        </br></br>
 		        <!-- ajout des attributs de taxonomie sous forme de liste déroulante, en fieldset inclu dans le formulaire individu -->
 				<form  id="ajoutTaxonomie"  method="post" action = ""> <!-- reference au formulaire -->

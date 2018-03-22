@@ -43,13 +43,13 @@ $bdd=connexionbd();
 				<input type="text" id ="typeAcces" name="typeAcces" size="20"/></br></br>
 
 				<label>Système hydrographique</label>
-				<input type="text" id ="systemeHydro" name="systemeHydro" size="30"/></br></br>
+				<input type="text" id ="systemeHydro" name="systemeHydro" size="30"/>
+				
+				<input type = "button" value = "ajouter un système hydrographique"> 
+
+		        	</br></br>
 
 				<label>Accès au public </label>
-				<!--Ne pas mettre le meme id, rajouter la value
-				<input type="radio" id ="accesPublic" name="accesPublic"/> oui
-				<input type = "radio" id = "accesPublic" name = "accesPublic"> non-->
-
 				<input type="radio" id ="accesPublicOui" name="accesPublic" value="true"/>
 				<label for="accesPublicOui">oui</label>
 				<input type = "radio" id = "accesPublicNon" name = "accesPublic" value="false">
