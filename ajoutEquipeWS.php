@@ -1,4 +1,5 @@
 <?php
+//Fonctionnel ! 
 include 'BDD/bdd.php';
 $bdd = connexionbd();
 

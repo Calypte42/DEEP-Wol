@@ -1,4 +1,5 @@
 <?php
+// Fonctionnel !
 include 'BDD/bdd.php';
 $bdd = connexionbd();
 
@@ -13,7 +14,6 @@ $req->execute(array(
   'typeAcces' => $_REQUEST['typeAcces'],
   'accesPublic' => $_REQUEST['accesPublic'],
   'systemeHydro' => $_REQUEST['systemeHydro']
-/* Et on entre par exemple : http://localhost/~aurelien/TER/testBDD.php?nomEquipe=Equipe5 */
 
 ));
 
@@ -21,7 +21,7 @@ if ($_REQUEST['nom']=='Valider et ajouter une nouvelle grotte'){
   header('Refresh: 0; URL=ajoutGrotte.php');
 }
 
-if ($_REQUEST['nom']=='Valider et aller à la page suivante'){
+if ($_REQUEST['nom']=='Valider et ajouter un site'){
   header('Refresh: 0; URL=ajoutSite.php');
 }
 

@@ -16,14 +16,14 @@ $bdd=connexionbd();
 	</head>
 
 	<body>
-	
+
 	<?php
 	include 'HTML/entete.html';
 	include 'HTML/menuVertical.html'
 	?>
 		<!-- FORMULAIRE D'AJOUT DE SITE -->
 
-		<form  id="ajoutSite"  method="post" action = ""> <!-- reference au formulaire -->
+		<form  id="ajoutSite"  method="GET" action = "ajoutSiteWS.php"> <!-- reference au formulaire -->
 		<p>
 			<fieldset>
 			<legend>Ajout d'un site</legend>
@@ -34,13 +34,13 @@ $bdd=connexionbd();
 				/* on veut recuperer les valeurs de grotte deja existantes dans la bdd */
 
 				echo "<label for='grotte'>Grotte</label>";
-				echo "<select name='grotte'>"; /* On cree une liste deroulante vide */
+				echo "<select name='nomGrotte'>"; /* On cree une liste deroulante vide */
 
 				$requete='SELECT NomCavite from Grotte ORDER BY NomCavite';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
 				$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 				foreach ($value as $array) { /* On parcourt les resultats possibles */
 					foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
-						echo "<option>$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
+						echo "<option value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
 					}
 				}
 
@@ -54,13 +54,13 @@ $bdd=connexionbd();
 				/* on veut recuperer les valeurs de grotte deja existantes dans la bdd */
 
 				echo "<label for='equipeSpeleo'>Equipe spéléo </label>";
-				echo "<select name='equipeSpeleo' id='equipeSpeleo'>"; /* On cree une liste deroulante vide */
+				echo "<select name='codeEquipeSpeleo' id='equipeSpeleo'>"; /* On cree une liste deroulante vide */
 
-				$requete='SELECT * from EquipeSpeleo';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
+				$requete='SELECT codeEquipe from EquipeSpeleo';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
 				$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 				foreach ($value as $array) { /* On parcourt les resultats possibles */
 					foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
-						echo "<option>$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
+						echo "<option value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
 					}
 				}
 
@@ -86,7 +86,7 @@ $bdd=connexionbd();
 				<input type="text" id ="typeSol" name="typeSol" size="20"/></br></br>
 				<!-- Mettre number -->
 				<label>Distance à l'entrée</label>
-				<input type="number" id ="distanceEntree" name="distanceEntree" size="10"/> m</br></br> <!-- a voir pour rajouter un pas (pour decimal) step =""-->
+				<input required type="number" id ="distanceEntree" name="distanceEntree" size="10"/> metres *</br></br> <!-- a voir pour rajouter un pas (pour decimal) step =""-->
 
 				<label>Présence d'eau</label>
 				<input type="radio" id ="presenceEauOui" name="presenceEau" value="true"/>
@@ -97,8 +97,8 @@ $bdd=connexionbd();
 				</br>
 				</br>
 
-				<input type="submit" name="nom" value=" Valider et ajouter un nouveau site"> &nbsp;&nbsp;
-				<input type="submit" name="nom" value=" Valider et aller à la page suivante">
+				<input type="submit" name="nom" value="Valider et ajouter un nouveau site"> &nbsp;&nbsp;
+				<input type="submit" name="nom" value="Valider et ajouter un nouveau piege">
 
 			</fieldset>
 		</p>

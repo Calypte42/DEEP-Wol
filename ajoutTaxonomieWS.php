@@ -1,4 +1,5 @@
 <?php
+// ne fonctionne pas avec les photos pour le moments 
 include 'BDD/bdd.php';
 $bdd = connexionbd();
 
@@ -11,7 +12,7 @@ $req->execute(array(
   'sousFamille' => $_REQUEST['sousFamilleTaxo'],
   'genre' => $_REQUEST['genreTaxo'],
   'espece' => $_REQUEST['especeTaxo'],
-  'photo' => $_REQUEST['photo']
+  //'photo' => $_REQUEST['photo']
 
 ));
 

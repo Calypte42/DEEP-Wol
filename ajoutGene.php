@@ -14,21 +14,21 @@ $bdd=connexionbd();
 		<link rel = 'stylesheet' href = 'CSS/entete.css' type='text/css' />
 		<link rel = 'stylesheet' href = 'CSS/menuVertical.css' type='text/css' />
 	</head>
-	
+
 	<body>
-	
+
 	<?php
 	include 'HTML/entete.html';
 	include 'HTML/menuVertical.html'
 	?>
 		<!-- FORMULAIRE D'AJOUT D'UN GENE -->
 
-		<form  id="ajoutGene"  method="post" action = ""> <!-- reference au formulaire -->
+		<form  id="ajoutGene"  method="GET" action = "ajoutGeneWS.php"> <!-- reference au formulaire -->
 		<p>
 			<fieldset>
 			<legend>Ajout d'un gène</legend>
 			</br>
-			
+
 				<label>Nom</label>
 				<input type="text" id ="nomGene" name="nomGene" size="20"/></br></br>
 

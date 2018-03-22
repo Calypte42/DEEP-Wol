@@ -16,14 +16,14 @@ $bdd=connexionbd();
 	</head>
 
 	<body>
-	
+
 	<?php
 	include 'HTML/entete.html';
 	include 'HTML/menuVertical.html'
 	?>
 		<!-- FORMULAIRE D'AJOUT D'INDIVIDU -->
 
-		<form  id="ajoutIndividu"  method="post" action = ""> <!-- reference au formulaire -->
+		<form  id="ajoutIndividu"  method="GET" action = "ajoutIndividuWS.php"> <!-- reference au formulaire -->
 		<p>
 			<fieldset>
 			<legend>Ajout d'un individu</legend>
@@ -39,7 +39,7 @@ $bdd=connexionbd();
 				$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 				foreach ($value as $array) { /* On parcourt les resultats possibles */
 					foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
-						echo "<option>$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
+						echo "<option value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
 					}
 				}
 
@@ -59,7 +59,7 @@ $bdd=connexionbd();
 				$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 				foreach ($value as $array) { /* On parcourt les resultats possibles */
 					foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
-						echo "<option>$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
+						echo "<option value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
 					}
 				}
 
@@ -73,13 +73,13 @@ $bdd=connexionbd();
 				/* on veut recuperer les valeurs de code de piege deja existantes dans la bdd */
 
 				echo "<label for='piege'>Code du piège </label>";
-				echo "<select name='piege'>"; /* On cree une liste deroulante vide */
+				echo "<select name='codePiege'>"; /* On cree une liste deroulante vide */
 
 				$requete='SELECT codePiege from Piege ORDER BY codePiege';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
 				$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 				foreach ($value as $array) { /* On parcourt les resultats possibles */
 					foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
-						echo "<option>$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
+						echo "<option value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
 					}
 				}
 
@@ -89,7 +89,7 @@ $bdd=connexionbd();
 				</br></br>
 
 				<label>Numéro de l'individu</label>
-				<input type="text" id ="numIndiv" name="numIndiv" size="20"/></br></br> <!-- recuperer la valeur precedemment remplie -->
+				<input required type="text" id ="numIndividu" name="numIndividu" size="20"/>*</br></br> <!-- recuperer la valeur precedemment remplie -->
 
 				<label>Forme de stockage</label>  <!-- menu deroulant -->
 					<select name="formeStockage" id="formeStockage">
@@ -105,10 +105,10 @@ $bdd=connexionbd();
 		        </br></br>
 
 				<label>Lieu de stockage</label>
-				<input type="text" id ="lieuStockage" name="lieuStockage" size="20"/></br></br>
+				<input required type="text" id ="lieuStockage" name="lieuStockage" size="20"/>*</br></br>
 
 				<label>Niveau d'identification</label>  <!-- menu deroulant -->
-					<select name="formeStockage" id="formeStockage">
+					<select name="niveauIdentification" id="niveauIdentification">
 						<option value="hypothetique">Hypothétique</option>
 						<option value="valide">Validé</option>
 					</select>
@@ -116,12 +116,12 @@ $bdd=connexionbd();
 		        </br></br>
 
 				<label>Infecté par bactérie</label>  <!-- menu deroulant -->
-					<select name="infectionBacterie" id="infectionBacterie">
+					<select name="infecteBacterie" id="infecteBacterie">
 						<option value="oui">oui</option>
 						<option value="non">non</option>
 						<option selected value="nonDetermine">non déterminé</option>
 					</select>
-				
+
 				</br></br>
 				<?php
 
@@ -134,14 +134,14 @@ $bdd=connexionbd();
 				$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 				foreach ($value as $array) { /* On parcourt les resultats possibles */
 					foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
-						echo "<option>$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
+						echo "<option value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
 					}
 				}
 				echo "</select>";
 				?>
-				
+
 				&nbsp;
-				
+
 				<?php
 
 				/* on veut recuperer les valeurs de grotte deja existantes dans la bdd */
@@ -153,19 +153,19 @@ $bdd=connexionbd();
 				$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 				foreach ($value as $array) { /* On parcourt les resultats possibles */
 					foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
-						echo "<option>$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
+						echo "<option value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
 					}
 				}
 				echo "</select>";
 				?>
-				
+
 				&nbsp;&nbsp;
-				
-				<input type = "button" value = "ajouter un auteur"> 
-				
+
+				<input type = "button" value = "ajouter un auteur">
+
 		        </br></br>
 		        <!-- ajout des attributs de taxonomie sous forme de liste déroulante, en fieldset inclu dans le formulaire individu -->
-				<form  id="ajoutTaxonomie"  method="post" action = ""> <!-- reference au formulaire -->
+				<form  id="ajoutTaxonomie"  method="GET" action = "ajoutIndividuWS.php"> <!-- reference au formulaire -->
 				<p>
 					<fieldset>
 					<legend>Ajout d'une taxonomie</legend>
@@ -178,11 +178,12 @@ $bdd=connexionbd();
 					echo "<label for='classe'>Classe </label>";
 					echo "<select name='classe'>"; /* On cree une liste deroulante vide */
 
+
 					$requete='SELECT classe from Taxonomie ORDER BY classe';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
 					$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 					foreach ($value as $array) { /* On parcourt les resultats possibles */
 						foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
-							echo "<option>$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
+							echo "<option value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
 						}
 					}
 
@@ -197,12 +198,13 @@ $bdd=connexionbd();
 
 					echo "<label for='ordre'>Ordre </label>";
 					echo "<select name='ordre'>"; /* On cree une liste deroulante vide */
+					echo "<option value=null>Indetermine</option>";
 
 					$requete='SELECT ordre from Taxonomie ORDER BY ordre';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
 					$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 					foreach ($value as $array) { /* On parcourt les resultats possibles */
 						foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
-							echo "<option>$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
+							echo "<option value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
 						}
 					}
 
@@ -217,12 +219,13 @@ $bdd=connexionbd();
 
 					echo "<label for='famille'>Famille </label>";
 					echo "<select name='famille'>"; /* On cree une liste deroulante vide */
+					echo "<option value=null>Indetermine</option>";
 
 					$requete='SELECT famille from Taxonomie ORDER BY famille';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
 					$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 					foreach ($value as $array) { /* On parcourt les resultats possibles */
 						foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
-							echo "<option>$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
+							echo "<option value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
 						}
 					}
 
@@ -237,12 +240,13 @@ $bdd=connexionbd();
 
 					echo "<label for='sousFamille'>Sous-famille </label>";
 					echo "<select name='sousFamille'>"; /* On cree une liste deroulante vide */
+					echo "<option value=null>Indetermine</option>";
 
 					$requete='SELECT sousfamille from Taxonomie ORDER BY sousfamille';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
 					$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 					foreach ($value as $array) { /* On parcourt les resultats possibles */
 						foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
-							echo "<option>$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
+							echo "<option value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
 						}
 					}
 
@@ -257,12 +261,13 @@ $bdd=connexionbd();
 
 					echo "<label for='genre'>Genre </label>";
 					echo "<select name='genre'>"; /* On cree une liste deroulante vide */
+					echo "<option value=null>Indetermine</option>";
 
 					$requete='SELECT genre from Taxonomie ORDER BY genre';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
 					$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 					foreach ($value as $array) { /* On parcourt les resultats possibles */
 						foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
-							echo "<option>$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
+							echo "<option value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
 						}
 					}
 
@@ -277,12 +282,13 @@ $bdd=connexionbd();
 
 					echo "<label for='espece'>Espèce </label>";
 					echo "<select name='espece'>"; /* On cree une liste deroulante vide */
+					echo "<option value=null>Indetermine</option>";
 
 					$requete='SELECT espece from Taxonomie ORDER BY espece';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
 					$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 					foreach ($value as $array) { /* On parcourt les resultats possibles */
 						foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
-							echo "<option>$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
+							echo "<option value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
 						}
 					}
 

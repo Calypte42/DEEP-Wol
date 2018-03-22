@@ -1,4 +1,7 @@
 <?php
+
+// ne fonctionne pas !
+
 include 'BDD/bdd.php';
 $bdd = connexionbd();
 
@@ -7,7 +10,7 @@ $req = $bdd->prepare('INSERT INTO Individu (numIndividu,formeStockage,lieuStocka
  SELECT :numIndividu,:formeStockage,:lieuStockage,:niveauIdentification,:infecteBacterie,:codePiege,
   p.id,t.id FROM Taxonomie t, Personne p WHERE t.classe=:classe and t.ordre=:ordre and
     t.famille = :famille and t.sousFamille = : sousFamille and t.genre = :genre and t.espece = :espece and
-      p.nom = nomAuteur and p.prenom = prenomAuteur;');
+      p.nom = :nomAuteur and p.prenom = :prenomAuteur;');
 $req->execute(array(
 
 	'numIndividu' => $_REQUEST['numIndividu'],
@@ -27,7 +30,7 @@ $req->execute(array(
 
 ));
 
-header('Refresh: 3; URL=ajoutIndividu.php');
+header('Refresh: 10; URL=ajoutIndividu.php');
 echo http_response_code();
 
 ?>

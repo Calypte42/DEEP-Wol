@@ -16,7 +16,7 @@ $bdd=connexionbd();
 	</head>
 
 	<body>
-	
+
 	<?php
 	include 'HTML/entete.html';
 	include 'HTML/menuVertical.html'
@@ -34,9 +34,9 @@ $bdd=connexionbd();
 
 				<label>Type de cavité</label>  <!-- menu deroulant : a preciser les valeurs -->
 					<select name="typeCavite" id="typeCavite">
-						<option value="">Choix1</option>
-						<option value="">Choix2</option>
-						<option value="">Choix3</option>
+						<option value="Choix1">Choix1</option>
+						<option value="Choix2">Choix2</option>
+						<option value="Choix3">Choix3</option>
 					</select>
 
 		        </br></br>
@@ -51,9 +51,21 @@ $bdd=connexionbd();
 				<input type="text" id ="typeAcces" name="typeAcces" size="20"/></br></br>
 
 				<label>Système hydrographique</label>
-				<input type="text" id ="systemeHydro" name="systemeHydro" size="30"/>
-				
-				<input type = "button" value = "ajouter un système hydrographique"> 
+				<select name="systemeHydro">
+
+<?php
+				$requete='SELECT nom from SystemeHydrographique ORDER BY nom';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
+				$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
+				foreach ($value as $array) { /* On parcourt les resultats possibles */
+					foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
+						echo "<option value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
+					}
+				}
+
+				echo "</select>";
+		?>
+				ou
+				<input type = "button" value = "ajouter un système hydrographique">
 
 		        	</br></br>
 
@@ -67,7 +79,7 @@ $bdd=connexionbd();
 				</br>
 
 				<input type="submit" name="nom" value="Valider et ajouter une nouvelle grotte"> &nbsp;&nbsp;
-				<input type="submit" name="nom" value="Valider et aller à la page suivante">
+				<input type="submit" name="nom" value="Valider et ajouter un site">
 
 			</fieldset>
 		</p>
