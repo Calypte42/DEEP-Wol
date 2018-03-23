@@ -9,20 +9,19 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 
-    var boutonAjoutEquipe = document.getElementById('formEquipeSpeleo')
+    var formAjoutEquipe = document.getElementById('formEquipeSpeleo')
 
-    boutonAjoutEquipe.addEventListener("submit", function(event) {
+    formAjoutEquipe.addEventListener("submit", function(event) {
         event.preventDefault()
-        var formEquipeSpeleo = document.getElementById('formEquipeSpeleo')
         var request = new XMLHttpRequest()
 
         request.addEventListener('load', function(data) {
             reponse = data.target.responseText
             if (reponse==200) {
-                var equipeSpeleo = document.getElementById('equipeSpeleo')
+                var listeEquipeSpeleo = document.getElementById('listeEquipeSpeleo')
                 var option = document.createElement("option")
                 var codeEquipe = document.getElementById('codeEquipe')
-                var listeOptions = equipeSpeleo.options
+                var listeOptions = listeEquipeSpeleo.options
                 valeurCodeEquipe = codeEquipe.value
 
                 var ajoutOption = true
@@ -36,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (ajoutOption) {
                     option.text = valeurCodeEquipe
                     option.selected = true
-                    equipeSpeleo.add(option, equipeSpeleo[0])
+                    listeEquipeSpeleo.add(option, listeEquipeSpeleo[0])
                 }
 
                 var affichage = document.getElementById('divEquipeSpeleo')
@@ -45,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         request.open("POST", "ajoutEquipeWS.php")
-        request.send(new FormData(formEquipeSpeleo))
+        request.send(new FormData(this))
     });
 
 })

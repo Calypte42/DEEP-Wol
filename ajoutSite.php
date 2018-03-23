@@ -9,7 +9,7 @@ $bdd=connexionbd();
 	<head>
 		<meta charset="utf-8" />
 		<title>ajoutDonnées</title>
-		<script type="text/javascript" src="javascript/script.js"></script>
+		<script type="text/javascript" src="javascript/ajoutEquipe.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><!-- style Bootstrap v3.3.7 -->
 		<link rel = 'stylesheet' href = 'CSS/entete.css' type='text/css' />
 		<link rel = 'stylesheet' href = 'CSS/menuVertical.css' type='text/css' />
@@ -54,7 +54,7 @@ $bdd=connexionbd();
 				/* on veut recuperer les valeurs de grotte deja existantes dans la bdd */
 
 				echo "<label for='equipeSpeleo'>Equipe spéléo </label>";
-				echo "<select name='codeEquipeSpeleo' id='equipeSpeleo'>"; /* On cree une liste deroulante vide */
+				echo "<select name='codeEquipeSpeleo' id='listeEquipeSpeleo'>"; /* On cree une liste deroulante vide */
 
 				$requete='SELECT codeEquipe from EquipeSpeleo';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
 				$value=requete($bdd,$requete); /* value recupere la reponse de la requete */

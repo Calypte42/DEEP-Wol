@@ -9,7 +9,7 @@ $bdd=connexionbd();
 	<head>
 		<meta charset="utf-8" />
 		<title>ajoutDonnées</title>
-		<script type="text/javascript" src=""></script>
+		<script type="text/javascript" src="javascript/ajoutSystemeHydrographique.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><!-- style Bootstrap v3.3.7 -->
 		<link rel = 'stylesheet' href = 'CSS/entete.css' type='text/css' />
 		<link rel = 'stylesheet' href = 'CSS/menuVertical.css' type='text/css' />
@@ -51,7 +51,7 @@ $bdd=connexionbd();
 				<input type="text" id ="typeAcces" name="typeAcces" size="20"/></br></br>
 
 				<label>Système hydrographique</label>
-				<select name="systemeHydro">
+				<select name="systemeHydro" id='listeSystemeHydrographique'>
 
 <?php
 				$requete='SELECT nom from SystemeHydrographique ORDER BY nom';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
@@ -65,7 +65,7 @@ $bdd=connexionbd();
 				echo "</select>";
 		?>
 				ou
-				<input type = "button" value = "ajouter un système hydrographique">
+				<input type = "button" id="affichageSystemeHydrographique" value = "ajouter un système hydrographique">
 
 		        	</br></br>
 
@@ -84,5 +84,16 @@ $bdd=connexionbd();
 			</fieldset>
 		</p>
 		</form>
+
+        <div id="divSystemeHydrographique" style="display:none;">
+            <form  id="formSystemeHydrographique"  method="post">
+                <label>nom</label>
+                <input type="text" id ="nom" name="nom" size="30"/></br></br>
+                <label>département</label>
+                <input type="number" id ="departement" name="departement"/></br></br>
+                <button type="submit">Ajouter un système hydrographique</button>
+            </form>
+        </div>
+
 	</body>
 </html>
