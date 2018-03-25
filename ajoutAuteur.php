@@ -14,14 +14,14 @@ $bdd=connexionbd();
 	</head>
 
 	<body>
-		<!-- Formulaire ajout éuipe dans BDD -->
+		<!-- Formulaire ajout auteur dans BDD -->
 		<fieldset>
 		<legend>Ajout d'un auteur</legend>
 		</br>
-			<form  id="ajoutSystemeHydrographique"  method="post">
+			<form  id="auteur"  method="post">
 				<label>nom</label>
 				<input type="text" id ="nomAuteur" name="nomAuteur" size="50"/></br></br>
-			
+
 				<label>prénom</label>
 				<input type="text" id ="prenomAuteur" name="prenomAuteur" size = "50"/></br></br>
 			</form>
