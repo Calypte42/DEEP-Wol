@@ -2,31 +2,18 @@
 include 'BDD/bdd.php';
 $bdd=connexionbd();
 ?>
-
-<!DOCTYPE html>
-
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<title>ajoutDonnées</title>
-		<script type="text/javascript" src=""></script>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><!-- style Bootstrap v3.3.7 -->
-		<link rel = 'stylesheet' href = 'CSS/entete.css' type='text/css' />
-		<link rel = 'stylesheet' href = 'CSS/menuVertical.css' type='text/css' />
-	</head>
-
-	<body>
 	
-	<?php
-	include 'HTML/entete.html';
-	include 'HTML/menuVertical.html'
-	?>
+<?php
+include 'consultationModification.php';
+?>
 		<!-- FORMULAIRE D'AJOUT DE LA TAXONOMIE -->
 
 		<form  id="ajoutTaxonomie"  method="GET" action = "ajoutTaxonomieWS.php"> <!-- reference au formulaire -->
 		<p>
-			<fieldset>
-			<legend>Ajout d'une taxonomie</legend>
+			<fieldset class="scheduler-border">
+				<legend class="scheduler-border"> Ajout d'une taxonomie </legend>
+				<div class="control-group">
+					<div class="controls bootstrap-timepicker">
 			</br>
 
 				<label>Classe</label>
@@ -54,5 +41,6 @@ $bdd=connexionbd();
 
 			</fieldset>
 		</form>
-	</body>
-</html>
+<?php
+include 'HTML/pied.html';
+?>

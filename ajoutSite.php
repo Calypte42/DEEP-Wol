@@ -3,30 +3,17 @@ include 'BDD/bdd.php';
 $bdd=connexionbd();
 ?>
 
-<!DOCTYPE html>
-
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<title>ajoutDonnées</title>
-		<script type="text/javascript" src="javascript/ajoutEquipe.js"></script>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><!-- style Bootstrap v3.3.7 -->
-		<link rel = 'stylesheet' href = 'CSS/entete.css' type='text/css' />
-		<link rel = 'stylesheet' href = 'CSS/menuVertical.css' type='text/css' />
-	</head>
-
-	<body>
-
-	<?php
-	include 'HTML/entete.html';
-	include 'HTML/menuVertical.html'
-	?>
+<?php
+include 'consultationModification.php';
+?>
 		<!-- FORMULAIRE D'AJOUT DE SITE -->
 
 		<form  id="ajoutSite"  method="GET" action = "ajoutSiteWS.php"> <!-- reference au formulaire -->
 		<p>
-			<fieldset>
-			<legend>Ajout d'un site</legend>
+			<fieldset class="scheduler-border">
+				<legend class="scheduler-border"> Ajout d'un site </legend>
+				<div class="control-group">
+					<div class="controls bootstrap-timepicker">
 			</br>
 
 				<?php
@@ -112,5 +99,6 @@ $bdd=connexionbd();
             </form>
         </div>
 
-	</body>
-</html>
+<?php
+include 'HTML/pied.html';
+?>

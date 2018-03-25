@@ -3,30 +3,18 @@ include 'BDD/bdd.php';
 $bdd=connexionbd();
 ?>
 
-<!DOCTYPE html>
+<?php
+include 'consultationModification.php';
+?>
 
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<title>ajoutDonnées</title>
-		<script type="text/javascript" src=""></script>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><!-- style Bootstrap v3.3.7 -->
-		<link rel = 'stylesheet' href = 'CSS/entete.css' type='text/css' />
-		<link rel = 'stylesheet' href = 'CSS/menuVertical.css' type='text/css' />
-	</head>
-
-	<body>
-
-	<?php
-	include 'HTML/entete.html';
-	include 'HTML/menuVertical.html'
-	?>
 		<!-- FORMULAIRE D'AJOUT D'UN GENE -->
 
 		<form  id="ajoutGene"  method="GET" action = "ajoutGeneWS.php"> <!-- reference au formulaire -->
 		<p>
-			<fieldset>
-			<legend>Ajout d'un gène</legend>
+			<fieldset class="scheduler-border">
+				<legend class="scheduler-border"> Ajout d'un gène </legend>
+				<div class="control-group">
+					<div class="controls bootstrap-timepicker">
 			</br>
 
 				<label>Nom</label>
@@ -39,5 +27,6 @@ $bdd=connexionbd();
 			</fieldset>
 		</p>
 		</form>
-	</body>
-</html>
+<?php
+include 'HTML/pied.html';
+?>

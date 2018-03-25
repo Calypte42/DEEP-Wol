@@ -3,32 +3,19 @@ include 'BDD/bdd.php';
 $bdd=connexionbd();
 ?>
 
-<!DOCTYPE html>
-
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<title>ajoutDonnées</title>
-		<script type="text/javascript" src="javascript/ajoutSystemeHydrographique.js"></script>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><!-- style Bootstrap v3.3.7 -->
-		<link rel = 'stylesheet' href = 'CSS/entete.css' type='text/css' />
-		<link rel = 'stylesheet' href = 'CSS/menuVertical.css' type='text/css' />
-	</head>
-
-	<body>
-
-	<?php
-	include 'HTML/entete.html';
-	include 'HTML/menuVertical.html'
-	?>
+<?php
+include 'consultationModification.php';
+?>
 		<!-- FORMULAIRE D'AJOUT DE GROTTE -->
 	</br>
 	</br>
 		<form  id="ajoutGrotte"  method="GET" action = "ajoutGrotteWS.php"> <!-- reference au formulaire -->
 		<p> <!-- car balise input ou select ne peut pas etre imbriquee directement dans form -->
-			<fieldset>
-			<legend>Ajout d'une grotte</legend>
-			</br>
+			<fieldset class="scheduler-border">
+				<legend class="scheduler-border"> Ajout d'une grotte </legend>
+				<div class="control-group">
+					<div class="controls bootstrap-timepicker">
+				</br>
 				<label>Nom de la grotte</label>          <!-- Changer les size par rapport à la base de donnees -->
 				<input required type="text" id ="nomGrotte" name="nomGrotte" size="50"/> * </br></br>
 
@@ -95,5 +82,6 @@ $bdd=connexionbd();
             </form>
         </div>
 
-	</body>
-</html>
+<?php
+include 'HTML/pied.html';
+?>

@@ -1,22 +1,40 @@
+<!Doctype html>
 
-<div "id = "titre" style = "text-align: center; margin-top: 2px;">
-		<h1> BD DEEP-Wol  </h1>
-</div>
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<title>Accueil</title>
+		<link rel="stylesheet" href="Bootstrap/bootstrap.css">
+		<link src="Bootstrap/bootstrap-theme.css"><!-- style Bootstrap v3.3.7 -->
+		<script src="Bootstrap/jquery-3.3.1.js"></script> 
+		<script src="Bootstrap/bootstrap.js"></script> 
+		<link rel="stylesheet" href="CSS/style.css">
+	</head>
 
+	<body>	
+
+	
 	<!-- BARRE DE NAVIGATION ET BOUTON DECONNEXION -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="width:100%;">  
+        <div class="container-fluid">    
+            <!--Menu Start Here-->  
+            <ul class="nav navbar-nav">  
+			<li class="consultationModification"><a href="./consultationModification.php">CONSULTATION / MODIFICATION DES DONNEES</a></li>
+			<li class="extraction"><a href="partieExtraction.php">EXTRACTION DE DONNEES</a></li> 
+            </ul>  
+            <!--Menu End Here-->  
+            <!--Right Aligned Menu Start-->  
+            <ul class="nav navbar-nav navbar-right">  
+                <li><a href="#">DECONNEXION</a></li> 
+            </ul>  
+            <!--Right Aligned Menu End-->  
+        </div>  
+    </nav>
+	<div class="jumbotron">
+		<div class = "container">
+			<h1 class="display-3 text-center">BD DEEP-Wol</h1>
+			<p class="text-center">Quelques détails</p>
+		</div>
+	</div>
+	
 
-	<nav>
-		<ul class="navBarGauche">
-			<li class="consultation"><a href="./menuVerticalConsultation.php">CONSULTATION / MODIFICATION DES DONNEES</a></li>
-			<li classe="ajout"><a href="./menuVerticalAjout.php">AJOUT DE NOUVELLES DONNEES</a></li>
-			<li classe= "extraction"><a href="#">EXTRACTION DE DONNEES</a></li>
-		</ul>
-		
-		<ul class="navBarDroite">
-			<li><a href="#">DECONNEXION</a></li>
-		</ul>
-	</nav>
-	</br>
-	</br>
-	
-	

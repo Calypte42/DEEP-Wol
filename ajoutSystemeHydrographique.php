@@ -3,20 +3,14 @@ include 'BDD/bdd.php';
 $bdd=connexionbd();
 ?>
 
-<!DOCTYPE html>
-
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<title>ajoutDonnées</title>
-		<script type="text/javascript" src=""></script>
-		<link rel = 'stylesheet' href = 'css/style.css' type='text/css' />
-	</head>
-
-	<body>
+<?php
+include 'consultationModification.php';
+?>
 		<!-- Formulaire ajout éuipe dans BDD -->
-		<fieldset>
-		<legend>Ajout d'un système hydrographique</legend>
+		<fieldset class="scheduler-border">
+				<legend class="scheduler-border"> Ajout d'un système hydrographique </legend>
+				<div class="control-group">
+					<div class="controls bootstrap-timepicker">
 		</br>
 			<form  id="ajoutSystemeHydrographique"  method="post">
 				<label>nom</label>
@@ -26,5 +20,7 @@ $bdd=connexionbd();
 				<input type="number" id ="departement" name="departement"/></br></br>
 			</form>
 		</fieldset>
-	</body>
-</html>
+
+<?php
+include 'HTML/pied.html';
+?>
