@@ -9,7 +9,7 @@ include 'consultationModification.php';
 
 		<!-- FORMULAIRE D'AJOUT D'UN GENE -->
 
-		<form  id="ajoutGene"  method="GET" action = "ajoutGeneWS.php"> <!-- reference au formulaire -->
+		<form  id="ajoutGene"  method="POST" action = "WebService/ajoutGeneWS.php"> <!-- reference au formulaire -->
 		<p>
 			<fieldset class="scheduler-border">
 				<legend class="scheduler-border"> Ajout d'un gène </legend>

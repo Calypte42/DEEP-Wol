@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        request.open("POST", "ajoutEquipeWS.php")
+        request.open("POST", "./WebService/ajoutEquipeWS.php")
         request.send(new FormData(this))
     });
 

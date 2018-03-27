@@ -9,6 +9,7 @@ $req = $bdd->prepare('INSERT INTO Site (profondeur,temperature,typeSol,numSite,d
     :presenceEau, id, codeEquipe FROM EquipeSpeleo, Grotte
       WHERE nomCavite = :nomGrotte AND codeEquipe = :codeEquipeSpeleo;');
 
+// Gestion de profondeur vide
 if(empty($_REQUEST['profondeur'])){
     $profondeur=null;
 }
@@ -16,6 +17,7 @@ else {
   $profondeur=$_REQUEST['profondeur'];
 }
 
+// Gestion de temperature vide
 if(empty($_REQUEST['temperature'])){
   $temperature=null;
 }
@@ -23,6 +25,15 @@ else {
     $temperature=$_REQUEST['temperature'];
 }
 
+// Gestion de typeSol vide
+if(empty($_REQUEST['typeSol'])){
+  $typeSol=null;
+}
+else {
+    $TypeSol=$_REQUEST['typeSol'];
+}
+
+// Gestion de presenceEau non coche
 if(isset($_REQUEST['presenceEau'])){
   $presenceEau=$_REQUEST['presenceEau'];
 }
@@ -30,12 +41,11 @@ else {
   $presenceEau=null;
 }
 
-echo "$profondeur,$temperature,$presenceEau";
 
 $req->execute(array(
 	'profondeur' => $profondeur,
   'temperature' => $temperature,
-  'typeSol' => $_REQUEST['typeSol'],
+  'typeSol' => $typeSol,
   'numSite' => $_REQUEST['numSite'],
   'distanceEntree' => $_REQUEST['distanceEntree'],
   'presenceEau' => $presenceEau,

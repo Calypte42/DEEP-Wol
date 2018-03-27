@@ -7,7 +7,7 @@ include'HTML/entete.html';
 </br>
 </br>
 </br>
-		
+
 <div id='menuVertical'>
 	<ul>
 		<li><a href='ajoutGrotte.php'><span>Grotte</span></a></li>
@@ -16,7 +16,7 @@ include'HTML/entete.html';
 		</br>
 		<li><a href='ajoutPiege.php'><span>Piège</span></a></li>
 		</br>
-		<li><a href='ajoutIndividu.php'><span>Individu</span></a>
+		<li><a href='ajoutEchantillon.php'><span>Echantillon</span></a>
 		</br>
 		<li><a href='ajoutTaxonomie.php'><span>Taxonomie</span></a></li>
 		</br>

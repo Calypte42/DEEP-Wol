@@ -2,13 +2,13 @@
 include 'BDD/bdd.php';
 $bdd=connexionbd();
 ?>
-	
+
 <?php
 include 'consultationModification.php';
 ?>
 		<!-- FORMULAIRE D'AJOUT DE LA TAXONOMIE -->
 
-		<form  id="ajoutTaxonomie"  method="GET" action = "ajoutTaxonomieWS.php"> <!-- reference au formulaire -->
+		<form  id="ajoutTaxonomie"  method="GET" action = "WebService/ajoutTaxonomieWS.php"> <!-- reference au formulaire -->
 		<p>
 			<fieldset class="scheduler-border">
 				<legend class="scheduler-border"> Ajout d'une taxonomie </legend>

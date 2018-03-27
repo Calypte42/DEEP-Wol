@@ -67,7 +67,8 @@ create table Taxonomie (
     sousFamille varchar(40),
     genre varchar(40),
     espece varchar(40),
-    photo varchar(200)
+    photo varchar(200),
+    CONSTRAINT taxo_unique UNIQUE (classe,ordre,famille,sousFamille,genre,espece)
 );
 
 create table Echantillon (
