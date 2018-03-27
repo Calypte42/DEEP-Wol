@@ -2,7 +2,7 @@
 
 // ne fonctionne pas !
 
-include 'BDD/bdd.php';
+include '../BDD/bdd.php';
 $bdd = connexionbd();
 
 $req = $bdd->prepare('INSERT INTO Individu (numIndividu,formeStockage,lieuStockage,
@@ -30,7 +30,7 @@ $req->execute(array(
 
 ));
 
-header('Refresh: 10; URL=ajoutIndividu.php');
+header('Refresh: 10; URL=../ajoutIndividu.php');
 echo http_response_code();
 
 ?>

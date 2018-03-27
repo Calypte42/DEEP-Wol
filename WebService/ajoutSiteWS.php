@@ -1,6 +1,6 @@
 <?php
 // Fonctionnel !
-include 'BDD/bdd.php';
+include '../BDD/bdd.php';
 $bdd = connexionbd();
 
 $req = $bdd->prepare('INSERT INTO Site (profondeur,temperature,typeSol,numSite,distanceEntree,
@@ -46,11 +46,11 @@ $req->execute(array(
 
 
 if ($_REQUEST['nom']=='Valider et ajouter un nouveau site'){
-  header('Refresh: 0; URL=ajoutSite.php');
+  header('Refresh: 0; URL=../ajoutSite.php');
 }
 
 if ($_REQUEST['nom']=='Valider et ajouter un nouveau piege'){
-  header('Refresh: 0; URL=ajoutPiege.php');
+  header('Refresh: 0; URL=../ajoutPiege.php');
 }
 
 echo http_response_code();

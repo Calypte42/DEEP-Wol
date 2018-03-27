@@ -26,7 +26,7 @@ create table Site (
     profondeur float,
     temperature float,
     typeSol varchar(20),
-    numSite varchar(40) UNIQUE NOT NULL,
+    numSite varchar(40) NOT NULL,
     distanceEntree float NOT NULL,
     presenceEau boolean,
     idGrotte int NOT NULL,
@@ -70,9 +70,9 @@ create table Taxonomie (
     photo varchar(200)
 );
 
-create table Individu (
+create table Echantillon (
     id SERIAL PRIMARY KEY,
-    numIndividu varchar(20) NOT NULL,
+    numEchantillon varchar(20) NOT NULL,
     formeStockage varchar(32) NOT NULL,
     lieuStockage varchar(20) NOT NULL,
     niveauIdentification varchar(12),
@@ -80,6 +80,8 @@ create table Individu (
     codePiege varchar(10) NOT NULL,
     idAuteur int,
     idTaxonomie int,
+    nombreIndividu int,
+    CONSTRAINT nbrIndividu_0 CHECK (nombreIndividu >=0),
     CONSTRAINT codePiege_FK FOREIGN KEY (codePiege)
         REFERENCES Piege (codePiege),
     CONSTRAINT idAuteur_FK FOREIGN KEY (idAuteur)
@@ -88,19 +90,6 @@ create table Individu (
         REFERENCES Taxonomie (id)
 );
 
-create table Pool(
-  identiant varchar(10) PRIMARY KEY
-);
-
-create table PoolIn(
-  idIndividu int,
-  identifiantPool varchar(10),
-  CONSTRAINT PoolIn_PK PRIMARY KEY(idIndividu,identifiantPool),
-  CONSTRAINT idIndividu_poolIn_FK FOREIGN KEY (idIndividu)
-    REFERENCES Individu(id),
-  CONSTRAINT identifiantPool_poolIn_FK FOREIGN KEY (identifiantPool)
-    REFERENCES Pool(identiant)
-);
 
 create table Gene (
     nom varchar(20) PRIMARY KEY
@@ -120,18 +109,6 @@ create table CorrespondanceGeneBacterie (
         REFERENCES Bacterie (clade)
 );
 
-/*create table Fasta (
-    id SERIAL PRIMARY KEY,
-    lien varchar(200)
-);
-
-create table Electrophoregramme (
-    id SERIAL PRIMARY KEY,
-    lien varchar(200)
-);
-*/
-
-
 create table PCR (
     id SERIAL PRIMARY KEY,
     resultat varchar(10) NOT NULL,
@@ -141,7 +118,7 @@ create table PCR (
     fasta varchar(200),
     electrophoregramme varchar(200),
     CONSTRAINT idIndividu_FK FOREIGN KEY (idIndividu)
-        REFERENCES Individu (id),
+        REFERENCES Echantillon (id),
     CONSTRAINT nomGene_FK FOREIGN KEY (nomGene)
         REFERENCES Gene (nom),
     CONSTRAINT PCR_dateIndividuGene_UNIQUE UNIQUE (datePCR,idIndividu,nomGene)
@@ -156,41 +133,12 @@ create table qPCR (
     fasta varchar(200),
     electrophoregramme varchar(200),
     CONSTRAINT idIndividu_FK FOREIGN KEY (idIndividu)
-        REFERENCES Individu (id),
+        REFERENCES Echantillon (id),
     CONSTRAINT nomGene_FK FOREIGN KEY (nomGene)
         REFERENCES Gene (nom),
     CONSTRAINT qPCR_dateIndividuGene_UNIQUE UNIQUE (dateqPCR,idIndividu,nomGene)
 );
 
-/*create table lienPCRFasta (
-    id SERIAL PRIMARY KEY,
-    idPCR int,
-    idFasta int,
-    CONSTRAINT idPCR_FK FOREIGN KEY (idPCR)
-        REFERENCES PCR (id),
-    CONSTRAINT idFasta_FK FOREIGN KEY (idFasta)
-        REFERENCES Fasta (id)
-);
-
-create table lienqPCRFasta (
-    id SERIAL PRIMARY KEY,
-    idqPCR int,
-    idFasta int,
-    CONSTRAINT idqPCR_FK FOREIGN KEY (idqPCR)
-        REFERENCES qPCR (id),
-    CONSTRAINT idFasta_FK FOREIGN KEY (idFasta)
-        REFERENCES Fasta (id)
-);
-
-create table LienFastaElectro (
-    id SERIAL PRIMARY KEY,
-    idFasta int,
-    idElectro int,
-    CONSTRAINT idFastaElectro_FK FOREIGN KEY (idFasta)
-        REFERENCES Fasta (id),
-    CONSTRAINT idElectroFasta_FK FOREIGN KEY (idElectro)
-        REFERENCES Electrophoregramme (id)
-); */
 
 create table Compte (
     id SERIAL PRIMARY KEY,
@@ -208,6 +156,6 @@ TRUNCATE TABLE Grotte RESTART IDENTITY CASCADE;
 TRUNCATE TABLE Site RESTART IDENTITY CASCADE;
 TRUNCATE TABLE Personne RESTART IDENTITY CASCADE;
 TRUNCATE TABLE Taxonomie RESTART IDENTITY CASCADE;
-TRUNCATE TABLE Individu RESTART IDENTITY CASCADE;
+TRUNCATE TABLE Echantillon RESTART IDENTITY CASCADE;
 TRUNCATE TABLE CorrespondanceGeneBacterie RESTART IDENTITY CASCADE;
 TRUNCATE TABLE Compte RESTART IDENTITY CASCADE;

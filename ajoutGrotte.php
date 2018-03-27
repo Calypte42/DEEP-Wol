@@ -9,7 +9,7 @@ include 'consultationModification.php';
 		<!-- FORMULAIRE D'AJOUT DE GROTTE -->
 	</br>
 	</br>
-		<form  id="ajoutGrotte"  method="GET" action = "ajoutGrotteWS.php"> <!-- reference au formulaire -->
+		<form  id="ajoutGrotte"  method="POST" action = "WebService/ajoutGrotteWS.php"> <!-- reference au formulaire -->
 		<p> <!-- car balise input ou select ne peut pas etre imbriquee directement dans form -->
 			<fieldset class="scheduler-border">
 				<legend class="scheduler-border"> Ajout d'une grotte </legend>

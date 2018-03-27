@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        request.open("POST", "ajoutSystemeHydrographiqueWS.php")
+        request.open("POST", "./WebService/ajoutSystemeHydrographiqueWS.php")
         request.send(new FormData(this))
     });
 

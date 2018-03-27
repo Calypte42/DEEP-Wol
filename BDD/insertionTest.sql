@@ -44,12 +44,12 @@ INSERT INTO Personne(nom,prenom)
 INSERT INTO Taxonomie (classe)
     VALUES ('Mammalia');
 
-INSERT INTO Individu (numIndividu,formeStockage,lieuStockage,codePiege)
-    VALUES ('Individu1','Individu entier','Montpellier','P111');
-INSERT INTO Individu (numIndividu,formeStockage,lieuStockage,codePiege)
-    VALUES ('Individu2','Individu entier','Montpellier','P111');
-INSERT INTO Individu (numIndividu,formeStockage,lieuStockage,codePiege)
-    VALUES ('Individu3','Individu entier','Montpellier','P111');
+INSERT INTO Echantillon (numEchantillon,formeStockage,lieuStockage,codePiege,nombreIndividu)
+    VALUES ('Individu1','Individu entier','Montpellier','P111',1);
+INSERT INTO Echantillon (numEchantillon,formeStockage,lieuStockage,codePiege,nombreIndividu)
+    VALUES ('Individu2','Individu entier','Montpellier','P111',1);
+INSERT INTO Echantillon (numEchantillon,formeStockage,lieuStockage,codePiege,nombreIndividu)
+    VALUES ('Pool1','Individu entier','Montpellier','P111',10);
 
 INSERT INTO Gene(nom) VALUES ('Gene1');
 

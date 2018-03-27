@@ -8,7 +8,7 @@ include 'consultationModification.php';
 ?>
 		<!-- FORMULAIRE D'AJOUT DE SITE -->
 
-		<form  id="ajoutSite"  method="GET" action = "ajoutSiteWS.php"> <!-- reference au formulaire -->
+		<form  id="ajoutSite"  method="GET" action = "WebService/ajoutSiteWS.php"> <!-- reference au formulaire -->
 		<p>
 			<fieldset class="scheduler-border">
 				<legend class="scheduler-border"> Ajout d'un site </legend>

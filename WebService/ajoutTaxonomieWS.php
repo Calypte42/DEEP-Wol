@@ -1,6 +1,6 @@
 <?php
-// ne fonctionne pas avec les photos pour le moments 
-include 'BDD/bdd.php';
+// ne fonctionne pas avec les photos pour le moments
+include '../BDD/bdd.php';
 $bdd = connexionbd();
 
 $req = $bdd->prepare('INSERT INTO Taxonomie (classe,ordre,famille,sousFamille,genre,espece)
@@ -16,4 +16,4 @@ $req->execute(array(
 
 ));
 
-  header('Refresh: 5; URL=ajoutTaxonomie.php');
+  header('Refresh: 5; URL=../ajoutTaxonomie.php');

@@ -1,6 +1,6 @@
 <?php
-//Fonctionnel ! 
-include 'BDD/bdd.php';
+//Fonctionnel !
+include '../BDD/bdd.php';
 $bdd = connexionbd();
 
 $req = $bdd->prepare('INSERT INTO EquipeSpeleo VALUES (:codeEquipe);');

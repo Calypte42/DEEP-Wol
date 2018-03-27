@@ -6,15 +6,15 @@ $bdd=connexionbd();
 <?php
 include 'consultationModification.php';
 ?>
-		<!-- FORMULAIRE D'AJOUT D'INDIVIDU -->
+		<!-- FORMULAIRE D'AJOUT D'Echantillon -->
 
-		<form  id="ajoutIndividu"  method="GET" action = "ajoutIndividuWS.php"> <!-- reference au formulaire -->
+		<form  id="ajoutIndividu"  method="GET" action = "ajoutEchantillonWS.php"> <!-- reference au formulaire -->
 		<p>
 			<fieldset class="scheduler-border">
-				<legend class="scheduler-border"> Ajout d'un individu </legend>
+				<legend class="scheduler-border"> Ajout d'un Echantillon </legend>
 				<div class="control-group">
 					<div class="controls bootstrap-timepicker">
-		
+
 				</br>
 				<?php
 
@@ -76,8 +76,8 @@ include 'consultationModification.php';
 
 				</br></br>
 
-				<label>Numéro de l'individu</label>
-				<input required type="text" id ="numIndividu" name="numIndividu" size="20"/>*</br></br> <!-- recuperer la valeur precedemment remplie -->
+				<label>Numéro de l'Echantillon</label>
+				<input required type="text" id ="numEchantillon" name="numEchantillon" size="20"/>*</br></br> <!-- recuperer la valeur precedemment remplie -->
 
 				<label>Forme de stockage</label>  <!-- menu deroulant -->
 					<select name="formeStockage" id="formeStockage">
@@ -152,7 +152,7 @@ include 'consultationModification.php';
 				<input type = "button" value = "ajouter un auteur">
 
 		        </br></br>
-		        <!-- ajout des attributs de taxonomie sous forme de liste déroulante, en fieldset inclu dans le formulaire individu -->
+		        <!-- ajout des attributs de taxonomie sous forme de liste déroulante, en fieldset inclu dans le formulaire Echantillon -->
 				<form  id="ajoutTaxonomie"  method="GET" action = "ajoutIndividuWS.php"> <!-- reference au formulaire -->
 				<p>
 					<fieldset class="scheduler-border">
@@ -289,7 +289,7 @@ include 'consultationModification.php';
 				</form>
 				</br>
 
-				<input type="submit" name="nom" value="Valider et ajouter un nouvel individu">
+				<input type="submit" name="nom" value="Valider et ajouter un nouvel echantillon">
 
 			</fieldset>
 		</p>

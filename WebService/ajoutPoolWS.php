@@ -1,5 +1,5 @@
 <?php
-include 'BDD/bdd.php';
+include '../BDD/bdd.php';
 $bdd = connexionbd();
 
 $req = $bdd->prepare('INSERT INTO Pool VALUES (:identifiant);');

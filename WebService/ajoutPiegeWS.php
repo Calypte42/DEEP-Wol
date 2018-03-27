@@ -1,5 +1,5 @@
 <?php
-include 'BDD/bdd.php';
+include '../BDD/bdd.php';
 $bdd = connexionbd();
 
 $req = $bdd->prepare('INSERT INTO Piege (codePiege,datePose,heurePose,
@@ -22,11 +22,11 @@ $req->execute(array(
 ));
 
 if ($_REQUEST['nom']=='Valider et ajouter une nouvelle grotte'){
-  header('Refresh: 0; URL=ajoutIndividu.php');
+  header('Refresh: 0; URL=../ajoutIndividu.php');
 }
 
 if ($_REQUEST['nom']=='Valider et aller à la page suivante'){
-  header('Refresh: 0; URL=ajoutPiege.php');
+  header('Refresh: 0; URL=../ajoutPiege.php');
 }
 
 echo http_response_code();
