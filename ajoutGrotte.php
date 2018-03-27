@@ -78,7 +78,7 @@ include 'consultationModification.php';
                 <input type="text" id ="nom" name="nom" size="30"/></br></br>
                 <label>département</label>
                 <input type="number" id ="departement" name="departement"/></br></br>
-                <button type="submit">Ajouter un système hydrographique</button>
+                <button type="submit">Ajouter un système hydrographique</button></br></br>
             </form>
         </div>
 

@@ -95,7 +95,7 @@ include 'consultationModification.php';
             <form  id="formEquipeSpeleo"  method="POST">
                 <label>Equipe spéleo</label>
                 <input type="text" id="codeEquipe" name="codeEquipe" required size="20"/> *
-                <button type="submit">Ajouter une équipe</button>
+                <button type="submit">Ajouter une équipe</button></br></br>
             </form>
         </div>
 
