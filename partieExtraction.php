@@ -16,7 +16,6 @@ include'HTML/entete.html';
 		<legend class="scheduler-border"> Grotte </legend>
 		<div class="control-group">
 			<div class="controls bootstrap-timepicker">
-				<input id="boutonGrotte" value="Choisir" onclick="afficherGrotte" type="button">
 				<div id="menuGrotte" style="display:block;">
         	
 				<?php
@@ -43,7 +42,6 @@ include'HTML/entete.html';
 		<legend class="scheduler-border"> Site </legend>
 		<div class="control-group">
 			<div class="controls bootstrap-timepicker">
-				<input id="boutonSite" value="Choisir" onclick="afficherSite" type="button">
 				<div id="menuSite" style="display:block;">
         	
 				<?php
@@ -69,7 +67,6 @@ include'HTML/entete.html';
 		<legend class="scheduler-border"> Piège </legend>
 		<div class="control-group">
 			<div class="controls bootstrap-timepicker">
-				<input id="boutonPiege" value="Choisir" onclick="afficherPiege" type="button">
 		        	<div id="menuPiege" style="display:block;">
         	
 				<?php
@@ -96,7 +93,6 @@ include'HTML/entete.html';
 		<legend class="scheduler-border"> Individu </legend>
 		<div class="control-group">
 			<div class="controls bootstrap-timepicker">
-				<input id="boutonIndividu" value="Choisir" onclick="afficherIndividu" type="button">
 		        	<div id="menuIndividu" style="display:block;">
         	
 				<?php
