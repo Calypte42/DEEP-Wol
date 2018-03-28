@@ -56,66 +56,12 @@ foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
 		}
 		echo ('<td><a href="">'."Modifier".'</a></td></tr>');
 }
-echo "</table></div><br/>";
-
-
-/*
-
-
-			$requete='SELECT nomCavite,typeCavite,latitude,longitude,typeAcces,accesPublic,h.nom from Grotte, SystemeHydrographique h WHERE idSystemeHydrographique=h.id';
-			$value=requete($bdd,$requete);
-
-			foreach ($value as $ligne) {
-				  	echo '<tr>';
-
-				  	if ($ligne['nomcavite']){
-				  		echo ('<td>'.$ligne['nomcavite']. '</td>');
-
-		      			}else{
-						echo ('<td>'."non renseigné".'</td>');
-					}
-					if ($ligne['typecavite']){
-		      				echo ('<td>'.$ligne['typecavite']. '</td>');
-			      		}else{
-			      			echo ('<td>'."non renseigné".'</td>');
-			      		}
-			      		if ($ligne['latitude']){
-		      				echo ('<td>'.$ligne['latitude']. '</td>');
-			      		}else{
-			      			echo ('<td>'."non renseigné".'</td>');
-			      		}
-			      		if ($ligne['longitude']){
-		      				echo ('<td>'.$ligne['longitude']. '</td>');
-			      		}else{
-			      			echo ('<td>'."non renseigné".'</td>');
-			      		}
-			      		if ($ligne['typeacces']){
-		      				echo ('<td>'.$ligne['typeacces']. '</td>');
-			      		}else{
-			      			echo ('<td>'."non renseigné".'</td>');
-			      		}
-			      		if ($ligne['accespublic'] && $ligne['accespublic']=="TRUE"){
-		      				echo ('<td>'."oui". '</td>');
-			      		}else{
-			      			echo ('<td>'."non".'</td>');
-			      		}
-			      		if ($ligne['nom']){
-		      				echo ('<td>'.$ligne['nom']. '</td>');
-			      		}else{
-			      			echo ('<td>'."non renseigné".'</td>');
-			      		}
-			      		echo ('<td><a href="">'."Modifier".'</a></td>');
-			       	}
-			  	echo ('</table>');
-			  	?>
-				<input type = "button" id="affichageGrotte" value = "ajouter une grotte" style="float:right;">
-*/?>
+echo "</table>";
+?>
 			</tbody>
 		</table>
 
 	</div>
-
-
 
 <?php
 include 'HTML/pied.html';
