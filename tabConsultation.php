@@ -30,7 +30,6 @@ $requete='SELECT nomCavite,typeCavite,latitude,longitude,typeAcces,accesPublic,h
 $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
 	foreach ($valeur as $cle => $resultat) { /* On recupere la cle et la valeur de chaque element */
-			echo "$cle";
 			if($cle=='nomcavite'){
 			 echo "<td><a href='ajoutPiege.php?grotte=$resultat'>$resultat</a></td> ";
 			}else {
