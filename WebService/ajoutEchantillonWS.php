@@ -90,7 +90,7 @@ if( $_REQUEST['espece']=='Indetermine'){
 
 //$taxoRequete=$taxoRequete.';';
 
-echo "$classe,$ordre,$famille,$sousFamille,$genre,$espece";
+echo "$classe,$ordre,$famille,$sousFamille,$genre,$espece <br/>";
 $maRequeteVerif = $debutTaxoRequete.$taxoRequete;
 echo "<br />$maRequeteVerif";
 
@@ -100,22 +100,20 @@ $reqVerif = $bdd->prepare($maRequeteVerif.';');
 $reqVerif->execute($tableau);
 
 $nombreResultat=$reqVerif->rowCount();
-echo "$nombreResultat";
+echo "$nombreResultat <br/>";
 echo "$taxoRequete";
 
 if($nombreResultat==1){
-  echo 'INSERT INTO Echantillon (numEchantillon,formeStockage,lieuStockage,
+  echo '<br /> INSERT INTO Echantillon (numEchantillon,nombreIndividu,formeStockage,lieuStockage,
     niveauIdentification,infecteBacterie,codePiege,idAuteur,idTaxonomie)
-   SELECT :numEchantillon,:formeStockage,:lieuStockage,:niveauIdentification,:infecteBacterie,:codePiege,
-    p.id,t.id FROM Taxonomie t, Personne p WHERE '.$taxoRequete.' and
-        p.nom = :nomAuteur and p.prenom = :prenomAuteur;';
+   SELECT :numEchantillon,:nombreIndividu,:formeStockage,:lieuStockage,:niveauIdentification,:infecteBacterie,:codePiege,
+    :idAuteur,t.id FROM Taxonomie t, Personne p WHERE '.$taxoRequete.';';
 
 
   $req = $bdd->prepare('INSERT INTO Echantillon (numEchantillon,nombreIndividu,formeStockage,lieuStockage,
     niveauIdentification,infecteBacterie,codePiege,idAuteur,idTaxonomie)
-   SELECT :numEchantillon,:nombreIndividu:formeStockage,:lieuStockage,:niveauIdentification,:infecteBacterie,:codePiege,
-    p.id,t.id FROM Taxonomie t, Personne p WHERE '.$taxoRequete.' and
-        p.nom = :nomAuteur and p.prenom = :prenomAuteur;');
+   SELECT :numEchantillon,:nombreIndividu,:formeStockage,:lieuStockage,:niveauIdentification,:infecteBacterie,:codePiege,
+   :idAuteur,t.id FROM Taxonomie t, Personne p WHERE '.$taxoRequete.';');
 
 
         $tableau['numEchantillon']= $_REQUEST['numEchantillon'];
@@ -129,12 +127,12 @@ if($nombreResultat==1){
         $tableau['niveauIdentification']= $_REQUEST['niveauIdentification'];
         $tableau['infecteBacterie']= $_REQUEST['infecteBacterie'];
         $tableau['codePiege']= $_REQUEST['codePiege'];
-        $tableau['nomAuteur']= $_REQUEST['nomAuteur'];
-        $tableau['prenomAuteur']= $_REQUEST['prenomAuteur'];
+        $tableau['idAuteur']= $_REQUEST['idAuteur'];
+
 
 $req->execute($tableau);
 
-header('Refresh: 0; URL=../ajoutIndividu.php');
+header('Refresh: 10; URL=../ajoutEchantillon.php');
 }else{
   echo "Il y a ".$nombreResultat." Taxonomie correspondante ! ";
 }

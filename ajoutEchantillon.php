@@ -73,7 +73,17 @@ include 'consultationModification.php';
 
 				echo "</select>";
 				?>
+<br/>
+<label for="type">Type d'echantillon :</label>
+				<select name="type">
+						<option value="Pool"> Pool</option>
+						<option value="Individu">Individu</option>
+				</select><br/>
 
+				A faire disparaitre si le choix est Individu:
+
+				<label for='nombreIndividu'>Nombre d'individu dans le pool : </label>
+				<input type="number" name="nombreIndividu" id="nombreIndividu" />
 				</br></br>
 
 				<label>Numéro de l'Echantillon</label>
@@ -102,7 +112,7 @@ include 'consultationModification.php';
 				(rajouter un lieu de stokage) <input type = "button" value = "ajouter un lieu">
 
 				</br></br>
-				
+
 				<label>Niveau d'identification</label>  <!-- menu deroulant -->
 					<select name="niveauIdentification" id="niveauIdentification">
 						<option value="hypothetique">Hypothétique</option>
@@ -123,40 +133,25 @@ include 'consultationModification.php';
 
 				/* on veut recuperer les valeurs de grotte deja existantes dans la bdd */
 
-				echo "<label for='nomAuteur'>Auteur : nom </label>";
-				echo "<select name='nomAuteur'>"; /* On cree une liste deroulante vide */
+				echo "<label for='idAuteur'>Auteur : nom </label>";
+				echo "<select name='idAuteur'>"; /* On cree une liste deroulante vide */
 
-				$requete='SELECT nom from Personne ORDER BY nom';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
+				$requete='SELECT id,nom,prenom from Personne ORDER BY nom';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
 				$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 				foreach ($value as $array) { /* On parcourt les resultats possibles */
+					echo "<option value=\"";
 					foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
-						echo "<option value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
+						if($key=='id'){
+							echo "$valeur\">";
+						}
+						else{
+						echo "$valeur "; /* Que l'on ajoute dans la liste deroulante */
 					}
 				}
+				echo "</option>";
+			}
 				echo "</select>";
 				?>
-
-				&nbsp;
-
-				<?php
-
-				/* on veut recuperer les valeurs de grotte deja existantes dans la bdd */
-
-				echo "<label for='prenomAuteur'>prénom </label>";
-				echo "<select name='prenomAuteur'>"; /* On cree une liste deroulante vide */
-
-				$requete='SELECT prenom from Personne ORDER BY nom';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
-				$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
-				foreach ($value as $array) { /* On parcourt les resultats possibles */
-					foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
-						echo "<option value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
-					}
-				}
-				echo "</select>";
-				?>
-
-				&nbsp;&nbsp;
-
 				<input type = "button" value = "ajouter un auteur">
 
 		        </br></br>
