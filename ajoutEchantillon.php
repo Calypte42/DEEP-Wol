@@ -93,8 +93,16 @@ include 'consultationModification.php';
 		        </br></br>
 
 				<label>Lieu de stockage</label>
-				<input required type="text" id ="lieuStockage" name="lieuStockage" size="20"/>*</br></br>
+				<!--<input required type="text" id ="lieuStockage" name="lieuStockage" size="20"/>*</br></br>-->
+				<select name="lieuStockage" id="lieuStockage">
+					<option selected value="Montpellier">Montpellier</option> <!-- par défaut -->
+					<option value="Paris">Paris</option>
+				</select>
 
+				(rajouter un lieu de stokage) <input type = "button" value = "ajouter un lieu">
+
+				</br></br>
+				
 				<label>Niveau d'identification</label>  <!-- menu deroulant -->
 					<select name="niveauIdentification" id="niveauIdentification">
 						<option value="hypothetique">Hypothétique</option>
