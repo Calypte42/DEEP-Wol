@@ -26,14 +26,10 @@ include 'consultationModification.php';
 
 			<?php
 
-
-			// BIDOUILLE DE TUTU //
-
 $requete='SELECT nomCavite,typeCavite,latitude,longitude,typeAcces,accesPublic,h.nom from Grotte, SystemeHydrographique h WHERE idSystemeHydrographique=h.id';  /*On prepare une requete permettant de recupere l'ensemble de la table grotte*/
 $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
-		echo "<tr>";
-		foreach ($valeur as $cle => $resultat) { /* On recupere la cle et la valeur de chaque element */
+	foreach ($valeur as $cle => $resultat) { /* On recupere la cle et la valeur de chaque element */
 			echo "$cle";
 			if($cle=='nomcavite'){
 			 echo "<td><a href='ajoutPiege.php?grotte=$resultat'>$resultat</a></td> ";
