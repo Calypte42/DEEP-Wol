@@ -34,12 +34,22 @@ $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
 		echo "<tr>";
 		foreach ($valeur as $cle => $resultat) { /* On recupere la cle et la valeur de chaque element */
+			echo "$cle";
 			if($cle=='nomcavite'){
 			 echo "<td><a href='ajoutPiege.php?grotte=$resultat'>$resultat</a></td> ";
 			}else {
 				if(!empty($resultat)){
+					if($cle=='accespublic'){
+
+						if($resultat==0){
+							echo "<td>Non</td> ";
+						}
+						if($resultat==1){
+							echo "<td>Oui</td> ";
+						}
+					}else{
 				echo "<td>$resultat</td> ";
-			}else{
+			}}else{
 				echo "<td>non renseigné</td>";
 			}}
 
