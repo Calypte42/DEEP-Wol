@@ -1,6 +1,6 @@
 <?php
 
-// ne fonctionne pas !
+// Fonctionnel !
 
 include '../BDD/bdd.php';
 $bdd = connexionbd();
@@ -16,6 +16,7 @@ On construit egalement les tableaux des execute au fur et a mesure */
 $taxoRequete='';
 $debutTaxoRequete='SELECT * FROM Taxonomie t WHERE ';
 $tableau = array();
+
 // Gestion des classes
 if( $_REQUEST['classe']=='Indetermine'){
   $classe=null;
@@ -37,7 +38,9 @@ if( $_REQUEST['ordre']=='Indetermine'){
   $taxoRequete=$taxoRequete."t.ordre =:ordre ";
   $tableau['ordre']=$ordre;
 }
+
 $taxoRequete=$taxoRequete."AND ";
+
 // Gestion des familles
 if( $_REQUEST['famille']=='Indetermine'){
   $famille=null;
@@ -47,6 +50,7 @@ if( $_REQUEST['famille']=='Indetermine'){
   $taxoRequete=$taxoRequete."t.famille =:famille ";
   $tableau['famille']=$famille;
 }
+
 $taxoRequete=$taxoRequete."AND ";
 
 // Gestion des sousFamilles
@@ -107,13 +111,19 @@ if($nombreResultat==1){
         p.nom = :nomAuteur and p.prenom = :prenomAuteur;';
 
 
-  $req = $bdd->prepare('INSERT INTO Echantillon (numEchantillon,formeStockage,lieuStockage,
+  $req = $bdd->prepare('INSERT INTO Echantillon (numEchantillon,nombreIndividu,formeStockage,lieuStockage,
     niveauIdentification,infecteBacterie,codePiege,idAuteur,idTaxonomie)
-   SELECT :numEchantillon,:formeStockage,:lieuStockage,:niveauIdentification,:infecteBacterie,:codePiege,
+   SELECT :numEchantillon,:nombreIndividu:formeStockage,:lieuStockage,:niveauIdentification,:infecteBacterie,:codePiege,
     p.id,t.id FROM Taxonomie t, Personne p WHERE '.$taxoRequete.' and
         p.nom = :nomAuteur and p.prenom = :prenomAuteur;');
 
+
         $tableau['numEchantillon']= $_REQUEST['numEchantillon'];
+        if ($_REQUEST['type']=='Pool'){
+          $tableau['nombreIndividu']= $_REQUEST['nombreIndividu'];
+        }else{
+          $tableau['nombreIndividu']=1;
+        }
         $tableau['formeStockage']= $_REQUEST['formeStockage'];
         $tableau['lieuStockage']= $_REQUEST['lieuStockage'];
         $tableau['niveauIdentification']= $_REQUEST['niveauIdentification'];

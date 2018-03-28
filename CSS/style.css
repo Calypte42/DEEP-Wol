@@ -28,14 +28,14 @@
 
 /* disposition et style des menus */
 #menuVertical > ul li a {
-  
+
 	display: block;
 	position: relative;
 	margin: 0;
 	border-top:2px solid white;
 	border-bottom: 2px solid white;
 	padding: 11px 20px;
-  
+
 	color: black;
 	text-decoration: none;
 	text-transform: uppercase;
@@ -99,7 +99,7 @@
 fieldset
 {
 	background-color:none;
-	max-width:500px;	
+	max-width:500px;
 	margin:16px;
 	border:2px solid black;
 }
@@ -137,5 +137,5 @@ legend.scheduler-border {
 	width:100%;
 	background-color: black;
 	color: #ffffff;
-	background:#000000;    
+	background:#000000;
 }*/

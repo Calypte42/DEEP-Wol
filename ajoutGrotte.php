@@ -2,10 +2,12 @@
 include 'BDD/bdd.php';
 $bdd=connexionbd();
 ?>
-
 <?php
 include 'consultationModification.php';
 ?>
+
+
+
 		<!-- FORMULAIRE D'AJOUT DE GROTTE -->
 	</br>
 	</br>
