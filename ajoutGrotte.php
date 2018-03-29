@@ -11,6 +11,9 @@ include 'consultationModification.php';
 		<!-- FORMULAIRE D'AJOUT DE GROTTE -->
 	</br>
 	</br>
+	<form method="POST" action="tableauGrotte.php">
+		<input type="submit" value="Revenir au tableau des grottes" />
+	</form>
 		<form  id="ajoutGrotte"  method="POST" action = "WebService/ajoutGrotteWS.php"> <!-- reference au formulaire -->
 		<p> <!-- car balise input ou select ne peut pas etre imbriquee directement dans form -->
 			<fieldset class="scheduler-border">
@@ -68,7 +71,8 @@ include 'consultationModification.php';
 				</br>
 
 				<input type="submit" name="nom" value="Valider et ajouter une nouvelle grotte"> &nbsp;&nbsp;
-				<input type="submit" name="nom" value="Valider et ajouter un site">
+				<input type="submit" name="nom" value="Valider et ajouter un site"> &nbsp;&nbsp;
+				<input type="submit" name="nom" value="Valider et revenir aux grottes"> &nbsp;&nbsp;
 
 			</fieldset>
 		</p>

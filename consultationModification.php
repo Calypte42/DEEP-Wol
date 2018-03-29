@@ -10,7 +10,7 @@ include'HTML/entete.html';
 
 <div id='menuVertical'>
 	<ul>
-		<li><a href='tabConsultation.php'><span>Grotte</span></a></li>
+		<li><a href='tableauGrotte.php'><span>Grotte</span></a></li>
 		</br>
 		<li><a href='ajoutSite.php'><span>Site</span></a></li>
 		</br>

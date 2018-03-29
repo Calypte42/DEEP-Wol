@@ -27,8 +27,8 @@ $bdd = null;
 
 if ($mdp == $mdpUtilisateur) {
     $_SESSION[$login] = 1; // 1 pour connecté, 0 pour déconnecté
-    header('Refresh: 5; URL=ajoutGrotte.php');
-    echo "Authentification réussie ! Redirection dans 5 secondes...";
+    header('Refresh: 3; URL=accueil.php');
+    echo "Authentification réussie ! Redirection dans 3 secondes...";
     /*
 	http_response_code(200); // succès de la requête
     */

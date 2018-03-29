@@ -33,6 +33,10 @@ if ($_REQUEST['nom']=='Valider et ajouter un site'){
   header('Refresh: 0; URL=../ajoutSite.php');
 }
 
+if ($_REQUEST['nom']=='Valider et revenir aux grottes'){
+  header('Refresh: 0; URL=../ajoutSite.php');
+}
+
 echo http_response_code();
 
 ?>
