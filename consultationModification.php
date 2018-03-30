@@ -1,6 +1,6 @@
 
 <?php
-include'HTML/entete.html';
+include 'HTML/entete.html';
 ?>
 
 </br>

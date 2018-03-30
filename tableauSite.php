@@ -5,6 +5,7 @@ $bdd=connexionbd();
 ?>
 
 <?php
+include 'verificationConnexion.php';
 include 'consultationModification.php';
 ?>
 

@@ -5,6 +5,7 @@ $bdd=connexionbd();
 ?>
 
 <?php
+include 'verificationConnexion.php';
 include 'consultationModification.php';
 ?>
 
@@ -25,7 +26,7 @@ include 'consultationModification.php';
 			<thead>
 			<tbody>
 
-			<?php
+<?php
 
 $requete='SELECT g.id,nomCavite,typeCavite,latitude,longitude,typeAcces,accesPublic,h.nom from Grotte g, SystemeHydrographique h WHERE idSystemeHydrographique=h.id';  /*On prepare une requete permettant de recupere l'ensemble de la table grotte*/
 $value=requete($bdd,$requete); /* value recupere la reponse de la requete */

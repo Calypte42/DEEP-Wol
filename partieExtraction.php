@@ -5,7 +5,8 @@ $bdd=connexionbd();
 ?>
 
 <?php
-include'HTML/entete.html';
+include 'verificationConnexion.php';
+include 'HTML/entete.html';
 ?>
         <form id="formulaire" method="post" action="">
     	</br>

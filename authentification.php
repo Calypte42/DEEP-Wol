@@ -26,7 +26,8 @@ $value = null;
 $bdd = null;
 
 if ($mdp == $mdpUtilisateur) {
-    $_SESSION[$login] = 1; // 1 pour connecté, 0 pour déconnecté
+
+    $_SESSION['identifie'] = 1; // 1 pour connecté, 0 pour déconnecté
     header('Refresh: 3; URL=accueil.php');
     echo "Authentification réussie ! Redirection dans 3 secondes...";
     /*
