@@ -29,7 +29,10 @@ include 'consultationModification.php';
 			<tbody>
 
 			<?php
-
+$RetourNomGrotte=$_REQUEST['nomGrotte'];
+$RetourIdGrotte=$_REQUEST['idGrotte'];
+$RetourNomSite=$_REQUEST['site'];
+$RetourIdSite=$_REQUEST['idSite'];
 
 $requete='SELECT codePiege,datePose,heurePose,dateRecup,heureRecup,probleme,dateTri,codeEquipeSpeleo from Piege where IdSite=\''.$_REQUEST["idSite"].'\'';  /*On prepare une requete permettant de recupere l'ensemble de la table grotte*/
 
@@ -40,7 +43,7 @@ foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
         $id=$resultat;
       }else{
       if($cle=='codepiege'){
-			 echo "<td><a href='tableauEchantillon.php?piege=$resultat'>$resultat</a></td> ";
+			 echo "<td><a href='tableauEchantillon.php?piege=$resultat&nomGrotte=$RetourNomGrotte&idGrotte=$RetourIdGrotte&site=$RetourNomSite&idSite=$RetourIdSite'>$resultat</a></td> ";
      }else {
        if(empty($resultat)){
          echo "<td>Non renseigné</td>";
@@ -57,8 +60,10 @@ echo "</table>";
 		</table>
 
 	</div>
-
-	<form style="float:right" name="versAjoutPiege" method="POST" action="ajoutPiege.php">
+<?php
+	echo "<form style='float:right' name='versAjoutPiege' method='POST' action='ajoutPiege.php?nomGrotte=$RetourNomGrotte
+	&idGrotte=$RetourIdGrotte&site=$RetourNomSite&idSite=$RetourIdSite'>";
+?>
 		<input type="submit" value="Ajouter un piege" />
 	</form>
 

@@ -8,6 +8,12 @@ $bdd=connexionbd();
 <?php
 include 'verificationConnexion.php';
 include 'consultationModification.php';
+
+$RetourNomGrotte=$_REQUEST['nomGrotte'];
+$RetourIdGrotte=$_REQUEST['idGrotte'];
+$RetourNomSite=$_REQUEST['site'];
+$RetourIdSite=$_REQUEST['idSite'];
+$RetourPiege=$_REQUEST['piege'];
 ?>
 
 	<div class="container" style="margin-top:-400px; margin-right:80px;">
@@ -58,7 +64,10 @@ echo "</table>";
 
 	</div>
 
-	<form style="float:right" name="versAjoutEchantillon" method="POST" action="ajoutEchantillon.php">
+<?php
+echo "<form style='float:right' name='versAjoutEchantillon' method='POST'
+	action='ajoutEchantillon.php?nomGrotte=$RetourNomGrotte&idGrotte=$RetourIdGrotte&site=$RetourNomSite&idSite=$RetourIdSite&piege=$RetourPiege'>";
+	?>
 		<input type="submit" value="Ajouter un echantillon" />
 	</form>
 

@@ -6,7 +6,17 @@ $bdd=connexionbd();
 <?php
 include 'verificationConnexion.php';
 include 'consultationModification.php';
+
+$RetourNomGrotte=$_REQUEST['nomGrotte'];
+$RetourIdGrotte=$_REQUEST['idGrotte'];
+$RetourNomSite=$_REQUEST['site'];
+$RetourIdSite=$_REQUEST['idSite'];
+
+
+echo "<form method='POST' action='tableauPiege.php?idSite=$RetourIdSite&site=$RetourNomSite&idGrotte=$RetourIdGrotte&nomGrotte=$RetourNomGrotte'>";
 ?>
+<input type="submit" value="Retour vers tableau des pieges" />
+</form>
 		<!-- FORMULAIRE D'AJOUT DE PIEGE -->
 
 		<form  id="ajoutPiege"  method="GET" action = "WebService/ajoutPiegeWS.php"> <!-- reference au formulaire -->
@@ -21,18 +31,10 @@ include 'consultationModification.php';
 
 				/* on veut recuperer les valeurs de grotte deja existantes dans la bdd */
 
-				echo "<label for='grotte'>Grotte </label>";
-				echo "<select name='grotte'>"; /* On cree une liste deroulante vide */
+				echo "<label for='grotte'>Dans la Grotte : $RetourNomGrotte </label>";
+				echo "<input type='hidden' value=$RetourIdGrotte name='grotte'>"; /* On cree une liste deroulante vide */
 
-				$requete='SELECT NomCavite from Grotte ORDER BY NomCavite';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
-				$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
-				foreach ($value as $array) { /* On parcourt les resultats possibles */
-					foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
-						echo "<option value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
-					}
-				}
 
-				echo "</select>";
 				?>
 
 				</br></br>
@@ -41,18 +43,9 @@ include 'consultationModification.php';
 
 				/* on veut recuperer les valeurs de numero de site deja existantes dans la bdd */
 
-				echo "<label for='numSite'>Numéro du site </label>";
-				echo "<select name='numSite'>"; /* On cree une liste deroulante vide */
+				echo "<label for='numSite'>Numéro du site : $RetourNomSite </label>";
+				echo "<input type='hidden' value=$RetourIdSite name='numSite'>"; /* On cree une liste deroulante vide */
 
-				$requete='SELECT numSite from Site ORDER BY numSite';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
-				$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
-				foreach ($value as $array) { /* On parcourt les resultats possibles */
-					foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
-						echo "<option value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
-					}
-				}
-
-				echo "</select>";
 				?>
 
 				</br></br>
@@ -102,6 +95,7 @@ include 'consultationModification.php';
 				</br>
 
 				<input type="submit" name="nom" value="Valider et ajouter un nouveau piege"> &nbsp;&nbsp;
+				<input type="submit" name="nom" value="Valider et revenir au tableau"> &nbsp;&nbsp;
 				<input type="submit" name="nom" value="Valider et aller à la page suivante">
 
 			</fieldset>

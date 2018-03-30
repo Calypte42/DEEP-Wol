@@ -8,7 +8,13 @@ include 'verificationConnexion.php';
 include 'consultationModification.php';
 ?>
 		<!-- FORMULAIRE D'AJOUT DE SITE -->
-
+		<?php
+		$RetourId=$_REQUEST['idGrotte'];
+		$Retour=$_REQUEST['grotte'];
+		echo "<form method='POST' action='tableauSite.php?idGrotte=$RetourId&grotte=$Retour'>";
+		?>
+			<input type="submit" value="Revenir au tableau des sites" />
+		</form>
 		<form  id="ajoutSite"  method="POST" action = "WebService/ajoutSiteWS.php"> <!-- reference au formulaire -->
 		<p>
 			<fieldset class="scheduler-border">
@@ -21,18 +27,9 @@ include 'consultationModification.php';
 
 				/* on veut recuperer les valeurs de grotte deja existantes dans la bdd */
 
-				echo "<label for='grotte'>Grotte</label>";
-				echo "<select name='nomGrotte'>"; /* On cree une liste deroulante vide */
+				echo "<label for='idGrotte'>Dans la grotte : $Retour</label>";
+				echo "<input type='hidden' name='idGrotte' value=$RetourId>"; /* On cree une liste deroulante vide */
 
-				$requete='SELECT NomCavite from Grotte ORDER BY NomCavite';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
-				$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
-				foreach ($value as $array) { /* On parcourt les resultats possibles */
-					foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
-						echo "<option value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
-					}
-				}
-
-				echo "</select>";
 				?>
 
 				</br></br>
@@ -86,6 +83,7 @@ include 'consultationModification.php';
 				</br>
 
 				<input type="submit" name="nom" value="Valider et ajouter un nouveau site"> &nbsp;&nbsp;
+				<input type="submit" name="nom" value="Valider et revenir au tableau"> &nbsp;&nbsp;
 				<input type="submit" name="nom" value="Valider et ajouter un nouveau piege">
 
 			</fieldset>

@@ -6,8 +6,8 @@ $bdd = connexionbd();
 $req = $bdd->prepare('INSERT INTO Site (profondeur,temperature,typeSol,numSite,distanceEntree,
   presenceEau, idGrotte, codeEquipeSpeleo)
     SELECT :profondeur,:temperature,:typeSol,:numSite,:distanceEntree,
-    :presenceEau, id, codeEquipe FROM EquipeSpeleo, Grotte
-      WHERE nomCavite = :nomGrotte AND codeEquipe = :codeEquipeSpeleo;');
+    :presenceEau, :idGrotte, codeEquipe FROM EquipeSpeleo
+      WHERE codeEquipe = :codeEquipeSpeleo;');
 
 // Gestion de profondeur vide
 if(empty($_REQUEST['profondeur'])){
@@ -49,7 +49,7 @@ $req->execute(array(
   'numSite' => $_REQUEST['numSite'],
   'distanceEntree' => $_REQUEST['distanceEntree'],
   'presenceEau' => $presenceEau,
-  'nomGrotte' => $_REQUEST['nomGrotte'],
+  'idGrotte' => $_REQUEST['idGrotte'],
   'codeEquipeSpeleo' => $_REQUEST['codeEquipeSpeleo']
 
 ));
