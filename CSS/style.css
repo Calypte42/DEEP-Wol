@@ -1,7 +1,52 @@
+/* login */
+
+#authentification {
+	padding: 25px;
+	position: center;
+}
+
+h4 { 
+	border:0 solid #fff; 
+	border-bottom-width:1px;
+	padding-bottom:10px;
+	text-align: center;
+}
+.form-login {
+	background: #EDEDED;
+	padding-top: 10px;
+	padding-bottom: 20px;
+	padding-left: 20px;
+	padding-right: 20px;
+	border-radius: 15px;
+	border-color:#d2d2d2;
+	border-width: 5px;
+	box-shadow:0 1px 0 #cfcfcf;
+
+}
+
+.form-control {
+	border-radius: 10px;
+}
+
+.wrapper {
+	text-align: center;
+}
+
+
 /* ENTETE */
 
 .navbar{
 	width:100%;
+	/*background:#a74219;*/
+	background:#6e523f ;
+}
+
+.nav.navbar-nav li a{
+	color:#eeeeec;	
+}
+
+.nav.navbar-nav li a:hover{
+	color:#000000;	
 }
 
 /* MENU VERTICAL GAUCHE */
@@ -121,6 +166,29 @@ legend.scheduler-border {
         border-bottom:none;
     }
 
+
+/* Image de fond accueil */
+
+body, html {
+	height: 100%;
+	margin: 0;
+}
+
+.bg {
+	background-image: url("../Images/Grotte1.jpg");
+	width: 100%;
+	height: 480px;
+	background-repeat: no-repeat;
+	background-size: 100%100%;
+	border: 1px solid black;
+	
+}
+
+/* titre BD */
+
+.jumbotron {
+	background: #faeda0;
+}
 
 /* FOOTER */
 
