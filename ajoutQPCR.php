@@ -15,10 +15,10 @@ include 'consultationModification.php';
   <input type="submit" value="" />
 </form>-->
 
-<form  id="ajoutPCR"  method="POST" action = "WebService/ajoutPCRWS.php"> <!-- reference au formulaire -->
-<p> <!-- car balise input ou select ne peut pas etre imbriquee directement dans form -->
+<form  id="ajoutqPCR"  method="POST" action = "WebService/ajoutqPCRWS.php"> <!-- reference au formulaire -->
+<p>
   <fieldset class="scheduler-border">
-    <legend class="scheduler-border"> Ajout d'une PCR </legend>
+    <legend class="scheduler-border"> Ajout d'une qPCR </legend>
     <div class="control-group">
       <div class="controls bootstrap-timepicker">
     </br>
@@ -42,7 +42,7 @@ include 'consultationModification.php';
     </br></br>
 
     <label>Date</label>
-    <input required type="date" id ="datePCR" name="datePCR"/></br></br>
+    <input required type="date" id ="dateqPCR" name="dateqPCR"/></br></br>
 
     <label for="resultat">Résultat </label>
     				<select name="resultat">

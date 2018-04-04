@@ -245,15 +245,16 @@ echo "<form method='POST' action='tableauEchantillon.php?piege=$RetourPiege&nomG
 				<select name="niveauIdentification" id="niveauIdentification">
 					<option value="hypothetique">Hypothétique</option>
 					<option value="valide">Validé</option>
+					<option value="incomplet">Incomplet</option>
 				</select>
 
 				</br></br>
-				
+
 			<?php
 
 			/* on veut recuperer les valeurs de grotte deja existantes dans la bdd */
 
-			echo "<label for='idAuteur'>Auteur : nom </label>";
+			echo "<label for='idAuteur'>Auteur  </label>";
 			echo "<select name='idAuteur'>"; /* On cree une liste deroulante vide */
 
 			$requete='SELECT id,nom,prenom from Personne ORDER BY nom';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
@@ -276,12 +277,19 @@ echo "<form method='POST' action='tableauEchantillon.php?piege=$RetourPiege&nomG
 
 				</br></br>
 
+			<input type = "button" id="affichageAjoutPCR" value = "ajouter une PCR">
+			&nbsp;&nbsp;&nbsp;
+			<input type = "button" id="affichageAjoutqPCR" value = "ajouter une qPCR">
+
+		</br></br>
+
 				<input type="submit" name="nom" value="Valider et ajouter un nouvel echantillon">
 				<input type="submit" name="nom" value="Valider et revenir au tableau">
 
 			</fieldset>
 		</p>
 		</form>
+
 <?php
 include 'HTML/pied.html';
 ?>
