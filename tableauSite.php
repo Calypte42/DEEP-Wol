@@ -58,7 +58,8 @@ foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
 		 }}
 
 	 }}
-   echo ('<td><a href="">'."Modifier".'</a></td></tr>');
+	 echo ('<td><a href="">'."Modifier".'</a></td>');
+	 echo('<td><a href="">'."Supprimer".'</a></td></tr>');
 }
 echo "</table>";
 ?>

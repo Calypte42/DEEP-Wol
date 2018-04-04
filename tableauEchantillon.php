@@ -24,12 +24,13 @@ $RetourPiege=$_REQUEST['piege'];
 					<th>Numero Echantillon</th>
 					<th>Forme de stockage</th>
 					<th>Lieu de stockage</th>
-					<th>Niveau d'identification</th>
 					<th>Infecte par bactérie</th>
-          <th>Nom Auteur identification</th>
+					<th>Niveau d'identification</th>
+          <th>Auteur identification</th>
           <th>Genre</th>
           <th>Espece</th>
 					<th>Modifier</th>
+					<th>Supprimer</th>
 				</tr>
 			<thead>
 			<tbody>
@@ -55,7 +56,8 @@ foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
 			}}
 
 		}}
-		echo ('<td><a href="">'."Modifier".'</a></td></tr>');
+		echo ('<td><a href="">'."Modifier".'</a></td>');
+		echo('<td><a href="">'."Supprimer".'</a></td></tr>');
 }
 echo "</table>";
 ?>
