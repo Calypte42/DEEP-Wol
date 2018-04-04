@@ -22,6 +22,7 @@ include 'consultationModification.php';
 					<th>Accès au public</th>
 					<th>Système hydrographique</th>
 					<th>Modifier</th>
+					<th>Supprimer</th>
 				</tr>
 			<thead>
 			<tbody>

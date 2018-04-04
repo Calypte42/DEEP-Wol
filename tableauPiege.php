@@ -24,6 +24,7 @@ include 'consultationModification.php';
           <th>Date de tri</th>
 					<th>Code equipe speleo</th>
 					<th>Modifier</th>
+					<th>Supprimer</th>
 				</tr>
 			<thead>
 			<tbody>

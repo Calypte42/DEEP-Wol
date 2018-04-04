@@ -22,6 +22,7 @@ include 'consultationModification.php';
 					<th>Presence d'eau</th>
 					<th>Code equipe speleo</th>
 					<th>Modifier</th>
+					<th>Supprimer</th>
 				</tr>
 			<thead>
 			<tbody>
