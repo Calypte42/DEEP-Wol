@@ -66,13 +66,14 @@ echo "</table>";
 			</tbody>
 		</table>
 
-	</div>
 	<?php
 		echo "<form style='float:right' name='versAjoutSite' method='POST' action='ajoutSite.php?idGrotte=$RetourId&grotte=$Retour'>";
 	?>
 		<input type="submit" value="Ajouter un site" />
 	</form>
 
+	</div>
+	
 <?php
 include 'HTML/pied.html';
 ?>

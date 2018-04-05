@@ -8,13 +8,17 @@ include 'verificationConnexion.php';
 include 'consultationModification.php';
 ?>
 		<!-- FORMULAIRE D'AJOUT DE SITE -->
+
+		<div class="container" style="margin-top:-400px; margin-right:10px;" >
 		<?php
 		$RetourId=$_REQUEST['idGrotte'];
 		$Retour=$_REQUEST['grotte'];
+
 		echo "<form method='POST' action='tableauSite.php?idGrotte=$RetourId&grotte=$Retour'>";
 		?>
 			<input type="submit" value="Revenir au tableau des sites" />
 		</form>
+
 		<form  id="ajoutSite"  method="POST" action = "WebService/ajoutSiteWS.php"> <!-- reference au formulaire -->
 		<p>
 			<fieldset class="scheduler-border">
@@ -86,6 +90,8 @@ include 'consultationModification.php';
 				<input type="submit" name="nom" value="Valider et revenir au tableau"> &nbsp;&nbsp;
 				<input type="submit" name="nom" value="Valider et ajouter un nouveau piege">
 
+					</div>
+				</div>
 			</fieldset>
 		</p>
 		</form>
@@ -97,6 +103,8 @@ include 'consultationModification.php';
                 <button type="submit">Ajouter une équipe</button></br></br>
             </form>
         </div>
+
+</div>
 
 <?php
 include 'HTML/pied.html';

@@ -61,7 +61,6 @@ echo "</table>";
 			</tbody>
 		</table>
 
-	</div>
 <?php
 	echo "<form style='float:right' name='versAjoutPiege' method='POST' action='ajoutPiege.php?nomGrotte=$RetourNomGrotte
 	&idGrotte=$RetourIdGrotte&site=$RetourNomSite&idSite=$RetourIdSite'>";
@@ -69,6 +68,8 @@ echo "</table>";
 		<input type="submit" value="Ajouter un piege" />
 	</form>
 
+	</div>
+	
 <?php
 include 'HTML/pied.html';
 ?>

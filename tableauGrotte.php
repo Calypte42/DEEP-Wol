@@ -63,11 +63,11 @@ echo "</table>";
 			</tbody>
 		</table>
 
-	</div>
-
 	<form style="float:right" name="versAjoutGrotte" method="POST" action="ajoutGrotte.php">
 		<input type="submit" value="Ajouter une Grotte" />
 	</form>
+
+	</div>
 
 <?php
 include 'HTML/pied.html';

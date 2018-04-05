@@ -6,12 +6,15 @@ $bdd=connexionbd();
 <?php
 include 'verificationConnexion.php';
 include 'consultationModification.php';
+?>
 
+<div class="container" style="margin-top:-400px; margin-right:10px;" >
+
+<?php
 $RetourNomGrotte=$_REQUEST['nomGrotte'];
 $RetourIdGrotte=$_REQUEST['idGrotte'];
 $RetourNomSite=$_REQUEST['site'];
 $RetourIdSite=$_REQUEST['idSite'];
-
 
 echo "<form method='POST' action='tableauPiege.php?idSite=$RetourIdSite&site=$RetourNomSite&idGrotte=$RetourIdGrotte&nomGrotte=$RetourNomGrotte'>";
 ?>
@@ -98,10 +101,12 @@ echo "<form method='POST' action='tableauPiege.php?idSite=$RetourIdSite&site=$Re
 				<input type="submit" name="nom" value="Valider et revenir au tableau des pieges"> &nbsp;&nbsp;
 				<input type="submit" name="nom" value="Valider et ajouter un echantillon">
 
+					</div>
+				</div>
 			</fieldset>
 		</p>
 		</form>
-
+</div>
 <?php
 include 'HTML/pied.html';
 ?>

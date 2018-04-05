@@ -64,15 +64,15 @@ echo "</table>";
 			</tbody>
 		</table>
 
-	</div>
-
-<?php
+	<?php
 echo "<form style='float:right' name='versAjoutEchantillon' method='POST'
 	action='ajoutEchantillon.php?nomGrotte=$RetourNomGrotte&idGrotte=$RetourIdGrotte&site=$RetourNomSite&idSite=$RetourIdSite&piege=$RetourPiege'>";
 	?>
 		<input type="submit" value="Ajouter un echantillon" />
 	</form>
 
+	</div>
+	
 <?php
 include 'HTML/pied.html';
 ?>

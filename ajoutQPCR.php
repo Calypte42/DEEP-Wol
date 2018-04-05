@@ -15,6 +15,7 @@ include 'consultationModification.php';
   <input type="submit" value="" />
 </form>-->
 
+<div class="container" style="margin-top:-400px; margin-right:10px;" >
 <form  id="ajoutqPCR"  method="POST" action = "WebService/ajoutqPCRWS.php"> <!-- reference au formulaire -->
 <p>
   <fieldset class="scheduler-border">
@@ -75,3 +76,9 @@ include 'consultationModification.php';
 
         A faire apparaître si oui :
         <input type="file" id ="fasta" name="fasta"/>
+      </div>
+    </div>
+  </fieldset>
+</p>
+</form>
+</div>

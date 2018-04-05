@@ -12,12 +12,15 @@ include 'consultationModification.php';
 		<!-- FORMULAIRE D'AJOUT DE GROTTE -->
 	</br>
 	</br>
+
+<div class="container" style="margin-top:-400px; margin-right:10px;" >
 	<form method="POST" action="tableauGrotte.php">
 		<input type="submit" value="Revenir au tableau des grottes" />
 	</form>
+
 		<form  id="ajoutGrotte"  method="POST" action = "WebService/ajoutGrotteWS.php"> <!-- reference au formulaire -->
 		<p> <!-- car balise input ou select ne peut pas etre imbriquee directement dans form -->
-			<fieldset class="scheduler-border">
+			<fieldset class="scheduler-border fieldset-auto-width">
 				<legend class="scheduler-border"> Ajout d'une grotte </legend>
 				<div class="control-group">
 					<div class="controls bootstrap-timepicker">
@@ -75,6 +78,8 @@ include 'consultationModification.php';
 				<input type="submit" name="nom" value="Valider et ajouter un site"> &nbsp;&nbsp;
 				<input type="submit" name="nom" value="Valider et revenir au tableau"> &nbsp;&nbsp;
 
+					</div>
+				</div>
 			</fieldset>
 		</p>
 		</form>
@@ -87,7 +92,7 @@ include 'consultationModification.php';
                 <input type="number" id ="departement" name="departement"/></br></br>
                 <button type="submit">Ajouter un système hydrographique</button></br></br>
             </form>
-        </div>
+</div>
 
 <?php
 include 'HTML/pied.html';
