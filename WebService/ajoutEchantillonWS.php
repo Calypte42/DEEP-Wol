@@ -100,20 +100,14 @@ $reqVerif = $bdd->prepare($maRequeteVerif.';');
 $reqVerif->execute($tableau);
 
 $nombreResultat=$reqVerif->rowCount();
-echo "$nombreResultat <br/>";
-echo "$taxoRequete";
 
 if($nombreResultat==1){
-  echo '<br /> INSERT INTO Echantillon (numEchantillon,nombreIndividu,formeStockage,lieuStockage,
-    niveauIdentification,infecteBacterie,codePiege,idAuteur,idTaxonomie)
-   SELECT :numEchantillon,:nombreIndividu,:formeStockage,:lieuStockage,:niveauIdentification,:infecteBacterie,:codePiege,
-    :idAuteur,t.id FROM Taxonomie t, Personne p WHERE '.$taxoRequete.';';
 
 
   $req = $bdd->prepare('INSERT INTO Echantillon (numEchantillon,nombreIndividu,formeStockage,lieuStockage,
     niveauIdentification,infecteBacterie,codePiege,idAuteur,idTaxonomie)
    SELECT :numEchantillon,:nombreIndividu,:formeStockage,:lieuStockage,:niveauIdentification,:infecteBacterie,:codePiege,
-   :idAuteur,t.id FROM Taxonomie t, Personne p WHERE '.$taxoRequete.';');
+   :idAuteur,t.id FROM Taxonomie t WHERE '.$taxoRequete.';');
 
 
         $tableau['numEchantillon']= $_REQUEST['numEchantillon'];
