@@ -7,20 +7,14 @@ TRUNCATE TABLE Echantillon RESTART IDENTITY CASCADE;
 TRUNCATE TABLE CorrespondanceGeneBacterie RESTART IDENTITY CASCADE;
 TRUNCATE TABLE Compte RESTART IDENTITY CASCADE;
 
-
+drop view V_Echantillon_AvecTaxo;
+drop view V_Echantillon_SansTaxo;
 drop table Compte;
-/*drop table LienFastaElectro;
-drop table lienPCRFasta;
-drop table lienqPCRFasta;*/
 drop table qPCR;
 drop table PCR;
-/*drop table Fasta;
-drop table Electrophoregramme;*/
 drop table CorrespondanceGeneBacterie;
 drop table Gene;
 drop table Bacterie;
-/*drop table PoolIn;
-drop table Pool; */
 drop table Echantillon;
 drop table Taxonomie;
 drop table Personne;

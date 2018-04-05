@@ -120,7 +120,7 @@ echo "<form method='POST' action='tableauEchantillon.php?piege=$RetourPiege&nomG
 
 					echo "<label for='classe'>Classe </label>";
 					echo "<select name='classe'>"; /* On cree une liste deroulante vide */
-
+					
 
 					$requete='SELECT DISTINCT classe from Taxonomie ORDER BY classe';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
 					$value=requete($bdd,$requete); /* value recupere la reponse de la requete */

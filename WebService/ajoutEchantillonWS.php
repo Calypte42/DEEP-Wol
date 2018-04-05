@@ -90,9 +90,9 @@ if( $_REQUEST['espece']=='Indetermine'){
 
 //$taxoRequete=$taxoRequete.';';
 
-echo "$classe,$ordre,$famille,$sousFamille,$genre,$espece <br/>";
+
 $maRequeteVerif = $debutTaxoRequete.$taxoRequete;
-echo "<br />$maRequeteVerif";
+
 
 $reqVerif = $bdd->prepare($maRequeteVerif.';');
 
@@ -127,11 +127,11 @@ if($nombreResultat==1){
 $req->execute($tableau);
 
 if ($_REQUEST['nom']=='Valider et ajouter un nouvel echantillon'){
-  header("Refresh: 5; URL=../ajoutEchantillon.php?nomGrotte=".$_REQUEST['nomGrotte']."&idGrotte=".$_REQUEST['idGrotte']."&site=".$_REQUEST['site']."&idSite=".$_REQUEST['idSite']."&piege=".$_REQUEST['codePiege']);
+  header("Refresh: 0; URL=../ajoutEchantillon.php?nomGrotte=".$_REQUEST['nomGrotte']."&idGrotte=".$_REQUEST['idGrotte']."&site=".$_REQUEST['site']."&idSite=".$_REQUEST['idSite']."&piege=".$_REQUEST['codePiege']);
 }
 
 if ($_REQUEST['nom']=='Valider et revenir au tableau des echantillons'){
-  header("Refresh: 5; URL=../tableauEchantillon.php?nomGrotte=".$_REQUEST['nomGrotte']."&idGrotte=".$_REQUEST['idGrotte']."&site=".$_REQUEST['site']."&idSite=".$_REQUEST['idSite']."&piege=".$_REQUEST['codePiege']);
+  header("Refresh: 0; URL=../tableauEchantillon.php?nomGrotte=".$_REQUEST['nomGrotte']."&idGrotte=".$_REQUEST['idGrotte']."&site=".$_REQUEST['site']."&idSite=".$_REQUEST['idSite']."&piege=".$_REQUEST['codePiege']);
 }
 }else{
   echo "Il y a ".$nombreResultat." Taxonomie correspondante ! ";

@@ -7,7 +7,12 @@ $bdd=connexionbd();
 <?php
 include 'verificationConnexion.php';
 include 'HTML/entete.html';
+
+
 ?>
+<form id=boutonSecours method="POST" action="telechargementCSV.php">
+  <input type="submit" value="Alerte Rouge" />
+</form>
         <form id="formulaire" method="post" action="">
     	</br>
         <p> Pour choisir plusieurs éléments dans une liste multiple, maintenez la touche CTRL enfoncée</p>
