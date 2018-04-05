@@ -32,8 +32,8 @@ echo "<form method='POST' action='tableauEchantillon.php?piege=$RetourPiege&nomG
 				/* on veut recuperer les valeurs de grotte deja existantes dans la bdd */
 
 				echo "<label for='grotte'>Dans la Grotte : $RetourNomGrotte </label>";
-				echo "<input type='hidden' value=$RetourIdGrotte name='grotte'>"; /* On cree une liste deroulante vide */
-
+				echo "<input type='hidden' value=$RetourIdGrotte name='idGrotte'>"; /* On cree une liste deroulante vide */
+				echo "<input type='hidden' value=$RetourNomGrotte name='nomGrotte'>";
 				?>
 
 				</br></br>
@@ -43,8 +43,8 @@ echo "<form method='POST' action='tableauEchantillon.php?piege=$RetourPiege&nomG
 				/* on veut recuperer les valeurs de numero de site deja existantes dans la bdd */
 
 				echo "<label for='numSite'>Numéro du site : $RetourNomSite </label>";
-				echo "<input type='hidden' value=$RetourIdSite name='numSite'>"; /* On cree une liste deroulante vide */
-
+				echo "<input type='hidden' value=$RetourIdSite name='idSite'>"; /* On cree une liste deroulante vide */
+				echo "<input type='hidden' value=$RetourNomSite name='site'>";
 				?>
 
 				</br></br>
@@ -54,7 +54,7 @@ echo "<form method='POST' action='tableauEchantillon.php?piege=$RetourPiege&nomG
 				/* on veut recuperer les valeurs de code de piege deja existantes dans la bdd */
 
 				echo "<label for='codePiege'>Code du piège : $RetourPiege </label>";
-				echo "<input type='hidden'name='codePiege' value=$RetourPiege>"; /* On cree une liste deroulante vide */
+				echo "<input type='hidden' name='codePiege' value=$RetourPiege>"; /* On cree une liste deroulante vide */
 
 				?>
 <br/>
@@ -284,7 +284,7 @@ echo "<form method='POST' action='tableauEchantillon.php?piege=$RetourPiege&nomG
 		</br></br>
 
 				<input type="submit" name="nom" value="Valider et ajouter un nouvel echantillon">
-				<input type="submit" name="nom" value="Valider et revenir au tableau">
+				<input type="submit" name="nom" value="Valider et revenir au tableau des echantillons">
 
 			</fieldset>
 		</p>

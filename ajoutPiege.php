@@ -32,8 +32,8 @@ echo "<form method='POST' action='tableauPiege.php?idSite=$RetourIdSite&site=$Re
 				/* on veut recuperer les valeurs de grotte deja existantes dans la bdd */
 
 				echo "<label for='grotte'>Dans la Grotte : $RetourNomGrotte </label>";
-				echo "<input type='hidden' value=$RetourIdGrotte name='grotte'>"; /* On cree une liste deroulante vide */
-
+				echo "<input type='hidden' value=$RetourNomGrotte name='nomGrotte'>"; /* On cree une liste deroulante vide */
+				echo"<input type='hidden' value=$RetourIdGrotte name='idGrotte'>";
 
 				?>
 
@@ -44,8 +44,8 @@ echo "<form method='POST' action='tableauPiege.php?idSite=$RetourIdSite&site=$Re
 				/* on veut recuperer les valeurs de numero de site deja existantes dans la bdd */
 
 				echo "<label for='numSite'>Numéro du site : $RetourNomSite </label>";
-				echo "<input type='hidden' value=$RetourIdSite name='numSite'>"; /* On cree une liste deroulante vide */
-
+				echo "<input type='hidden' value=$RetourNomSite name='site'>"; /* On cree une liste deroulante vide */
+				echo "<input type='hidden' value=$RetourIdSite name='idSite'>";
 				?>
 
 				</br></br>
@@ -95,8 +95,8 @@ echo "<form method='POST' action='tableauPiege.php?idSite=$RetourIdSite&site=$Re
 				</br>
 
 				<input type="submit" name="nom" value="Valider et ajouter un nouveau piege"> &nbsp;&nbsp;
-				<input type="submit" name="nom" value="Valider et revenir au tableau"> &nbsp;&nbsp;
-				<input type="submit" name="nom" value="Valider et aller à la page suivante">
+				<input type="submit" name="nom" value="Valider et revenir au tableau des pieges"> &nbsp;&nbsp;
+				<input type="submit" name="nom" value="Valider et ajouter un echantillon">
 
 			</fieldset>
 		</p>

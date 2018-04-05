@@ -28,8 +28,8 @@ include 'consultationModification.php';
 				/* on veut recuperer les valeurs de grotte deja existantes dans la bdd */
 
 				echo "<label for='idGrotte'>Dans la grotte : $Retour</label>";
-				echo "<input type='hidden' name='idGrotte' value=$RetourId>"; /* On cree une liste deroulante vide */
-
+				echo "<input type='hidden' name='idGrotte' value=$RetourId>";
+				echo "<input type='hidden' name='grotte' value=$Retour>";
 				?>
 
 				</br></br>

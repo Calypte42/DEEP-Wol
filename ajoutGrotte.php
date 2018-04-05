@@ -73,7 +73,7 @@ include 'consultationModification.php';
 
 				<input type="submit" name="nom" value="Valider et ajouter une nouvelle grotte"> &nbsp;&nbsp;
 				<input type="submit" name="nom" value="Valider et ajouter un site"> &nbsp;&nbsp;
-				<input type="submit" name="nom" value="Valider et revenir aux grottes"> &nbsp;&nbsp;
+				<input type="submit" name="nom" value="Valider et revenir au tableau"> &nbsp;&nbsp;
 
 			</fieldset>
 		</p>

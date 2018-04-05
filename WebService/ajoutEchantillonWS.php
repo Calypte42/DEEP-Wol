@@ -132,7 +132,13 @@ if($nombreResultat==1){
 
 $req->execute($tableau);
 
-header('Refresh: 10; URL=../ajoutEchantillon.php');
+if ($_REQUEST['nom']=='Valider et ajouter un nouvel echantillon'){
+  header("Refresh: 5; URL=../ajoutEchantillon.php?nomGrotte=".$_REQUEST['nomGrotte']."&idGrotte=".$_REQUEST['idGrotte']."&site=".$_REQUEST['site']."&idSite=".$_REQUEST['idSite']."&piege=".$_REQUEST['codePiege']);
+}
+
+if ($_REQUEST['nom']=='Valider et revenir au tableau des echantillons'){
+  header("Refresh: 5; URL=../tableauEchantillon.php?nomGrotte=".$_REQUEST['nomGrotte']."&idGrotte=".$_REQUEST['idGrotte']."&site=".$_REQUEST['site']."&idSite=".$_REQUEST['idSite']."&piege=".$_REQUEST['codePiege']);
+}
 }else{
   echo "Il y a ".$nombreResultat." Taxonomie correspondante ! ";
 }
