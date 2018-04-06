@@ -152,7 +152,7 @@ SELECT numEchantillon,formeStockage,lieuStockage,niveauIdentification,infecteBac
 
 
 CREATE VIEW V_Echantillon_SansTaxo
-AS SELECT numEchantillon,formeStockage,lieuStockage,niveauIdentification,infecteBacterie,nombreindividu,piege.codepiege,datepose,heurepose,daterecup,heurerecup,probleme,datetri,profondeur,temperature,typesol,numsite,distanceentree,presenceeau,nomcavite,typecavite,latitude,longitude,typeacces,accespublic,sys.nom,departement FROM Echantillon e, Piege piege, Site site, Grotte grotte, systemeHydrographique sys WHERE (e.idTaxonomie IS NULL) AND (e.idAuteur IS NULL) AND (e.codePiege=piege.codePiege)  AND (piege.idSite=site.id) AND (site.idGrotte=grotte.id) AND (grotte.idSystemeHydrographique=sys.id);
+AS SELECT numEchantillon,formeStockage,lieuStockage,niveauIdentification,infecteBacterie,nombreindividu,piege.codepiege,datepose,heurepose,daterecup,heurerecup,probleme,datetri,profondeur,temperature,typesol,numsite,distanceentree,presenceeau,nomcavite,typecavite,latitude,longitude,typeacces,accespublic,sys.nom AS nomSystemeHydrographique,departement FROM Echantillon e, Piege piege, Site site, Grotte grotte, systemeHydrographique sys WHERE (e.idTaxonomie IS NULL) AND (e.idAuteur IS NULL) AND (e.codePiege=piege.codePiege)  AND (piege.idSite=site.id) AND (site.idGrotte=grotte.id) AND (grotte.idSystemeHydrographique=sys.id);
 
 
 /*

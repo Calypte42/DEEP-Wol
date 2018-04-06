@@ -10,11 +10,29 @@ include 'HTML/entete.html';
 
 
 ?>
-<form id=boutonSecours method="POST" action="telechargementCSV.php">
-  <input type="submit" value="Alerte Rouge" />
-</form>
-        <form id="formulaire" method="post" action="">
-    	</br>
+<h2> Voici la page d'extraction des données des échantillons</h2>
+<p>
+  Tout d'abord selectionner les élements que vous voulez voir apparaitre dans le tableau de résultat
+  puis appliquer les filtres desire en selectionnant les grottes, sites et pieges qui vous interessent !
+</p>
+        <form id="formulaire" method="GET" action="telechargementCSV.php">
+          <fieldset>
+            <legend>Choix des colonnes </legend>
+            <h3> A enlever : Sofian il faudrait si possible que quand on clique sur tout tout ce coche</h3>
+            <?php
+            $listeAttribut = array('numEchantillon','formeStockage','lieuStockage','niveauIdentification','infecteBacterie','nombreindividu','codepiege','datepose','heurepose','daterecup','heurerecup','probleme','datetri','profondeur','temperature','typesol','numsite','distanceentree','presenceeau','nomcavite','typecavite','latitude','longitude','typeacces','accespublic','nomSystemeHydrographique','departement','classe','ordre','famille','sousfamille','genre','espece','photo','nomAuteur','prenomAuteur');
+            echo "<label for='tout'>Tout</label>";
+            echo "<input type='checkbox' checked name='listeItem[]' id='tout' value='tout'>";
+            foreach ($listeAttribut as $key => $value) {
+              echo "<label for=$value>$value</label>";
+              echo "<input type='checkbox' name='listeItem[]' id=$value value=$value>";
+            }
+
+            ?>
+
+
+          </fieldset>
+      </br>
         <p> Pour choisir plusieurs éléments dans une liste multiple, maintenez la touche CTRL enfoncée</p>
         </br>
 
@@ -27,8 +45,9 @@ include 'HTML/entete.html';
 				<?php
 		/* ------------- DEBUT LISTE DEROULANTE GROTTE ------------------*/
 
-				echo"<select multiple name='grotte'>"; /* On cree une liste deroulante */
-				echo "<option selected = 'selected' value='Toutes'>Toutes</option>"; /*possibilité de selectionner toutes les grottes */
+
+				echo"<select multiple name='grotte[]'>"; /* On cree une liste deroulante */
+				echo "<option selected = 'selected' value=''>Toutes</option>"; /*possibilité de selectionner toutes les grottes */
 			 	$requete='SELECT NomCavite from Grotte ORDER BY NomCavite';  /* On prepare une requete permettant de recupere l'ensemble des valeurs qui nous interessent   */
 			  	$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 			  	foreach ($value as $array) { /* On parcours les resultats possible (ici 1 seul) */
@@ -38,7 +57,7 @@ include 'HTML/entete.html';
 			  	}
 			  	echo "</select>";
 			  	?>
-          <div>
+    <!--      <div>
           Choix des elements devant apparaitre dans le tableau de resultat : <br/>
           <label for="CBGrotteTout">Tout</label>
           <input type='checkbox' name='checkboxGrotte' id="CBGrotteTout" value="CBGrotteTout" />
@@ -54,7 +73,7 @@ include 'HTML/entete.html';
           <input type='checkbox' name='checkboxGrotte' id="CBTypeAcces" value="CBTypeAcces" />
           <label for="CBAccesPublic">Acces Public</label>
           <input type='checkbox' name='checkboxGrotte' id="CBAccesPublic" value="CBAccesPublic" />
-          </div>
+        </div>-->
 
 				</div>
 			</div>
@@ -70,8 +89,8 @@ include 'HTML/entete.html';
 				<?php
 		/* ------------- DEBUT LISTE DEROULANTE SITE ------------------*/
 
-				echo "<select multiple name='site'>";
-				echo "<option selected = 'selected' value='Tous'>Tous</option>";
+				echo "<select multiple name='site[]'>";
+				echo "<option selected = 'selected' value=''>Tous</option>";
 				$requete='SELECT numSite from Site ORDER BY numSite';  /*   */
 				$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 				foreach ($value as $array) {
@@ -82,7 +101,7 @@ include 'HTML/entete.html';
 				echo "</select>";
 
 			  	?>
-          <div>
+      <!--    <div>
           Choix des elements devant apparaitre dans le tableau de resultat : <br/>
           <label for="CBSiteTout">Tout</label>
           <input type='checkbox' name='checkboxSite' id="CBSiteTout" value="CBSiteTout" />
@@ -98,7 +117,7 @@ include 'HTML/entete.html';
           <input type='checkbox' name='checkboxSite' id="CBDistanceEntree" value="CBDistanceEntree" />
           <label for="CBPresenceEau">Presence d'eau</label>
           <input type='checkbox' name='checkboxSite' id="CBPresenceEau" value="CBPresenceEau" />
-          </div>
+        </div>-->
           		</div>
         	</div>
         </fieldset>
@@ -112,8 +131,8 @@ include 'HTML/entete.html';
 				<?php
 		/* ------------- DEBUT LISTE DEROULANTE PIEGE ------------------*/
 
-				echo"<select multiple name='Piege'>";
-				echo "<option selected = 'selected' value='Tous'>Tous</option>";
+				echo"<select multiple name='piege[]'>";
+				echo "<option selected = 'selected' value=''>Tous</option>";
 			      $requete='SELECT codePiege from Piege ORDER BY codePiege';  /*   */
 			      $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 			      foreach ($value as $array) {
@@ -138,8 +157,8 @@ include 'HTML/entete.html';
 				<?php
 		/* ------------- DEBUT LISTE DEROULANTE Echantillon ------------------*/
 
-				echo"<select multiple name='Echantillon'>";
-				echo "<option selected = 'selected' value='Tous'>Tous</option>";
+				echo"<select multiple name='echantillon[]'>";
+				echo "<option selected = 'selected' value=''>Tous</option>";
 			      $requete='SELECT numEchantillon from Echantillon ORDER BY numEchantillon';  /*   */
 			      $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 			      foreach ($value as $array) {
@@ -153,5 +172,5 @@ include 'HTML/entete.html';
           		</div>
         	</div>
         </fieldset>
-<input type="submit" name="rechercher" value="rechercher" />
+<input type="submit" name="extraire" value="extraire" />
         </form>

@@ -7,7 +7,63 @@ $bdd=connexionbd();
 $chemin = './fichierTest.csv';
 $fichier = 'fichierTest.csv';
 $delimiteur = ','; // Pour une tabulation, utiliser $delimiteur = "t";
-$enTete[] = array('numEchantillon','formeStockage','lieuStockage','niveauIdentification','infecteBacterie','nombreindividu','codepiege','datepose','heurepose','daterecup','heurerecup','probleme','datetri','profondeur','temperature','typesol','numsite','distanceentree','presenceeau','nomcavite','typecavite','latitude','longitude','typeacces','accespublic','sys.nom','departement','classe','ordre','famille','sousfamille','genre','espece','photo','nomAuteur','prenomAuteur');
+
+
+$enTete[]=array();
+$listeSelect="";
+$listeWhere=" WHERE 1=1 AND ";
+
+// On prepare la commande select avec les valeurs recuperer par les checkbox
+if($_REQUEST['listeItem'][0]=='tout'){
+  $listeSelect='*';
+  $enTete[] = array('numEchantillon','formeStockage','lieuStockage','niveauIdentification','infecteBacterie','nombreindividu','codepiege','datepose','heurepose','daterecup','heurerecup','probleme','datetri','profondeur','temperature','typesol','numsite','distanceentree','presenceeau','nomcavite','typecavite','latitude','longitude','typeacces','accespublic','nomSystemeHydrographique','departement','classe','ordre','famille','sousfamille','genre','espece','photo','nomAuteur','prenomAuteur');
+}else{
+foreach ($_REQUEST['listeItem'] as $key) {
+  $listeSelect=$listeSelect.$key.',';
+  $enTete[0][]=$key;
+}
+$listeSelect=rtrim($listeSelect,',');
+}
+
+
+// Preparation de la clause WHERE :
+
+if(!empty($_REQUEST['grotte'])){
+  foreach ($_REQUEST['grotte'] as $key) {
+    if(!empty($key)){
+    $listeWhere=$listeWhere.'nomCavite=\''.$key.'\' AND ';
+    }
+  }
+}
+
+if(!empty($_REQUEST['site'])){
+  foreach ($_REQUEST['site'] as $key) {
+    if(!empty($key)){
+    $listeWhere=$listeWhere.'numSite=\''.$key.'\' AND ';
+    }
+  }
+}
+
+if(!empty($_REQUEST['piege'])){
+  foreach ($_REQUEST['piege'] as $key) {
+    if(!empty($key)){
+    $listeWhere=$listeWhere.'codePiege=\''.$key.'\' AND ';
+    }
+  }
+}
+
+if(!empty($_REQUEST['echantillon'])){
+  foreach ($_REQUEST['echantillon'] as $key) {
+    if(!empty($key)){
+    $listeWhere=$listeWhere.'numEchantillon=\''.$key.'\' AND ';
+    }
+  }
+}
+$listeWhere=rtrim($listeWhere,' AND ');
+
+
+// Permet de donner un nom au colonne dans le fichier csv. A revoir.
+
 
 // Création du fichier csv (le fichier est vide pour le moment)
 // w+ : consulter http://php.net/manual/fr/function.fopen.php
@@ -23,7 +79,8 @@ foreach ($enTete as $ligne) {
 fputcsv($fichier_csv, $ligne, $delimiteur);
 }
 
-$requete='SELECT * from V_Echantillon_AvecTaxo';
+$requete='SELECT '.$listeSelect.' from V_Echantillon_AvecTaxo '.$listeWhere;
+//echo "$requete";
 $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 
 
@@ -33,7 +90,8 @@ foreach ($value as $ligne) { /* On parcourt le tableau de tableau */
   	fputcsv($fichier_csv, $ligne, $delimiteur);
 }
 
-$requete='SELECT * from V_Echantillon_SansTaxo';
+$requete='SELECT '.$listeSelect.' from V_Echantillon_SansTaxo '.$listeWhere;
+//echo "$requete";
 $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 
 
@@ -56,7 +114,9 @@ header('Expires: 0');
 readfile($chemin);
 $file = 'file.csv';
  */
+
 header('Content-disposition: attachment; filename="' . $fichier . '"');
 header('Content-type: application/octetstream');
 
 readfile($fichier);
+?>
