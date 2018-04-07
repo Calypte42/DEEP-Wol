@@ -24,8 +24,8 @@ $RetourPiege=$_REQUEST['piege'];
 					<th>Numero Echantillon</th>
 					<th>Forme de stockage</th>
 					<th>Lieu de stockage</th>
-					<th>Infecte par bactérie</th>
 					<th>Niveau d'identification</th>
+					<th>Infecte par bactérie</th>
           <th>Auteur identification</th>
           <th>Genre</th>
           <th>Espece</th>
@@ -72,7 +72,7 @@ echo "<form style='float:right' name='versAjoutEchantillon' method='POST'
 	</form>
 
 	</div>
-	
+
 <?php
 include 'HTML/pied.html';
 ?>
