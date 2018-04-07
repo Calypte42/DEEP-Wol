@@ -23,7 +23,3 @@ include 'HTML/entete.html';
 		<li><a href='ajoutGene.php'><span>Gène</span></a></li>
 	</ul>
 </div>
-
-<?php
-include 'HTML/pied.html';
-?>

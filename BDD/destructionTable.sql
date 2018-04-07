@@ -8,7 +8,6 @@ TRUNCATE TABLE CorrespondanceGeneBacterie RESTART IDENTITY CASCADE;
 TRUNCATE TABLE Compte RESTART IDENTITY CASCADE;
 
 drop view V_Echantillon_AvecTaxo;
-drop view V_Echantillon_SansTaxo;
 drop table Compte;
 drop table qPCR;
 drop table PCR;

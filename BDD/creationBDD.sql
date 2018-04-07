@@ -113,31 +113,31 @@ create table CorrespondanceGeneBacterie (
 create table PCR (
     id SERIAL PRIMARY KEY,
     resultat varchar(10) NOT NULL,
-    idIndividu int NOT NULL,
+    idEchantillon int NOT NULL,
     nomGene varchar(20) NOT NULL,
     datePCR date NOT NULL,
     fasta varchar(200),
     electrophoregramme varchar(200),
-    CONSTRAINT idIndividu_FK FOREIGN KEY (idIndividu)
+    CONSTRAINT idEchantillon_FK FOREIGN KEY (idEchantillon)
         REFERENCES Echantillon (id),
     CONSTRAINT nomGene_FK FOREIGN KEY (nomGene)
         REFERENCES Gene (nom),
-    CONSTRAINT PCR_dateIndividuGene_UNIQUE UNIQUE (datePCR,idIndividu,nomGene)
+    CONSTRAINT PCR_dateEchantillonGene_UNIQUE UNIQUE (datePCR,idEchantillon,nomGene)
 );
 
 create table qPCR (
     id SERIAL PRIMARY KEY,
     resultat varchar(10)NOT NULL,
-    idIndividu int NOT NULL,
+    idEchantillon int NOT NULL,
     nomGene varchar(20) NOT NULL,
     dateqPCR date NOT NULL,
     fasta varchar(200),
     electrophoregramme varchar(200),
-    CONSTRAINT idIndividu_FK FOREIGN KEY (idIndividu)
+    CONSTRAINT idEchantillon_FK FOREIGN KEY (idEchantillon)
         REFERENCES Echantillon (id),
     CONSTRAINT nomGene_FK FOREIGN KEY (nomGene)
         REFERENCES Gene (nom),
-    CONSTRAINT qPCR_dateIndividuGene_UNIQUE UNIQUE (dateqPCR,idIndividu,nomGene)
+    CONSTRAINT qPCR_dateEchantillonGene_UNIQUE UNIQUE (dateqPCR,idEchantillon,nomGene)
 );
 
 

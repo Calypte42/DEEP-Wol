@@ -207,3 +207,8 @@ body, html {
 	color: #ffffff;
 	background:#000000;
 }*/
+
+.container{
+	position: relative;
+	display: inline-block;
+}

@@ -65,7 +65,7 @@ INSERT INTO Bacterie(clade) VALUES ('A');
 INSERT INTO CorrespondanceGeneBacterie (nomGene,clade)
     VALUES ('Gene1','A');
 
-INSERT INTO PCR (resultat,idIndividu,nomGene,datePCR)
+INSERT INTO PCR (resultat,idEchantillon,nomGene,datePCR)
     VALUES ('ambigue',1,'Gene1','2018-09-03');
 
 INSERT INTO Compte (pseudo,MDP)

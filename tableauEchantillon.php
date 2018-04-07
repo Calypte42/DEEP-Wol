@@ -47,7 +47,7 @@ foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
         $id=$resultat;
       }else{
       if($cle=='numechantillon'){
-			 echo "<td><a href='tableauAnalyse.php?idEchantillon=$id&echantillon=$resultat'>$resultat</a></td> ";
+				echo "<td><a href='tableauAnalyse.php?idEchantillon=$id&numEchantillon=$resultat&piege=$RetourPiege&nomGrotte=$RetourNomGrotte&idGrotte=$RetourIdGrotte&site=$RetourNomSite&idSite=$RetourIdSite'>$resultat</a></td> ";
 			}else {
 				if(empty($resultat)){
           echo "<td>Non renseigné</td>";
