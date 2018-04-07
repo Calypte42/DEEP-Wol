@@ -28,14 +28,14 @@ $bdd = null;
 if ($mdp == $mdpUtilisateur) {
 
     $_SESSION['identifie'] = 1; // 1 pour connecté, 0 pour déconnecté
-    header('Refresh: 3; URL=accueil.php');
+    header('Refresh: 0; URL=accueil.php');
     echo "Authentification réussie ! Redirection dans 3 secondes...";
     /*
 	http_response_code(200); // succès de la requête
     */
 } else {
-    header('Refresh: 5; URL=index.php');
-    echo "Echec de l'authentification ! Redirection dans 5 secondes...";
+    header('Refresh: 3; URL=index.php');
+    echo "Echec de l'authentification ! Redirection dans 3 secondes...";
     /*
 	http_response_code(401); // utilisateur non authentifié
     */

@@ -14,50 +14,55 @@ $listeSelect="";
 $listeWhere=" WHERE 1=1 AND ";
 
 // On prepare la commande select avec les valeurs recuperer par les checkbox
-if($_REQUEST['listeItem'][0]=='tout'){
-  $listeSelect='*';
-  $enTete[] = array('numEchantillon','formeStockage','lieuStockage','niveauIdentification','infecteBacterie','nombreindividu','codepiege','datepose','heurepose','daterecup','heurerecup','probleme','datetri','profondeur','temperature','typesol','numsite','distanceentree','presenceeau','nomcavite','typecavite','latitude','longitude','typeacces','accespublic','nomSystemeHydrographique','departement','classe','ordre','famille','sousfamille','genre','espece','photo','nomAuteur','prenomAuteur');
-}else{
+
 foreach ($_REQUEST['listeItem'] as $key) {
   $listeSelect=$listeSelect.$key.',';
-  $enTete[0][]=$key;
+  $enTete[0][]=$key; // On insere le nom de la table dans le tableau permettant d afficher le nom des colonnes dans le csv.
 }
 $listeSelect=rtrim($listeSelect,',');
-}
+
 
 
 // Preparation de la clause WHERE :
 
-if(!empty($_REQUEST['grotte'])){
+if(!empty($_REQUEST['grotte'][0])){
   foreach ($_REQUEST['grotte'] as $key) {
     if(!empty($key)){
-    $listeWhere=$listeWhere.'nomCavite=\''.$key.'\' AND ';
+    $listeWhere=$listeWhere.'nomCavite=\''.$key.'\' OR ';
     }
   }
+  $listeWhere=rtrim($listeWhere,' OR '); // Permet d'enlever OR a la fin de la chaine.
+  $listeWhere=$listeWhere.' AND ';
 }
 
-if(!empty($_REQUEST['site'])){
+if(!empty($_REQUEST['site'][0])){
   foreach ($_REQUEST['site'] as $key) {
     if(!empty($key)){
-    $listeWhere=$listeWhere.'numSite=\''.$key.'\' AND ';
+    $listeWhere=$listeWhere.'numSite=\''.$key.'\' OR ';
     }
   }
+  $listeWhere=rtrim($listeWhere,' OR ');
+  $listeWhere=$listeWhere.' AND ';
 }
 
-if(!empty($_REQUEST['piege'])){
+if(!empty($_REQUEST['piege'][0])){
   foreach ($_REQUEST['piege'] as $key) {
     if(!empty($key)){
-    $listeWhere=$listeWhere.'codePiege=\''.$key.'\' AND ';
+    $listeWhere=$listeWhere.'codePiege=\''.$key.'\' OR ';
     }
   }
+  $listeWhere=rtrim($listeWhere,' OR ');
+  $listeWhere=$listeWhere.' AND ';
 }
 
-if(!empty($_REQUEST['echantillon'])){
+if(!empty($_REQUEST['echantillon'][0])){
   foreach ($_REQUEST['echantillon'] as $key) {
     if(!empty($key)){
-    $listeWhere=$listeWhere.'numEchantillon=\''.$key.'\' AND ';
+    $listeWhere=$listeWhere.'numEchantillon=\''.$key.'\' OR ';
     }
   }
+  $listeWhere=rtrim($listeWhere,' OR ');
+  $listeWhere=$listeWhere.' AND ';
 }
 $listeWhere=rtrim($listeWhere,' AND ');
 
@@ -80,17 +85,6 @@ fputcsv($fichier_csv, $ligne, $delimiteur);
 }
 
 $requete='SELECT '.$listeSelect.' from V_Echantillon_AvecTaxo '.$listeWhere;
-//echo "$requete";
-$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
-
-
-foreach ($value as $ligne) { /* On parcourt le tableau de tableau */
-    // chaque ligne en cours de lecture est insérée dans le fichier
-  	// les valeurs présentes dans chaque ligne seront séparées par $delimiteur
-  	fputcsv($fichier_csv, $ligne, $delimiteur);
-}
-
-$requete='SELECT '.$listeSelect.' from V_Echantillon_SansTaxo '.$listeWhere;
 //echo "$requete";
 $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 

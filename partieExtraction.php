@@ -18,15 +18,49 @@ include 'HTML/entete.html';
         <form id="formulaire" method="GET" action="telechargementCSV.php">
           <fieldset>
             <legend>Choix des colonnes </legend>
-            <h3> A enlever : Sofian il faudrait si possible que quand on clique sur tout tout ce coche</h3>
+            <h3> A enlever : Sofian il faudrait si possible que quand on clique sur tout tout ce coche et une fonction verifie que au moins un element est coche avant de valider</h3>
             <?php
-            $listeAttribut = array('numEchantillon','formeStockage','lieuStockage','niveauIdentification','infecteBacterie','nombreindividu','codepiege','datepose','heurepose','daterecup','heurerecup','probleme','datetri','profondeur','temperature','typesol','numsite','distanceentree','presenceeau','nomcavite','typecavite','latitude','longitude','typeacces','accespublic','nomSystemeHydrographique','departement','classe','ordre','famille','sousfamille','genre','espece','photo','nomAuteur','prenomAuteur');
-            echo "<label for='tout'>Tout</label>";
-            echo "<input type='checkbox' checked name='listeItem[]' id='tout' value='tout'>";
-            foreach ($listeAttribut as $key => $value) {
+            $listeAttributGrotte = array('nomcavite','typecavite','latitude','longitude','typeacces','accespublic','nomSystemeHydrographique','departement');
+            $listeAttributSite = array('profondeur','temperature','typesol','numsite','distanceentree','presenceeau');
+            $listeAttributPiege = array('codepiege','datepose','heurepose','daterecup','heurerecup','probleme','datetri');
+            $listeAttributEchantillon = array('numEchantillon','formeStockage','lieuStockage','niveauIdentification','infecteBacterie','nombreindividu','classe','ordre','famille','sousfamille','genre','espece','photo','nomAuteur','prenomAuteur');
+
+            echo "<input type='button' id='boutonToutSelectionner' value='Tout selectionner'>";
+            echo "<input type='button' id='boutonToutDeselectionner' value='Tout deselectionner'>";
+
+            echo "<fieldset>";
+            echo "<legend> Attributs des echantillons</legend>";
+            foreach ($listeAttributEchantillon as $key => $value) {
               echo "<label for=$value>$value</label>";
               echo "<input type='checkbox' name='listeItem[]' id=$value value=$value>";
             }
+            echo"</fieldset>";
+
+
+            echo "<fieldset>";
+            echo "<legend> Attributs des pieges</legend>";
+            foreach ($listeAttributPiege as $key => $value) {
+              echo "<label for=$value>$value</label>";
+              echo "<input type='checkbox' name='listeItem[]' id=$value value=$value>";
+            }
+            echo"</fieldset>";
+
+            echo "<fieldset>";
+            echo "<legend> Attributs des sites</legend>";
+            foreach ($listeAttributSite as $key => $value) {
+              echo "<label for=$value>$value</label>";
+              echo "<input type='checkbox' name='listeItem[]' id=$value value=$value>";
+            }
+            echo"</fieldset>";
+
+
+            echo "<fieldset>";
+            echo "<legend> Attributs des grottes</legend>";
+            foreach ($listeAttributGrotte as $key => $value) {
+              echo "<label for=$value>$value</label>";
+              echo "<input type='checkbox' name='listeItem[]' id=$value value=$value>";
+            }
+            echo"</fieldset>";
 
             ?>
 
