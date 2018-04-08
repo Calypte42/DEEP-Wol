@@ -82,7 +82,7 @@ include 'consultationModification.php';
         <div id="divSystemeHydrographique" style="display:none;">
             <form  id="formSystemeHydrographique"  method="post">
                 <label>nom</label>
-                <input type="text" id ="nom" name="nom" size="30"/></br></br>
+                <input type="text" id ="nom" name="nom" required size="30"/></br></br>
                 <label>département</label>
                 <input type="number" id ="departement" name="departement"/></br></br>
                 <button type="submit">Ajouter un système hydrographique</button></br></br>

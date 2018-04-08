@@ -52,7 +52,7 @@ include 'consultationModification.php';
 				echo "</select>";
 				?>
 
-				(si pas dans la liste alors l'ajouter) <input type = "button" id="affichageAjoutEquipe" value = "ajouter une équipe"> <!-- rajout d'un bouton ajout d'une nouvelle équipe -->
+				(si pas dans la liste alors l'ajouter) <input type = "button" id="affichageAjoutEquipe" value = "ajouter une équipe" onclick="affichageDiv('divEquipeSpeleo')"> <!-- rajout d'un bouton ajout d'une nouvelle équipe -->
 
 				</br></br>
 
@@ -91,7 +91,7 @@ include 'consultationModification.php';
 		</form>
 
         <div id="divEquipeSpeleo" style="display:none;">
-            <form  id="formEquipeSpeleo"  method="POST">
+            <form  id="formEquipeSpeleo"  method="POST" onsubmit="return ajaxAjout('./WebService/ajoutEquipeWS.php', 'divEquipeSpeleo', this.id, 'listeEquipeSpeleo', 1)">
                 <label>Equipe spéleo</label>
                 <input type="text" id="codeEquipe" name="codeEquipe" required size="20"/> *
                 <button type="submit">Ajouter une équipe</button></br></br>
