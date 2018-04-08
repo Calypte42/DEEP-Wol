@@ -54,13 +54,18 @@ $req->execute(array(
 
 ));
 
+$idSite=$bdd->lastInsertId(); //recuper l'id de l element inserer.
 
 if ($_REQUEST['nom']=='Valider et ajouter un nouveau site'){
-  header('Refresh: 0; URL=../ajoutSite.php');
+  header("Refresh: 0; URL=../ajoutSite.php?idGrotte=".$_REQUEST['idGrotte']."&grotte=".$_REQUEST['grotte']);
 }
 
 if ($_REQUEST['nom']=='Valider et ajouter un nouveau piege'){
-  header('Refresh: 0; URL=../ajoutPiege.php');
+  header("Refresh:0; URL=../ajoutPiege.php?idGrotte=".$_REQUEST['idGrotte']."&nomGrotte=".$_REQUEST['grotte']."&idSite=$idSite&site=".$_REQUEST['numSite']);
+}
+
+if ($_REQUEST['nom']=='Valider et revenir au tableau'){
+  header("Refresh: 0; URL=../tableauSite.php?idGrotte=".$_REQUEST['idGrotte']."&grotte=".$_REQUEST['grotte']);
 }
 
 echo http_response_code();

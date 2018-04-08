@@ -6,7 +6,11 @@ $bdd=connexionbd();
 <?php
 include 'verificationConnexion.php';
 include 'consultationModification.php';
+?>
 
+<div class="container" style="margin-top:-400px; margin-right:10px;" >
+
+<?php
 $RetourNomGrotte=$_REQUEST['nomGrotte'];
 $RetourIdGrotte=$_REQUEST['idGrotte'];
 $RetourNomSite=$_REQUEST['site'];
@@ -32,8 +36,8 @@ echo "<form method='POST' action='tableauEchantillon.php?piege=$RetourPiege&nomG
 				/* on veut recuperer les valeurs de grotte deja existantes dans la bdd */
 
 				echo "<label for='grotte'>Dans la Grotte : $RetourNomGrotte </label>";
-				echo "<input type='hidden' value=$RetourIdGrotte name='grotte'>"; /* On cree une liste deroulante vide */
-
+				echo "<input type='hidden' value=$RetourIdGrotte name='idGrotte'>"; /* On cree une liste deroulante vide */
+				echo "<input type='hidden' value=$RetourNomGrotte name='nomGrotte'>";
 				?>
 
 				</br></br>
@@ -43,8 +47,8 @@ echo "<form method='POST' action='tableauEchantillon.php?piege=$RetourPiege&nomG
 				/* on veut recuperer les valeurs de numero de site deja existantes dans la bdd */
 
 				echo "<label for='numSite'>Numéro du site : $RetourNomSite </label>";
-				echo "<input type='hidden' value=$RetourIdSite name='numSite'>"; /* On cree une liste deroulante vide */
-
+				echo "<input type='hidden' value=$RetourIdSite name='idSite'>"; /* On cree une liste deroulante vide */
+				echo "<input type='hidden' value=$RetourNomSite name='site'>";
 				?>
 
 				</br></br>
@@ -54,14 +58,14 @@ echo "<form method='POST' action='tableauEchantillon.php?piege=$RetourPiege&nomG
 				/* on veut recuperer les valeurs de code de piege deja existantes dans la bdd */
 
 				echo "<label for='codePiege'>Code du piège : $RetourPiege </label>";
-				echo "<input type='hidden'name='codePiege' value=$RetourPiege>"; /* On cree une liste deroulante vide */
+				echo "<input type='hidden' name='codePiege' value=$RetourPiege>"; /* On cree une liste deroulante vide */
 
 				?>
 <br/>
 <label for="type">Type d'echantillon :</label>
 				<select name="type">
 						<option value="Pool"> Pool</option>
-						<option value="Individu">Individu</option>
+						<option selected value="Individu">Individu</option>
 				</select><br/>
 
 				A faire disparaitre si le choix est Individu:
@@ -79,10 +83,10 @@ echo "<form method='POST' action='tableauEchantillon.php?piege=$RetourPiege&nomG
 						<option value="ADNextraitChelex">ADN extrait chelex</option>
 						<option value="ADNextraitColonne">ADN extrait colonne</option>
 						<option value="EnrichissementGenomeBacterien">Enrichissement génome bactérien</option>
-						<option value="Pool">Pool</option>
+						<!--<option value="Pool">Pool</option>-->
 					</select>
 
-				(si selection de pool alors envoi vers formulaire) <input type = "button" value = "ajouter un pool">
+			<!--	(si selection de pool alors envoi vers formulaire) <input type = "button" value = "ajouter un pool">-->
 
 		        </br></br>
 
@@ -95,14 +99,6 @@ echo "<form method='POST' action='tableauEchantillon.php?piege=$RetourPiege&nomG
 
 				(rajouter un lieu de stokage) <input type = "button" value = "ajouter un lieu">
 
-				</br></br>
-
-				<label>Niveau d'identification</label>  <!-- menu deroulant -->
-					<select name="niveauIdentification" id="niveauIdentification">
-						<option value="hypothetique">Hypothétique</option>
-						<option value="valide">Validé</option>
-					</select>
-
 		        </br></br>
 
 				<label>Infecté par bactérie</label>  <!-- menu deroulant -->
@@ -111,32 +107,6 @@ echo "<form method='POST' action='tableauEchantillon.php?piege=$RetourPiege&nomG
 						<option value="non">non</option>
 						<option selected value="nonDetermine">non déterminé</option>
 					</select>
-
-				</br></br>
-				<?php
-
-				/* on veut recuperer les valeurs de grotte deja existantes dans la bdd */
-
-				echo "<label for='idAuteur'>Auteur : nom </label>";
-				echo "<select name='idAuteur'>"; /* On cree une liste deroulante vide */
-
-				$requete='SELECT id,nom,prenom from Personne ORDER BY nom';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
-				$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
-				foreach ($value as $array) { /* On parcourt les resultats possibles */
-					echo "<option value=\"";
-					foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
-						if($key=='id'){
-							echo "$valeur\">";
-						}
-						else{
-						echo "$valeur "; /* Que l'on ajoute dans la liste deroulante */
-					}
-				}
-				echo "</option>";
-			}
-				echo "</select>";
-				?>
-				<input type = "button" value = "ajouter un auteur">
 
 		        </br></br>
 		        <!-- ajout des attributs de taxonomie sous forme de liste déroulante, en fieldset inclu dans le formulaire Echantillon -->
@@ -274,14 +244,59 @@ echo "<form method='POST' action='tableauEchantillon.php?piege=$RetourPiege&nomG
 
 					</fieldset>
 				</form>
-				</br>
+
+			<label>Niveau d'identification</label>  <!-- menu deroulant -->
+				<select name="niveauIdentification" id="niveauIdentification">
+					<option value="hypothetique">Hypothétique</option>
+					<option value="valide">Validé</option>
+					<option value="incomplet">Incomplet</option>
+				</select>
+
+				</br></br>
+
+			<?php
+
+			/* on veut recuperer les valeurs de grotte deja existantes dans la bdd */
+
+			echo "<label for='idAuteur'>Auteur  </label>";
+			echo "<select name='idAuteur'>"; /* On cree une liste deroulante vide */
+
+			$requete='SELECT id,nom,prenom from Personne ORDER BY nom';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
+			$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
+			foreach ($value as $array) { /* On parcourt les resultats possibles */
+				echo "<option value=\"";
+				foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
+					if($key=='id'){
+						echo "$valeur\">";
+					}
+					else{
+					echo "$valeur "; /* Que l'on ajoute dans la liste deroulante */
+				}
+			}
+			echo "</option>";
+		}
+			echo "</select>";
+			?>
+			<input type = "button" value = "ajouter un auteur">
+
+				</br></br>
+
+			<input type = "button" id="affichageAjoutPCR" value = "ajouter une PCR">
+			&nbsp;&nbsp;&nbsp;
+			<input type = "button" id="affichageAjoutqPCR" value = "ajouter une qPCR">
+
+		</br></br>
 
 				<input type="submit" name="nom" value="Valider et ajouter un nouvel echantillon">
-				<input type="submit" name="nom" value="Valider et revenir au tableau">
+				<input type="submit" name="nom" value="Valider et revenir au tableau des echantillons">
 
+					</div>
+				</div>
 			</fieldset>
 		</p>
-		</form>
+	</form>
+</div>
+
 <?php
 include 'HTML/pied.html';
 ?>

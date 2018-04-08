@@ -5,8 +5,8 @@
 	position: center;
 }
 
-h4 { 
-	border:0 solid #fff; 
+h4 {
+	border:0 solid #fff;
 	border-bottom-width:1px;
 	padding-bottom:10px;
 	text-align: center;
@@ -42,11 +42,11 @@ h4 {
 }
 
 .nav.navbar-nav li a{
-	color:#eeeeec;	
+	color:#eeeeec;
 }
 
 .nav.navbar-nav li a:hover{
-	color:#000000;	
+	color:#000000;
 }
 
 /* MENU VERTICAL GAUCHE */
@@ -181,7 +181,7 @@ body, html {
 	background-repeat: no-repeat;
 	background-size: 100%100%;
 	border: 1px solid black;
-	
+
 }
 
 /* titre BD */
@@ -207,3 +207,8 @@ body, html {
 	color: #ffffff;
 	background:#000000;
 }*/
+
+.container{
+	position: relative;
+	display: inline-block;
+}

@@ -3,10 +3,10 @@ include '../BDD/bdd.php';
 $bdd = connexionbd();
 
 $req = $bdd->prepare('INSERT INTO Piege (codePiege,datePose,heurePose,
-  dateRecup,heureRecup,probleme,dateTri,codeEquipeSpeleo,idSite)
+  dateRecup,heureRecup,probleme,dateTri,idSite,codeEquipeSpeleo)
     SELECT :codePiege,:datePose,:heurePose,
-      :dateRecup,:heureRecup,:probleme,:dateTri,codeEquipe,id FROM EquipeSpeleo, Site
-      WHERE numSite = :numSite AND codeEquipe = :codeEquipeSpeleo;');
+      :dateRecup,:heureRecup,:probleme,:dateTri,:id,codeEquipe FROM EquipeSpeleo
+      WHERE codeEquipe = :codeEquipeSpeleo;');
 
 
 // Gestion de datePose vide
@@ -65,18 +65,22 @@ $req->execute(array(
   'heureRecup' => $heureRecup,
   'probleme' => $probleme,
   'dateTri' => $dateTri,
-  'numSite' => $_REQUEST['numSite'],
+  'id' => $_REQUEST['idSite'],
   'codeEquipeSpeleo' => $_REQUEST['codeEquipeSpeleo']
 
 
 ));
 
 if ($_REQUEST['nom']=='Valider et ajouter un nouveau piege'){
-  header('Refresh: 0; URL=../ajoutPiege.php');
+  header("Refresh: 0; URL=../ajoutPiege.php?nomGrotte=".$_REQUEST['nomGrotte']."&idGrotte=".$_REQUEST['idGrotte']."&site=".$_REQUEST['site']."&idSite=".$_REQUEST['idSite']);
 }
 
-if ($_REQUEST['nom']=='Valider et aller à la page suivante'){
-  header('Refresh: 0; URL=../ajoutEchantillon.php');
+if ($_REQUEST['nom']=='Valider et ajouter un echantillon'){
+  header("Refresh: 0; URL=../ajoutEchantillon.php?nomGrotte=".$_REQUEST['nomGrotte']."&idGrotte=".$_REQUEST['idGrotte']."&site=".$_REQUEST['site']."&idSite=".$_REQUEST['idSite']."&piege=".$_REQUEST['codePiege']);
+}
+
+if ($_REQUEST['nom']=='Valider et revenir au tableau des pieges'){
+  header("Refresh: 0; URL=../tableauPiege.php?nomGrotte=".$_REQUEST['nomGrotte']."&idGrotte=".$_REQUEST['idGrotte']."&site=".$_REQUEST['site']."&idSite=".$_REQUEST['idSite']);
 }
 
 echo http_response_code();

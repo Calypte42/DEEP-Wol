@@ -8,13 +8,17 @@ include 'verificationConnexion.php';
 include 'consultationModification.php';
 ?>
 		<!-- FORMULAIRE D'AJOUT DE SITE -->
+
+		<div class="container" style="margin-top:-400px; margin-right:10px;" >
 		<?php
 		$RetourId=$_REQUEST['idGrotte'];
 		$Retour=$_REQUEST['grotte'];
+
 		echo "<form method='POST' action='tableauSite.php?idGrotte=$RetourId&grotte=$Retour'>";
 		?>
 			<input type="submit" value="Revenir au tableau des sites" />
 		</form>
+
 		<form  id="ajoutSite"  method="POST" action = "WebService/ajoutSiteWS.php"> <!-- reference au formulaire -->
 		<p>
 			<fieldset class="scheduler-border">
@@ -28,8 +32,8 @@ include 'consultationModification.php';
 				/* on veut recuperer les valeurs de grotte deja existantes dans la bdd */
 
 				echo "<label for='idGrotte'>Dans la grotte : $Retour</label>";
-				echo "<input type='hidden' name='idGrotte' value=$RetourId>"; /* On cree une liste deroulante vide */
-
+				echo "<input type='hidden' name='idGrotte' value=$RetourId>";
+				echo "<input type='hidden' name='grotte' value=$Retour>";
 				?>
 
 				</br></br>
@@ -86,6 +90,8 @@ include 'consultationModification.php';
 				<input type="submit" name="nom" value="Valider et revenir au tableau"> &nbsp;&nbsp;
 				<input type="submit" name="nom" value="Valider et ajouter un nouveau piege">
 
+					</div>
+				</div>
 			</fieldset>
 		</p>
 		</form>
@@ -97,6 +103,8 @@ include 'consultationModification.php';
                 <button type="submit">Ajouter une équipe</button></br></br>
             </form>
         </div>
+
+</div>
 
 <?php
 include 'HTML/pied.html';

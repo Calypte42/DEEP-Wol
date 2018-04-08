@@ -113,31 +113,31 @@ create table CorrespondanceGeneBacterie (
 create table PCR (
     id SERIAL PRIMARY KEY,
     resultat varchar(10) NOT NULL,
-    idIndividu int NOT NULL,
+    idEchantillon int NOT NULL,
     nomGene varchar(20) NOT NULL,
     datePCR date NOT NULL,
     fasta varchar(200),
     electrophoregramme varchar(200),
-    CONSTRAINT idIndividu_FK FOREIGN KEY (idIndividu)
+    CONSTRAINT idEchantillon_FK FOREIGN KEY (idEchantillon)
         REFERENCES Echantillon (id),
     CONSTRAINT nomGene_FK FOREIGN KEY (nomGene)
         REFERENCES Gene (nom),
-    CONSTRAINT PCR_dateIndividuGene_UNIQUE UNIQUE (datePCR,idIndividu,nomGene)
+    CONSTRAINT PCR_dateEchantillonGene_UNIQUE UNIQUE (datePCR,idEchantillon,nomGene)
 );
 
 create table qPCR (
     id SERIAL PRIMARY KEY,
     resultat varchar(10)NOT NULL,
-    idIndividu int NOT NULL,
+    idEchantillon int NOT NULL,
     nomGene varchar(20) NOT NULL,
     dateqPCR date NOT NULL,
     fasta varchar(200),
     electrophoregramme varchar(200),
-    CONSTRAINT idIndividu_FK FOREIGN KEY (idIndividu)
+    CONSTRAINT idEchantillon_FK FOREIGN KEY (idEchantillon)
         REFERENCES Echantillon (id),
     CONSTRAINT nomGene_FK FOREIGN KEY (nomGene)
         REFERENCES Gene (nom),
-    CONSTRAINT qPCR_dateIndividuGene_UNIQUE UNIQUE (dateqPCR,idIndividu,nomGene)
+    CONSTRAINT qPCR_dateEchantillonGene_UNIQUE UNIQUE (dateqPCR,idEchantillon,nomGene)
 );
 
 
@@ -146,6 +146,14 @@ create table Compte (
     pseudo varchar(30),
     MDP varchar(20)
 );
+
+CREATE VIEW V_Echantillon_AvecTaxo AS
+SELECT numEchantillon,formeStockage,lieuStockage,niveauIdentification,infecteBacterie,nombreIndividu,piege.codepiege,datepose,heurepose,daterecup,heurerecup,probleme,datetri,profondeur,temperature,typesol,numsite,distanceentree,presenceeau,nomcavite,typecavite,latitude,longitude,typeacces,accespublic,sys.nom AS nomSystemeHydrographique,departement,classe,ordre,famille,sousfamille,genre,espece,photo,p.nom AS nomAuteur,p.prenom AS prenomAuteur from Echantillon e, Taxonomie t, Personne p, Piege piege, Site site, Grotte grotte, systemeHydrographique sys WHERE (e.idTaxonomie=t.id) AND (e.idAuteur=p.id) AND (e.codePiege=piege.codePiege) AND (piege.idSite=site.id) AND (site.idGrotte=grotte.id) AND (grotte.idSystemeHydrographique=sys.id);
+
+/*
+CREATE VIEW V_Echantillon_SansTaxo
+AS SELECT numEchantillon,formeStockage,lieuStockage,niveauIdentification,infecteBacterie,nombreindividu,piege.codepiege,datepose,heurepose,daterecup,heurerecup,probleme,datetri,profondeur,temperature,typesol,numsite,distanceentree,presenceeau,nomcavite,typecavite,latitude,longitude,typeacces,accespublic,sys.nom AS nomSystemeHydrographique,departement FROM Echantillon e, Piege piege, Site site, Grotte grotte, systemeHydrographique sys WHERE (e.idTaxonomie IS NULL) AND (e.idAuteur IS NULL) AND (e.codePiege=piege.codePiege)  AND (piege.idSite=site.id) AND (site.idGrotte=grotte.id) AND (grotte.idSystemeHydrographique=sys.id);
+*/
 
 /*
 La commande TRUNCATE permet de remettre les valeurs des SERIALS

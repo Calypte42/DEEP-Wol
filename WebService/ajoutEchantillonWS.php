@@ -90,9 +90,9 @@ if( $_REQUEST['espece']=='Indetermine'){
 
 //$taxoRequete=$taxoRequete.';';
 
-echo "$classe,$ordre,$famille,$sousFamille,$genre,$espece <br/>";
+
 $maRequeteVerif = $debutTaxoRequete.$taxoRequete;
-echo "<br />$maRequeteVerif";
+
 
 $reqVerif = $bdd->prepare($maRequeteVerif.';');
 
@@ -100,20 +100,14 @@ $reqVerif = $bdd->prepare($maRequeteVerif.';');
 $reqVerif->execute($tableau);
 
 $nombreResultat=$reqVerif->rowCount();
-echo "$nombreResultat <br/>";
-echo "$taxoRequete";
 
 if($nombreResultat==1){
-  echo '<br /> INSERT INTO Echantillon (numEchantillon,nombreIndividu,formeStockage,lieuStockage,
-    niveauIdentification,infecteBacterie,codePiege,idAuteur,idTaxonomie)
-   SELECT :numEchantillon,:nombreIndividu,:formeStockage,:lieuStockage,:niveauIdentification,:infecteBacterie,:codePiege,
-    :idAuteur,t.id FROM Taxonomie t, Personne p WHERE '.$taxoRequete.';';
 
 
   $req = $bdd->prepare('INSERT INTO Echantillon (numEchantillon,nombreIndividu,formeStockage,lieuStockage,
     niveauIdentification,infecteBacterie,codePiege,idAuteur,idTaxonomie)
    SELECT :numEchantillon,:nombreIndividu,:formeStockage,:lieuStockage,:niveauIdentification,:infecteBacterie,:codePiege,
-   :idAuteur,t.id FROM Taxonomie t, Personne p WHERE '.$taxoRequete.';');
+   :idAuteur,t.id FROM Taxonomie t WHERE '.$taxoRequete.';');
 
 
         $tableau['numEchantillon']= $_REQUEST['numEchantillon'];
@@ -132,7 +126,13 @@ if($nombreResultat==1){
 
 $req->execute($tableau);
 
-header('Refresh: 10; URL=../ajoutEchantillon.php');
+if ($_REQUEST['nom']=='Valider et ajouter un nouvel echantillon'){
+  header("Refresh: 0; URL=../ajoutEchantillon.php?nomGrotte=".$_REQUEST['nomGrotte']."&idGrotte=".$_REQUEST['idGrotte']."&site=".$_REQUEST['site']."&idSite=".$_REQUEST['idSite']."&piege=".$_REQUEST['codePiege']);
+}
+
+if ($_REQUEST['nom']=='Valider et revenir au tableau des echantillons'){
+  header("Refresh: 0; URL=../tableauEchantillon.php?nomGrotte=".$_REQUEST['nomGrotte']."&idGrotte=".$_REQUEST['idGrotte']."&site=".$_REQUEST['site']."&idSite=".$_REQUEST['idSite']."&piege=".$_REQUEST['codePiege']);
+}
 }else{
   echo "Il y a ".$nombreResultat." Taxonomie correspondante ! ";
 }

@@ -25,16 +25,18 @@ $req->execute(array(
 
 ));
 
+$idGrotte=$bdd->lastInsertId(); //recuper l'id de l element inserer.
+
 if ($_REQUEST['nom']=='Valider et ajouter une nouvelle grotte'){
   header('Refresh: 0; URL=../ajoutGrotte.php');
 }
 
 if ($_REQUEST['nom']=='Valider et ajouter un site'){
-  header('Refresh: 0; URL=../ajoutSite.php');
+  header("Refresh: 0; URL=../ajoutSite.php?idGrotte=$idGrotte&grotte=".$_REQUEST['nomGrotte']);
 }
 
-if ($_REQUEST['nom']=='Valider et revenir aux grottes'){
-  header('Refresh: 0; URL=../ajoutSite.php');
+if ($_REQUEST['nom']=='Valider et revenir au tableau'){
+  header('Refresh: 0; URL=../tableauGrotte.php');
 }
 
 echo http_response_code();

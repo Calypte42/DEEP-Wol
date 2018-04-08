@@ -26,10 +26,11 @@ $RetourPiege=$_REQUEST['piege'];
 					<th>Lieu de stockage</th>
 					<th>Niveau d'identification</th>
 					<th>Infecte par bactérie</th>
-          <th>Nom Auteur identification</th>
+          <th>Auteur identification</th>
           <th>Genre</th>
           <th>Espece</th>
 					<th>Modifier</th>
+					<th>Supprimer</th>
 				</tr>
 			<thead>
 			<tbody>
@@ -46,7 +47,7 @@ foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
         $id=$resultat;
       }else{
       if($cle=='numechantillon'){
-			 echo "<td><a href='tableauAnalyse.php?idEchantillon=$id&echantillon=$resultat'>$resultat</a></td> ";
+				echo "<td><a href='tableauAnalyse.php?idEchantillon=$id&numEchantillon=$resultat&piege=$RetourPiege&nomGrotte=$RetourNomGrotte&idGrotte=$RetourIdGrotte&site=$RetourNomSite&idSite=$RetourIdSite'>$resultat</a></td> ";
 			}else {
 				if(empty($resultat)){
           echo "<td>Non renseigné</td>";
@@ -55,21 +56,22 @@ foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
 			}}
 
 		}}
-		echo ('<td><a href="">'."Modifier".'</a></td></tr>');
+		echo ('<td><a href="">'."Modifier".'</a></td>');
+		echo('<td><a href="">'."Supprimer".'</a></td></tr>');
 }
 echo "</table>";
 ?>
 			</tbody>
 		</table>
 
-	</div>
-
-<?php
+	<?php
 echo "<form style='float:right' name='versAjoutEchantillon' method='POST'
 	action='ajoutEchantillon.php?nomGrotte=$RetourNomGrotte&idGrotte=$RetourIdGrotte&site=$RetourNomSite&idSite=$RetourIdSite&piege=$RetourPiege'>";
 	?>
 		<input type="submit" value="Ajouter un echantillon" />
 	</form>
+
+	</div>
 
 <?php
 include 'HTML/pied.html';

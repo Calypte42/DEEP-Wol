@@ -22,6 +22,7 @@ include 'consultationModification.php';
 					<th>Accès au public</th>
 					<th>Système hydrographique</th>
 					<th>Modifier</th>
+					<th>Supprimer</th>
 				</tr>
 			<thead>
 			<tbody>
@@ -54,18 +55,19 @@ foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
 			}}
 
 		}}
-		echo ('<td><a href="">'."Modifier".'</a></td></tr>');
+		echo ('<td><a href="">'."Modifier".'</a></td>');
+		echo('<td><a href="">'."Supprimer".'</a></td></tr>');
 }
 echo "</table>";
 ?>
 			</tbody>
 		</table>
 
-	</div>
-
 	<form style="float:right" name="versAjoutGrotte" method="POST" action="ajoutGrotte.php">
 		<input type="submit" value="Ajouter une Grotte" />
 	</form>
+
+	</div>
 
 <?php
 include 'HTML/pied.html';
