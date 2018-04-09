@@ -71,6 +71,13 @@ echo "<form style='float:right' name='versAjoutEchantillon' method='POST'
 		<input type="submit" value="Ajouter un echantillon" />
 	</form>
 
+	<?php
+	echo "<form style='float:right' name='versAjoutTaxonomie' method='POST'
+	action='ajoutTaxonomie.php?nomGrotte=$RetourNomGrotte&idGrotte=$RetourIdGrotte&site=$RetourNomSite&idSite=$RetourIdSite&piege=$RetourPiege'>";
+	?>
+	<input type="submit" value="Ajouter une taxonomie" />
+	</form>
+
 	</div>
 
 <?php
