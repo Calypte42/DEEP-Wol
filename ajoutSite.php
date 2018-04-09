@@ -9,7 +9,7 @@ include 'consultationModification.php';
 ?>
 		<!-- FORMULAIRE D'AJOUT DE SITE -->
 
-		<div class="container" style="margin-top:-400px; margin-right:10px;" >
+		<div class="container" style="margin-left:200px; margin-top:-400px; " >
 		<?php
 		$RetourId=$_REQUEST['idGrotte'];
 		$Retour=$_REQUEST['grotte'];
