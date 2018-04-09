@@ -29,7 +29,7 @@ include 'consultationModification.php';
 
 <?php
 
-$requete='SELECT g.id,nomCavite,typeCavite,latitude,longitude,typeAcces,accesPublic,h.nom from Grotte g, SystemeHydrographique h WHERE idSystemeHydrographique=h.id';  /*On prepare une requete permettant de recupere l'ensemble de la table grotte*/
+$requete='SELECT g.id,nomCavite,typeCavite,latitude,longitude,typeAcces,accesPublic,h.nom from Grotte g, SystemeHydrographique h WHERE idSystemeHydrographique=h.id ORDER BY id';  /*On prepare une requete permettant de recupere l'ensemble de la table grotte*/
 $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
 	foreach ($valeur as $cle => $resultat) { /* On recupere la cle et la valeur de chaque element */
@@ -39,7 +39,7 @@ foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
 			if($cle=='nomcavite'){
 			 echo "<td><a href='tableauSite.php?idGrotte=$id&grotte=$resultat'>$resultat</a></td> ";
 			}else {
-				if(!empty($resultat)){
+				if(isset($resultat)){
 					if($cle=='accespublic'){
 
 						if($resultat==0){
@@ -50,12 +50,16 @@ foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
 						}
 					}else{
 				echo "<td>$resultat</td> ";
-			}}else{
+            }}else{
 				echo "<td>Non renseigné</td>";
 			}}
 
 		}}
-		echo ('<td><a href="">'."Modifier".'</a></td>');
+        echo "<td><form method='GET' action='modifGrotte.php'>";
+        echo "<input type='hidden' name='id' value='$id' />";
+        echo "<input type='submit' value='Modifier' />";
+        echo "</form></td>";
+		//echo ('<td><a href="">'."Modifier".'</a></td>');
 		echo('<td><a href="">'."Supprimer".'</a></td></tr>');
 }
 echo "</table>";

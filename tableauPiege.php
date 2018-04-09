@@ -44,7 +44,8 @@ foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
         $id=$resultat;
       }else{
       if($cle=='codepiege'){
-			 echo "<td><a href='tableauEchantillon.php?piege=$resultat&nomGrotte=$RetourNomGrotte&idGrotte=$RetourIdGrotte&site=$RetourNomSite&idSite=$RetourIdSite'>$resultat</a></td> ";
+          $id=$resultat;
+          echo "<td><a href='tableauEchantillon.php?piege=$resultat&nomGrotte=$RetourNomGrotte&idGrotte=$RetourIdGrotte&site=$RetourNomSite&idSite=$RetourIdSite'>$resultat</a></td> ";
      }else {
        if(empty($resultat)){
          echo "<td>Non renseigné</td>";
@@ -53,7 +54,15 @@ foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
      }}
 
    }}
-	 echo ('<td><a href="">'."Modifier".'</a></td>');
+     echo "<td><form method='GET' action='modifPiege.php'>";
+     echo "<input type='hidden' name='id' value='$id' />";
+     echo "<input type='hidden' name='nomGrotte' value='$RetourNomGrotte' />";
+     echo "<input type='hidden' name='idGrotte' value='$RetourIdGrotte' />";
+     echo "<input type='hidden' name='site' value='$RetourNomSite' />";
+     echo "<input type='hidden' name='idSite' value='$RetourIdSite' />";
+     echo "<input type='submit' value='Modifier' />";
+     echo "</form></td>";
+	 //echo ('<td><a href="">'."Modifier".'</a></td>');
 	 echo('<td><a href="">'."Supprimer".'</a></td></tr>');
 }
 echo "</table>";
@@ -69,7 +78,7 @@ echo "</table>";
 	</form>
 
 	</div>
-	
+
 <?php
 include 'HTML/pied.html';
 ?>
