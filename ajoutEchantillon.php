@@ -8,7 +8,7 @@ include 'verificationConnexion.php';
 include 'consultationModification.php';
 ?>
 
-<div class="container" style="margin-top:-400px; margin-right:10px;" >
+<div class="container" style="margin-top:-400px; margin-left:200px;" >
 
 <?php
 $RetourNomGrotte=$_REQUEST['nomGrotte'];

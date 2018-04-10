@@ -10,7 +10,7 @@ $requete="SELECT * FROM Piege WHERE codePiege='$id'";  /* On prepare une requete
 $piege=requete($bdd,$requete); /* value recupere la reponse de la requete */
 ?>
 
-<div class="container" style="margin-top:-400px; margin-right:10px;" >
+<div class="container" style="margin-top:-400px; margin-left:200px;" >
 
 <?php
 $RetourNomGrotte=$_REQUEST['nomGrotte'];

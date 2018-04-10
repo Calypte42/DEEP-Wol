@@ -11,7 +11,7 @@ $site=requete($bdd,$requete); /* value recupere la reponse de la requete */
 ?>
 		<!-- FORMULAIRE D'AJOUT DE SITE -->
 
-		<div class="container" style="margin-top:-400px; margin-right:10px;" >
+		<div class="container" style="margin-top:-400px; margin-left:200px;" >
 		<?php
         $RetourId=$_REQUEST['idGrotte'];
         $Retour=$_REQUEST['grotte'];

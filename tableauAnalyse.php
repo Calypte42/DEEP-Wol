@@ -18,7 +18,7 @@ $RetourIdEchantillon=$_REQUEST['idEchantillon'];
 
 ?>
 
-<div class="container" style="margin-top:-400px; margin-right:80px;">
+<div class="container" style="margin-top:-300px; margin-left:200px;">
  <?php echo "Liste des analyses de l'échantillon : $RetourEchantillon"; ?>
  <h3> Liste des PCR : </h3>
   <table class="table table-bordered table-hover table-condensed">

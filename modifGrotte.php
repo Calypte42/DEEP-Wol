@@ -15,7 +15,7 @@ $grotte=requete($bdd,$requete); /* value recupere la reponse de la requete */
 	</br>
 	</br>
 
-<div class="container" style="margin-top:-400px; margin-right:10px;" >
+<div class="container-" style="margin-top:-400px; margin-left:200px;" >
 	<form method="POST" action="tableauGrotte.php">
 		<input type="submit" value="Revenir au tableau des grottes" />
 	</form>
