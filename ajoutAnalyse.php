@@ -13,6 +13,7 @@ $RetourIdSite=$_REQUEST['idSite'];
 $RetourPiege=$_REQUEST['piege'];
 $RetourEchantillon=$_REQUEST['numEchantillon'];
 $RetourIdEchantillon=$_REQUEST['idEchantillon'];
+
 echo "<form method='POST' action='tableauAnalyse.php?idEchantillon=$RetourIdEchantillon&numEchantillon=$RetourEchantillon&piege=$RetourPiege&nomGrotte=$RetourNomGrotte
 &idGrotte=$RetourIdGrotte&site=$RetourNomSite&idSite=$RetourIdSite'>";
 ?>
