@@ -69,7 +69,7 @@ $req->execute(array(
   'codeEquipeSpeleo' => $_REQUEST['codeEquipeSpeleo']
 ));
 
-//header("Refresh: 0; URL=../tableauPiege.php?nomGrotte=".$_REQUEST['nomGrotte']."&idGrotte=".$_REQUEST['idGrotte']."&site=".$_REQUEST['site']."&idSite=".$_REQUEST['idSite']);
+header("Refresh: 0; URL=../tableauPiege.php?nomGrotte=".$_REQUEST['nomGrotte']."&idGrotte=".$_REQUEST['idGrotte']."&site=".$_REQUEST['site']."&idSite=".$_REQUEST['idSite']);
 
 echo http_response_code();
 

@@ -56,7 +56,16 @@ foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
 			}}
 
 		}}
-		echo ('<td><a href="">'."Modifier".'</a></td>');
+        echo "<td><form method='GET' action='modifEchantillon.php'>";
+        echo "<input type='hidden' name='id' value='$id' />";
+        echo "<input type='hidden' name='nomGrotte' value='$RetourNomGrotte' />";
+        echo "<input type='hidden' name='idGrotte' value='$RetourIdGrotte' />";
+        echo "<input type='hidden' name='site' value='$RetourNomSite' />";
+        echo "<input type='hidden' name='idSite' value='$RetourIdSite' />";
+        echo "<input type='hidden' name='piege' value='$RetourPiege' />";
+        echo "<input type='submit' value='Modifier' />";
+        echo "</form></td>";
+		//echo ('<td><a href="">'."Modifier".'</a></td>');
 		echo('<td><a href="">'."Supprimer".'</a></td></tr>');
 }
 echo "</table>";
