@@ -1,31 +1,33 @@
 <?php
 include 'BDD/bdd.php';
 $bdd=connexionbd();
-?>
 
-<?php
 include 'verificationConnexion.php';
 include 'consultationModification.php';
+
+$id = $_GET['id'];
+$requete="SELECT * FROM Site WHERE id=$id";  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
+$site=requete($bdd,$requete); /* value recupere la reponse de la requete */
 ?>
 		<!-- FORMULAIRE D'AJOUT DE SITE -->
 
-		<div class="container" style="margin-left:200px; margin-top:-400px; " >
+		<div class="container" style="margin-top:-400px; margin-left:200px;" >
 		<?php
-		$RetourId=$_REQUEST['idGrotte'];
-		$Retour=$_REQUEST['grotte'];
-
+        $RetourId=$_REQUEST['idGrotte'];
+        $Retour=$_REQUEST['grotte'];
 		echo "<form method='POST' action='tableauSite.php?idGrotte=$RetourId&grotte=$Retour'>";
 		?>
 			<input type="submit" value="Revenir au tableau des sites" />
 		</form>
 
-		<form  id="ajoutSite"  method="POST" action = "WebService/ajoutSiteWS.php"> <!-- reference au formulaire -->
+		<form  id="ajoutSite"  method="POST" action = "WebService/modifSiteWS.php"> <!-- reference au formulaire -->
 		<p>
 			<fieldset class="scheduler-border">
 				<legend class="scheduler-border"> Ajout d'un site </legend>
 				<div class="control-group">
 					<div class="controls bootstrap-timepicker">
 			</br>
+            <input type="hidden" name="id" value="<?=$_GET['id']?>"/>
 
 				<?php
 
@@ -61,34 +63,44 @@ include 'consultationModification.php';
 				</br></br>
 
 				<label>Numéro de site</label>
-				<input required = "required" type="text" id ="numSite" name="numSite" size="40"/> * </br></br>
+				<input required = "required" type="text" id ="numSite" name="numSite" value="<?=$site[0]['numsite']?>" size="40"/> * </br></br>
 
 				<label>Profondeur</label>
 				<!-- Mettre number -->
-				<input type="number" id ="profondeur" name="profondeur" size = "5"/></br></br> <!-- a voir pour rajouter un pas (pour decimal) step =""-->
+				<input type="number" id ="profondeur" name="profondeur" value="<?=$site[0]['profondeur']?>" size = "5"/></br></br> <!-- a voir pour rajouter un pas (pour decimal) step =""-->
 
 				<!-- Mettre number -->
 				<label>Temperature</label>
-				<input type="number" id ="temperature" name="temperature" size = "5"/> °C</br></br> <!-- a voir pour rajouter un pas (pour decimal) step =""-->
+				<input type="number" id ="temperature" name="temperature" value="<?=$site[0]['temperature']?>" size = "5"/> °C</br></br> <!-- a voir pour rajouter un pas (pour decimal) step =""-->
 
 				<label>Type de sol</label>
-				<input type="text" id ="typeSol" name="typeSol" size="20"/></br></br>
+				<input type="text" id ="typeSol" name="typeSol" value="<?=$site[0]['typesol']?>" size="20"/></br></br>
 				<!-- Mettre number -->
 				<label>Distance à l'entrée</label>
-				<input required type="number" id ="distanceEntree" name="distanceEntree" size="10"/> metres *</br></br> <!-- a voir pour rajouter un pas (pour decimal) step =""-->
+				<input required type="number" id ="distanceEntree" name="distanceEntree" value="<?=$site[0]['distanceentree']?>" size="10"/> metres *</br></br> <!-- a voir pour rajouter un pas (pour decimal) step =""-->
 
 				<label>Présence d'eau</label>
-				<input type="radio" id ="presenceEauOui" name="presenceEau" value="true"/>
+                <input type="radio" id ="presenceEauOui" name="presenceEau" value="true"
+<?php
+            if ($site[0]['presenceeau']) {
+                echo "checked";
+            }
+?>
+                />
 				<label for="presenceEauOui">oui</label>
-				<input type = "radio" id = "presenceEauNon" name = "presenceEau" value="false">
+				<input type = "radio" id = "presenceEauNon" name = "presenceEau" value="false"
+<?php
+            if (!$site[0]['presenceeau']) {
+                echo "checked";
+            }
+?>
+                />
 				<label for="presenceEauNon">non</label>
 
 				</br>
 				</br>
 
-				<input type="submit" name="nom" value="Valider et ajouter un nouveau site"> &nbsp;&nbsp;
-				<input type="submit" name="nom" value="Valider et revenir au tableau"> &nbsp;&nbsp;
-				<input type="submit" name="nom" value="Valider et ajouter un nouveau piege">
+				<input type="submit" name="nom" value="Valider les modifications et revenir au tableau"> &nbsp;&nbsp;
 
 					</div>
 				</div>

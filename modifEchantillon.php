@@ -1,14 +1,16 @@
 <?php
 include 'BDD/bdd.php';
 $bdd=connexionbd();
-?>
 
-<?php
 include 'verificationConnexion.php';
 include 'consultationModification.php';
+
+$id = $_GET['id'];
+$requete="SELECT * FROM Echantillon WHERE id=$id";  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
+$echantillon=requete($bdd,$requete); /* value recupere la reponse de la requete */
 ?>
 
-<div class="container" style="margin-top:-400px; margin-left:200px;" >
+<div class="container" style="margin-top:-400px; margin-right:10px;" >
 
 <?php
 $RetourNomGrotte=$_REQUEST['nomGrotte'];
@@ -64,21 +66,38 @@ echo "<form method='POST' action='tableauEchantillon.php?piege=$RetourPiege&nomG
 <br/>
 <label for="type">Type d'echantillon :</label>
 				<select name="type">
-						<option value="Pool"> Pool</option>
-						<option selected value="Individu">Individu</option>
+                    <option value="Pool"
+<?php
+                    if ($echantillon[0]['nombreindividu']>1) {
+                        echo " selected";
+                    }
+?>
+						> Pool</option>
+                    <option value="Individu"
+<?php
+                    if ($echantillon[0]['nombreindividu']==1) {
+                        echo " selected";
+                    }
+?>
+					>Individu</option>
 				</select><br/>
 
 				A faire disparaitre si le choix est Individu:
 
 				<label for='nombreIndividu'>Nombre d'individu dans le pool : </label>
-				<input type="number" name="nombreIndividu" id="nombreIndividu" />
+				<input type="number" name="nombreIndividu" id="nombreIndividu" value="<?=$echantillon[0]['nombreindividu']?>"/>
 				</br></br>
 
 				<label>Numéro de l'Echantillon</label>
-				<input required type="text" id ="numEchantillon" name="numEchantillon" size="20"/>*</br></br> <!-- recuperer la valeur precedemment remplie -->
+				<input required type="text" id ="numEchantillon" name="numEchantillon" value="<?=$echantillon[0]['numechantillon']?>" size="20"/>*</br></br> <!-- recuperer la valeur precedemment remplie -->
 
 				<label>Forme de stockage</label>  <!-- menu deroulant -->
 					<select name="formeStockage" id="formeStockage">
+<?php
+                    if ($echantillon[0]['formestockage']=='individuEntier') {
+                        echo " selected";
+                    }
+?>
 						<option selected value="individuEntier">Individu entier</option> <!-- par défaut -->
 						<option value="ADNextraitChelex">ADN extrait chelex</option>
 						<option value="ADNextraitColonne">ADN extrait colonne</option>

@@ -32,7 +32,7 @@ include 'consultationModification.php';
 			$RetourId=$_REQUEST['idGrotte'];
 			$Retour=$_REQUEST['grotte'];
 
-$requete='SELECT id,numSite,profondeur,temperature,typeSol,distanceEntree,presenceEau,codeEquipeSpeleo from Site where idGrotte=\''.$_REQUEST["idGrotte"].'\'';  /*On prepare une requete permettant de recupere l'ensemble de la table grotte*/
+$requete='SELECT id,numSite,profondeur,temperature,typeSol,distanceEntree,presenceEau,codeEquipeSpeleo from Site where idGrotte=\''.$_REQUEST["idGrotte"].'\' order by id';  /*On prepare une requete permettant de recupere l'ensemble de la table grotte*/
 
 $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
@@ -43,7 +43,7 @@ foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
       if($cle=='numsite'){
 			 echo "<td><a href='tableauPiege.php?idSite=$id&site=$resultat&idGrotte=$RetourId&nomGrotte=$Retour'>$resultat</a></td> ";
 		 }else {
-			 if(!empty($resultat)){
+			 if(isset($resultat)){
 				 if($cle=='presenceeau'){
 					 if($resultat==0){
 						 echo "<td>Non</td> ";
@@ -58,7 +58,13 @@ foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
 		 }}
 
 	 }}
-	 echo ('<td><a href="">'."Modifier".'</a></td>');
+     echo "<td><form method='GET' action='modifSite.php'>";
+     echo "<input type='hidden' name='id' value='$id' />";
+     echo "<input type='hidden' name='idGrotte' value='$RetourId' />";
+     echo "<input type='hidden' name='grotte' value='$Retour' />";
+     echo "<input type='submit' value='Modifier' />";
+     echo "</form></td>";
+	 //echo ('<td><a href="">'."Modifier".'</a></td>');
 	 echo('<td><a href="">'."Supprimer".'</a></td></tr>');
 }
 echo "</table>";
@@ -73,7 +79,7 @@ echo "</table>";
 	</form>
 
 	</div>
-	
+
 <?php
 include 'HTML/pied.html';
 ?>

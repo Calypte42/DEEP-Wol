@@ -1,11 +1,13 @@
 <?php
 include 'BDD/bdd.php';
 $bdd=connexionbd();
-?>
 
-<?php
 include 'verificationConnexion.php';
 include 'consultationModification.php';
+
+$id = $_GET['id'];
+$requete="SELECT * FROM Piege WHERE codePiege='$id'";  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
+$piege=requete($bdd,$requete); /* value recupere la reponse de la requete */
 ?>
 
 <div class="container" style="margin-top:-400px; margin-left:200px;" >
@@ -22,7 +24,7 @@ echo "<form method='POST' action='tableauPiege.php?idSite=$RetourIdSite&site=$Re
 </form>
 		<!-- FORMULAIRE D'AJOUT DE PIEGE -->
 
-		<form  id="ajoutPiege"  method="GET" action = "WebService/ajoutPiegeWS.php"> <!-- reference au formulaire -->
+		<form  id="ajoutPiege"  method="POST" action = "WebService/modifPiegeWS.php"> <!-- reference au formulaire -->
 		<p>
 			<fieldset class="scheduler-border">
 				<legend class="scheduler-border"> Ajout d'un piège </legend>
@@ -41,6 +43,8 @@ echo "<form method='POST' action='tableauPiege.php?idSite=$RetourIdSite&site=$Re
 				?>
 
 				</br></br>
+
+                <input type="hidden" name="id" value="<?=$_GET['id']?>"/>
 
 				<?php
 
@@ -63,9 +67,12 @@ echo "<form method='POST' action='tableauPiege.php?idSite=$RetourIdSite&site=$Re
 				$requete='SELECT codeEquipe from EquipeSpeleo ORDER BY codeEquipe';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
 				$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 				foreach ($value as $array) { /* On parcourt les resultats possibles */
-					foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
-						echo "<option value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
-					}
+                    $codeEquipe = $array['codeequipe'];
+                    echo "<option value=\"$codeEquipe\"";
+                    if ($piege[0]['codeequipespeleo']==$array['codeequipe']) {
+                        echo "selected";
+                    }
+                    echo ">$codeEquipe</option>";
 				}
 
 				echo "</select>";
@@ -74,32 +81,30 @@ echo "<form method='POST' action='tableauPiege.php?idSite=$RetourIdSite&site=$Re
 				</br></br>
 
 				<label>Code du piège</label>
-				<input required type="text" id ="codePiege" name="codePiege" size="20"/>*</br></br>
+				<input required type="text" id ="codePiege" name="codePiege" value="<?=$piege[0]['codepiege']?>" size="20"/>*</br></br>
 
 				<label>Date de pose</label>
-				<input type="date" id ="datePose" name="datePose"/></br></br>
+				<input type="date" id ="datePose" name="datePose" value="<?=$piege[0]['datepose']?>"/></br></br>
 
 				<label>Heure de pose</label>
-				<input type="time" id ="heurePose" name="heurePose"/></br></br>
+				<input type="time" id ="heurePose" name="heurePose" value="<?=$piege[0]['heurepose']?>"/></br></br>
 
 				<label>Date de récupération</label>
-				<input type="date" id ="dateRecup" name="dateRecup"/></br></br> <!-- type text pour simplifier la saisie -->
+				<input type="date" id ="dateRecup" name="dateRecup" value="<?=$piege[0]['daterecup']?>"/></br></br> <!-- type text pour simplifier la saisie -->
 
 				<label>Heure de récupération</label>
-				<input type="time" id ="heureRecup" name="heureRecup"/></br></br>
+				<input type="time" id ="heureRecup" name="heureRecup" value="<?=$piege[0]['heurerecup']?>"/></br></br>
 
 				<label>Date de tri</label>
-				<input type="date" id ="dateTri" name="dateTri"/></br></br>
+				<input type="date" id ="dateTri" name="dateTri" value="<?=$piege[0]['datetri']?>"/></br></br>
 
 				<label>Problèmes recontrés</label> </br>
-				<textarea id="probleme" name="probleme" rows = "5" cols = "40"></textarea>
+				<textarea id="probleme" name="probleme" value="<?=$piege[0]['probleme']?>" rows = "5" cols = "40"></textarea>
 
 				</br>
 				</br>
 
-				<input type="submit" name="nom" value="Valider et ajouter un nouveau piege"> &nbsp;&nbsp;
-				<input type="submit" name="nom" value="Valider et revenir au tableau des pieges"> &nbsp;&nbsp;
-				<input type="submit" name="nom" value="Valider et ajouter un echantillon">
+                <input type="submit" name="nom" value="Valider les modifications et revenir au tableau des pieges"> &nbsp;&nbsp;
 
 					</div>
 				</div>

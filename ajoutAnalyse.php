@@ -17,6 +17,7 @@ $RetourIdEchantillon=$_REQUEST['idEchantillon'];
 echo "<form method='POST' action='tableauAnalyse.php?idEchantillon=$RetourIdEchantillon&numEchantillon=$RetourEchantillon&piege=$RetourPiege&nomGrotte=$RetourNomGrotte
 &idGrotte=$RetourIdGrotte&site=$RetourNomSite&idSite=$RetourIdSite'>";
 ?>
+<div class="container" style="margin-top:-400px; margin-left:200px;" >
 <input type='submit' value='Retour au tableau' />
 </form>
 <!-- FORMULAIRE D'AJOUT D'UNE PCR -->
@@ -26,7 +27,7 @@ echo "<form method='POST' action='tableauAnalyse.php?idEchantillon=$RetourIdEcha
 <!--<form method="POST" action="">
   <input type="submit" value="" />
 </form>-->
-<div class="container" style="margin-top:-400px; margin-right:10px;" >
+
   <form  id="ajoutPCR"  method="GET" action = "WebService/ajoutAnalyseWS.php"> <!-- reference au formulaire -->
   <p> <!-- car balise input ou select ne peut pas etre imbriquee directement dans form -->
     <fieldset class="scheduler-border">
