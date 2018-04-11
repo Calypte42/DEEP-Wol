@@ -10,7 +10,7 @@ include 'consultationModification.php';
 ?>
 
 	<div class="container" style="margin-top:-400px; margin-right:80px;">
-		Liste des grottes de la base de donnée : </br>
+		Liste des grottes: </br>
 		<table class="table table-bordered table-hover table-condensed">
 			<thead>
 				<tr>

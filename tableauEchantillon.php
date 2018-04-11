@@ -17,7 +17,7 @@ $RetourPiege=$_REQUEST['piege'];
 ?>
 
 	<div class="container" style="margin-top:-400px; margin-right:80px;">
-    <?php echo "Liste des échantillons du piège : ".$_REQUEST['piege']; ?>
+    <?php echo "Liste des échantillons du ".$_REQUEST['piege']; ?>
 		<table class="table table-bordered table-hover table-condensed">
 			<thead>
 				<tr>

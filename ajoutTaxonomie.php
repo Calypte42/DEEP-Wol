@@ -9,7 +9,7 @@ include 'consultationModification.php';
 ?>
 
 		<!-- FORMULAIRE D'AJOUT DE LA TAXONOMIE -->
-<div class="container" style="margin-top:-400px; margin-right:10px;" >
+<div class="container" style="margin-top:-400px; margin-left:200px;" >
 		<form  id="ajoutTaxonomie"  method="GET" action = "WebService/ajoutTaxonomieWS.php"> <!-- reference au formulaire -->
 		<p>
 			<fieldset class="scheduler-border">

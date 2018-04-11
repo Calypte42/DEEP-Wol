@@ -38,10 +38,22 @@ include 'consultationModification.php';
 		        </br></br>
 
 				<label>Latitude</label>
-				<input type="text" id ="latitude" name="latitude" size="10" placeholder = "30° N"/></br></br>  <!-- type text pour simplifier la saisie -->
+				<input type="text" id ="latitude" name="latitude" size="10" placeholder = "30°"/>  <!-- type text pour simplifier la saisie -->
+				<select name="orientationLatitude" id="orientationLatitude">
+					<option value="Est">Est</option>
+					<option value="Ouest">Ouest</option>
+				</select>
+
+				</br></br>
 
 				<label>Longitude</label>
-				<input type="text" id ="longitude" name="longitude" size="10" placeholder = "20° O"/></br></br>  <!-- type text pour simplifier la saisie -->
+				<input type="text" id ="longitude" name="longitude" size="10" placeholder = "20°"/>  <!-- type text pour simplifier la saisie -->
+				<select name="orientationLongitude" id="orientationLongitude">
+					<option value="Est">Est</option>
+					<option value="Ouest">Ouest</option>
+				</select>
+
+				</br></br>
 
 				<label>Type d'accès</label>
 				<input type="text" id ="typeAcces" name="typeAcces" size="20"/></br></br>

@@ -11,13 +11,15 @@ include 'consultationModification.php';
 
 		<div class="container" style="margin-left:200px; margin-top:-400px; " >
 		<?php
-		$RetourId=$_REQUEST['idGrotte'];
-		$Retour=$_REQUEST['grotte'];
+		if(isset($_REQUEST['idGrotte'])){
+			$RetourId=$_REQUEST['idGrotte'];
+			$Retour=$_REQUEST['grotte'];
 
 		echo "<form method='POST' action='tableauSite.php?idGrotte=$RetourId&grotte=$Retour'>";
+		echo "<input type='submit' value='Revenir au tableau des sites' />";
+		echo "</form>";
+		}
 		?>
-			<input type="submit" value="Revenir au tableau des sites" />
-		</form>
 
 		<form  id="ajoutSite"  method="POST" action = "WebService/ajoutSiteWS.php"> <!-- reference au formulaire -->
 		<p>
@@ -30,10 +32,38 @@ include 'consultationModification.php';
 				<?php
 
 				/* on veut recuperer les valeurs de grotte deja existantes dans la bdd */
-
-				echo "<label for='idGrotte'>Dans la grotte : $Retour</label>";
+				if(isset($_REQUEST['idGrotte'])){
+				    	/*echo "<label for='idGrotte'>Dans la grotte : $Retour</label>";*/
+							echo "<label for='idGrotte'>Dans la grotte :</label>";
+							echo "<input type='hidden' name='idGrotte' value=$RetourId>";
+							echo "<input type='hidden' name='grotte' value=$Retour>";
+							echo "<select name='nomGrotte'>";
+							$requete='SELECT NomCavite from Grotte ORDER BY NomCavite';
+							$value=requete($bdd,$requete);
+							foreach ($value as $array) {
+								foreach ($array as $key => $valeur) {
+									if($valeur==$Retour){
+									echo "<option selected value=\"$Retour\">$Retour</option>";
+								}else{
+									echo "<option value=\"$valeur\">$valeur</option>";}
+								}
+							}
+						echo "</select>";
+				} else {
+						echo "<label for='Grotte'> Grotte </label>";
+						echo "<select name='nomGrotte'>";
+						$requete='SELECT NomCavite from Grotte ORDER BY NomCavite';
+						$value=requete($bdd,$requete);
+						foreach ($value as $array) {
+							foreach ($array as $key => $valeur) {
+								echo "<option value=\"$valeur\">$valeur</option>";
+							}
+						}
+					echo "</select>";
+				}
+			/*	echo "<label for='idGrotte'>Dans la grotte : $Retour</label>";
 				echo "<input type='hidden' name='idGrotte' value=$RetourId>";
-				echo "<input type='hidden' name='grotte' value=$Retour>";
+				echo "<input type='hidden' name='grotte' value=$Retour>";*/
 				?>
 
 				</br></br>

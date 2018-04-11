@@ -10,7 +10,7 @@ include 'consultationModification.php';
 ?>
 
 	<div class="container" style="margin-top:-400px; margin-right:80px;">
-    <?php echo "Liste des sites de la grottes : ".$_REQUEST['grotte']; ?>
+    <?php echo "Liste des sites de la ".$_REQUEST['grotte']; ?>
 		<table class="table table-bordered table-hover table-condensed">
 			<thead>
 				<tr>
