@@ -7,7 +7,7 @@ include 'consultationModification.php';
 ?>
 
 	<div class="container" style="margin-top:-400px; margin-right:80px;">
-    <?php echo "Liste des pièges du site : ".$_REQUEST['site']; ?>
+    <?php echo "Liste des pièges du ".$_REQUEST['site']; ?>
 		<table class="table table-bordered table-hover table-condensed">
 			<thead>
 				<tr>

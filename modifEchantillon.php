@@ -10,7 +10,7 @@ $requete="SELECT * FROM Echantillon WHERE id=$id";  /* On prepare une requete pe
 $echantillon=requete($bdd,$requete); /* value recupere la reponse de la requete */
 ?>
 
-<div class="container" style="margin-top:-400px; margin-right:10px;" >
+<div class="container" style="margin-top:-400px; margin-left:200px;" >
 
 <?php
 $RetourNomGrotte=$_REQUEST['nomGrotte'];
@@ -260,7 +260,8 @@ echo "<form method='POST' action='tableauEchantillon.php?piege=$RetourPiege&nomG
 
 					echo "</select>";
 					?>
-
+					</br></br>
+					<input type = "button" value = "ajouter une taxonomie">
 					</fieldset>
 				</form>
 

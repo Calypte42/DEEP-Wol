@@ -241,7 +241,8 @@ echo "<form method='POST' action='tableauEchantillon.php?piege=$RetourPiege&nomG
 
 					echo "</select>";
 					?>
-
+					</br></br>
+					<input type = "button" value = "ajouter une taxonomie">
 					</fieldset>
 				</form>
 
