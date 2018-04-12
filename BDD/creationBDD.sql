@@ -6,7 +6,7 @@ create table SystemeHydrographique (
     id SERIAL PRIMARY KEY,
     nom varchar(30),
     departement int,
-    CONSTRAINT departement_sup0 CHECK departement>=0
+    CONSTRAINT departement_sup0 CHECK (departement>=0)
 );
 
 create table Grotte (
