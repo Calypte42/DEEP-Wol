@@ -158,23 +158,38 @@ fieldset.scheduler-border {
 }
 
 legend.scheduler-border {
-        font-size: 1.2em !important;
-        font-weight: bold !important;
-        text-align: left !important;
-        width:auto;
-        padding:0 10px;
-        border-bottom:none;
+  font-size: 1.2em !important;
+  font-weight: bold !important;
+  text-align: left !important;
+  width:auto;
+  padding:0 10px;
+  border-bottom:none;
     }
 
 
-/* Image de fond accueil */
+/* Carousel de la page d'accueil */
 
 body, html {
 	height: 100%;
 	margin: 0;
 }
 
-.bg {
+.carousel-inner > .item > img {
+	margin-top:50px;
+	width:100%;
+  height:728px;
+}
+.carousel-indicators li {
+		border:solid 1px;
+		border-color: black;
+    background-color: lightgrey;
+		box-shadow: inset 1px 1px 1px 1px rgba(0,0,0,0.5);
+}
+.carousel-indicators .active {
+    background-color: grey;
+}
+
+/*.bg {
 	background-image: url("../Images/Grotte1.jpg");
 	width: 100%;
 	height: 480px;
@@ -182,13 +197,14 @@ body, html {
 	background-size: 100%100%;
 	border: 1px solid black;
 
-}
+}*/
 
-/* titre BD */
+/* titre BD
 
 .jumbotron {
-	background: #faeda0;
-}
+	background: #faeda0; pluS beige
+	background: #ffffcc;
+}*/
 
 /* FOOTER */
 
