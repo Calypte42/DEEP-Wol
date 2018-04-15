@@ -6,9 +6,9 @@ include 'verificationConnexion.php';
 include 'consultationModification.php';
 ?>
 
-	<div class="container" style="margin-top:-400px; margin-right:80px;">
+	<div class= "col-sm-10">
     <?php echo "Liste des pièges du ".$_REQUEST['site']; ?>
-		<table class="table table-bordered table-hover table-condensed">
+		<table class="table table-bordered table-condensed" style="margin-top: 10px;">
 			<thead>
 				<tr>
 					<th>Code Piege</th>
@@ -73,7 +73,9 @@ echo "</table>";
 		<input type="submit" value="Ajouter un piege" />
 	</form>
 
-	</div>
+</div>
+</div> <!-- ferme le row de consultationModification -->
+</div> <!-- ferme le container-fluid de consultationModification -->
 
 <?php
 include 'HTML/pied.html';

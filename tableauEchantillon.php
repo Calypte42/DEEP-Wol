@@ -16,9 +16,9 @@ $RetourIdSite=$_REQUEST['idSite'];
 $RetourPiege=$_REQUEST['piege'];
 ?>
 
-	<div class="container" style="margin-top:-400px; margin-right:80px;">
+	<div class= "col-sm-10">
     <?php echo "Liste des échantillons du ".$_REQUEST['piege']; ?>
-		<table class="table table-bordered table-hover table-condensed">
+		<table class="table table-bordered table-condensed" style="margin-top: 10px;">
 			<thead>
 				<tr>
 					<th>Numero Echantillon</th>
@@ -80,7 +80,9 @@ echo "<form style='float:right' name='versAjoutEchantillon' method='POST'
 		<input type="submit" value="Ajouter un echantillon" />
 	</form>
 
-	</div>
+</div>
+</div> <!-- ferme le row de consultationModification -->
+</div> <!-- ferme le container-fluid de consultationModification -->
 
 <?php
 include 'HTML/pied.html';

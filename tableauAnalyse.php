@@ -18,10 +18,10 @@ $RetourIdEchantillon=$_REQUEST['idEchantillon'];
 
 ?>
 
-<div class="container" style="margin-top:-300px; margin-left:200px;">
+<div class= "col-sm-10">
  <?php echo "Liste des analyses de l'échantillon $RetourEchantillon"; ?>
- <h3> Liste des PCR : </h3>
-  <table class="table table-bordered table-hover table-condensed">
+ <h4> Liste des PCR : </h4>
+  <table class="table table-bordered table-condensed" style="margin-top: 10px;">
     <thead>
       <tr>
         <th>nomGene</th>
@@ -65,8 +65,8 @@ echo "</table>";
     </tbody>
     </table>
 
-    <h3> Liste des qPCR : </h3>
-     <table class="table table-bordered table-hover table-condensed">
+    <h4 style="margin-top: 40px;"> Liste des qPCR : </h4>
+     <table class="table table-bordered table-condensed" style="margin-top: 10px;">
        <thead>
          <tr>
            <th>nomGene</th>
@@ -116,7 +116,10 @@ echo "</table>";
       ?>
       <input type="submit" value="Ajouter une analyse" />
     </form>
+
 </div>
+</div> <!-- ferme le row de consultationModification -->
+</div> <!-- ferme le container-fluid de consultationModification -->
 
 <?php
 include 'HTML/pied.html';
