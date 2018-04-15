@@ -11,16 +11,21 @@ include 'consultationModification.php';
 			<div class= "col-sm-10">
 
 			<?php
-			$RetourNomGrotte=$_REQUEST['nomGrotte'];
-			$RetourIdGrotte=$_REQUEST['idGrotte'];
-			$RetourNomSite=$_REQUEST['site'];
-			$RetourIdSite=$_REQUEST['idSite'];
-			$RetourPiege=$_REQUEST['piege'];
-			echo "<form method='POST' action='tableauEchantillon.php?piege=$RetourPiege&nomGrotte=$RetourNomGrotte
-			&idGrotte=$RetourIdGrotte&site=$RetourNomSite&idSite=$RetourIdSite'>";
+			if(isset($_REQUEST['idGrotte']) AND (isset($_REQUEST['idSite'])) AND (isset($_REQUEST['piege']))){
+				$RetourNomGrotte=$_REQUEST['nomGrotte'];
+				$RetourIdGrotte=$_REQUEST['idGrotte'];
+				$RetourNomSite=$_REQUEST['site'];
+				$RetourIdSite=$_REQUEST['idSite'];
+				$RetourPiege=$_REQUEST['piege'];
+				echo "<form method='POST' action='tableauEchantillon.php?piege=$RetourPiege&nomGrotte=$RetourNomGrotte
+				&idGrotte=$RetourIdGrotte&site=$RetourNomSite&idSite=$RetourIdSite'>";
+				echo "<input type='submit' value='Revenir au tableau des échantillons' />";
+				echo "</form>";
+			}
 			?>
-			<input type='submit' value='Retour au tableau des échantillons' />
-			</form>
+
+			<!--<input type='submit' value='Retour au tableau des échantillons' />
+			</form>-->
 
 			</br>
 			<!-- FORMULAIRE D'AJOUT D'ECHANTILLON -->
