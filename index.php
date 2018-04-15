@@ -18,7 +18,7 @@ $bdd=connexionbd();
   	<script src="Bootstrap/bootstrap.js"></script>
 	</head>
 
-	<body class = "bg-warning" style="background:#ffffcc;">
+	<body class = "bg-warning" style="background:grey;">
 	</br>
 	</br>
 	</br>
@@ -45,8 +45,8 @@ $bdd=connexionbd();
 	</br>
 
 <!-- Troisieme boite : avec authentification pour la bdd -->
-	<div class="container-fluid" id="authentification">
-		<div class= "col-sm-4 col-sm-offset-4">
+	<div class="container" id="authentification">
+		<div class= "col-sm-4 col-sm-offset-6">
 		<form method= "GET" action="authentification.php" class="form-login" style="background:#6e523f;">
 			<h4 style="color:white;">Authentification</h4>
 		  <div class="input-group">

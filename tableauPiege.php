@@ -7,7 +7,7 @@ include 'consultationModification.php';
 ?>
 
 	<div class= "col-sm-10">
-    <?php echo "Liste des pièges du ".$_REQUEST['site']; ?>
+    <?php echo "Liste des pièges de la ".$_REQUEST['nomGrotte']. " et du ".$_REQUEST['site']; ?>
 		<table class="table table-bordered table-condensed" style="margin-top: 10px;">
 			<thead>
 				<tr>
@@ -70,7 +70,7 @@ echo "</table>";
 	echo "<form style='float:right' name='versAjoutPiege' method='POST' action='ajoutPiege.php?nomGrotte=$RetourNomGrotte
 	&idGrotte=$RetourIdGrotte&site=$RetourNomSite&idSite=$RetourIdSite'>";
 ?>
-		<input type="submit" value="Ajouter un piege" />
+		<input type="submit" value="Ajouter un piège" />
 	</form>
 
 </div>

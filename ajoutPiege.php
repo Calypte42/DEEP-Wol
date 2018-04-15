@@ -18,7 +18,7 @@ include 'consultationModification.php';
 
 		echo "<form method='POST' action='tableauPiege.php?idSite=$RetourIdSite&site=$RetourNomSite&idGrotte=$RetourIdGrotte&nomGrotte=$RetourNomGrotte'>";
 		?>
-		<input type="submit" value="Retour vers tableau des pieges" />
+		<input type="submit" value="Retour vers tableau des pièges" />
 		</form>
 		</br>
 		<!-- FORMULAIRE D'AJOUT DE PIEGE -->
@@ -31,7 +31,7 @@ include 'consultationModification.php';
 
 						<?php
 						/* on veut recuperer les valeurs de grotte deja existantes dans la bdd */
-						echo "<label for='grotte'>Dans la Grotte : $RetourNomGrotte </label>";
+						echo "<label for='grotte'>Dans la $RetourNomGrotte </label>";
 						echo "<input type='hidden' value=$RetourNomGrotte name='nomGrotte'>"; /* On cree une liste deroulante vide */
 						echo"<input type='hidden' value=$RetourIdGrotte name='idGrotte'>";
 						?>
@@ -40,7 +40,7 @@ include 'consultationModification.php';
 
 						<?php
 						/* on veut recuperer les valeurs de numero de site deja existantes dans la bdd */
-						echo "<label for='numSite'>Numéro du site : $RetourNomSite </label>";
+						echo "<label for='numSite'>Numéro du $RetourNomSite </label>";
 						echo "<input type='hidden' value=$RetourNomSite name='site'>"; /* On cree une liste deroulante vide */
 						echo "<input type='hidden' value=$RetourIdSite name='idSite'>";
 						?>
@@ -49,7 +49,7 @@ include 'consultationModification.php';
 
 						<?php
 						/* on veut recuperer les valeurs de numero de site deja existantes dans la bdd */
-						echo "<label for='codeEquipeSpeleo'>Equipe qui a pose le piege </label>";
+						echo "<label for='codeEquipeSpeleo'>Equipe qui a posé le piège </label>";
 						echo "<select name='codeEquipeSpeleo'>"; /* On cree une liste deroulante vide */
 
 						$requete='SELECT codeEquipe from EquipeSpeleo ORDER BY codeEquipe';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
@@ -64,33 +64,39 @@ include 'consultationModification.php';
 
 						</br></br>
 
-						<label>Code du piège</label>
+						<label style="display: block; width:150px; float:left;">Code du piège</label>
 						<input required type="text" id ="codePiege" name="codePiege" size="20"/>*</br></br>
 
-						<label>Date de pose</label>
+						<label style="display: block; width:150px; float:left;">Date de pose</label>
 						<input type="date" id ="datePose" name="datePose"/>
 
+						&nbsp;&nbsp;
+
 						<label>Heure de pose</label>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<input type="time" id ="heurePose" name="heurePose"/></br></br>
 
-						<label>Date de récupération</label>
+						<label style="display: block; width:150px; float:left;">Date de récupération</label>
 						<input type="date" id ="dateRecup" name="dateRecup"/>
+
+						&nbsp;&nbsp;
 
 						<label>Heure de récupération</label>
 						<input type="time" id ="heureRecup" name="heureRecup"/></br></br>
 
-						<label>Date de tri</label>
+						<label style="display: block; width:150px; float:left;">Date de tri</label>
 						<input type="date" id ="dateTri" name="dateTri"/></br></br>
 
-						<label>Problèmes recontrés</label> </br>
+						<label>Problèmes rencontrés</label> </br>
 						<textarea id="probleme" name="probleme" rows = "5" cols = "40"></textarea>
 
 						</br>
 						</br>
 
-						<input type="submit" name="nom" value="Valider et ajouter un nouveau piege"> &nbsp;&nbsp;
-						<input type="submit" name="nom" value="Valider et revenir au tableau des pieges"> &nbsp;&nbsp;
-						<input type="submit" name="nom" value="Valider et ajouter un echantillon">
+						<input type="submit" name="nom" value="Valider et ajouter un nouveau piège"> &nbsp;&nbsp;
+						<input type="submit" name="nom" value="Valider et ajouter un nouvel échantillon">&nbsp;&nbsp;
+						<input type="submit" name="nom" value="Valider et revenir au tableau des pièges">
+
 
 							</div>
 						</div>

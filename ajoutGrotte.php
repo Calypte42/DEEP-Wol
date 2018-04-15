@@ -21,10 +21,10 @@ include 'consultationModification.php';
 					<div class="control-group">
 						<div class="controls bootstrap-timepicker">
 
-							<label>Nom de la grotte</label>          <!-- Changer les size par rapport à la base de donnees -->
+							<label style="display: block; width:110px; float:left;">Nom</label>          <!-- Changer les size par rapport à la base de donnees -->
 							<input required type="text" id ="nomGrotte" name="nomGrotte" size="50"/> * </br></br>
 
-							<label>Type de cavité</label>  <!-- menu deroulant : a preciser les valeurs -->
+							<label style="display: block; width:110px; float:left;">Type de cavité</label>  <!-- menu deroulant : a preciser les valeurs -->
 								<select name="typeCavite" id="typeCavite">
 									<option value="Choix1">Choix1</option>
 									<option value="Choix2">Choix2</option>
@@ -33,7 +33,7 @@ include 'consultationModification.php';
 
 					        </br></br>
 
-							<label>Latitude</label>
+							<label style="display: block; width:110px; float:left;">Latitude</label>
 							<input type="text" id ="latitude" name="latitude" size="10" placeholder = "30°"/>  <!-- type text pour simplifier la saisie -->
 							<select name="orientationLatitude" id="orientationLatitude">
 								<option value="Est">Est</option>
@@ -42,7 +42,7 @@ include 'consultationModification.php';
 
 							</br></br>
 
-							<label>Longitude</label>
+							<label style="display: block; width:110px; float:left;">Longitude</label>
 							<input type="text" id ="longitude" name="longitude" size="10" placeholder = "20°"/>  <!-- type text pour simplifier la saisie -->
 							<select name="orientationLongitude" id="orientationLongitude">
 								<option value="Est">Est</option>
@@ -51,7 +51,7 @@ include 'consultationModification.php';
 
 							</br></br>
 
-							<label>Type d'accès</label>
+							<label style="display: block; width:110px; float:left;">Type d'accès</label>
 							<input type="text" id ="typeAcces" name="typeAcces" size="20"/></br></br>
 
 							<label>Système hydrographique</label>
@@ -84,7 +84,7 @@ include 'consultationModification.php';
 
 							<input type="submit" name="nom" value="Valider et ajouter une nouvelle grotte"> &nbsp;&nbsp;
 							<input type="submit" name="nom" value="Valider et ajouter un site"> &nbsp;&nbsp;
-							<input type="submit" name="nom" value="Valider et revenir au tableau"> &nbsp;&nbsp;
+							<input type="submit" name="nom" value="Valider et revenir au tableau des grottes"> &nbsp;&nbsp;
 
 						</div>
 					</div>

@@ -70,7 +70,7 @@ include 'consultationModification.php';
 			</table>
 
 			<form style="float:right" name="versAjoutGrotte" method="POST" action="ajoutGrotte.php">
-				<input type="submit" value="Ajouter une Grotte" />
+				<input type="submit" value="Ajouter une grotte" />
 			</form>
 		</div>
 	</div> <!-- ferme le row de consultationModification -->

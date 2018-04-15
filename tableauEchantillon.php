@@ -17,7 +17,7 @@ $RetourPiege=$_REQUEST['piege'];
 ?>
 
 	<div class= "col-sm-10">
-    <?php echo "Liste des échantillons du ".$_REQUEST['piege']; ?>
+    <?php echo "Liste des échantillons de la ".$_REQUEST['nomGrotte']." du ".$_REQUEST['site']." du ".$_REQUEST['piege']; ?>
 		<table class="table table-bordered table-condensed" style="margin-top: 10px;">
 			<thead>
 				<tr>
@@ -77,7 +77,7 @@ echo "</table>";
 echo "<form style='float:right' name='versAjoutEchantillon' method='POST'
 	action='ajoutEchantillon.php?nomGrotte=$RetourNomGrotte&idGrotte=$RetourIdGrotte&site=$RetourNomSite&idSite=$RetourIdSite&piege=$RetourPiege'>";
 	?>
-		<input type="submit" value="Ajouter un echantillon" />
+		<input type="submit" value="Ajouter un échantillon" />
 	</form>
 
 </div>

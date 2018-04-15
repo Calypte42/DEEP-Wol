@@ -19,7 +19,7 @@ $RetourIdEchantillon=$_REQUEST['idEchantillon'];
 ?>
 
 <div class= "col-sm-10">
- <?php echo "Liste des analyses de l'échantillon $RetourEchantillon"; ?>
+ <?php echo "Liste des analyses de l'$RetourEchantillon". " du ".$_REQUEST['site']." de la ".$_REQUEST['nomGrotte']; ?>
  <h4> Liste des PCR : </h4>
   <table class="table table-bordered table-condensed" style="margin-top: 10px;">
     <thead>
