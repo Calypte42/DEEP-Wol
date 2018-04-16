@@ -64,6 +64,67 @@ if(!empty($_REQUEST['echantillon'][0])){
   $listeWhere=rtrim($listeWhere,' OR ');
   $listeWhere=$listeWhere.' AND ';
 }
+
+if(!empty($_REQUEST['classe'][0])){
+  foreach ($_REQUEST['classe'] as $key) {
+    if(!empty($key)){
+    $listeWhere=$listeWhere.'classe=\''.$key.'\' OR ';
+    }
+  }
+  $listeWhere=rtrim($listeWhere,' OR ');
+  $listeWhere=$listeWhere.' AND ';
+}
+
+if(!empty($_REQUEST['ordre'][0])){
+  foreach ($_REQUEST['ordre'] as $key) {
+    if(!empty($key)){
+    $listeWhere=$listeWhere.'ordre=\''.$key.'\' OR ';
+    }
+  }
+  $listeWhere=rtrim($listeWhere,' OR ');
+  $listeWhere=$listeWhere.' AND ';
+}
+
+if(!empty($_REQUEST['famille'][0])){
+  foreach ($_REQUEST['famille'] as $key) {
+    if(!empty($key)){
+    $listeWhere=$listeWhere.'famille=\''.$key.'\' OR ';
+    }
+  }
+  $listeWhere=rtrim($listeWhere,' OR ');
+  $listeWhere=$listeWhere.' AND ';
+}
+
+if(!empty($_REQUEST['sousFamille'][0])){
+  foreach ($_REQUEST['sousFamille'] as $key) {
+    if(!empty($key)){
+    $listeWhere=$listeWhere.'sousFamille=\''.$key.'\' OR ';
+    }
+  }
+  $listeWhere=rtrim($listeWhere,' OR ');
+  $listeWhere=$listeWhere.' AND ';
+}
+
+if(!empty($_REQUEST['genre'][0])){
+  foreach ($_REQUEST['genre'] as $key) {
+    if(!empty($key)){
+    $listeWhere=$listeWhere.'genre=\''.$key.'\' OR ';
+    }
+  }
+  $listeWhere=rtrim($listeWhere,' OR ');
+  $listeWhere=$listeWhere.' AND ';
+}
+
+if(!empty($_REQUEST['espece'][0])){
+  foreach ($_REQUEST['espece'] as $key) {
+    if(!empty($key)){
+    $listeWhere=$listeWhere.'espece=\''.$key.'\' OR ';
+    }
+  }
+  $listeWhere=rtrim($listeWhere,' OR ');
+  $listeWhere=$listeWhere.' AND ';
+}
+
 $listeWhere=rtrim($listeWhere,' AND ');
 
 

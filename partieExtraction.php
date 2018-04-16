@@ -22,10 +22,10 @@ include 'HTML/entete.html';
             <h3> A enlever : Sofian il faudrait si possible que quand on clique sur tout tout ce coche et une fonction verifie que au moins un element est coche avant de valider</h3>
 
             <?php
-            $listeAttributGrotte = array('nomcavite','typecavite','latitude','longitude','typeacces','accespublic','nomSystemeHydrographique','departement');
-            $listeAttributSite = array('profondeur','temperature','typesol','numsite','distanceentree','presenceeau');
-            $listeAttributPiege = array('codepiege','datepose','heurepose','daterecup','heurerecup','probleme','datetri');
-            $listeAttributEchantillon = array('numEchantillon','formeStockage','lieuStockage','niveauIdentification','infecteBacterie','nombreindividu','classe','ordre','famille','sousfamille','genre','espece','photo','nomAuteur','prenomAuteur');
+          $listeAttributGrotte = array('nomcavite'=>'Nom Cavite','typecavite'=>'Type de cavite','latitude'=>'Latitude','longitude'=>'Longitude','typeacces'=>'Type d\'acces','accespublic'=> 'Acces au public','nomSystemeHydrographique'=>'Nom du systeme hydrographique','departement'=>'Departement');
+            $listeAttributSite = array('profondeur'=>'Profondeur','temperature'=>"Temperature",'typesol'=>'Type de sol','numsite'=>'Numero du site','distanceentree'=>'Distance a l\'entre','presenceeau'=>'Presence d\'eau');
+            $listeAttributPiege = array('codepiege'=>'Code du piege','datepose'=>'Date de pose','heurepose'=>'Heure de pose','daterecup'=>'Date de recuperation','heurerecup'=>'Heure de récupération','probleme'=>'Probleme','datetri'=>'Date de tri');
+            $listeAttributEchantillon = array('numEchantillon'=>'Numero de l\'echantillon','formeStockage'=>'Forme de stockage','lieuStockage'=>'Lieu de stockage','niveauIdentification'=>'Niveau d\'identification','infecteBacterie'=>'Infecte par bacterie','nombreindividu'=>'Nombre d\'individu','classe'=>'Classe','ordre'=>'Ordre','famille'=>'Famille','sousfamille'=>'Sous-famille','genre'=>'Genre','espece'=>'Espece','photo'=>'Photo','nomAuteur'=>'Nom de l\'auteur','prenomAuteur'=>'Prenom de l\'auteur');
 
             /*echo"<div class='container'>";*/
             echo "<input type='button' id='boutonToutSelectionner' value='Tout selectionner'> &nbsp;";
@@ -36,9 +36,11 @@ include 'HTML/entete.html';
                 echo"<div class='col-lg-6'>";
                 echo "<fieldset style='border:none;'>";
                 echo "<legend> Attributs des echantillons</legend>";
+                echo "<input type='button' value='Tout deselectionner' id='deselectionEchantillon'/>";
+                echo "<input type='button' value='Tout selectionner' id='selectionEchantillon'/>";
                 foreach ($listeAttributEchantillon as $key => $value) {
-                  echo "<label for=$value>$value</label>";
-                  echo "<input type='checkbox' name='listeItem[]' id=$value value=$value>";
+                  echo "<label for=$key>$value</label>";
+                  echo "<input type='checkbox' name='listeItem[]' id=$key value=$key>";
                 }
                 echo"</fieldset>";
                   echo"</div>";
@@ -46,9 +48,11 @@ include 'HTML/entete.html';
                 echo"<div class='col-lg-6'>";
                 echo "<fieldset style='border:none;'>";
                 echo "<legend> Attributs des pieges</legend>";
+                echo "<input type='button' value='Tout deselectionner' id='deselectionPiege'/>";
+                echo "<input type='button' value='Tout selectionner' id='selectionPiege'/>";
                 foreach ($listeAttributPiege as $key => $value) {
-                  echo "<label for=$value>$value</label>";
-                  echo "<input type='checkbox' name='listeItem[]' id=$value value=$value>";
+                  echo "<label for=$key>$value</label>";
+                  echo "<input type='checkbox' name='listeItem[]' id=$key value=$key>";
                 }
                 echo"</fieldset>";
                 echo"</div>";
@@ -59,9 +63,11 @@ include 'HTML/entete.html';
               echo"<div class='col-lg-6'>";
               echo "<fieldset style='border:none;'>";
               echo "<legend> Attributs des sites</legend>";
+              echo "<input type='button' value='Tout deselectionner' id='deselectionSite'/>";
+              echo "<input type='button' value='Tout selectionner' id='selectionSite'/>";
               foreach ($listeAttributSite as $key => $value) {
-                echo "<label for=$value>$value</label>";
-                echo "<input type='checkbox' name='listeItem[]' id=$value value=$value>";
+                echo "<label for=$key>$value</label>";
+                echo "<input type='checkbox' name='listeItem[]' id=$key value=$key>";
               }
               echo"</fieldset>";
               echo"</div>";
@@ -69,9 +75,11 @@ include 'HTML/entete.html';
               echo"<div class='col-lg-6'>";
                 echo "<fieldset style='border:none;'>";
                 echo "<legend> Attributs des grottes</legend>";
+                echo "<input type='button' value='Tout deselectionner' id='deselectionGrotte'/>";
+                echo "<input type='button' value='Tout selectionner' id='selectionGrotte'/>";
                 foreach ($listeAttributGrotte as $key => $value) {
-                  echo "<label for=$value>$value</label>";
-                  echo "<input type='checkbox' name='listeItem[]' id=$value value=$value>";
+                  echo "<label for=$key>$value</label>";
+                  echo "<input type='checkbox' name='listeItem[]' id=$key value=$key>";
                 }
                 echo"</fieldset>";
                 echo"</div>";
@@ -235,6 +243,180 @@ include 'HTML/entete.html';
         </fieldset>
         </div>
       </div>
+
+      <div class="col-lg-6">
+      <fieldset class="scheduler-border">
+        <legend class="scheduler-border"> Classe </legend>
+          <div class="control-group">
+            <div class="controls bootstrap-timepicker">
+              <div id="menuClasse" style="display:block;">
+
+      <?php
+  /* ------------- DEBUT LISTE DEROULANTE Classe ------------------*/
+
+      echo"<select multiple name='classe[]'>";
+      echo "<option selected = 'selected' value=''>Tous</option>";
+          $requete='SELECT classe from Taxonomie ORDER BY classe';  /*   */
+          $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
+          foreach ($value as $array) {
+      foreach ($array as $key => $valeur) {
+        echo "<option>$valeur</option>";
+      }
+          }
+          echo "</select>";
+
+        ?>
+              </div>
+            </div>
+        </div>
+      </fieldset>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+    <fieldset class="scheduler-border">
+      <legend class="scheduler-border"> Ordre </legend>
+        <div class="control-group">
+          <div class="controls bootstrap-timepicker">
+            <div id="menuOrdre" style="display:block;">
+
+    <?php
+/* ------------- DEBUT LISTE DEROULANTE ORDRE ------------------*/
+
+    echo"<select multiple name='ordre[]'>";
+    echo "<option selected = 'selected' value=''>Tous</option>";
+        $requete='SELECT ordre from Taxonomie ORDER BY ordre';  /*   */
+        $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
+        foreach ($value as $array) {
+    foreach ($array as $key => $valeur) {
+      echo "<option>$valeur</option>";
+    }
+        }
+        echo "</select>";
+
+      ?>
+            </div>
+          </div>
+      </div>
+    </fieldset>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+  <fieldset class="scheduler-border">
+    <legend class="scheduler-border"> Famille </legend>
+      <div class="control-group">
+        <div class="controls bootstrap-timepicker">
+          <div id="menuFamille" style="display:block;">
+
+  <?php
+/* ------------- DEBUT LISTE DEROULANTE FAMILLE ------------------*/
+
+  echo"<select multiple name='famille[]'>";
+  echo "<option selected = 'selected' value=''>Tous</option>";
+      $requete='SELECT famille from Taxonomie ORDER BY famille';  /*   */
+      $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
+      foreach ($value as $array) {
+  foreach ($array as $key => $valeur) {
+    echo "<option>$valeur</option>";
+  }
+      }
+      echo "</select>";
+
+    ?>
+          </div>
+        </div>
+    </div>
+  </fieldset>
+  </div>
+</div>
+
+<div class="col-lg-6">
+<fieldset class="scheduler-border">
+  <legend class="scheduler-border">Sous famille </legend>
+    <div class="control-group">
+      <div class="controls bootstrap-timepicker">
+        <div id="menusousfamille" style="display:block;">
+
+<?php
+/* ------------- DEBUT LISTE DEROULANTE SOUS FAMILLE ------------------*/
+
+echo"<select multiple name='sousFamille[]'>";
+echo "<option selected = 'selected' value=''>Tous</option>";
+    $requete='SELECT sousfamille from Taxonomie ORDER BY sousfamille';  /*   */
+    $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
+    foreach ($value as $array) {
+foreach ($array as $key => $valeur) {
+  echo "<option>$valeur</option>";
+}
+    }
+    echo "</select>";
+
+  ?>
+        </div>
+      </div>
+  </div>
+</fieldset>
+</div>
+</div>
+
+<div class="col-lg-6">
+<fieldset class="scheduler-border">
+  <legend class="scheduler-border"> Genre </legend>
+    <div class="control-group">
+      <div class="controls bootstrap-timepicker">
+        <div id="menuGenre" style="display:block;">
+
+<?php
+/* ------------- DEBUT LISTE DEROULANTE Genre ------------------*/
+
+echo"<select multiple name='genre[]'>";
+echo "<option selected = 'selected' value=''>Tous</option>";
+    $requete='SELECT genre from Taxonomie ORDER BY genre';  /*   */
+    $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
+    foreach ($value as $array) {
+foreach ($array as $key => $valeur) {
+  echo "<option>$valeur</option>";
+}
+    }
+    echo "</select>";
+
+  ?>
+        </div>
+      </div>
+  </div>
+</fieldset>
+</div>
+</div>
+
+<div class="col-lg-6">
+<fieldset class="scheduler-border">
+  <legend class="scheduler-border"> Espece </legend>
+    <div class="control-group">
+      <div class="controls bootstrap-timepicker">
+        <div id="menuEspece" style="display:block;">
+
+<?php
+/* ------------- DEBUT LISTE DEROULANTE ESPECE ------------------*/
+
+echo"<select multiple name='espece[]'>";
+echo "<option selected = 'selected' value=''>Tous</option>";
+    $requete='SELECT espece from Taxonomie ORDER BY espece';  /*   */
+    $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
+    foreach ($value as $array) {
+foreach ($array as $key => $valeur) {
+  echo "<option>$valeur</option>";
+}
+    }
+    echo "</select>";
+
+  ?>
+        </div>
+      </div>
+  </div>
+</fieldset>
+</div>
+</div>
 
       <input type="submit" name="extraire" value="Exporter" style="float:right;"/></br></br>
     </div>

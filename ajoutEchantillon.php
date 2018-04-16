@@ -1,4 +1,4 @@
-<?php
+/<?php
 include 'BDD/bdd.php';
 $bdd=connexionbd();
 ?>
@@ -123,6 +123,7 @@ include 'consultationModification.php';
 												echo "<option value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
 											}
 										}
+										
 										echo "</select>";
 										?>
 

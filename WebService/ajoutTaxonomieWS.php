@@ -61,4 +61,4 @@ if(!empty($_REQUEST['classeTaxo'])){
 
 
 
-  header('Refresh: 0; URL=../ajoutTaxonomie.php');
+  header('Refresh: 10; URL=../ajoutTaxonomie.php');
