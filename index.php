@@ -18,7 +18,7 @@ $bdd=connexionbd();
   	<script src="Bootstrap/bootstrap.js"></script>
 	</head>
 
-	<body class = "bg-warning" style="background:grey;">
+	<body class = "bg-warning" style="background:#C0C0C0;">
 	</br>
 	</br>
 	</br>
