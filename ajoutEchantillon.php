@@ -123,7 +123,7 @@ include 'consultationModification.php';
 												echo "<option value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
 											}
 										}
-										
+
 										echo "</select>";
 										?>
 
@@ -230,7 +230,7 @@ include 'consultationModification.php';
 						/* on veut recuperer les valeurs de grotte deja existantes dans la bdd */
 						echo "<label style='display: block; width:170px; float:left;' for='idAuteur'>Auteur  </label>";
 						echo "<select name='idAuteur'>"; /* On cree une liste deroulante vide */
-						$requete='SELECT id,nom,prenom from Personne ORDER BY nom';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
+						$requete='SELECT id,initiale from Personne ORDER BY initiale';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
 						$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 						foreach ($value as $array) { /* On parcourt les resultats possibles */
 							echo "<option value=\"";

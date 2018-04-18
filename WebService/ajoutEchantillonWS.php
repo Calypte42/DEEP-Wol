@@ -136,6 +136,14 @@ if ($_REQUEST['nom']=='Valider et revenir au tableau des echantillons'){
 }else{
   echo "Il y a ".$nombreResultat." Taxonomie correspondante ! ";
 }
+
+if ($_REQUEST['nom']=='Valider et ajouter un nouvel échantillon'){
+  header("Refresh: 0; URL=../ajoutEchantillon.php?nomGrotte=".$_REQUEST['nomGrotte']."&idGrotte=".$_REQUEST['idGrotte']."&site=".$_REQUEST['site']."&idSite=".$_REQUEST['idSite']."&piege=".$_REQUEST['codePiege']);
+}
+
+if ($_REQUEST['nom']=='Valider et revenir au tableau des pieges'){
+  header("Refresh: 0; URL=../tableauPiege.php?nomGrotte=".$_REQUEST['nomGrotte']."&idGrotte=".$_REQUEST['idGrotte']."&site=".$_REQUEST['site']."&idSite=".$_REQUEST['idSite']."&piege=".$_REQUEST['codePiege']);
+}
 echo http_response_code();
 
 ?>
