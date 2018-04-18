@@ -162,12 +162,15 @@ include 'consultationModification.php';
 						</br>
 
 						<input type="submit" name="nom" value="Valider et ajouter un nouveau piège"> &nbsp;&nbsp;
-						<input type="submit" name="nom" value="Valider et ajouter un nouvel échantillon">&nbsp;&nbsp;
-						<input type="submit" name="nom" value="Valider et revenir au tableau des pièges">
 
-
-							</div>
+						<?php
+						if(isset($_REQUEST['idGrotte']) AND (isset($_REQUEST['idSite']))){
+							echo "<input type='submit' name='nom' value='Valider et ajouter un nouvel échantillon'>&nbsp;&nbsp";
+							echo "<input type='submit' name='nom' value='Valider et revenir au tableau des pièges'>";
+						}
+						?>
 						</div>
+				</div>
 					<!--</fieldset>-->
 				</p>
 				</form>

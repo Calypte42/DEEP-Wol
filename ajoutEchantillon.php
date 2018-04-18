@@ -352,8 +352,12 @@ include 'consultationModification.php';
 					</br></br>-->
 
 						<input type="submit" name="nom" value="Valider et ajouter un nouvel échantillon"> &nbsp;&nbsp;&nbsp;
-						<input type="submit" name="nom" value="Valider et revenir au tableau des échantillons">
 
+						<?php
+						if(isset($_REQUEST['idGrotte']) AND (isset($_REQUEST['idSite']))){
+							echo "<input type='submit' name='nom' value='Valider et revenir au tableau des échantillons'>";
+						}
+						?>
 						</div>
 					</div>
 					<!--</fieldset>-->

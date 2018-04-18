@@ -130,7 +130,11 @@ include 'consultationModification.php';
 							<input type="file" id ="photo" name="photo"/></br></br>
 
 							<input type="submit" name="nom" value="Valider et ajouter une nouvelle taxonomie">
-							<input type="submit" name='nom' value="Valider et revenir au tableau" />
+							<?php
+							if(isset($_REQUEST['idEchantillon'])){
+								echo "<input type='submit' name='nom' value='Valider et revenir au tableau'>";
+							}
+							?>
 
 						</div>
 					</div>

@@ -134,7 +134,12 @@ include 'consultationModification.php';
                   </br>
 
                   <input type="submit" name='nom' value="Valider et ajouter une nouvelle analyse" />
-                  <input type="submit" name='nom' value="Valider et revenir au tableau des analyses" />
+                  <?php
+      						if(isset($_REQUEST['idEchantillon'])){
+      							echo "<input type='submit' name='nom' value='Valider et revenir au tableau des analyses'>";
+      						}
+      						?>
+
               </div>
             </div>
     <!--</fieldset>-->
