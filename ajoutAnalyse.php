@@ -26,7 +26,7 @@ include 'consultationModification.php';
         </br>
 
         <!-- FORMULAIRE D'AJOUT D'UNE PCR -->
-        <form  id="ajoutPCR"  method="GET" action = "WebService/ajoutAnalyseWS.php"> <!-- reference au formulaire -->
+        <form  id="ajoutPCR"  method="POST" action = "WebService/ajoutAnalyseWS.php" enctype='multipart/form-data'> <!-- reference au formulaire -->
         <p> <!-- car balise input ou select ne peut pas etre imbriquee directement dans form -->
           <!--<fieldset class="scheduler-border">-->
             <legend class="scheduler-border"> Ajout d'une analyse </legend>
