@@ -60,11 +60,11 @@ if ($_REQUEST['nom']=='Valider et ajouter un nouveau site'){
   header("Refresh: 0; URL=../ajoutSite.php?idGrotte=".$_REQUEST['idGrotte']."&grotte=".$_REQUEST['grotte']);
 }
 
-if ($_REQUEST['nom']=='Valider et ajouter un nouveau piege'){
+if ($_REQUEST['nom']=='Valider et ajouter un nouveau piège'){
   header("Refresh:0; URL=../ajoutPiege.php?idGrotte=".$_REQUEST['idGrotte']."&nomGrotte=".$_REQUEST['grotte']."&idSite=$idSite&site=".$_REQUEST['numSite']);
 }
 
-if ($_REQUEST['nom']=='Valider et revenir au tableau'){
+if ($_REQUEST['nom']=='Valider et revenir au tableau des sites'){
   header("Refresh: 0; URL=../tableauSite.php?idGrotte=".$_REQUEST['idGrotte']."&grotte=".$_REQUEST['grotte']);
 }
 

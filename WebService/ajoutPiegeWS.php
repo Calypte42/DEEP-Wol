@@ -71,15 +71,15 @@ $req->execute(array(
 
 ));
 
-if ($_REQUEST['nom']=='Valider et ajouter un nouveau piege'){
+if ($_REQUEST['nom']=='Valider et ajouter un nouveau piège'){
   header("Refresh: 0; URL=../ajoutPiege.php?nomGrotte=".$_REQUEST['nomGrotte']."&idGrotte=".$_REQUEST['idGrotte']."&site=".$_REQUEST['site']."&idSite=".$_REQUEST['idSite']);
 }
 
-if ($_REQUEST['nom']=='Valider et ajouter un echantillon'){
+if ($_REQUEST['nom']=='Valider et ajouter une nouvel échantillon'){
   header("Refresh: 0; URL=../ajoutEchantillon.php?nomGrotte=".$_REQUEST['nomGrotte']."&idGrotte=".$_REQUEST['idGrotte']."&site=".$_REQUEST['site']."&idSite=".$_REQUEST['idSite']."&piege=".$_REQUEST['codePiege']);
 }
 
-if ($_REQUEST['nom']=='Valider et revenir au tableau des pieges'){
+if ($_REQUEST['nom']=='Valider et revenir au tableau des pièges'){
   header("Refresh: 0; URL=../tableauPiege.php?nomGrotte=".$_REQUEST['nomGrotte']."&idGrotte=".$_REQUEST['idGrotte']."&site=".$_REQUEST['site']."&idSite=".$_REQUEST['idSite']);
 }
 
