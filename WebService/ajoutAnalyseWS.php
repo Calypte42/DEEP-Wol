@@ -25,30 +25,25 @@ else {
 }
 
 // GESTION DES FASTA
-if(isset($_REQUEST['fasta'])){
-  if(empty($_REQUEST['fasta'])){
-    $fasta=null;
-  }else{
+if($_FILES['fasta']){
+    $nom = $_FILES['fasta']['name'];
 
+    if (preg_match("#.fasta$#i", $nom)) {
+        $n = $_REQUEST['numEchantillon'] . "_" . $_REQUEST['nomGene'] . "_" . $date . ".fasta";
+        move_uploaded_file($_FILES['fasta']['tmp_name'], "../files/".$n);
+        $fasta = "files/" . $n;
+    } else {
+        $fasta=null;
+    }
 
-  }
-
-}
-else{
+} else {
   $fasta=null;
 }
 
 // GESTION DES Electrophoregramme
-if(isset($_REQUEST['electrophoregramme'])){
-  if(empty($_REQUEST['electrophoregramme'])){
+if($_FILES['electrophoregramme']){
     $electrophoregramme=null;
-  }else{
-
-
-  }
-
-}
-else{
+} else {
   $electrophoregramme=null;
 }
 
@@ -63,12 +58,12 @@ $req->execute(array(
 
 ));
 
-if ($_REQUEST['nom']=='Valider et ajouter une nouvelle analyses'){
-  header("Refresh: 0; URL=../ajoutAnalyse.php?idEchantillon=".$_REQUEST['idEchantillon']."&numEchantillon=".$_REQUEST['numEchantillon']."&nomGrotte=".$_REQUEST['nomGrotte']."&idGrotte=".$_REQUEST['idGrotte']."&site=".$_REQUEST['site']."&idSite=".$_REQUEST['idSite']."&piege=".$_REQUEST['piege']);
+if ($_REQUEST['nom']=='Valider et ajouter une nouvelle analyse'){
+  //header("Refresh: 0; URL=../ajoutAnalyse.php?idEchantillon=".$_REQUEST['idEchantillon']."&numEchantillon=".$_REQUEST['numEchantillon']."&nomGrotte=".$_REQUEST['nomGrotte']."&idGrotte=".$_REQUEST['idGrotte']."&site=".$_REQUEST['site']."&idSite=".$_REQUEST['idSite']."&piege=".$_REQUEST['piege']);
 }
 
-if ($_REQUEST['nom']=='Valider et revenir au tableau'){
-  header("Refresh: 5; URL=../tableauAnalyse.php?idEchantillon=".$_REQUEST['idEchantillon']."&numEchantillon=".$_REQUEST['numEchantillon']."&nomGrotte=".$_REQUEST['nomGrotte']."&idGrotte=".$_REQUEST['idGrotte']."&site=".$_REQUEST['site']."&idSite=".$_REQUEST['idSite']."&piege=".$_REQUEST['piege']);
+if ($_REQUEST['nom']=='Valider et revenir au tableau des analyses'){
+  //header("Refresh: 5; URL=../tableauAnalyse.php?idEchantillon=".$_REQUEST['idEchantillon']."&numEchantillon=".$_REQUEST['numEchantillon']."&nomGrotte=".$_REQUEST['nomGrotte']."&idGrotte=".$_REQUEST['idGrotte']."&site=".$_REQUEST['site']."&idSite=".$_REQUEST['idSite']."&piege=".$_REQUEST['piege']);
 }
 
 echo http_response_code();

@@ -53,7 +53,11 @@ foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
         if(empty($resultat)){
           echo "<td>Non renseigné</td>";
           }else{
-        echo "<td>$resultat</td> ";
+                  if ($cle=='fasta'){
+                      echo "<td><a href='$resultat'>fichier fasta</a></td> ";
+                  }else{
+                      echo "<td>$resultat</td> ";
+                  }
       }
 
     }}
@@ -98,7 +102,11 @@ echo "</table>";
            if(empty($resultat)){
              echo "<td>Non renseigné</td>";
              }else{
-           echo "<td>$resultat</td> ";
+                 if ($cle=='fasta'){
+                     echo "<td><a href='$resultat'>fichier fasta</a></td> ";
+                 }else{
+                     echo "<td>$resultat</td> ";
+                 }
          }
 
        }}

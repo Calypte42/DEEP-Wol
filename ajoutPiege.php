@@ -50,7 +50,7 @@ include 'consultationModification.php';
 							$value=requete($bdd,$requete);
 							foreach ($value as $array) {
 								foreach ($array as $key => $valeur) {
-									if($valeur==$Retour){
+									if($valeur==$RetourNomGrotte){
 										echo "<option selected value=\"$RetourNomGrotte\">$RetourNomGrotte</option>";
 									}else{
 										echo "<option value=\"$valeur\">$valeur</option>";}
@@ -68,7 +68,7 @@ include 'consultationModification.php';
 							$value=requete($bdd,$requete);
 							foreach ($value as $array) {
 								foreach ($array as $key => $valeur) {
-									if($valeur==$Retour){
+									if($valeur==$RetourNomSite){
 										echo "<option selected value=\"$RetourNomSite\">$RetourNomSite</option>";
 									}else{
 										echo "<option value=\"$valeur\">$valeur</option>";}
