@@ -34,12 +34,12 @@ INSERT INTO Piege (codePiege,codeEquipeSpeleo,IdSite)
 INSERT INTO Piege (codePiege,codeEquipeSpeleo,IdSite)
     VALUES ('P112','Equipe1',2);
 
-INSERT INTO Personne(nom,prenom)
-    VALUES ('Lengrand','Aurelien');
-INSERT INTO Personne(nom,prenom)
-    VALUES ('Charpentier','Sofian');
-INSERT INTO Personne(nom,prenom)
-    VALUES ('Masclef','Diane');
+INSERT INTO Personne(initiale)
+    VALUES ('L A');
+INSERT INTO Personne(initiale)
+    VALUES ('C S');
+INSERT INTO Personne(initiale)
+    VALUES ('M D');
 
 INSERT INTO Taxonomie (classe)
     VALUES ('Collembola');

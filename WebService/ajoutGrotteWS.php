@@ -35,7 +35,7 @@ if ($_REQUEST['nom']=='Valider et ajouter un site'){
   header("Refresh: 0; URL=../ajoutSite.php?idGrotte=$idGrotte&grotte=".$_REQUEST['nomGrotte']);
 }
 
-if ($_REQUEST['nom']=='Valider et revenir au tableau'){
+if ($_REQUEST['nom']=='Valider et revenir au tableau des grottes'){
   header('Refresh: 0; URL=../tableauGrotte.php');
 }
 

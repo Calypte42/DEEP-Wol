@@ -9,19 +9,23 @@ include 'consultationModification.php';
 
       <div class= "col-sm-10">
         <?php
-        $RetourNomGrotte=$_REQUEST['nomGrotte'];
-        $RetourIdGrotte=$_REQUEST['idGrotte'];
-        $RetourNomSite=$_REQUEST['site'];
-        $RetourIdSite=$_REQUEST['idSite'];
-        $RetourPiege=$_REQUEST['piege'];
-        $RetourEchantillon=$_REQUEST['numEchantillon'];
-        $RetourIdEchantillon=$_REQUEST['idEchantillon'];
+        if(isset($_REQUEST['idEchantillon'])){
+          $RetourNomGrotte=$_REQUEST['nomGrotte'];
+          $RetourIdGrotte=$_REQUEST['idGrotte'];
+          $RetourNomSite=$_REQUEST['site'];
+          $RetourIdSite=$_REQUEST['idSite'];
+          $RetourPiege=$_REQUEST['piege'];
+          $RetourEchantillon=$_REQUEST['numEchantillon'];
+          $RetourIdEchantillon=$_REQUEST['idEchantillon'];
 
         echo "<form method='POST' action='tableauAnalyse.php?idEchantillon=$RetourIdEchantillon&numEchantillon=$RetourEchantillon&piege=$RetourPiege&nomGrotte=$RetourNomGrotte
         &idGrotte=$RetourIdGrotte&site=$RetourNomSite&idSite=$RetourIdSite'>";
+        echo "<input type='submit' value='Revenir au tableau des analyses' />";
+        echo "</form>";
+        }
         ?>
-        <input type='submit' value='Revenir au tableau des analyses' />
-        </form>
+      <!--  <input type='submit' value='Revenir au tableau des analyses' />
+      </form>-->
 
         </br>
 
@@ -33,14 +37,41 @@ include 'consultationModification.php';
             <div class="control-group">
               <div class="controls bootstrap-timepicker">
 
-                <?php echo "Pour l'échantillon : $RetourEchantillon";
-                echo "<input type='hidden' name='nomGrotte' value='$RetourNomGrotte' />";
-                echo "<input type='hidden' name='idGrotte' value='$RetourIdGrotte' />";
-                echo "<input type='hidden' name='site' value='$RetourNomSite' />";
-                echo "<input type='hidden' name='idSite' value='$RetourIdSite' />";
-                echo "<input type='hidden' name='piege' value='$RetourPiege' />";
-                echo "<input type='hidden' name='numEchantillon' value='$RetourEchantillon' />";
-                echo "<input type='hidden' name='idEchantillon' value='$RetourIdEchantillon' />";
+                <?php
+                if(isset($_REQUEST['idEchantillon'])){
+                  echo "<label style='display: block; width:115px; float:left;' for='idEchantillon'>Echantillon </label>";
+                  /*echo "Pour l'échantillon : $RetourEchantillon";*/
+                  echo "<input type='hidden' name='nomGrotte' value='$RetourNomGrotte' />";
+                  echo "<input type='hidden' name='idGrotte' value='$RetourIdGrotte' />";
+                  echo "<input type='hidden' name='site' value='$RetourNomSite' />";
+                  echo "<input type='hidden' name='idSite' value='$RetourIdSite' />";
+                  echo "<input type='hidden' name='piege' value='$RetourPiege' />";
+                  echo "<input type='hidden' name='numEchantillon' value='$RetourEchantillon' />";
+                  echo "<input type='hidden' name='idEchantillon' value='$RetourIdEchantillon' />";
+                  echo "<select name='numEchantillon'>";
+                  $requete='SELECT numEchantillon from echantillon ORDER BY numEchantillon';
+                  $value=requete($bdd,$requete);
+                  foreach ($value as $array) {
+                    foreach ($array as $key => $valeur) {
+                      if($valeur==$RetourEchantillon){
+                        echo "<option selected value=\"$RetourEchantillon\">$RetourEchantillon</option>";
+                      }else{
+                        echo "<option value=\"$valeur\">$valeur</option>";}
+                    }
+                  }
+                  echo "</select>";
+                } else {
+                  echo "<label style='display: block; width:115px; float:left;' for='numEchantillon'> Echantillon </label>";
+                  echo "<select name='numEchantillon'>";
+                  $requete='SELECT numEchantillon from echantillon ORDER BY numEchantillon';
+                  $value=requete($bdd,$requete);
+                  foreach ($value as $array) {
+                    foreach ($array as $key => $valeur) {
+                      echo "<option value=\"$valeur\">$valeur</option>";
+                    }
+                  }
+                  echo "</select>";
+                }
                 ?>
 
                 </br></br>
@@ -103,7 +134,12 @@ include 'consultationModification.php';
                   </br>
 
                   <input type="submit" name='nom' value="Valider et ajouter une nouvelle analyse" />
-                  <input type="submit" name='nom' value="Valider et revenir au tableau des analyses" />
+                  <?php
+      						if(isset($_REQUEST['idEchantillon'])){
+      							echo "<input type='submit' name='nom' value='Valider et revenir au tableau des analyses'>";
+      						}
+      						?>
+
               </div>
             </div>
     <!--</fieldset>-->

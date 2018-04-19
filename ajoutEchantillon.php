@@ -11,7 +11,7 @@ include 'consultationModification.php';
 			<div class= "col-sm-10">
 
 			<?php
-			if(isset($_REQUEST['idGrotte']) AND (isset($_REQUEST['idSite'])) AND (isset($_REQUEST['piege']))){
+			if(isset($_REQUEST['idGrotte']) AND (isset($_REQUEST['idSite']))){
 				$RetourNomGrotte=$_REQUEST['nomGrotte'];
 				$RetourIdGrotte=$_REQUEST['idGrotte'];
 				$RetourNomSite=$_REQUEST['site'];
@@ -37,24 +37,118 @@ include 'consultationModification.php';
 						<div class="controls bootstrap-timepicker">
 
 						<?php
-						/* on veut recuperer les valeurs de grotte deja existantes dans la bdd */
-						echo "<label for='grotte'>Dans la $RetourNomGrotte </label>";
-						echo "<input type='hidden' value=$RetourIdGrotte name='idGrotte'>"; /* On cree une liste deroulante vide */
-						echo "<input type='hidden' value=$RetourNomGrotte name='nomGrotte'>";
+						if(isset($_REQUEST['idGrotte']) AND (isset($_REQUEST['idSite']))){
+							echo "<label style='display: block; width:170px; float:left;' for='idGrotte'>Dans la grotte </label>";
+							echo "<input type='hidden' name='idGrotte' value=$RetourIdGrotte>";
+							echo "<input type='hidden' name='nomGrotte' value=$RetourNomGrotte>";
+							echo "<select name='nomGrotte'>";
+							$requete='SELECT NomCavite from Grotte ORDER BY NomCavite';
+							$value=requete($bdd,$requete);
+							foreach ($value as $array) {
+								foreach ($array as $key => $valeur) {
+									if($valeur==$RetourNomGrotte){
+										echo "<option selected value=\"$RetourNomGrotte\">$RetourNomGrotte</option>";
+									}else{
+										echo "<option value=\"$valeur\">$valeur</option>";}
+								}
+							}
+							echo "</select></br></br>";
+
+						/* rajout menu déroulant site avec site sélectionné auparavant */
+
+							echo "<label style='display: block; width:170px; float:left;' for='idSite'>Dans le site </label>";
+							echo "<input type='hidden' name='idSite' value=$RetourIdSite>";
+							echo "<input type='hidden' name='site' value=$RetourNomSite>";
+							echo "<select name='site'>";
+							$requete='SELECT numsite from Site ORDER BY numsite';
+							$value=requete($bdd,$requete);
+							foreach ($value as $array) {
+								foreach ($array as $key => $valeur) {
+									if($valeur==$RetourNomSite){
+										echo "<option selected value=\"$RetourNomSite\">$RetourNomSite</option>";
+									}else{
+										echo "<option value=\"$valeur\">$valeur</option>";}
+								}
+							}
+							echo "</select></br></br>";
+
+							/* rajout menu déroulant piege avec piege sélectionné auparavant */
+							echo "<label style='display: block; width:170px; float:left;' for='Piege'>Dans le piège </label>";
+							/*echo "<input type='hidden' name='idSite' value=$RetourIdSite>";*/
+							echo "<input type='hidden' name='piege' value=$RetourPiege>";
+							echo "<select name='piege'>";
+							$requete='SELECT codepiege from piege ORDER BY codepiege';
+							$value=requete($bdd,$requete);
+							foreach ($value as $array) {
+								foreach ($array as $key => $valeur) {
+									if($valeur==$RetourPiege){
+										echo "<option selected value=\"$RetourPiege\">$RetourPiege</option>";
+									}else{
+										echo "<option value=\"$valeur\">$valeur</option>";}
+								}
+							}
+							echo "</select></br></br>";
+						}else {
+
+						/* rajout menu déroulant grotte  */
+
+							echo "<label style='display: block; width:170px; float:left;' for='Grotte'> Grotte </label>";
+							echo "<select name='nomGrotte'>";
+							$requete='SELECT NomCavite from Grotte ORDER BY NomCavite';
+							$value=requete($bdd,$requete);
+							foreach ($value as $array) {
+								foreach ($array as $key => $valeur) {
+									echo "<option value=\"$valeur\">$valeur</option>";
+								}
+							}
+							echo "</select></br></br>";
+
+						/* rajout menu déroulant site  */
+
+							echo "<label style='display: block; width:170px; float:left;' for='Site'> Site </label>";
+							echo "<select name='numSite'>";
+							$requete='SELECT numSite from Site ORDER BY numSite';
+							$value=requete($bdd,$requete);
+							foreach ($value as $array) {
+								foreach ($array as $key => $valeur) {
+									echo "<option value=\"$valeur\">$valeur</option>";
+								}
+							}
+							echo "</select></br></br>";
+
+						/* rajout menu déroulant piege  */
+
+							echo "<label style='display: block; width:170px; float:left;' for='Piege'> Piege </label>";
+							echo "<select name='codePiege'>";
+							$requete='SELECT codePiege from Piege ORDER BY codePiege';
+							$value=requete($bdd,$requete);
+							foreach ($value as $array) {
+								foreach ($array as $key => $valeur) {
+									echo "<option value=\"$valeur\">$valeur</option>";
+								}
+							}
+							echo "</select>";
+						}
+						?>
+
+						<!-- on veut recuperer les valeurs de grotte deja existantes dans la bdd */
+					/*	echo "<label for='grotte'>Dans la $RetourNomGrotte </label>";
+							echo "<input type='hidden' value=$RetourIdGrotte name='idGrotte'>";
+							echo "<input type='hidden' value=$RetourNomGrotte name='nomGrotte'>";
 						?>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<?php
-						/* on veut recuperer les valeurs de numero de site deja existantes dans la bdd */
+
+
+						on veut recuperer les valeurs de numero de site deja existantes dans la bdd
 						echo "<label for='numSite'>Numéro du $RetourNomSite </label>";
-						echo "<input type='hidden' value=$RetourIdSite name='idSite'>"; /* On cree une liste deroulante vide */
+						echo "<input type='hidden' value=$RetourIdSite name='idSite'>";
 						echo "<input type='hidden' value=$RetourNomSite name='site'>";
-						?>
+
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<?php
-						/* on veut recuperer les valeurs de code de piege deja existantes dans la bdd */
+
+
 						echo "<label for='codePiege'>Piège $RetourPiege </label>";
-						echo "<input type='hidden' name='codePiege' value=$RetourPiege>"; /* On cree une liste deroulante vide */
-						?>
+						echo "<input type='hidden' name='codePiege' value=$RetourPiege>"; -->
 
 						<br/><br/>
 
@@ -123,7 +217,7 @@ include 'consultationModification.php';
 												echo "<option value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
 											}
 										}
-										
+
 										echo "</select>";
 										?>
 
@@ -230,7 +324,7 @@ include 'consultationModification.php';
 						/* on veut recuperer les valeurs de grotte deja existantes dans la bdd */
 						echo "<label style='display: block; width:170px; float:left;' for='idAuteur'>Auteur  </label>";
 						echo "<select name='idAuteur'>"; /* On cree une liste deroulante vide */
-						$requete='SELECT id,nom,prenom from Personne ORDER BY nom';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
+						$requete='SELECT id,initiale from Personne ORDER BY initiale';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
 						$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 						foreach ($value as $array) { /* On parcourt les resultats possibles */
 							echo "<option value=\"";
@@ -251,15 +345,19 @@ include 'consultationModification.php';
 
 						</br></br>
 
-						<input type = "button" id="affichageAjoutPCR" value = "ajouter une PCR">
+					<!--	<input type = "button" id="affichageAjoutPCR" value = "ajouter une PCR">
 						&nbsp;&nbsp;&nbsp;
 						<input style="margin-left:15px;" type = "button" id="affichageAjoutqPCR" value = "ajouter une qPCR">
 
-						</br></br>
+					</br></br>-->
 
 						<input type="submit" name="nom" value="Valider et ajouter un nouvel échantillon"> &nbsp;&nbsp;&nbsp;
-						<input type="submit" name="nom" value="Valider et revenir au tableau des échantillons">
 
+						<?php
+						if(isset($_REQUEST['idGrotte']) AND (isset($_REQUEST['idSite']))){
+							echo "<input type='submit' name='nom' value='Valider et revenir au tableau des échantillons'>";
+						}
+						?>
 						</div>
 					</div>
 					<!--</fieldset>-->

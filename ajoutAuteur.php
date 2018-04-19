@@ -11,12 +11,10 @@ include 'consultationModification.php';
 		<fieldset>
 		<legend>Ajout d'un auteur</legend>
 		</br>
-			<form  id="ajoutSystemeHydrographique"  method="GET" action="WebService/ajoutAuteurWS.php">
+			<form  id="ajoutAuteur"  method="GET" action="WebService/ajoutAuteurWS.php">
 				<label>nom</label>
-				<input type="text" id ="nomAuteur" name="nomAuteur" size="50"/></br></br>
+				<input type="text" id ="initialeAuteur" name="initialeAuteur" size="10"/></br></br>
 
-				<label>prénom</label>
-				<input type="text" id ="prenomAuteur" name="prenomAuteur" size = "50"/></br></br>
 			</form>
 		</fieldset>
 <?php

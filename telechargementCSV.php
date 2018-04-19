@@ -2,7 +2,7 @@
 include 'BDD/bdd.php';
 $bdd=connexionbd();
 
-
+if($_REQUEST['extraire']=='Telecharger CSV'){
 // Paramétrage de l'écriture du futur fichier CSV
 $chemin = './fichierTest.csv';
 $fichier = 'fichierTest.csv';
@@ -174,4 +174,13 @@ header('Content-disposition: attachment; filename="' . $fichier . '"');
 header('Content-type: application/octetstream');
 
 readfile($fichier);
+}
+if($_REQUEST['extraire']=='Telecharger Fasta'){
+/* code pour concatener deux fichier
+ $fichier1 = 'fichier_1.txt';
+ $fichier2 = 'fichier_2.txt';
+
+ $data = file_get_contents($fichier2);
+ file_put_contents($fichier1, $data, FILE_APPEND);*/
+}
 ?>

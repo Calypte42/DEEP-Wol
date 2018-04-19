@@ -111,9 +111,12 @@ include 'consultationModification.php';
 					</br>
 
 					<input type="submit" name="nom" value="Valider et ajouter un nouveau site"> &nbsp;&nbsp;
-					<input type="submit" name="nom" value="Valider et ajouter un nouveau piège">&nbsp;&nbsp;
-					<input type="submit" name="nom" value="Valider et revenir au tableau des sites">
-
+					<?php
+					if(isset($_REQUEST['idGrotte'])){
+						echo "<input type='submit' name='nom' value='Valider et ajouter un nouveau piège'>&nbsp;&nbsp";
+						echo "<input type='submit' name='nom' value='Valider et revenir au tableau des sites'>";
+					}
+					?>
 
 						</div>
 					</div>

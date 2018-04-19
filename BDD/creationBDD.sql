@@ -56,8 +56,7 @@ create table Piege (
 
 create table Personne (
     id SERIAL PRIMARY KEY,
-    nom varchar(50) NOT NULL,
-    prenom varchar(50)
+    initiale varchar(4)
 );
 
 create table Taxonomie (
@@ -149,7 +148,15 @@ create table Compte (
 );
 
 CREATE VIEW V_Echantillon_AvecTaxo AS
-SELECT numEchantillon,formeStockage,lieuStockage,niveauIdentification,infecteBacterie,nombreIndividu,piege.codepiege,datepose,heurepose,daterecup,heurerecup,probleme,datetri,profondeur,temperature,typesol,numsite,distanceentree,presenceeau,nomcavite,typecavite,latitude,longitude,typeacces,accespublic,sys.nom AS nomSystemeHydrographique,departement,classe,ordre,famille,sousfamille,genre,espece,photo,p.nom AS nomAuteur,p.prenom AS prenomAuteur from Echantillon e, Taxonomie t, Personne p, Piege piege, Site site, Grotte grotte, systemeHydrographique sys WHERE (e.idTaxonomie=t.id) AND (e.idAuteur=p.id) AND (e.codePiege=piege.codePiege) AND (piege.idSite=site.id) AND (site.idGrotte=grotte.id) AND (grotte.idSystemeHydrographique=sys.id);
+SELECT numEchantillon,formeStockage,lieuStockage,niveauIdentification,infecteBacterie,nombreIndividu,piege.codepiege,datepose,heurepose,daterecup,heurerecup,probleme,datetri,profondeur,temperature,typesol,numsite,distanceentree,presenceeau,nomcavite,typecavite,latitude,longitude,typeacces,accespublic,sys.nom AS nomSystemeHydrographique,departement,classe,ordre,famille,sousfamille,genre,espece,photo,p.initiale AS initialeAuteur from Echantillon e, Taxonomie t, Personne p, Piege piege, Site site, Grotte grotte, systemeHydrographique sys WHERE (e.idTaxonomie=t.id) AND (e.idAuteur=p.id) AND (e.codePiege=piege.codePiege) AND (piege.idSite=site.id) AND (site.idGrotte=grotte.id) AND (grotte.idSystemeHydrographique=sys.id);
+
+/*
+CREATE VIEW V_Fasta AS
+SELECT pcr.fasta AS fastaPCR,qpcr.fasta as fastaQPCR from
+  PCR pcr, qPCR qpcr, Gene g,Echantillon e, Taxonomie t, Personne p, Piege piege, Site site, Grotte grotte, systemeHydrographique sys
+ WHERE (e.idTaxonomie=t.id) AND (e.idAuteur=p.id) AND (e.codePiege=piege.codePiege) AND (piege.idSite=site.id) AND (site.idGrotte=grotte.id) AND (grotte.idSystemeHydrographique=sys.id) AND (pcr.idEchantillon=e.id) AND (qpcr.idEchantillon=e.id) AND (g.nom=pcr.nomGene) AND (g.nom=qpcr.nomGene);
+*/
+
 
 /*
 CREATE VIEW V_Echantillon_SansTaxo

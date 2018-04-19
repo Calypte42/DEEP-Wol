@@ -50,7 +50,7 @@ include 'consultationModification.php';
 							$value=requete($bdd,$requete);
 							foreach ($value as $array) {
 								foreach ($array as $key => $valeur) {
-									if($valeur==$Retour){
+									if($valeur==$RetourNomGrotte){
 										echo "<option selected value=\"$RetourNomGrotte\">$RetourNomGrotte</option>";
 									}else{
 										echo "<option value=\"$valeur\">$valeur</option>";}
@@ -68,7 +68,7 @@ include 'consultationModification.php';
 							$value=requete($bdd,$requete);
 							foreach ($value as $array) {
 								foreach ($array as $key => $valeur) {
-									if($valeur==$Retour){
+									if($valeur==$RetourNomSite){
 										echo "<option selected value=\"$RetourNomSite\">$RetourNomSite</option>";
 									}else{
 										echo "<option value=\"$valeur\">$valeur</option>";}
@@ -162,12 +162,15 @@ include 'consultationModification.php';
 						</br>
 
 						<input type="submit" name="nom" value="Valider et ajouter un nouveau piège"> &nbsp;&nbsp;
-						<input type="submit" name="nom" value="Valider et ajouter un nouvel échantillon">&nbsp;&nbsp;
-						<input type="submit" name="nom" value="Valider et revenir au tableau des pièges">
 
-
-							</div>
+						<?php
+						if(isset($_REQUEST['idGrotte']) AND (isset($_REQUEST['idSite']))){
+							echo "<input type='submit' name='nom' value='Valider et ajouter un nouvel échantillon'>&nbsp;&nbsp";
+							echo "<input type='submit' name='nom' value='Valider et revenir au tableau des pièges'>";
+						}
+						?>
 						</div>
+				</div>
 					<!--</fieldset>-->
 				</p>
 				</form>
