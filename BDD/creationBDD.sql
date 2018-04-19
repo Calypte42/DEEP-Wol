@@ -35,7 +35,7 @@ create table Site (
     CONSTRAINT idGrotte_FK FOREIGN KEY (idGrotte)
         REFERENCES Grotte (id),
     CONSTRAINT codeEquipeSpeleo_FK FOREIGN KEY (codeEquipeSpeleo)
-        REFERENCES EquipeSpeleo(codeEquipe)
+        REFERENCES EquipeSpeleo(codeEquipe) ON UPDATE CASCADE
 );
 
 create table Piege (
@@ -49,7 +49,7 @@ create table Piege (
     codeEquipeSpeleo varchar(20) NOT NULL,
     IdSite int NOT NULL,
     CONSTRAINT EquipeSpeleo_FK FOREIGN KEY (codeEquipeSpeleo)
-        REFERENCES EquipeSpeleo (codeEquipe),
+        REFERENCES EquipeSpeleo (codeEquipe) ON UPDATE CASCADE,
     CONSTRAINT site_FK FOREIGN KEY (IdSite)
         REFERENCES Site (id)
 );
@@ -85,7 +85,7 @@ create table Echantillon (
     nombreIndividu int,
     CONSTRAINT nbrIndividu_0 CHECK (nombreIndividu >=0),
     CONSTRAINT codePiege_FK FOREIGN KEY (codePiege)
-        REFERENCES Piege (codePiege),
+        REFERENCES Piege (codePiege) ON UPDATE CASCADE,
     CONSTRAINT idAuteur_FK FOREIGN KEY (idAuteur)
         REFERENCES Personne (id),
     CONSTRAINT idTaxonomie_FK FOREIGN KEY (idTaxonomie)
@@ -106,9 +106,9 @@ create table CorrespondanceGeneBacterie (
     nomGene varchar(20) NOT NULL,
     clade varchar(1) NOT NULL,
     CONSTRAINT nomGene_FK FOREIGN KEY (nomGene)
-        REFERENCES Gene(nom),
+        REFERENCES Gene(nom) ON UPDATE CASCADE,
     CONSTRAINT clade_FK FOREIGN KEY (clade)
-        REFERENCES Bacterie (clade)
+        REFERENCES Bacterie (clade) ON UPDATE CASCADE
 );
 
 create table PCR (
@@ -122,7 +122,7 @@ create table PCR (
     CONSTRAINT idEchantillon_FK FOREIGN KEY (idEchantillon)
         REFERENCES Echantillon (id),
     CONSTRAINT nomGene_FK FOREIGN KEY (nomGene)
-        REFERENCES Gene (nom),
+        REFERENCES Gene (nom) ON UPDATE CASCADE,
     CONSTRAINT PCR_dateEchantillonGene_UNIQUE UNIQUE (datePCR,idEchantillon,nomGene)
 );
 
@@ -137,7 +137,7 @@ create table qPCR (
     CONSTRAINT idEchantillon_FK FOREIGN KEY (idEchantillon)
         REFERENCES Echantillon (id),
     CONSTRAINT nomGene_FK FOREIGN KEY (nomGene)
-        REFERENCES Gene (nom),
+        REFERENCES Gene (nom) ON UPDATE CASCADE,
     CONSTRAINT qPCR_dateEchantillonGene_UNIQUE UNIQUE (dateqPCR,idEchantillon,nomGene)
 );
 
