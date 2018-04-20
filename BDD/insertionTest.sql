@@ -43,7 +43,10 @@ INSERT INTO Personne(initiale)
 
 INSERT INTO Taxonomie (classe)
     VALUES ('Collembola');
-
+/*
+INSERT INTO Taxonomie (classe,ordre)
+    VALUES ('Collembola','Poduromorpha'),('Collembola','Entomobryomorpha'),('Collembola','Neelipleona'),('Collembola','Symphypleona');
+*/
 INSERT INTO Echantillon (numEchantillon,formeStockage,lieuStockage,codePiege,nombreIndividu,idTaxonomie,idAuteur)
 SELECT 'Individu1','Individu entier','Montpellier','P111',1,t.id,1 FROM Taxonomie t WHERE t.classe='Collembola';
 INSERT INTO Echantillon (numEchantillon,formeStockage,lieuStockage,codePiege,nombreIndividu,idTaxonomie,idAuteur)

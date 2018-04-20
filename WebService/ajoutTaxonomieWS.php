@@ -2,7 +2,7 @@
 // ne fonctionne pas avec les photos pour le moments
 include '../BDD/bdd.php';
 $bdd = connexionbd();
-
+echo $_REQUEST['classeTaxo'];
 if(!empty($_REQUEST['classeTaxo'])){
   $req = $bdd->prepare('INSERT INTO Taxonomie (classe)
     VALUES (:classe);');

@@ -219,7 +219,7 @@ include 'HTML/entete.html';
 
 				echo"<select multiple name='echantillon[]'>";
 				echo "<option selected = 'selected' value=''>Tous</option>";
-			      $requete='SELECT numEchantillon from Echantillon ORDER BY numEchantillon';  /*   */
+			      $requete='SELECT DISTINCT numEchantillon from Echantillon ORDER BY numEchantillon';  /*   */
 			      $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 			      foreach ($value as $array) {
 				foreach ($array as $key => $valeur) {
@@ -247,7 +247,7 @@ include 'HTML/entete.html';
 
           echo"<select multiple name='".$nomBase."[]'>";
           echo "<option selected = 'selected' value=''>Tous</option>";
-              $requete="SELECT $nomBase from Taxonomie ORDER BY $nomBase";  /*   */
+              $requete="SELECT DISTINCT $nomBase from Taxonomie ORDER BY $nomBase";  /*   */
               $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
               foreach ($value as $array) {
           foreach ($array as $key => $valeur) {
