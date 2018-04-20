@@ -2,7 +2,7 @@
 /*.row {
     margin-bottom: 15px;  marge avec l'élément en dessous
 }*/
-/* pour visualisation des boîtes bootstrap
+/* pour visualisation des boîtes bootstrap*/
 .row [class^="col-"] {
     padding-top: 10px;
     padding-bottom: 10px;
@@ -10,13 +10,13 @@
     border: 1px solid #ddd;
     background-color: rgba(86,61,124,.15);
     border: 1px solid rgba(86,61,124,.2);
-}*/
+}
 
 /* login */
 
 #authentification {
-	padding: 25px;
-	position: center;
+	padding: 50px;
+	/*position: center;*/
 }
 
 h4 {
@@ -159,9 +159,9 @@ h4 {
 
 /* FIELDSET */
 
-#formulaire{
+/*#formulaire{
 	padding-left: 15px;
-}
+}*/
 
 
 fieldset
@@ -246,8 +246,8 @@ body, html {
 	color: #ffffff;
 	background:#000000;
 }*/
-
+/*
 .container{
 	position: relative;
 	display: inline-block;
-}
+}*/

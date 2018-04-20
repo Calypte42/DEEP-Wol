@@ -7,28 +7,35 @@ $bdd=connexionbd();
 <?php
 include 'verificationConnexion.php';
 include 'HTML/entete.html';
-
-
 ?>
 
-<h2> Voici la page d'extraction des données des échantillons</h2></br>
-<div class="container">
-<p>
+<!--<h2> Voici la page d'extraction des données des échantillons</h2></br>-->
+<div class="container-fluid" style="margin-top:70px;">
+  <div class="row">
+    <div class="col-sm-12">
+<!--<p>
   Tout d'abord selectionner les élements que vous voulez voir apparaitre dans le tableau de résultat
   puis appliquer les filtres desire en selectionnant les grottes, sites et pieges qui vous interessent !
-</p>
-        <form id="formulaire" method="GET" action="telechargementCSV.php">
-          <label for="choixExtraction">Quel type de donnees souhaitez vous extraire: </label>
-          <select name="choixExtraction">
-            <option value="CSV">Données : Format CSV </option>
-            <option value="Fasta">Données Génétique : Format Fasta</option>
-          </select>
+</p>-->
+      <form id="formulaire" method="GET" action="telechargementCSV.php">
+        <label for="choixExtraction">Type de données à extraire</label>
+        <select name="choixExtraction">
+          <option value="CSV">Données : Format CSV </option>
+          <option value="Fasta">Données Génétique : Format Fasta</option>
+        </select>
+      </div>
+    </div>
 
-          <div id="disparaitreSiFasta">
+      <div id="disparaitreSiFasta">
+        <div class="row">
+          <div class="col-sm-12" style="margin-top:20px; margin-bottom:10px;">
+            <h4 style="border-bottom: 1px solid; border-top: 1px solid; padding-top:10px;">Choix des attributs </h4>
+          <!--<h3> A enlever : Sofian il faudrait si possible que quand on clique sur tout tout ce coche et une fonction verifie que au moins un element est coche avant de valider</h3>-->
+          </div>
+        </div>
 
-            <legend>Choix des colonnes </legend>
-            <h3> A enlever : Sofian il faudrait si possible que quand on clique sur tout tout ce coche et une fonction verifie que au moins un element est coche avant de valider</h3>
-
+        <div class="row">
+          <div class="col-sm-2 col-sm-offset-4">
             <?php
             $listeAttributGrotte = array('nomcavite'=>'Nom Cavite','typecavite'=>'Type de cavite','latitude'=>'Latitude','longitude'=>'Longitude','typeacces'=>'Type d\'acces','accespublic'=> 'Acces au public','nomSystemeHydrographique'=>'Nom du systeme hydrographique','departement'=>'Departement');
             $listeAttributSite = array('profondeur'=>'Profondeur','temperature'=>"Temperature",'typesol'=>'Type de sol','numsite'=>'Numero du site','distanceentree'=>'Distance a l\'entre','presenceeau'=>'Presence d\'eau');
@@ -36,65 +43,70 @@ include 'HTML/entete.html';
             $listeAttributEchantillon = array('numEchantillon'=>'Numero de l\'echantillon','formeStockage'=>'Forme de stockage','lieuStockage'=>'Lieu de stockage','niveauIdentification'=>'Niveau d\'identification','infecteBacterie'=>'Infecte par bacterie','nombreindividu'=>'Nombre d\'individu','classe'=>'Classe','ordre'=>'Ordre','famille'=>'Famille','sousfamille'=>'Sous-famille','genre'=>'Genre','espece'=>'Espece','photo'=>'Photo','initialeAuteur'=>'Initial de l\'auteur');
 
             /*echo"<div class='container'>";*/
-            echo "<input type='button' id='boutonToutSelectionner' value='Tout selectionner'> &nbsp;";
+            echo "<input type='button' id='boutonToutSelectionner' value='Tout selectionner'>";
+          echo "</div>";
+          echo "<div class='col-sm-2'>";
             echo "<input type='button' id='boutonToutDeselectionner' value='Tout deselectionner'>";
+          echo "</div>";
+        echo "</div>";
 
-            echo"<div class='row'>";
 
-                echo"<div class='col-lg-6'>";
-                echo "<fieldset style='border:none;'>";
-                echo "<legend> Attributs des echantillons</legend>";
-                echo "<input type='button' value='Tout deselectionner' id='deselectionEchantillon'/>";
-                echo "<input type='button' value='Tout selectionner' id='selectionEchantillon'/>";
-                foreach ($listeAttributEchantillon as $key => $value) {
-                  echo "<label for=$key>$value</label>";
-                  echo "<input type='checkbox' name='listeItem[]' id=$key value=$key>";
-                }
-                echo"</fieldset>";
-                  echo"</div>";
+        echo"<div class='row'>";
+          echo"<div class='col-sm-6'>";
+            echo "<fieldset style='border:none;'>";
+            echo "<legend style='text-align:center;'> Attributs des echantillons</legend>";
+            echo "<input style='margin-left:40px; margin-right:95px;' type='button' value='Tout selectionner' id='selectionEchantillon'/>";
+            echo "<input type='button' value='Tout deselectionner' id='deselectionEchantillon'/></br>";
 
-                echo"<div class='col-lg-6'>";
-                echo "<fieldset style='border:none;'>";
-                echo "<legend> Attributs des pieges</legend>";
-                echo "<input type='button' value='Tout deselectionner' id='deselectionPiege'/>";
-                echo "<input type='button' value='Tout selectionner' id='selectionPiege'/>";
-                foreach ($listeAttributPiege as $key => $value) {
-                  echo "<label for=$key>$value</label>";
-                  echo "<input type='checkbox' name='listeItem[]' id=$key value=$key>";
-                }
-                echo"</fieldset>";
-                echo"</div>";
-              echo"</div>";
-
-            echo"<div class='row'>";
-
-              echo"<div class='col-lg-6'>";
-              echo "<fieldset style='border:none;'>";
-              echo "<legend> Attributs des sites</legend>";
-              echo "<input type='button' value='Tout deselectionner' id='deselectionSite'/>";
-              echo "<input type='button' value='Tout selectionner' id='selectionSite'/>";
-              foreach ($listeAttributSite as $key => $value) {
-                echo "<label for=$key>$value</label>";
-                echo "<input type='checkbox' name='listeItem[]' id=$key value=$key>";
-              }
-              echo"</fieldset>";
-              echo"</div>";
-
-              echo"<div class='col-lg-6'>";
-                echo "<fieldset style='border:none;'>";
-                echo "<legend> Attributs des grottes</legend>";
-                echo "<input type='button' value='Tout deselectionner' id='deselectionGrotte'/>";
-                echo "<input type='button' value='Tout selectionner' id='selectionGrotte'/>";
-                foreach ($listeAttributGrotte as $key => $value) {
-                  echo "<label for=$key>$value</label>";
-                  echo "<input type='checkbox' name='listeItem[]' id=$key value=$key>";
-                }
-                echo"</fieldset>";
-                echo"</div>";
-              echo"</div>";
+            foreach ($listeAttributEchantillon as $key => $value) {
+              echo "<label for=$key>$value</label>";
+              echo "<input type='checkbox' name='listeItem[]' id=$key value=$key>";
+            }
+            echo"</fieldset>";
           echo"</div>";
+
+          echo"<div class='col-sm-6'>";
+            echo "<fieldset style='border:none;'>";
+            echo "<legend style='text-align:center;'> Attributs des pieges</legend>";
+            echo "<input style='margin-left:40px; margin-right:95px;' type='button' value='Tout selectionner' id='selectionPiege'/>";
+            echo "<input type='button' value='Tout deselectionner' id='deselectionPiege'/></br>";
+
+            foreach ($listeAttributPiege as $key => $value) {
+              echo "<label for=$key>$value</label>";
+              echo "<input type='checkbox' name='listeItem[]' id=$key value=$key>";
+            }
+            echo"</fieldset>";
+          echo"</div>";
+        echo"</div>";
+
+        echo"<div class='row'>";
+          echo"<div class='col-sm-6'>";
+            echo "<fieldset style='border:none;'>";
+            echo "<legend style='text-align:center;'> Attributs des sites</legend>";
+            echo "<input style='margin-left:40px; margin-right:95px;' type='button' value='Tout selectionner' id='selectionSite'/>";
+            echo "<input type='button' value='Tout deselectionner' id='deselectionSite'/></br>";
+            foreach ($listeAttributSite as $key => $value) {
+              echo "<label for=$key>$value</label>";
+              echo "<input type='checkbox' name='listeItem[]' id=$key value=$key>";
+            }
+            echo"</fieldset>";
+          echo"</div>";
+
+          echo"<div class='col-sm-6'>";
+            echo "<fieldset style='border:none;'>";
+            echo "<legend style='text-align:center;'> Attributs des grottes</legend>";
+            echo "<input style='margin-left:40px; margin-right:95px;' type='button' value='Tout selectionner' id='selectionGrotte'/>";
+            echo "<input type='button' value='Tout deselectionner' id='deselectionGrotte'/></br>";
+            foreach ($listeAttributGrotte as $key => $value) {
+              echo "<label for=$key>$value</label>";
+              echo "<input type='checkbox' name='listeItem[]' id=$key value=$key>";
+            }
+            echo"</fieldset>";
+            echo"</div>";
+          echo"</div>";
+      echo"</div>"; /* ferme l'id disparaitreSiFasta */
             ?>
-</div>
+</div> <!-- ferme la div container-fluid -->
 
           </fieldset>
         </div> <!-- De la division disparaitreSiFasta -->
