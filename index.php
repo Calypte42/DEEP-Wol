@@ -45,8 +45,8 @@ $bdd=connexionbd();
 	</br>
 
 <!-- Troisieme boite : avec authentification pour la bdd -->
-	<div class="container" id="authentification">
-		<div class= "col-sm-4 col-sm-offset-6">
+	<div class="container-fluid" id="authentification">
+		<div class= "col-sm-4 col-sm-offset-4">
 		<form method= "GET" action="authentification.php" class="form-login" style="background:#6e523f;">
 			<h4 style="color:white;">Authentification</h4>
 		  <div class="input-group">

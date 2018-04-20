@@ -15,8 +15,8 @@
 /* login */
 
 #authentification {
-	padding: 25px;
-	position: center;
+	padding: 50px;
+	/*position: center;*/
 }
 
 h4 {
@@ -159,9 +159,9 @@ h4 {
 
 /* FIELDSET */
 
-#formulaire{
+/*#formulaire{
 	padding-left: 15px;
-}
+}*/
 
 
 fieldset
@@ -246,8 +246,8 @@ body, html {
 	color: #ffffff;
 	background:#000000;
 }*/
-
+/*
 .container{
 	position: relative;
 	display: inline-block;
-}
+}*/
