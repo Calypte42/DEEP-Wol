@@ -29,7 +29,7 @@ include 'HTML/entete.html';
       <div id="disparaitreSiFasta">
         <div class="row">
           <div class="col-sm-12" style="margin-top:20px; margin-bottom:10px;">
-            <h4 style="border-bottom: 1px solid; border-top: 1px solid; padding-top:10px;">Choix des attributs </h4>
+            <h4 style="border-bottom: 1px solid; border-top: 1px solid; padding-top:10px; font-size:20px;">Choix des attributs </h4>
           <!--<h3> A enlever : Sofian il faudrait si possible que quand on clique sur tout tout ce coche et une fonction verifie que au moins un element est coche avant de valider</h3>-->
           </div>
         </div>
@@ -43,37 +43,50 @@ include 'HTML/entete.html';
             $listeAttributEchantillon = array('numEchantillon'=>'Numero de l\'echantillon','formeStockage'=>'Forme de stockage','lieuStockage'=>'Lieu de stockage','niveauIdentification'=>'Niveau d\'identification','infecteBacterie'=>'Infecte par bacterie','nombreindividu'=>'Nombre d\'individu','classe'=>'Classe','ordre'=>'Ordre','famille'=>'Famille','sousfamille'=>'Sous-famille','genre'=>'Genre','espece'=>'Espece','photo'=>'Photo','initialeAuteur'=>'Initial de l\'auteur');
 
             /*echo"<div class='container'>";*/
-            echo "<input type='button' id='boutonToutSelectionner' value='Tout selectionner'>";
+            echo "<input style='float:right;' type='button' id='boutonToutSelectionner' value='Tout selectionner'>";
           echo "</div>";
           echo "<div class='col-sm-2'>";
-            echo "<input type='button' id='boutonToutDeselectionner' value='Tout deselectionner'>";
+            echo "<input style='float:center;' type='button' id='boutonToutDeselectionner' value='Tout deselectionner'>";
           echo "</div>";
         echo "</div>";
 
 
         echo"<div class='row'>";
           echo"<div class='col-sm-6'>";
-            echo "<fieldset style='border:none;'>";
-            echo "<legend style='text-align:center;'> Attributs des echantillons</legend>";
-            echo "<input style='margin-left:40px; margin-right:95px;' type='button' value='Tout selectionner' id='selectionEchantillon'/>";
-            echo "<input type='button' value='Tout deselectionner' id='deselectionEchantillon'/></br>";
+            echo "<h4 style='float:left; margin-left:15px;'>Attributs des échantillons</h4>";
+          echo "</div>";
+        echo "</div>";
+        echo"<div class='row'>";
+          echo"<div class='col-sm-6'>";
+            echo "<fieldset style='margin-top:3px; background-color: lightgrey; border:double; padding-right:10px; padding-left:10px; padding-bottom:10px; padding-top:10px;'>";
+            /*echo "<legend style='text-align:center; font-size:18px;'> Attributs des échantillons</legend>";*/
+            echo "<input type='button' value='Tout selectionner' id='selectionEchantillon'/>";
+            echo "<input style='float:right;' type='button' value='Tout deselectionner' id='deselectionEchantillon'/></br>";
 
             foreach ($listeAttributEchantillon as $key => $value) {
-              echo "<label for=$key>$value</label>";
-              echo "<input type='checkbox' name='listeItem[]' id=$key value=$key>";
+              echo"<div class='col-sm-5'>";
+              echo "<label style='margin-top:15px;' for=$key>$value</label>";
+              echo "</div>";
+              echo"<div class='col-sm-1'>";
+              echo "<input style='margin-top:15px;' type='checkbox' name='listeItem[]' id=$key value=$key>";
+              echo "</div>";
             }
             echo"</fieldset>";
           echo"</div>";
 
           echo"<div class='col-sm-6'>";
-            echo "<fieldset style='border:none;'>";
-            echo "<legend style='text-align:center;'> Attributs des pieges</legend>";
-            echo "<input style='margin-left:40px; margin-right:95px;' type='button' value='Tout selectionner' id='selectionPiege'/>";
-            echo "<input type='button' value='Tout deselectionner' id='deselectionPiege'/></br>";
+            echo "<fieldset style='border:1px dashed; padding-right:10px; padding-left:10px; padding-bottom:10px;'>";
+            echo "<legend style='text-align:center; font-size:18px;'> Attributs des pièges</legend>";
+            echo "<input type='button' value='Tout selectionner' id='selectionPiege'/>";
+            echo "<input style='float:right;' type='button' value='Tout deselectionner' id='deselectionPiege'/></br>";
 
             foreach ($listeAttributPiege as $key => $value) {
-              echo "<label for=$key>$value</label>";
-              echo "<input type='checkbox' name='listeItem[]' id=$key value=$key>";
+              echo"<div class='col-sm-5'>";
+              echo "<label style='margin-top:15px;' for=$key>$value</label>";
+              echo "</div>";
+              echo"<div class='col-sm-1'>";
+              echo "<input style='margin-top:15px;' type='checkbox' name='listeItem[]' id=$key value=$key>";
+              echo "</div>";
             }
             echo"</fieldset>";
           echo"</div>";
@@ -81,25 +94,33 @@ include 'HTML/entete.html';
 
         echo"<div class='row'>";
           echo"<div class='col-sm-6'>";
-            echo "<fieldset style='border:none;'>";
-            echo "<legend style='text-align:center;'> Attributs des sites</legend>";
-            echo "<input style='margin-left:40px; margin-right:95px;' type='button' value='Tout selectionner' id='selectionSite'/>";
-            echo "<input type='button' value='Tout deselectionner' id='deselectionSite'/></br>";
+            echo "<fieldset style='background-color: lightgrey; border:double; padding-right:10px; padding-left:10px; padding-bottom:10px;'>";
+            echo "<legend style='text-align:center; font-size:18px;'> Attributs des sites</legend>";
+            echo "<input type='button' value='Tout selectionner' id='selectionSite'/>";
+            echo "<input style='float:right;' type='button' value='Tout deselectionner' id='deselectionSite'/></br>";
             foreach ($listeAttributSite as $key => $value) {
-              echo "<label for=$key>$value</label>";
-              echo "<input type='checkbox' name='listeItem[]' id=$key value=$key>";
+              echo"<div class='col-sm-5'>";
+              echo "<label style='margin-top:15px;' for=$key>$value</label>";
+              echo "</div>";
+              echo"<div class='col-sm-1'>";
+              echo "<input style='margin-top:15px;' type='checkbox' name='listeItem[]' id=$key value=$key>";
+              echo "</div>";
             }
             echo"</fieldset>";
           echo"</div>";
 
           echo"<div class='col-sm-6'>";
-            echo "<fieldset style='border:none;'>";
-            echo "<legend style='text-align:center;'> Attributs des grottes</legend>";
-            echo "<input style='margin-left:40px; margin-right:95px;' type='button' value='Tout selectionner' id='selectionGrotte'/>";
-            echo "<input type='button' value='Tout deselectionner' id='deselectionGrotte'/></br>";
+            echo "<fieldset style='border: outset; padding-right:10px; padding-left:10px; padding-bottom:10px;'>";
+            echo "<legend style='text-align:center; font-size:18px;'> Attributs des grottes</legend>";
+            echo "<input type='button' value='Tout selectionner' id='selectionGrotte'/>";
+            echo "<input style='float:right;' type='button' value='Tout deselectionner' id='deselectionGrotte'/></br>";
             foreach ($listeAttributGrotte as $key => $value) {
-              echo "<label for=$key>$value</label>";
-              echo "<input type='checkbox' name='listeItem[]' id=$key value=$key>";
+              echo"<div class='col-sm-5'>";
+              echo "<label style='margin-top:15px;' for=$key>$value</label>";
+              echo "</div>";
+              echo"<div class='col-sm-1'>";
+              echo "<input style='margin-top:15px;' type='checkbox' name='listeItem[]' id=$key value=$key>";
+              echo "</div>";
             }
             echo"</fieldset>";
             echo"</div>";
