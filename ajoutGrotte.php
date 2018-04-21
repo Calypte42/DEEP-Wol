@@ -34,18 +34,28 @@ include 'consultationModification.php';
 					        </br></br>
 
 							<label style="display: block; width:110px; float:left;">Latitude</label>
-							<input type="text" id ="latitude" name="latitude" size="10" placeholder = "30°"/>  <!-- type text pour simplifier la saisie -->
+							<input type="text" id ="latitude" name="latitude1" size="5" placeholder = "30"/>  <!-- type text pour simplifier la saisie -->
+							°
+							<input type="text" id ="latitude2" name="latitude2" size="5" placeholder = "30"/>  <!-- type text pour simplifier la saisie -->
+							'
+							<input type="text" id ="latitude3" name="latitude3" size="5" placeholder = "30"/>  <!-- type text pour simplifier la saisie -->
+							"
 							<select name="orientationLatitude" id="orientationLatitude">
-								<option value="Est">Est</option>
-								<option value="Ouest">Ouest</option>
+								<option selected value="Nord">Nord</option>
+								<option value="Sud">Sud</option>
 							</select>
 
 							</br></br>
 
 							<label style="display: block; width:110px; float:left;">Longitude</label>
-							<input type="text" id ="longitude" name="longitude" size="10" placeholder = "20°"/>  <!-- type text pour simplifier la saisie -->
+							<input type="text" id ="longitude" name="longitude1" size="5" placeholder = "20"/>  <!-- type text pour simplifier la saisie -->
+							°
+							<input type="text" id ="longitude2" name="longitude2" size="5" placeholder = "20"/>  <!-- type text pour simplifier la saisie -->
+							'
+							<input type="text" id ="longitude3" name="longitude3" size="5" placeholder = "20"/>  <!-- type text pour simplifier la saisie -->
+							"
 							<select name="orientationLongitude" id="orientationLongitude">
-								<option value="Est">Est</option>
+								<option selected value="Est">Est</option>
 								<option value="Ouest">Ouest</option>
 							</select>
 

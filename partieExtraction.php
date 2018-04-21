@@ -19,7 +19,7 @@ include 'HTML/entete.html';
 </p>-->
       <form id="formulaire" method="GET" action="telechargementCSV.php">
         <label for="choixExtraction">Type de données à extraire</label>
-        <select name="choixExtraction">
+        <select name="choixExtraction" id="choixExtraction">
           <option value="CSV">Données : Format CSV </option>
           <option value="Fasta">Données Génétique : Format Fasta</option>
         </select>
@@ -57,7 +57,7 @@ include 'HTML/entete.html';
           echo "</div>";
         echo "</div>";
         echo"<div class='row'>";
-          echo"<div class='col-sm-6'>";
+          echo"<div class='col-sm-6' id='divCheckEchantillon'>";
             echo "<fieldset style='margin-top:3px; background-color: lightgrey; border:double; padding-right:10px; padding-left:10px; padding-bottom:10px; padding-top:10px;'>";
             /*echo "<legend style='text-align:center; font-size:18px;'> Attributs des échantillons</legend>";*/
             echo "<input type='button' value='Tout selectionner' id='selectionEchantillon'/>";
@@ -74,7 +74,7 @@ include 'HTML/entete.html';
             echo"</fieldset>";
           echo"</div>";
 
-          echo"<div class='col-sm-6'>";
+          echo"<div class='col-sm-6' id='divCheckPiege'>";
             echo "<fieldset style='border:1px dashed; padding-right:10px; padding-left:10px; padding-bottom:10px;'>";
             echo "<legend style='text-align:center; font-size:18px;'> Attributs des pièges</legend>";
             echo "<input type='button' value='Tout selectionner' id='selectionPiege'/>";
@@ -93,7 +93,7 @@ include 'HTML/entete.html';
         echo"</div>";
 
         echo"<div class='row'>";
-          echo"<div class='col-sm-6'>";
+          echo"<div class='col-sm-6' id='divCheckSite'>";
             echo "<fieldset style='background-color: lightgrey; border:double; padding-right:10px; padding-left:10px; padding-bottom:10px;'>";
             echo "<legend style='text-align:center; font-size:18px;'> Attributs des sites</legend>";
             echo "<input type='button' value='Tout selectionner' id='selectionSite'/>";
@@ -109,7 +109,7 @@ include 'HTML/entete.html';
             echo"</fieldset>";
           echo"</div>";
 
-          echo"<div class='col-sm-6'>";
+          echo"<div class='col-sm-6' id='divCheckGrotte'>";
             echo "<fieldset style='border: outset; padding-right:10px; padding-left:10px; padding-bottom:10px;'>";
             echo "<legend style='text-align:center; font-size:18px;'> Attributs des grottes</legend>";
             echo "<input type='button' value='Tout selectionner' id='selectionGrotte'/>";
@@ -302,3 +302,8 @@ include 'HTML/entete.html';
       <input type="submit" name="extraire" value="Telecharger Fasta" style="float:right;"/></br></br>
     </div>
     </form>
+    <script src='./javascript/partieExtraction.js'></script>
+
+    <?php
+    include 'HTML/pied.html';
+    ?>

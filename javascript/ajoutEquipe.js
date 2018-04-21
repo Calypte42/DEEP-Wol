@@ -1,11 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     var affichageAjoutEquipe = document.getElementById('affichageAjoutEquipe')
+    var form = document.getElementById('distanceEntree');
 
     affichageAjoutEquipe.addEventListener("click", function(event) {
         event.preventDefault()
         var affichage = document.getElementById('divEquipeSpeleo')
-        affichage.style.display = "inline"
+        affichage.style.display = "inline";
+        form.style.display = "none";
     });
 
 
@@ -40,6 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 var affichage = document.getElementById('divEquipeSpeleo')
                 affichage.style.display = "none"
+                form.style.display="inline";
             }
         });
 
