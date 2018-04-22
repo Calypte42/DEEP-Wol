@@ -19,7 +19,7 @@ include 'HTML/entete.html';
 </p>-->
       <form id="formulaire" method="GET" action="telechargementCSV.php">
         <label for="choixExtraction">Type de données à extraire</label>
-        <select name="choixExtraction">
+        <select name="choixExtraction" id="choixExtraction">
           <option value="CSV">Données : Format CSV </option>
           <option value="Fasta">Données Génétique : Format Fasta</option>
         </select>
@@ -50,14 +50,21 @@ include 'HTML/entete.html';
           echo "</div>";
         echo "</div>";
 
-
+        /* Début des row pour les titres des checkbox d'échantillon et pièges */
         echo"<div class='row'>";
           echo"<div class='col-sm-6'>";
-            echo "<h4 style='float:left; margin-left:15px;'>Attributs des échantillons</h4>";
+            echo "<h4 style='float:left; margin-top:25px; margin-left:15px;'>Attributs des échantillons</h4>";
+          echo "</div>";
+
+          echo"<div class='col-sm-6'>";
+            echo "<h4 style='float:left; margin-top:25px; margin-left:15px;'>Attributs des pièges</h4>";
           echo "</div>";
         echo "</div>";
+        /* Fin des row pour les titres des checkbox d'échantillon et pièges */
+
+        /* Début des rows pour les checkbox d'échantillon et pièges */
         echo"<div class='row'>";
-          echo"<div class='col-sm-6'>";
+          echo"<div class='col-sm-6' id='divCheckEchantillon'>";
             echo "<fieldset style='margin-top:3px; background-color: lightgrey; border:double; padding-right:10px; padding-left:10px; padding-bottom:10px; padding-top:10px;'>";
             /*echo "<legend style='text-align:center; font-size:18px;'> Attributs des échantillons</legend>";*/
             echo "<input type='button' value='Tout selectionner' id='selectionEchantillon'/>";
@@ -74,9 +81,9 @@ include 'HTML/entete.html';
             echo"</fieldset>";
           echo"</div>";
 
-          echo"<div class='col-sm-6'>";
-            echo "<fieldset style='border:1px dashed; padding-right:10px; padding-left:10px; padding-bottom:10px;'>";
-            echo "<legend style='text-align:center; font-size:18px;'> Attributs des pièges</legend>";
+          echo"<div class='col-sm-6' id='divCheckPiege'>";
+            echo "<fieldset style='margin-top:3px; background-color: lightgrey; border:double; padding-right:10px; padding-left:10px; padding-bottom:10px; padding-top:10px;'>";
+            /*echo "<legend style='text-align:center; font-size:18px;'> Attributs des pièges</legend>";*/
             echo "<input type='button' value='Tout selectionner' id='selectionPiege'/>";
             echo "<input style='float:right;' type='button' value='Tout deselectionner' id='deselectionPiege'/></br>";
 
@@ -91,11 +98,25 @@ include 'HTML/entete.html';
             echo"</fieldset>";
           echo"</div>";
         echo"</div>";
+        /* Fin des rows pour les checkbox d'échantillon et pièges */
 
+        /* Début des row pour les titres des checkbox de sites et grottes */
         echo"<div class='row'>";
           echo"<div class='col-sm-6'>";
-            echo "<fieldset style='background-color: lightgrey; border:double; padding-right:10px; padding-left:10px; padding-bottom:10px;'>";
-            echo "<legend style='text-align:center; font-size:18px;'> Attributs des sites</legend>";
+            echo "<h4 style='float:left; margin-left:15px;'>Attributs des sites</h4>";
+          echo "</div>";
+
+          echo"<div class='col-sm-6'>";
+            echo "<h4 style='float:left; margin-left:15px;'>Attributs des grottes</h4>";
+          echo "</div>";
+        echo "</div>";
+        /* Fin des rows pour les titres d'échantillon et pièges */
+
+        /* Début des rows pour les checkbox de sites et grottes */
+        echo"<div class='row'>";
+          echo"<div class='col-sm-6' id='divCheckSite'>";
+            echo "<fieldset style='margin-top:3px; background-color: lightgrey; border:double; padding-right:10px; padding-left:10px; padding-bottom:10px; padding-top:10px;'>";
+            /*echo "<legend style='text-align:center; font-size:18px;'> Attributs des sites</legend>";*/
             echo "<input type='button' value='Tout selectionner' id='selectionSite'/>";
             echo "<input style='float:right;' type='button' value='Tout deselectionner' id='deselectionSite'/></br>";
             foreach ($listeAttributSite as $key => $value) {
@@ -109,9 +130,9 @@ include 'HTML/entete.html';
             echo"</fieldset>";
           echo"</div>";
 
-          echo"<div class='col-sm-6'>";
-            echo "<fieldset style='border: outset; padding-right:10px; padding-left:10px; padding-bottom:10px;'>";
-            echo "<legend style='text-align:center; font-size:18px;'> Attributs des grottes</legend>";
+          echo"<div class='col-sm-6' id='divCheckGrotte'>";
+            echo "<fieldset style='margin-top:3px; background-color: lightgrey; border:double; padding-right:10px; padding-left:10px; padding-bottom:10px; padding-top:10px;'>";
+            /*echo "<legend style='text-align:center; font-size:18px;'> Attributs des grottes</legend>";*/
             echo "<input type='button' value='Tout selectionner' id='selectionGrotte'/>";
             echo "<input style='float:right;' type='button' value='Tout deselectionner' id='deselectionGrotte'/></br>";
             foreach ($listeAttributGrotte as $key => $value) {
@@ -125,39 +146,48 @@ include 'HTML/entete.html';
             echo"</fieldset>";
             echo"</div>";
           echo"</div>";
+          /* Fin des rows pour les checkbox de sites et grottes */
+
       echo"</div>"; /* ferme l'id disparaitreSiFasta */
             ?>
-</div> <!-- ferme la div container-fluid -->
+<!--</div>  ferme la div container-fluid -->
 
-          </fieldset>
-        </div> <!-- De la division disparaitreSiFasta -->
-      </br>
+        <!--  </fieldset>-->
+      <!--  </div> De la division disparaitreSiFasta -->
+      <!--</br>
       </br>
       <div class="container">
       <p> Pour choisir plusieurs éléments dans une liste multiple, maintenez la touche CTRL enfoncée</p>
-      </br>
-        <div class="row">
+    </br>-->
 
-    <!-- ****************** DEBUT LISTE DEROULANTE Grotte ********************* -->
-            <div class="col-lg-6">
-          	<fieldset class="scheduler-border">
-          		<legend class="scheduler-border"> Grotte </legend>
-          		<div class="control-group">
-          			<div class="controls bootstrap-timepicker">
-          				<div id="menuGrotte" style="display:block;">
+      <div class="row">
+        <div class="col-sm-12" style="margin-top:20px; margin-bottom:10px;">
+          <h4 style="border-bottom: 1px solid; border-top: 1px solid; padding-top:10px; font-size:20px;">Choix des catégories </h4>
+        <!--<h3> A enlever : Sofian il faudrait si possible que quand on clique sur tout tout ce coche et une fonction verifie que au moins un element est coche avant de valider</h3>-->
+        </div>
+      </div>
 
-				<?php
-        echo"<select multiple name='grotte[]'>"; /* On cree une liste deroulante */
-				echo "<option selected = 'selected' value=''>Toutes</option>"; /*possibilité de selectionner toutes les grottes */
-			 	$requete='SELECT NomCavite from Grotte ORDER BY NomCavite';  /* On prepare une requete permettant de recupere l'ensemble des valeurs qui nous interessent   */
-			  	$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
-			  	foreach ($value as $array) { /* On parcours les resultats possible (ici 1 seul) */
-			    		foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
-			      			echo "<option>$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
-			   	 	}
-			  	}
-			  	echo "</select>";
-			  	?>
+      <div class="row" style="margin-left:150px;">
+  <!-- ****************** DEBUT LISTE DEROULANTE Grotte ********************* -->
+        <div class="col-sm-3">
+      	<!--<fieldset class="scheduler-border">-->
+      		<legend class="scheduler-border"> Grotte </legend>
+      		<div class="control-group">
+      			<div class="controls bootstrap-timepicker">
+      				<div id="menuGrotte" style="display:block;">
+
+      				<?php
+              echo"<select multiple name='grotte[]'>"; /* On cree une liste deroulante */
+      				echo "<option selected = 'selected' value=''>Toutes</option>"; /*possibilité de selectionner toutes les grottes */
+      			 	$requete='SELECT NomCavite from Grotte ORDER BY NomCavite';  /* On prepare une requete permettant de recupere l'ensemble des valeurs qui nous interessent   */
+      			  	$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
+      			  	foreach ($value as $array) { /* On parcours les resultats possible (ici 1 seul) */
+      			    		foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
+      			      			echo "<option>$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
+      			   	 	}
+      			  	}
+      			  	echo "</select>";
+      			  	?>
     <!--      <div>
           Choix des elements devant apparaitre dans le tableau de resultat : <br/>
           <label for="CBGrotteTout">Tout</label>
@@ -178,101 +208,97 @@ include 'HTML/entete.html';
                 </div>
               </div>
             </div>
-        </fieldset>
-        </div>
+        <!--</fieldset>-->
+      </div> <!-- faire la div col-sm de grotte-->
 
     <!-- ****************** DEBUT LISTE DEROULANTE Site ********************* -->
 
-        <div class="col-lg-6">
-        <fieldset class="scheduler-border">
-		      <legend class="scheduler-border"> Site </legend>
-		      <div class="control-group">
-			      <div class="controls bootstrap-timepicker">
-				      <div id="menuSite" style="display:block;">
+      <div class="col-sm-3">
+      <!--<fieldset class="scheduler-border">-->
+	      <legend class="scheduler-border"> Site </legend>
+	      <div class="control-group">
+		      <div class="controls bootstrap-timepicker">
+			      <div id="menuSite" style="display:block;">
 
-				<?php
-				echo "<select multiple name='site[]'>";
-				echo "<option selected = 'selected' value=''>Tous</option>";
-				$requete='SELECT numSite from Site ORDER BY numSite';  /*   */
-				$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
-				foreach ($value as $array) {
-					foreach ($array as $key => $valeur) {
-						echo "<option>$valeur</option>";
-					}
-				}
-				echo "</select>";
-
-			  	?>
-          		</div>
-            </div>
-        	</div>
-        </fieldset>
+    				<?php
+    				echo "<select multiple name='site[]'>";
+    				echo "<option selected = 'selected' value=''>Tous</option>";
+    				$requete='SELECT numSite from Site ORDER BY numSite';  /*   */
+    				$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
+    				foreach ($value as $array) {
+    					foreach ($array as $key => $valeur) {
+    						echo "<option>$valeur</option>";
+    					}
+    				}
+    				echo "</select>";
+    			  	?>
+          	</div>
+          </div>
         </div>
+        <!--</fieldset>-->
       </div>
 
 	<!-- ****************** DEBUT LISTE DEROULANTE Piege ********************* -->
-      <div class="row">
-        <div class="col-lg-6">
-        <fieldset class="scheduler-border">
-		      <legend class="scheduler-border"> Piège </legend>
-		        <div class="control-group">
-			        <div class="controls bootstrap-timepicker">
-		        	  <div id="menuPiege" style="display:block;">
+    <!--  <div class="row">-->
+      <div class="col-sm-3">
+      <!--  <fieldset class="scheduler-border">-->
+	      <legend class="scheduler-border"> Piège </legend>
+	        <div class="control-group">
+		        <div class="controls bootstrap-timepicker">
+	        	  <div id="menuPiege" style="display:block;">
 
-				<?php
-				echo"<select multiple name='piege[]'>";
-				echo "<option selected = 'selected' value=''>Tous</option>";
-			      $requete='SELECT codePiege from Piege ORDER BY codePiege';  /*   */
-			      $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
-			      foreach ($value as $array) {
-				foreach ($array as $key => $valeur) {
-				  echo "<option>$valeur</option>";
-				}
-			      }
-			      echo "</select>";
-
-			  	?>
+      				<?php
+      				echo"<select multiple name='piege[]'>";
+      				echo "<option selected = 'selected' value=''>Tous</option>";
+      			      $requete='SELECT codePiege from Piege ORDER BY codePiege';  /*   */
+      			      $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
+      			      foreach ($value as $array) {
+      				foreach ($array as $key => $valeur) {
+      				  echo "<option>$valeur</option>";
+      				}
+      			      }
+      			      echo "</select>";
+      			  	?>
               </div>
           	</div>
         	</div>
-        </fieldset>
-        </div>
+        <!--</fieldset>-->
+      </div>
 
 	<!-- ****************** DEBUT LISTE DEROULANTE Echantillon ********************* -->
 
-        <div class="col-lg-6">
-        <fieldset class="scheduler-border">
-		      <legend class="scheduler-border"> Echantillon </legend>
-		        <div class="control-group">
-			        <div class="controls bootstrap-timepicker">
-		        	  <div id="menuEchantillon" style="display:block;">
+      <div class="col-sm-3">
+      <!--<fieldset class="scheduler-border">-->
+	      <legend class="scheduler-border"> Echantillon </legend>
+	        <div class="control-group">
+		        <div class="controls bootstrap-timepicker">
+	        	  <div id="menuEchantillon" style="display:block;">
 
-				<?php
-
-
-				echo"<select multiple name='echantillon[]'>";
-				echo "<option selected = 'selected' value=''>Tous</option>";
-			      $requete='SELECT DISTINCT numEchantillon from Echantillon ORDER BY numEchantillon';  /*   */
-			      $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
-			      foreach ($value as $array) {
-				foreach ($array as $key => $valeur) {
-				  echo "<option>$valeur</option>";
-				}
-			      }
-			      echo "</select>";
-
-			  	?>
-                </div>
-          		</div>
+      				<?php
+      				echo"<select multiple name='echantillon[]'>";
+      				echo "<option selected = 'selected' value=''>Tous</option>";
+      			      $requete='SELECT DISTINCT numEchantillon from Echantillon ORDER BY numEchantillon';  /*   */
+      			      $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
+      			      foreach ($value as $array) {
+      				foreach ($array as $key => $valeur) {
+      				  echo "<option>$valeur</option>";
+      				}
+      			      }
+      			      echo "</select>";
+      			  	?>
+              </div>
+          	</div>
         	</div>
-        </fieldset>
+        <!--</fieldset>-->
         </div>
-      </div>
+      </div> <!-- ferme la row -->
+
+<div class="row" style="margin-left:150px; margin-top:60px;">
 <?php
       $listeTaxonomie = array('classe'=>'Classe','ordre'=>'Ordre','famille'=>'Famille','sousFamille'=>'SousFamille','genre'=>'Genre','espece'=>'Espece');
       foreach ($listeTaxonomie as $nomBase => $nomPropre) {
-        echo "  <div class='col-lg-6'>
-          <fieldset class='scheduler-border'>
+        echo "  <div class='col-sm-2'>
+
             <legend class='scheduler-border'> $nomPropre </legend>
               <div class='control-group'>
                 <div class='controls bootstrap-timepicker'>
@@ -291,14 +317,21 @@ include 'HTML/entete.html';
               echo "    </div>
                       </div>
                   </div>
-                </fieldset>
-                </div>
-              </div>";
-
+                </div>";
       }
       ?>
+    </div> <!-- ferme la row -->
 
-      <input type="submit" name="extraire" value="Telecharger CSV" style="float:right;"/></br></br>
-      <input type="submit" name="extraire" value="Telecharger Fasta" style="float:right;"/></br></br>
-    </div>
+    <div class="row" style="margin-top:60px;">
+      <div class="col-sm-2 col-sm-offset-4">
+        <input style='float:right;' type="submit" name="extraire" value="Telecharger CSV" style="float:right;"/></br></br>
+      </div>
+      <div class="col-sm-2">
+        <input style='float:center;' type="submit" name="extraire" value="Telecharger Fasta" style="float:right;"/></br></br>
+      </div>
     </form>
+    <script src='./javascript/partieExtraction.js'></script>
+
+    <?php
+    include 'HTML/pied.html';
+    ?>

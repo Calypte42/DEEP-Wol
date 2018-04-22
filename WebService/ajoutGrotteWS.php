@@ -3,6 +3,9 @@
 include '../BDD/bdd.php';
 $bdd = connexionbd();
 
+
+
+
 $req = $bdd->prepare('INSERT INTO Grotte (nomCavite,typeCavite,latitude,longitude,
   typeAcces,accesPublic,idSystemeHydrographique) SELECT :nomGrotte,:typeCavite,:latitude,
   :longitude,:typeAcces,:accesPublic, id FROM SystemeHydrographique WHERE nom = :systemeHydro;');
@@ -14,11 +17,39 @@ $req = $bdd->prepare('INSERT INTO Grotte (nomCavite,typeCavite,latitude,longitud
     $accesPublic=null;
   }
 
+  if(isset($_REQUEST['longitude1'])&&!empty($_REQUEST['longitude1'])){
+    $longitude=$_REQUEST['longitude1']."°";
+    if(!empty($_REQUEST['longitude2'])){
+      $longitude=$longitude.$_REQUEST['longitude2']."'";
+      if(!empty($_REQUEST['longitude3'])){
+        $longitude=$longitude.$_REQUEST['longitude3'].'"';
+      }
+    }
+    $longitude=$longitude." ".$_REQUEST['orientationLongitude'];
+  }
+  else {
+    $longitude=null;
+  }
+
+  if(isset($_REQUEST['latitude1'])&&!empty($_REQUEST['latitude1'])){
+    $latitude=$_REQUEST['latitude1']."°";
+    if(!empty($_REQUEST['latitude2'])){
+      $latitude=$latitude.$_REQUEST['latitude2']."'";
+      if(!empty($_REQUEST['latitude3'])){
+        $latitude=$latitude.$_REQUEST['latitude3'].'"';
+      }
+    }
+    $latitude=$latitude." ".$_REQUEST['orientationLatitude'];
+  }
+  else {
+    $latitude=null;
+  }
+
 $req->execute(array(
 	'nomGrotte' => $_REQUEST['nomGrotte'],
   'typeCavite' => $_REQUEST['typeCavite'],
-  'latitude' => $_REQUEST['latitude'],
-  'longitude' => $_REQUEST['longitude'],
+  'latitude' => $latitude,
+  'longitude' => $longitude,
   'typeAcces' => $_REQUEST['typeAcces'],
   'accesPublic' => $accesPublic,
   'systemeHydro' => $_REQUEST['systemeHydro']
@@ -36,7 +67,7 @@ if ($_REQUEST['nom']=='Valider et ajouter un site'){
 }
 
 if ($_REQUEST['nom']=='Valider et revenir au tableau des grottes'){
-  header('Refresh: 0; URL=../tableauGrotte.php');
+  header('Refresh: 5; URL=../tableauGrotte.php');
 }
 
 echo http_response_code();

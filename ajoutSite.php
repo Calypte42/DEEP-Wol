@@ -21,6 +21,7 @@ include 'consultationModification.php';
 			}
 			?>
 			</br>
+			<div id='divAjoutSite'>
 			<form  id="ajoutSite"  method="POST" action = "WebService/ajoutSiteWS.php"> <!-- reference au formulaire -->
 			<p>
 			<!--<fieldset class="scheduler-border">-->
@@ -119,7 +120,7 @@ include 'consultationModification.php';
 						echo "<input type='submit' name='nom' value='Valider et revenir au tableau des sites'>";
 					}
 					?>
-
+				</div>
 						</div>
 					</div>
 				<!--</fieldset>-->
