@@ -80,7 +80,7 @@ include 'consultationModification.php';
 					echo "</select>";
 					?>
 					&nbsp;&nbsp;
-					<input type = "button" id="affichageAjoutEquipe" value = "ajouter une équipe" onclick="affichageDiv('divEquipeSpeleo')"> <!-- rajout d'un bouton ajout d'une nouvelle équipe -->
+					<input type = "button" id="affichageAjoutEquipe" value = "ajouter une équipe" onclick="affichageDiv('divEquipeSpeleo', this.id)"> <!-- rajout d'un bouton ajout d'une nouvelle équipe -->
 
 					</br></br>
 
@@ -102,10 +102,12 @@ include 'consultationModification.php';
 					<input required type="number" id ="distanceEntree" name="distanceEntree" size="10"/> metres *</br></br> <!-- a voir pour rajouter un pas (pour decimal) step =""-->
 
 					<label style="display: block; width:115px; float:left;">Présence d'eau</label>
-					<input type="radio" id ="presenceEauOui" name="presenceEau" value="true"/>
+					<input type="radio" id="presenceEauOui" name="presenceEau" value="true"/>
 					<label for="presenceEauOui">oui</label>
-					<input type = "radio" id = "presenceEauNon" name = "presenceEau" value="false">
+					<input type = "radio" id="presenceEauNon" name = "presenceEau" value="false">
 					<label for="presenceEauNon">non</label>
+                    <input type = "radio" id="presenceEauNull" name = "presenceEau" value="NULL">
+					<label for="presenceEauNull">non renseigné</label>
 
 					</br>
 					</br>
@@ -125,10 +127,11 @@ include 'consultationModification.php';
 			</form>
 
 		  <div id="divEquipeSpeleo" style="display:none;">
-		      <form  id="formEquipeSpeleo"  method="POST" onsubmit="return ajaxAjout('./WebService/ajoutEquipeWS.php', 'divEquipeSpeleo', this.id, 'listeEquipeSpeleo', 1)">
+		      <form  id="formEquipeSpeleo"  method="POST" onsubmit="return ajaxAjout('./WebService/ajoutEquipeWS.php', 'divEquipeSpeleo', this.id, 'listeEquipeSpeleo','affichageAjoutEquipe', 1)">
 		          <label>Equipe spéleo</label>
 		          <input type="text" id="codeEquipe" name="codeEquipe" required size="20"/> *
-		          <button type="submit">Ajouter une équipe</button></br></br>
+		          <button type="submit">Ajouter une équipe</button>
+                  <button type="button" onclick="affichageDiv('divEquipeSpeleo', 'affichageAjoutEquipe')">Annuler</button></br></br>
 		      </form>
 		  </div>
 		</div>

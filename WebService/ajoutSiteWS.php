@@ -30,12 +30,16 @@ if(empty($_REQUEST['typeSol'])){
   $typeSol=null;
 }
 else {
-    $TypeSol=$_REQUEST['typeSol'];
+    $typeSol=$_REQUEST['typeSol'];
 }
 
 // Gestion de presenceEau non coche
 if(isset($_REQUEST['presenceEau'])){
-  $presenceEau=$_REQUEST['presenceEau'];
+    if ($_REQUEST['presenceEau']=="NULL") {
+        $presenceEau=null;
+    } else {
+        $presenceEau=$_REQUEST['presenceEau'];
+    }
 }
 else {
   $presenceEau=null;
@@ -57,15 +61,15 @@ $req->execute(array(
 $idSite=$bdd->lastInsertId(); //recuper l'id de l element inserer.
 
 if ($_REQUEST['nom']=='Valider et ajouter un nouveau site'){
-  header("Refresh: 0; URL=../ajoutSite.php?idGrotte=".$_REQUEST['idGrotte']."&grotte=".$_REQUEST['grotte']);
+  //header("Refresh: 0; URL=../ajoutSite.php?idGrotte=".$_REQUEST['idGrotte']."&grotte=".$_REQUEST['grotte']);
 }
 
 if ($_REQUEST['nom']=='Valider et ajouter un nouveau piège'){
-  header("Refresh:0; URL=../ajoutPiege.php?idGrotte=".$_REQUEST['idGrotte']."&nomGrotte=".$_REQUEST['grotte']."&idSite=$idSite&site=".$_REQUEST['numSite']);
+  //header("Refresh:0; URL=../ajoutPiege.php?idGrotte=".$_REQUEST['idGrotte']."&nomGrotte=".$_REQUEST['grotte']."&idSite=$idSite&site=".$_REQUEST['numSite']);
 }
 
 if ($_REQUEST['nom']=='Valider et revenir au tableau des sites'){
-  header("Refresh: 0; URL=../tableauSite.php?idGrotte=".$_REQUEST['idGrotte']."&grotte=".$_REQUEST['grotte']);
+  //header("Refresh: 0; URL=../tableauSite.php?idGrotte=".$_REQUEST['idGrotte']."&grotte=".$_REQUEST['grotte']);
 }
 
 echo http_response_code();

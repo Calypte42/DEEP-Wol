@@ -55,6 +55,8 @@ foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
           }else{
                   if ($cle=='fasta'){
                       echo "<td><a href='$resultat'>fichier fasta</a></td> ";
+                  } elseif ($cle=='electrophoregramme'){
+                      echo "<td><a href='$resultat'>electrophoregramme</a></td> ";
                   }else{
                       echo "<td>$resultat</td> ";
                   }
@@ -104,7 +106,9 @@ echo "</table>";
              }else{
                  if ($cle=='fasta'){
                      echo "<td><a href='$resultat'>fichier fasta</a></td> ";
-                 }else{
+                 } elseif ($cle=='electrophoregramme'){
+                     echo "<td><a href='$resultat'>electrophoregramme</a></td> ";
+                 } else {
                      echo "<td>$resultat</td> ";
                  }
          }

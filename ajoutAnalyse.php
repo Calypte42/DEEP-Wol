@@ -1,8 +1,7 @@
 <?php
 include 'BDD/bdd.php';
 $bdd=connexionbd();
-?>
-<?php
+
 include 'verificationConnexion.php';
 include 'consultationModification.php';
 ?>
@@ -48,27 +47,27 @@ include 'consultationModification.php';
                   echo "<input type='hidden' name='piege' value='$RetourPiege' />";
                   echo "<input type='hidden' name='numEchantillon' value='$RetourEchantillon' />";
                   echo "<input type='hidden' name='idEchantillon' value='$RetourIdEchantillon' />";
-                  echo "<select name='numEchantillon'>";
-                  $requete='SELECT numEchantillon from echantillon ORDER BY numEchantillon';
+                  echo "<select name='idEchantillon'>";
+                  $requete='SELECT id, numEchantillon from echantillon ORDER BY numEchantillon';
                   $value=requete($bdd,$requete);
                   foreach ($value as $array) {
-                    foreach ($array as $key => $valeur) {
-                      if($valeur==$RetourEchantillon){
-                        echo "<option selected value=\"$RetourEchantillon\">$RetourEchantillon</option>";
+                      $idEchantillon = $array['id'];
+                      $numEchantillon = $array['numechantillon'];
+                      if($numEchantillon==$RetourEchantillon){
+                        echo "<option selected value=\"$idEchantillon\">$RetourEchantillon</option>";
                       }else{
-                        echo "<option value=\"$valeur\">$valeur</option>";}
-                    }
+                        echo "<option value=\"$idEchantillon\">$numEchantillon</option>";}
                   }
                   echo "</select>";
                 } else {
-                  echo "<label style='display: block; width:115px; float:left;' for='numEchantillon'> Echantillon </label>";
-                  echo "<select name='numEchantillon'>";
-                  $requete='SELECT numEchantillon from echantillon ORDER BY numEchantillon';
+                  echo "<label style='display: block; width:115px; float:left;' for='echantillon'> Echantillon </label>";
+                  echo "<select name='idEchantillon'>";
+                  $requete='SELECT id, numEchantillon from echantillon ORDER BY numEchantillon';
                   $value=requete($bdd,$requete);
                   foreach ($value as $array) {
-                    foreach ($array as $key => $valeur) {
-                      echo "<option value=\"$valeur\">$valeur</option>";
-                    }
+                      $idEchantillon = $array['id'];
+                      $numEchantillon = $array['numechantillon'];
+                      echo "<option value=\"$idEchantillon\">$numEchantillon</option>";
                   }
                   echo "</select>";
                 }
@@ -110,26 +109,24 @@ include 'consultationModification.php';
                   </br></br>
 
                   <label style="display: block; width:150px;; float:left;">Fasta</label>
-                  <input type="radio" id ="FastaOui" name="presenceFasta" value="true"/>
+                  <input type="radio" id ="FastaOui" name="presenceFasta" value="true" required checked onchange="afficher('fasta', 'block'); requis('fasta');"/>
                   <label for="FastaOui">oui</label>
-                  <input type = "radio" id = "FastaNon" name = "presenceFasta" value="false">
+                  <input type = "radio" id = "FastaNon" name = "presenceFasta" value="false" required onchange="cacher('fasta'); supprimerValeur('fasta'); nonRequis('fasta');">
                   <label for="FastaNon">non</label>
 
                   </br>
-                  A faire apparaître si oui :
-                  <input type="file" id ="fasta" name="fasta"/>
+                  <input type="file" id ="fasta" name="fasta" accept=".fasta" required/>
 
                   </br>
 
                   <label style="display: block; width:150px;; float:left;">Electrophorégramme</label>
-                  <input type="radio" id ="ElectroOui" name="presenceElectrophoregramme" value="true"/>
+                  <input type="radio" id ="ElectroOui" name="presenceElectrophoregramme" value="true" required onchange="afficher('electrophoregramme', 'block'); requis('electrophoregramme');"/>
                   <label for="ElectroOui">oui</label>
-                  <input type = "radio" id = "ElectroNon" name = "presenceElectrophoregramme" value="false">
+                  <input type = "radio" id = "ElectroNon" name = "presenceElectrophoregramme" value="false" required checked onchange="cacher('electrophoregramme'); supprimerValeur('electrophoregramme'); nonRequis('electrophoregramme')">
                   <label for="ElectroNon">non</label>
 
                   </br>
-                  A faire apparaître si oui :
-                  <input type="file" id ="electrophoregramme" name="electrophoregramme"/>
+                  <input type="file" id ="electrophoregramme" name="electrophoregramme" accept="image/*" style="display:none;"/>
 
                   </br>
 

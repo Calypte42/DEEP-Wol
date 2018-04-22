@@ -112,7 +112,7 @@ include 'consultationModification.php';
 							<input type="text" id ="especeTaxo" name="especeTaxo" size="30" placeholder="Entrez ici le nom de l'element"/></br></br>
 
 			   			<label style="display: block; width:100px; float:left;">Photo</label>
-							<input type="file" id ="photo" name="photo"/></br></br>
+							<input type="file" id ="photo" name="photo" accept="image/*"/></br></br>
 
 							<input type="submit" name="nom" value="Valider et ajouter une nouvelle taxonomie">
 							<?php
