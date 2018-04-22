@@ -293,11 +293,12 @@ include 'HTML/entete.html';
         </div>
       </div> <!-- ferme la row -->
 
+<div class="row" style="margin-left:150px; margin-top:60px;">
 <?php
       $listeTaxonomie = array('classe'=>'Classe','ordre'=>'Ordre','famille'=>'Famille','sousFamille'=>'SousFamille','genre'=>'Genre','espece'=>'Espece');
       foreach ($listeTaxonomie as $nomBase => $nomPropre) {
-        echo "  <div class='col-lg-6'>
-          <fieldset class='scheduler-border'>
+        echo "  <div class='col-sm-2'>
+
             <legend class='scheduler-border'> $nomPropre </legend>
               <div class='control-group'>
                 <div class='controls bootstrap-timepicker'>
@@ -316,16 +317,18 @@ include 'HTML/entete.html';
               echo "    </div>
                       </div>
                   </div>
-                </fieldset>
-                </div>
-              </div>";
-
+                </div>";
       }
       ?>
+    </div> <!-- ferme la row -->
 
-      <input type="submit" name="extraire" value="Telecharger CSV" style="float:right;"/></br></br>
-      <input type="submit" name="extraire" value="Telecharger Fasta" style="float:right;"/></br></br>
-    </div>
+    <div class="row" style="margin-top:60px;">
+      <div class="col-sm-2 col-sm-offset-4">
+        <input style='float:right;' type="submit" name="extraire" value="Telecharger CSV" style="float:right;"/></br></br>
+      </div>
+      <div class="col-sm-2">
+        <input style='float:center;' type="submit" name="extraire" value="Telecharger Fasta" style="float:right;"/></br></br>
+      </div>
     </form>
     <script src='./javascript/partieExtraction.js'></script>
 
