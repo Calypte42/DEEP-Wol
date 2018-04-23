@@ -38,52 +38,52 @@ var toutDecocherPiege = document.getElementById('deselectionPiege');
 var toutCocherEchantillon = document.getElementById('selectionEchantillon');
 var toutDecocherEchantillon = document.getElementById('deselectionEchantillon');
 
-toutCocherGeneral.addEventListener("click",function(){
+toutCocherGeneral.addEventListener("click",function(event){
   event.preventDefault();
   cocher('disparaitreSiFasta');
 });
 
-toutDecocherGeneral.addEventListener("click",function(){
+toutDecocherGeneral.addEventListener("click",function(event){
   event.preventDefault();
   decocher('disparaitreSiFasta');
 });
 
-toutCocherEchantillon.addEventListener("click",function(){
+toutCocherEchantillon.addEventListener("click",function(event){
   event.preventDefault();
   cocher('divCheckEchantillon');
 });
 
-toutDecocherEchantillon.addEventListener("click",function(){
+toutDecocherEchantillon.addEventListener("click",function(event){
   event.preventDefault();
   decocher('divCheckEchantillon');
 });
 
-toutCocherPiege.addEventListener("click",function(){
+toutCocherPiege.addEventListener("click",function(event){
   event.preventDefault();
   cocher('divCheckPiege');
 });
 
-toutDecocherPiege.addEventListener("click",function(){
+toutDecocherPiege.addEventListener("click",function(event){
   event.preventDefault();
   decocher('divCheckPiege');
 });
 
-toutCocherSite.addEventListener("click",function(){
+toutCocherSite.addEventListener("click",function(event){
   event.preventDefault();
   cocher('divCheckSite');
 });
 
-toutDecocherSite.addEventListener("click",function(){
+toutDecocherSite.addEventListener("click",function(event){
   event.preventDefault();
   decocher('divCheckSite');
 });
 
-toutCocherGrotte.addEventListener("click",function(){
+toutCocherGrotte.addEventListener("click",function(event){
   event.preventDefault();
   cocher('divCheckGrotte');
 });
 
-toutDecocherGrotte.addEventListener("click",function(){
+toutDecocherGrotte.addEventListener("click",function(event){
   event.preventDefault();
   decocher('divCheckGrotte');
 });

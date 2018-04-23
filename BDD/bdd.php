@@ -12,9 +12,6 @@ function connexionbd() {
 	// connexion au serveur de bases de données
 	$bd = new PDO($dsn, $username, $password);
 
-    // les requêtes seront encodées en UTF-8
-    $bd->query("SET NAMES UTF8");
-
 	return $bd;
 }
 

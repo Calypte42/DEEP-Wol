@@ -47,6 +47,7 @@ foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
         $id=$resultat;
       }else{
       if($cle=='numechantillon'){
+                $numEchantillon = $resultat;
 				echo "<td><a href='tableauAnalyse.php?idEchantillon=$id&numEchantillon=$resultat&piege=$RetourPiege&nomGrotte=$RetourNomGrotte&idGrotte=$RetourIdGrotte&site=$RetourNomSite&idSite=$RetourIdSite'>$resultat</a></td> ";
 			}else {
 				if(empty($resultat)){
@@ -66,7 +67,14 @@ foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
         echo "<input type='submit' value='Modifier' />";
         echo "</form></td>";
 		//echo ('<td><a href="">'."Modifier".'</a></td>');
-		echo('<td><a href="">'."Supprimer".'</a></td></tr>');
+        echo "<td><form method='GET' onsubmit='return suppression(this)'>";
+        echo "<input type='hidden' name='nom' value='$numEchantillon' />";
+        echo "<input type='hidden' name='table' value='echantillon' />";
+        echo "<input type='hidden' name='colonne' value='id' />";
+        echo "<input type='hidden' name='id' value='$id' />";
+        echo "<input type='submit' value='Supprimer' />";
+        echo "</form></td></tr>";
+		//echo('<td><a href="">'."Supprimer".'</a></td></tr>');
 }
 echo "</table>";
 ?>

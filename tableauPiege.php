@@ -59,7 +59,14 @@ foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
      echo "<input type='submit' value='Modifier' />";
      echo "</form></td>";
 	 //echo ('<td><a href="">'."Modifier".'</a></td>');
-	 echo('<td><a href="">'."Supprimer".'</a></td></tr>');
+     echo "<td><form method='GET' onsubmit='return suppression(this)'>";
+     echo "<input type='hidden' name='nom' value='$id' />";
+     echo "<input type='hidden' name='table' value='piege' />";
+     echo "<input type='hidden' name='colonne' value='codePiege' />";
+     echo "<input type='hidden' name='id' value='$id' />";
+     echo "<input type='submit' value='Supprimer' />";
+     echo "</form></td></tr>";
+	 //echo('<td><a href="">'."Supprimer".'</a></td></tr>');
 }
 echo "</table>";
 ?>

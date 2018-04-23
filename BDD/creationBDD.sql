@@ -19,7 +19,7 @@ create table Grotte (
     accesPublic boolean,
     idSystemeHydrographique int,
     CONSTRAINT SystemeHydrographique_FK FOREIGN KEY (idSystemeHydrographique)
-        REFERENCES SystemeHydrographique (id)
+        REFERENCES SystemeHydrographique (id) ON DELETE SET NULL
 );
 
 create table Site (
@@ -33,9 +33,9 @@ create table Site (
     idGrotte int NOT NULL,
     codeEquipeSpeleo varchar(20) NOT NULL,
     CONSTRAINT idGrotte_FK FOREIGN KEY (idGrotte)
-        REFERENCES Grotte (id),
+        REFERENCES Grotte (id) ON DELETE CASCADE,
     CONSTRAINT codeEquipeSpeleo_FK FOREIGN KEY (codeEquipeSpeleo)
-        REFERENCES EquipeSpeleo(codeEquipe) ON UPDATE CASCADE
+        REFERENCES EquipeSpeleo(codeEquipe) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 create table Piege (
@@ -49,9 +49,9 @@ create table Piege (
     codeEquipeSpeleo varchar(20) NOT NULL,
     IdSite int NOT NULL,
     CONSTRAINT EquipeSpeleo_FK FOREIGN KEY (codeEquipeSpeleo)
-        REFERENCES EquipeSpeleo (codeEquipe) ON UPDATE CASCADE,
+        REFERENCES EquipeSpeleo (codeEquipe) ON UPDATE CASCADE ON DELETE CASCADE,
     CONSTRAINT site_FK FOREIGN KEY (IdSite)
-        REFERENCES Site (id)
+        REFERENCES Site (id) ON DELETE CASCADE
 );
 
 create table Personne (
@@ -84,11 +84,11 @@ create table Echantillon (
     nombreIndividu int,
     CONSTRAINT nbrIndividu_0 CHECK (nombreIndividu >=0),
     CONSTRAINT codePiege_FK FOREIGN KEY (codePiege)
-        REFERENCES Piege (codePiege) ON UPDATE CASCADE,
+        REFERENCES Piege (codePiege) ON UPDATE CASCADE ON DELETE CASCADE,
     CONSTRAINT idAuteur_FK FOREIGN KEY (idAuteur)
-        REFERENCES Personne (id),
+        REFERENCES Personne (id) ON DELETE SET NULL,
     CONSTRAINT idTaxonomie_FK FOREIGN KEY (idTaxonomie)
-        REFERENCES Taxonomie (id)
+        REFERENCES Taxonomie (id) ON DELETE SET NULL
 );
 
 
@@ -105,9 +105,9 @@ create table CorrespondanceGeneBacterie (
     nomGene varchar(20) NOT NULL,
     clade varchar(1) NOT NULL,
     CONSTRAINT nomGene_FK FOREIGN KEY (nomGene)
-        REFERENCES Gene(nom) ON UPDATE CASCADE,
+        REFERENCES Gene(nom) ON UPDATE CASCADE ON DELETE CASCADE,
     CONSTRAINT clade_FK FOREIGN KEY (clade)
-        REFERENCES Bacterie (clade) ON UPDATE CASCADE
+        REFERENCES Bacterie (clade) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 create table PCR (
@@ -119,9 +119,9 @@ create table PCR (
     fasta varchar(200),
     electrophoregramme varchar(200),
     CONSTRAINT idEchantillon_FK FOREIGN KEY (idEchantillon)
-        REFERENCES Echantillon (id),
+        REFERENCES Echantillon (id) ON DELETE CASCADE,
     CONSTRAINT nomGene_FK FOREIGN KEY (nomGene)
-        REFERENCES Gene (nom) ON UPDATE CASCADE,
+        REFERENCES Gene (nom) ON UPDATE CASCADE ON DELETE CASCADE,
     CONSTRAINT PCR_dateEchantillonGene_UNIQUE UNIQUE (datePCR,idEchantillon,nomGene)
 );
 
@@ -134,9 +134,9 @@ create table qPCR (
     fasta varchar(200),
     electrophoregramme varchar(200),
     CONSTRAINT idEchantillon_FK FOREIGN KEY (idEchantillon)
-        REFERENCES Echantillon (id),
+        REFERENCES Echantillon (id) ON DELETE CASCADE,
     CONSTRAINT nomGene_FK FOREIGN KEY (nomGene)
-        REFERENCES Gene (nom) ON UPDATE CASCADE,
+        REFERENCES Gene (nom) ON UPDATE CASCADE ON DELETE CASCADE,
     CONSTRAINT qPCR_dateEchantillonGene_UNIQUE UNIQUE (dateqPCR,idEchantillon,nomGene)
 );
 

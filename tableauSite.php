@@ -42,6 +42,7 @@ foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
         $id=$resultat;
       }else{
       if($cle=='numsite'){
+             $numSite = $resultat;
 			 echo "<td><a href='tableauPiege.php?idSite=$id&site=$resultat&idGrotte=$RetourId&nomGrotte=$Retour'>$resultat</a></td> ";
 		 }else {
 			 if(isset($resultat)){
@@ -66,7 +67,14 @@ foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
      echo "<input type='submit' value='Modifier' />";
      echo "</form></td>";
 	 //echo ('<td><a href="">'."Modifier".'</a></td>');
-	 echo('<td><a href="">'."Supprimer".'</a></td></tr>');
+     echo "<td><form method='GET' onsubmit='return suppression(this)'>";
+     echo "<input type='hidden' name='nom' value='$numSite' />";
+     echo "<input type='hidden' name='table' value='site' />";
+     echo "<input type='hidden' name='colonne' value='id' />";
+     echo "<input type='hidden' name='id' value='$id' />";
+     echo "<input type='submit' value='Supprimer' />";
+     echo "</form></td></tr>";
+	 //echo('<td><a href="">'."Supprimer".'</a></td></tr>');
 }
 echo "</table>";
 ?>

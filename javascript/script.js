@@ -74,6 +74,47 @@ function nonRequis(idInput) {
     document.getElementById(idInput).required = false;
 }
 
+function suppression(formulaire) {
+    var table = formulaire.elements['table'].value;
+    var nom = formulaire.elements['nom'].value;
+    var texte = '';
+
+    if (table == 'grotte'){
+        texte += "Souhaitez vous vraiment supprimer la grotte : " + nom;
+        texte += "\nCETTE ACTION SUPPRIMERA EGALEMENT LES ELEMENTS LIES A LA GROTTE :\n"
+        texte += "sites, pièges, échantillons, analyses";
+    } else if (table == 'site') {
+        texte = "Souhaitez vous vraiment supprimer le site : " + nom;
+        texte += "\nCETTE ACTION SUPPRIMERA EGALEMENT LES ELEMENTS LIES AU SITE :\n"
+        texte += "pièges, échantillons, analyses";
+    } else if (table == 'piege') {
+        texte += "Souhaitez vous vraiment supprimer le piege : " + nom;
+        texte += "\nCETTE ACTION SUPPRIMERA EGALEMENT LES ELEMENTS LIES AU PIEGE :\n"
+        texte += "échantillons, analyses";
+    } else if (table == 'echantillon') {
+        texte += "Souhaitez vous vraiment supprimer l'échantillon : " + nom;
+        texte += "\nCETTE ACTION SUPPRIMERA EGALEMENT LES ELEMENTS LIES A L'ECHANTILLON :\n"
+        texte += "analyses";
+    } else if (table == 'qPCR' || table == 'PCR') {
+        texte += "Souhaitez vous vraiment supprimer l'analyse ?";
+    }
+
+    if (confirm(texte)) {
+        var request = new XMLHttpRequest();
+
+        request.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                location.reload(true);
+            }
+        };
+
+        request.open("POST", "./WebService/suppressionWS.php", true);
+        request.send(new FormData(formulaire));
+    }
+
+    return false;
+}
+
 function affichageDiv(idDiv, idBouton) {
 
     var affichage = document.getElementById(idDiv);
