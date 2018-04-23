@@ -93,8 +93,6 @@ include 'consultationModification.php';
 					<input type="number" id ="profondeur" name="profondeur" size = "5"/></br></br> <!-- a voir pour rajouter un pas (pour decimal) step =""-->
 
 					<!-- Mettre number -->
-					<label style="display: block; width:115px; float:left;">Temperature</label>
-					<input type="number" id ="temperature" name="temperature" size = "5"/> °C</br></br> <!-- a voir pour rajouter un pas (pour decimal) step =""-->
 
 					<label style="display: block; width:115px; float:left;">Type de sol</label>
 					<input type="text" id ="typeSol" name="typeSol" size="20"/></br></br>

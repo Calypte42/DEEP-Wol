@@ -168,14 +168,27 @@ include 'consultationModification.php';
 						<label style="display: block; width:170px; float:left;">Numéro de l'échantillon</label>
 						<input required type="text" id ="numEchantillon" name="numEchantillon" size="20"/>*</br></br> <!-- recuperer la valeur precedemment remplie -->
 
-						<label style="display: block; width:170px; float:left;">Forme de stockage</label>  <!-- menu deroulant -->
+						<!--<label style="display: block; width:170px; float:left;">Forme de stockage</label>
 							<select name="formeStockage" id="formeStockage">
-								<option selected value="individuEntier">Individu entier</option> <!-- par défaut -->
+								<option selected value="individuEntier">Individu entier</option>
 								<option value="ADNextraitChelex">ADN extrait chelex</option>
 								<option value="ADNextraitColonne">ADN extrait colonne</option>
 								<option value="EnrichissementGenomeBacterien">Enrichissement génome bactérien</option>
-								<!--<option value="Pool">Pool</option>-->
-							</select>
+							</select>-->
+							<?php
+							echo "<label style='display: block; width:170px; float:left;' for='formeStockage'> Forme de stockage </label>";
+							echo "<select name='formeStockage'>";
+							$requete='SELECT DISTINCT formeStockage from Echantillon ORDER BY formeStockage';
+							$value=requete($bdd,$requete);
+							foreach ($value as $array) {
+								foreach ($array as $key => $valeur) {
+									echo "<option value=\"$valeur\">$valeur</option>";
+								}
+							}
+							echo "</select>";
+							?>
+							&nbsp;
+							<input type = "button" id="affichageFormeStockage" value = "ajouter une forme de stokage" onclick=""> <!-- rajout d'un bouton ajout d'une nouvelle équipe -->
 
 		       	</br></br>
 

@@ -24,14 +24,28 @@ include 'consultationModification.php';
 							<label style="display: block; width:110px; float:left;">Nom</label>          <!-- Changer les size par rapport à la base de donnees -->
 							<input required type="text" id ="nomGrotte" name="nomGrotte" size="50"/> * </br></br>
 
-							<label style="display: block; width:110px; float:left;">Type de cavité</label>  <!-- menu deroulant : a preciser les valeurs -->
+						<!--	<label style="display: block; width:110px; float:left;">Type de cavité</label>
 								<select name="typeCavite" id="typeCavite">
 									<option value="Choix1">Choix1</option>
 									<option value="Choix2">Choix2</option>
 									<option value="Choix3">Choix3</option>
-								</select>
+								</select>-->
+								<?php
+								echo "<label style='display: block; width:170px; float:left;' for='TypeCavite'> Type de cavité </label>";
+								echo "<select name='typeCavite'>";
+								$requete='SELECT DISTINCT typeCavite from Grotte ORDER BY typeCavite';
+								$value=requete($bdd,$requete);
+								foreach ($value as $array) {
+									foreach ($array as $key => $valeur) {
+										echo "<option value=\"$valeur\">$valeur</option>";
+									}
+								}
+								echo "</select>";
+							?>
+								&nbsp;
+								<input type = "button" id="affichageTypeCavite" value = "ajouter un type de cavité" onclick=""> <!-- rajout d'un bouton ajout d'une nouvelle équipe -->
 
-					        </br></br>
+					    </br></br>
 
 							<label style="display: block; width:110px; float:left;">Latitude</label>
 							<input type="text" id ="latitude" name="latitude1" size="5" placeholder = "30"/>  <!-- type text pour simplifier la saisie -->
