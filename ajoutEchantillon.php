@@ -192,14 +192,25 @@ include 'consultationModification.php';
 
 		       	</br></br>
 
-						<label style="display: block; width:170px; float:left;">Lieu de stockage</label>
-						<!--<input required type="text" id ="lieuStockage" name="lieuStockage" size="20"/>*</br></br>-->
+						<?php
+						echo "<label style='display: block; width:170px; float:left;' for='lieuStockage'> Lieu de stockage </label>";
+						echo "<select name='lieuStockage'>";
+						$requete='SELECT DISTINCT lieuStockage from Echantillon ORDER BY lieuStockage';
+						$value=requete($bdd,$requete);
+						foreach ($value as $array) {
+							foreach ($array as $key => $valeur) {
+								echo "<option value=\"$valeur\">$valeur</option>";
+							}
+						}
+						echo "</select>";
+						?>
+						&nbsp;
+						<input type = "button" id="affichageLieuStockage" value = "ajouter un lieu" onclick="">
+					<!--	<label style="display: block; width:170px; float:left;">Lieu de stockage</label>
 							<select name="lieuStockage" id="lieuStockage">
-								<option selected value="Montpellier">Montpellier</option> <!-- par défaut -->
+								<option selected value="Montpellier">Montpellier</option>
 								<option value="Paris">Paris</option>
-							</select>
-
-						<input type = "button" value = "ajouter un lieu">
+							</select>-->
 
 				    </br></br>
 

@@ -91,28 +91,62 @@ $echantillon=requete($bdd,$requete); /* value recupere la reponse de la requete 
 						<label style="display: block; width:170px; float:left;">Numéro de l'échantillon</label>
 						<input required type="text" id ="numEchantillon" name="numEchantillon" value="<?=$echantillon[0]['numechantillon']?>" size="20"/>*</br></br> <!-- recuperer la valeur precedemment remplie -->
 
-						<label style="display: block; width:170px; float:left;">Forme de stockage</label>  <!-- menu deroulant -->
+						<?php
+						echo "<label style='display: block; width:170px; float:left;' for='formeStockage'> Forme de stockage </label>";
+						echo "<select name='formeStockage'>";
+
+						$requete='SELECT DISTINCT formeStockage from Echantillon ORDER BY formeStockage';
+						$value=requete($bdd,$requete);
+						foreach ($value as $array) {
+							foreach ($array as $key => $valeur) {
+								if ($echantillon[0]['formestockage']=='individuEntier') {
+									echo " selected";
+								}
+								echo "<option value=\"$valeur\">$valeur</option>";
+							}
+						}
+						echo "</select>";
+						?>
+						&nbsp;
+						<input type = "button" id="affichageFormeStockage" value = "ajouter une forme de stokage" onclick=""> <!-- rajout d'un bouton ajout d'une nouvelle équipe -->
+
+						<!--<label style="display: block; width:170px; float:left;">Forme de stockage</label>
 							<select name="formeStockage" id="formeStockage">
 							<?php
               if ($echantillon[0]['formestockage']=='individuEntier') {
                 echo " selected";
               }
 							?>
-								<option selected value="individuEntier">Individu entier</option> <!-- par défaut -->
+								<option selected value="individuEntier">Individu entier</option>
 								<option value="ADNextraitChelex">ADN extrait chelex</option>
 								<option value="ADNextraitColonne">ADN extrait colonne</option>
 								<option value="EnrichissementGenomeBacterien">Enrichissement génome bactérien</option>
-							</select>
+							</select>-->
 
 		        </br></br>
 
-						<label style="display: block; width:170px; float:left;">Lieu de stockage</label>
+						<?php
+						echo "<label style='display: block; width:170px; float:left;' for='lieuStockage'> Lieu de stockage </label>";
+						echo "<select name='lieuStockage'>";
+						$requete='SELECT DISTINCT lieuStockage from Echantillon ORDER BY lieuStockage';
+						$value=requete($bdd,$requete);
+						foreach ($value as $array) {
+							foreach ($array as $key => $valeur) {
+								echo "<option value=\"$valeur\">$valeur</option>";
+							}
+						}
+						echo "</select>";
+						?>
+						&nbsp;
+						<input type = "button" id="affichageLieuStockage" value = "ajouter un lieu" onclick="">
+						
+						<!--<label style="display: block; width:170px; float:left;">Lieu de stockage</label>
 							<select name="lieuStockage" id="lieuStockage">
-								<option selected value="Montpellier">Montpellier</option> <!-- par défaut -->
+								<option selected value="Montpellier">Montpellier</option>
 								<option value="Paris">Paris</option>
 							</select>
 
-						<input type = "button" value = "ajouter un lieu">
+						<input type = "button" value = "ajouter un lieu">-->
 
 		        </br></br>
 

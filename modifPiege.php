@@ -94,6 +94,9 @@ $piege=requete($bdd,$requete); /* value recupere la reponse de la requete */
 							<label style="display: block; width:150px; float:left;">Date de tri</label>
 							<input type="date" id ="dateTri" name="dateTri" value="<?=$piege[0]['datetri']?>"/></br></br>
 
+							<label style="display: block; width:150px; float:left;">Temperature</label>
+							<input type="number" id ="temperature" name="temperature" value="<?=$piege[0]['temperature']?>" size = "5"/> °C</br></br>
+
 							<label>Problèmes rencontrés</label> </br>
 							<textarea id="probleme" name="probleme" value="<?=$piege[0]['probleme']?>" rows = "5" cols = "40"></textarea>
 
