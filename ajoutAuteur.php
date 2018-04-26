@@ -14,7 +14,6 @@ include 'consultationModification.php';
 			<form  id="ajoutAuteur"  method="GET" action="WebService/ajoutAuteurWS.php">
 				<label>nom</label>
 				<input type="text" id ="initialeAuteur" name="initialeAuteur" size="10"/></br></br>
-
 			</form>
 		</fieldset>
 <?php
