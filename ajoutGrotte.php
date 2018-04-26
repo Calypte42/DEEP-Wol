@@ -9,7 +9,7 @@ include 'consultationModification.php';
 
 		<!-- FORMULAIRE D'AJOUT DE GROTTE -->
 
-		<div class= "col-sm-10">
+		<div class= "col-sm-7">
 			<form method="POST" action="tableauGrotte.php">
 				<input type="submit" value="Revenir au tableau des grottes" />
 			</form>
@@ -31,7 +31,7 @@ include 'consultationModification.php';
 									<option value="Choix3">Choix3</option>
 								</select>-->
 								<?php
-								echo "<label style='display: block; width:170px; float:left;' for='TypeCavite'> Type de cavité </label>";
+								echo "<label style='display: block; width:110px; float:left;' for='TypeCavite'> Type de cavité </label>";
 								echo "<select name='typeCavite' id='listeTypeCavite'>";
 								$requete='SELECT DISTINCT typeCavite from Grotte ORDER BY typeCavite';
 								$value=requete($bdd,$requete);
@@ -116,25 +116,37 @@ include 'consultationModification.php';
 			</p>
 			</form>
 
-			<div id="divTypeCavite" style="display:none;">
-				<form  id="formTypeCavite"  method="POST" onsubmit="return ajaxAjout('./WebService/ajoutTypeCaviteWS.php', 'divTypeCavite', this.id, 'listeTypeCavite','affichageTypeCavite', 1)">
-					<label>Type de cavité</label>
-					<input type="text" id="typeCavite" name="typeCavite" required size="20"/>
-					<button type="submit">Ajouter un type de cavité</button>
-					<button type="button" onclick="affichageDiv('divTypeCavite', 'affichageTypeCavite')">Annuler</button></br></br>
-				</form>
-			</div>
 
-		  <div id="divSystemeHydrographique" style="display:none;">
-		      <form  id="formSystemeHydrographique"  method="post" onsubmit="return ajaxAjout('./WebService/ajoutSystemeHydrographiqueWS.php', 'divSystemeHydrographique', this.id, 'listeSystemeHydrographique','affichageSystemeHydrographique', 1)">
-		          <label>nom</label>
-		          <input type="text" id ="nom" name="nom" required size="30"/></br></br>
-		          <label>département</label>
-		          <input type="number" id ="departement" name="departement"/></br></br>
-		          <button type="submit">Ajouter un système hydrographique</button>
-              <button type="button" onclick="affichageDiv('divSystemeHydrographique', 'affichageSystemeHydrographique')">Annuler</button></br></br>
-		      </form>
-			</div>
+		</div>
+
+		<div class= "col-sm-3" style = "float:right; margin-top:150px;">
+		<div  id="divTypeCavite" style="display:none;">
+			<form  id="formTypeCavite"  method="POST" onsubmit="return ajaxAjout('./WebService/ajoutTypeCaviteWS.php', 'divTypeCavite', this.id, 'listeTypeCavite','affichageTypeCavite', 1)">
+				<fieldset style = "padding-left:5px;" >
+					<legend class="scheduler-border"> Ajout type cavité </legend>
+						<label>Type de cavité</label>
+						<input type="text" id="typeCavite" name="typeCavite" required size="20"/></br></br>
+						<button type="submit">Ajouter un type de cavité</button>
+						<button type="button" onclick="affichageDiv('divTypeCavite', 'affichageTypeCavite')">Annuler</button></br></br>
+				</fieldset>
+			</form>
+		</div>
+		</div>
+
+		<div class= "col-sm-3" style = "float:right;">
+		<div id="divSystemeHydrographique" style="display:none;">
+				<form  id="formSystemeHydrographique"  method="post" onsubmit="return ajaxAjout('./WebService/ajoutSystemeHydrographiqueWS.php', 'divSystemeHydrographique', this.id, 'listeSystemeHydrographique','affichageSystemeHydrographique', 1)">
+					<fieldset style = "padding-left:5px;" >
+						<legend class="scheduler-border"> Ajout système hydrographique </legend>
+							<label>nom</label>
+							<input type="text" id ="nom" name="nom" required size="30"/></br></br>
+							<label>département</label>
+							<input type="number" id ="departement" name="departement"/></br></br>
+							<button type="submit">Ajouter un système hydrographique</button>
+							<button type="button" onclick="affichageDiv('divSystemeHydrographique', 'affichageSystemeHydrographique')">Annuler</button></br></br>
+					</fieldset>
+				</form>
+		</div>
 		</div>
 	</div>
 </div>

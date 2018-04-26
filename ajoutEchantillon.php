@@ -8,7 +8,7 @@ include 'verificationConnexion.php';
 include 'consultationModification.php';
 ?>
 
-			<div class= "col-sm-10">
+			<div class= "col-sm-7">
 
 			<?php
 			if(isset($_REQUEST['idGrotte']) AND (isset($_REQUEST['idSite']))){
@@ -387,27 +387,37 @@ include 'consultationModification.php';
 					<!--</fieldset>-->
 			</p>
 			</form>
+		</div> <!--ferme div col-sm-->
 
-			<div id="divFormeStockage" style="display:none;">
-				<form  id="formFormeStockage"  method="POST" onsubmit="return ajaxAjout('./WebService/ajoutFormeStockageWS.php', 'divFormeStockage', this.id, 'listeFormeStockage','affichageFormeStockage', 1)">
-					<label>Forme de stockage</label>
-					<input type="text" id="formeStockage" name="formeStockage" required size="20"/>
-					<button type="submit">Ajouter une forme de stockage</button>
-					<button type="button" onclick="affichageDiv('divFormeStockage', 'affichageFormeStockage')">Annuler</button></br></br>
-				</form>
-			</div>
+				<div class= "col-sm-3" style = "float:right; margin-top:150px;">
+					<div id="divFormeStockage" style="display:none;">
+						<form  id="formFormeStockage"  method="POST" onsubmit="return ajaxAjout('./WebService/ajoutFormeStockageWS.php', 'divFormeStockage', this.id, 'listeFormeStockage','affichageFormeStockage', 1)">
+							<fieldset style = "padding-left:5px;">
+								<legend class="scheduler-border"> Ajout forme de stockage </legend>
+									<label style = "float:left;">Forme de stockage</label>
+									<input type="text" id="formeStockage" name="formeStockage" required size="20"/>
+									</br></br>
+									<button type="submit">Ajouter une forme de stockage</button>
+									<button type="button" onclick="affichageDiv('divFormeStockage', 'affichageFormeStockage')">Annuler</button></br></br>
+							</fieldset>
+						</form>
+					</div>
 
-			<div id="divLieuStockage" style="display:none;">
-				<form  id="formLieuStockage"  method="POST" onsubmit="return ajaxAjout('./WebService/ajoutLieuStockageWS.php', 'divLieuStockage', this.id, 'listeLieuStockage','affichageLieuStockage', 1)">
-					<label>Lieu de stockage</label>
-					<input type="text" id="lieuStockage" name="lieuStockage" required size="20"/>
-					<button type="submit">Ajouter un lieu de stockage</button>
-					<button type="button" onclick="affichageDiv('divLieuStockage', 'affichageLieuStockage')">Annuler</button></br></br>
-				</form>
-			</div>
+					<div id="divLieuStockage" style="display:none;">
+						<form  id="formLieuStockage"  method="POST" onsubmit="return ajaxAjout('./WebService/ajoutLieuStockageWS.php', 'divLieuStockage', this.id, 'listeLieuStockage','affichageLieuStockage', 1)">
+							<fieldset style = "padding-left:5px;">
+								<legend class="scheduler-border"> Ajout lieu de stockage </legend>
+									<label style = "float:left;">Lieu de stockage</label>
+									<input type="text" id="lieuStockage" name="lieuStockage" required size="20"/>
+									</br></br>
+									<button type="submit">Ajouter un lieu de stockage</button>
+									<button type="button" onclick="affichageDiv('divLieuStockage', 'affichageLieuStockage')">Annuler</button></br></br>
+							</fieldset>
+						</form>
+					</div>
+				</div>
 
-			</div>
-		</div>
+		</div> <!-- ferme div row de consultationModification -->
 	</div>
 
 <?php
