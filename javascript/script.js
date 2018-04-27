@@ -79,7 +79,7 @@ function suppression(formulaire) {
     var nom = formulaire.elements['nom'].value;
     var texte = '';
 
-    if (table == 'grotte'){
+    if (table == 'grotte') {
         texte += "Souhaitez vous vraiment supprimer la grotte : " + nom;
         texte += "\nCETTE ACTION SUPPRIMERA EGALEMENT LES ELEMENTS LIES A LA GROTTE :\n"
         texte += "sites, pièges, échantillons, analyses";
@@ -129,3 +129,39 @@ function affichageDiv(idDiv, idBouton) {
     }
 
 };
+
+function controleAnalyse(formulaire) {
+
+    if (formulaire.elements['fasta'].value) {
+
+        nomFASTA = formulaire.elements['fasta'].files[0].name;
+        check = urlExists("./files/fasta/" + nomFASTA);
+
+        if (check) {
+            alert("Nom de fichier fasta déjà existant, veuillez renommer votre fichier");
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    if (formulaire.elements['electrophoregramme'].value) {
+        nomElectrophoregramme = formulaire.elements['electrophoregramme'].files[0].name;
+        check = urlExists("./files/electrophoregramme/" + nomElectrophoregramme);
+
+        if (check) {
+            alert("Nom d'electrophoregramme déjà existant, veuillez renommer votre fichier");
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+}
+
+function urlExists(url) {
+    var http = new XMLHttpRequest();
+    http.open('HEAD', url, false);
+    http.send();
+    return http.status != 404;
+}

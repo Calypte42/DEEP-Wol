@@ -30,13 +30,16 @@ $tmpNameFASTA = $_FILES['fasta']['tmp_name'];
 if(file_exists($tmpNameFASTA) || is_uploaded_file($tmpNameFASTA)) {
     $nom = $_FILES['fasta']['name'];
 
-    if (preg_match("#.fasta$#i", $nom)) {
+    /*if (preg_match("#.fasta$#i", $nom)) {
         $n = $_REQUEST['idEchantillon'] . "_" . $_REQUEST['nomGene'] . "_" . $date . ".fasta";
         move_uploaded_file($tmpNameFASTA, "../files/fasta/".$n);
         $fasta = "files/fasta/" . $n;
     } else {
         $fasta=null;
-    }
+    }*/
+
+    move_uploaded_file($tmpNameFASTA, "../files/fasta/".$nom);
+    $fasta = "files/fasta/" . $nom;
 
 } else {
   $fasta=null;
@@ -46,7 +49,7 @@ if(file_exists($tmpNameFASTA) || is_uploaded_file($tmpNameFASTA)) {
 $tmpNameElectro = $_FILES['electrophoregramme']['tmp_name'];
 
 if(file_exists($tmpNameElectro) || is_uploaded_file($tmpNameElectro)) {
-    $check = getimagesize($tmpNameElectro);
+    /*$check = getimagesize($tmpNameElectro);
     if ($check) {
         $path_parts = pathinfo($_FILES["electrophoregramme"]["name"]);
         $extension = $path_parts['extension'];
@@ -55,7 +58,12 @@ if(file_exists($tmpNameElectro) || is_uploaded_file($tmpNameElectro)) {
         $electrophoregramme = "files/electrophoregramme/" . $n;
     } else {
         $electrophoregramme=null;
-    }
+    }*/
+
+    $nom = $_FILES['electrophoregramme']['name'];
+    move_uploaded_file($tmpNameElectro, "../files/electrophoregramme/".$nom);
+    $electrophoregramme = "files/electrophoregramme/" . $nom;
+
 } else {
   $electrophoregramme=null;
 }

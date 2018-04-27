@@ -29,7 +29,7 @@ include 'consultationModification.php';
         </br>
 
         <!-- FORMULAIRE D'AJOUT D'UNE PCR -->
-        <form  id="ajoutPCR"  method="POST" action = "WebService/ajoutAnalyseWS.php" enctype='multipart/form-data'> <!-- reference au formulaire -->
+        <form  id="ajoutPCR"  method="POST" action = "WebService/ajoutAnalyseWS.php" onsubmit="return controleAnalyse(this)" enctype='multipart/form-data'> <!-- reference au formulaire -->
         <p> <!-- car balise input ou select ne peut pas etre imbriquee directement dans form -->
           <!--<fieldset class="scheduler-border">-->
             <legend class="scheduler-border"> Ajout d'une analyse </legend>
@@ -115,7 +115,7 @@ include 'consultationModification.php';
                   <label for="FastaNon">non</label>
 
                   </br>
-                  <input type="file" id ="fasta" name="fasta" accept=".fasta" required/>
+                  <input type="file" id ="fasta" name="fasta" required/>
 
                   </br>
 
@@ -126,7 +126,7 @@ include 'consultationModification.php';
                   <label for="ElectroNon">non</label>
 
                   </br>
-                  <input type="file" id ="electrophoregramme" name="electrophoregramme" accept="image/*" style="display:none;"/>
+                  <input type="file" id ="electrophoregramme" name="electrophoregramme" style="display:none;"/>
 
                   </br>
 
