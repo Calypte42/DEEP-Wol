@@ -2,17 +2,10 @@
 include '../BDD/bdd.php';
 $bdd = connexionbd();
 
-$requete="";
-if($_REQUEST['choixType']=='qPCR'){
-  $requete='INSERT INTO qPCR (resultat,dateqPCR,fasta,electrophoregramme,idEchantillon,nomGene)
-   SELECT :resultat,:dateAnalyse,:fasta,:electrophoregramme,:idEchantillon,nom
+$requete='INSERT INTO Analyses (resultat,dateqPCR,fasta,electrophoregramme,idEchantillon,nomGene)
+   SELECT :type,:resultat,:dateAnalyse,:fasta,:electrophoregramme,:idEchantillon,nom
     FROM Gene WHERE nom = :nomGene;';
-}
-else {
-  $requete='INSERT INTO PCR (resultat,datePCR,fasta,electrophoregramme,idEchantillon,nomGene)
-   SELECT :resultat,:dateAnalyse,:fasta,:electrophoregramme,:idEchantillon,nom
-    FROM Gene WHERE nom = :nomGene;';
-}
+
 
 $req = $bdd->prepare($requete);
 
@@ -62,6 +55,7 @@ if(file_exists($tmpNameElectro) || is_uploaded_file($tmpNameElectro)) {
 
 
 $req->execute(array(
+  'type' => $_REQUEST['type'],
   'resultat' => $_REQUEST['resultat'],
   'dateAnalyse' => $date,
   'fasta' => $fasta,

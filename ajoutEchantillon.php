@@ -73,10 +73,9 @@ include 'consultationModification.php';
 							echo "</select></br></br>";
 
 							/* rajout menu déroulant piege avec piege sélectionné auparavant */
-							echo "<label style='display: block; width:170px; float:left;' for='Piege'>Dans le piège </label>";
-							/*echo "<input type='hidden' name='idSite' value=$RetourIdSite>";*/
-							echo "<input type='hidden' name='piege' value=$RetourPiege>";
-							echo "<select name='piege'>";
+							echo "<label style='display: block; width:170px; float:left;' for='codePiege'>Dans le piège </label>";
+							//echo "<input type='hidden' name='codePiege' value=$RetourPiege>";
+							echo "<select name='codePiege'>";
 							$requete='SELECT codepiege from piege ORDER BY codepiege';
 							$value=requete($bdd,$requete);
 							foreach ($value as $array) {
@@ -118,7 +117,7 @@ include 'consultationModification.php';
 
 						/* rajout menu déroulant piege  */
 
-							echo "<label style='display: block; width:170px; float:left;' for='Piege'> Piege </label>";
+							echo "<label style='display: block; width:170px; float:left;' for='codePiege'> Piege </label>";
 							echo "<select name='codePiege'>";
 							$requete='SELECT codePiege from Piege ORDER BY codePiege';
 							$value=requete($bdd,$requete);
@@ -152,16 +151,17 @@ include 'consultationModification.php';
 
 						</br></br>
 						<label style="display: block; width:170px; float:left;" for="type">Type d'échantillon</label>
-							<select name="type">
+							<select name="type" id='choixType'>
 									<option value="Pool"> Pool</option>
 									<option selected value="Individu">Individu</option>
 							</select>
 
 						<br/><br/>
 
+						<div id='disparaitreSiIndividu' style="display:none">
 						<label style="display: block; width:170px; float:left;" for='nombreIndividu'>Nombre d'individus</label>
-						<input type="number" name="nombreIndividu" id="nombreIndividu" /> (dans le pool : Faire disparaitre si type echantillon = Individu)
-
+						<input type="number" name="nombreIndividu" id="nombreIndividu" />
+					</div>
 						</br></br>
 
 						<label style="display: block; width:170px; float:left;">Numéro de l'échantillon</label>
@@ -419,6 +419,7 @@ include 'consultationModification.php';
 
 		</div> <!-- ferme div row de consultationModification -->
 	</div>
+	<script src='./javascript/ajoutEchantillon.js'></script>
 
 <?php
 include 'HTML/pied.html';

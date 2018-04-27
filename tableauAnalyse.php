@@ -21,7 +21,7 @@ echo"<form method='post' action='tableauEchantillon.php?piege=$RetourPiege&nomGr
 </form>
 
 <div class= "col-sm-10">
- <?php echo "Liste des analyses de l'$RetourEchantillon". " du ".$_REQUEST['site']." de la ".$_REQUEST['nomGrotte']; ?>
+ <?php echo "Liste des analyses de l'echantillon : $RetourEchantillon". " du site : ".$_REQUEST['site']." de la grotte : ".$_REQUEST['nomGrotte']; ?>
  <h4> Liste des PCR : </h4>
   <table class="table table-bordered table-condensed" style="margin-top: 10px;">
     <thead>
@@ -40,7 +40,7 @@ echo"<form method='post' action='tableauEchantillon.php?piege=$RetourPiege&nomGr
       <?php
 
 
-$requete='SELECT id,nomgene,resultat,datepcr,fasta,electrophoregramme FROM PCR';
+$requete='SELECT id,nomgene,resultat,dateAnalyse,fasta,electrophoregramme FROM Analyses WHERE type=\'PCR\'';
   /*On prepare une requete permettant de recupere l'ensemble de la table grotte*/
 
 $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
@@ -99,7 +99,7 @@ echo "</table>";
          <?php
 
 
-   $requete='SELECT id,nomgene,resultat,dateqpcr,fasta,electrophoregramme FROM qPCR';
+   $requete='SELECT id,nomgene,resultat,dateAnalyse,fasta,electrophoregramme FROM Analyses WHERE type=\'qPCR\'';
      /*On prepare une requete permettant de recupere l'ensemble de la table grotte*/
 
    $value=requete($bdd,$requete); /* value recupere la reponse de la requete */

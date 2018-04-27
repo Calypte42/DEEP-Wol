@@ -22,7 +22,7 @@ include 'consultationModification.php';
 			?>
 			</br>
 			<div id='divAjoutSite'>
-			<form  id="ajoutSite"  method="POST" action = "WebService/ajoutSiteWS.php"> <!-- reference au formulaire -->
+			<form  id="ajoutSite"  method="GET" action = "WebService/ajoutSiteWS.php"> <!-- reference au formulaire -->
 			<p>
 			<!--<fieldset class="scheduler-border">-->
 				<legend class="scheduler-border"> Ajout d'un site </legend>

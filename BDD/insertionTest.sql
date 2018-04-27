@@ -61,15 +61,6 @@ INSERT INTO Echantillon (numEchantillon,formeStockage,lieuStockage,codePiege,nom
 INSERT INTO Echantillon (numEchantillon,formeStockage,lieuStockage,codePiege,nombreIndividu)
     VALUES ('Pool1','Individu entier','Montpellier','P111',10);*/
 
-INSERT INTO Gene(nom) VALUES ('Gene1');
-
-INSERT INTO Bacterie(clade) VALUES ('A');
-
-INSERT INTO CorrespondanceGeneBacterie (nomGene,clade)
-    VALUES ('Gene1','A');
-
-INSERT INTO PCR (resultat,idEchantillon,nomGene,datePCR)
-    VALUES ('ambigue',1,'Gene1','2018-09-03');
 
 INSERT INTO Compte (pseudo,MDP)
     VALUES ('tutu','tutu'),('admin','admin');

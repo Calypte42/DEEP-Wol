@@ -17,7 +17,6 @@ include 'consultationModification.php';
 				<tr>
 					<th>Numéro Site</th>
 					<th>Profondeur</th>
-					<th>Temperature</th>
 					<th>Type de sol</th>
 					<th>Distance a l entree</th>
 					<th>Presence d'eau</th>
@@ -33,9 +32,10 @@ include 'consultationModification.php';
 			$RetourId=$_REQUEST['idGrotte'];
 			$Retour=$_REQUEST['grotte'];
 
-$requete='SELECT id,numSite,profondeur,temperature,typeSol,distanceEntree,presenceEau,codeEquipeSpeleo from Site where idGrotte=\''.$_REQUEST["idGrotte"].'\' order by id';  /*On prepare une requete permettant de recupere l'ensemble de la table grotte*/
+$requete='SELECT id,numSite,profondeur,typeSol,distanceEntree,presenceEau,codeEquipeSpeleo from Site where idGrotte=\''.$_REQUEST["idGrotte"].'\' order by id';  /*On prepare une requete permettant de recupere l'ensemble de la table grotte*/
 
 $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
+if($value!=null){
 foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
 	foreach ($valeur as $cle => $resultat) { /* On recupere la cle et la valeur de chaque element */
       if($cle=='id'){
@@ -82,6 +82,7 @@ echo "</table>";
 		</table>
 
 	<?php
+}
 		echo "<form style='float:right' name='versAjoutSite' method='POST' action='ajoutSite.php?idGrotte=$RetourId&grotte=$Retour'>";
 	?>
 		<input type="submit" value="Ajouter un site" />
