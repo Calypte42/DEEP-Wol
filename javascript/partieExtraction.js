@@ -17,13 +17,20 @@ function decocher(id) {
 
 var menuSelectionType = document.getElementById('choixExtraction');
 
+
 menuSelectionType.addEventListener("change",function(){
   var disparaitreSiFasta = document.getElementById('disparaitreSiFasta');
+  var boutonFasta = document.getElementById('extraireFasta');
+  var boutonCSV = document.getElementById('extraireCSV');
   if(menuSelectionType.value=='Fasta'){
     disparaitreSiFasta.style.display='none';
+    boutonFasta.style.display='block';
+    boutonCSV.style.display='none';
   }
   else{
     disparaitreSiFasta.style.display='inline';
+    boutonFasta.style.display='none';
+    boutonCSV.style.display='block';
   }
 })
 

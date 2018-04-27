@@ -7,7 +7,10 @@ $bdd=connexionbd();
 <?php
 include 'verificationConnexion.php';
 include 'consultationModification.php';
+echo"<form method='post' action='tableauGrotte.php'>";
 ?>
+<input type="submit" value="Revenir au tableau des Grottes" />
+</form>
 
 	<div class= "col-sm-10">
     <?php echo "Liste des sites de la ".$_REQUEST['grotte']; ?>

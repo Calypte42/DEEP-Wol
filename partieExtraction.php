@@ -38,8 +38,8 @@ include 'HTML/entete.html';
           <div class="col-sm-2 col-sm-offset-4">
             <?php
             $listeAttributGrotte = array('nomcavite'=>'Nom Cavite','typecavite'=>'Type de cavite','latitude'=>'Latitude','longitude'=>'Longitude','typeacces'=>'Type d\'acces','accespublic'=> 'Acces au public','nomSystemeHydrographique'=>'Nom du systeme hydrographique','departement'=>'Departement');
-            $listeAttributSite = array('profondeur'=>'Profondeur','temperature'=>"Temperature",'typesol'=>'Type de sol','numsite'=>'Numero du site','distanceentree'=>'Distance a l\'entre','presenceeau'=>'Presence d\'eau');
-            $listeAttributPiege = array('codepiege'=>'Code du piege','datepose'=>'Date de pose','heurepose'=>'Heure de pose','daterecup'=>'Date de recuperation','heurerecup'=>'Heure de récupération','probleme'=>'Probleme','datetri'=>'Date de tri');
+            $listeAttributSite = array('profondeur'=>'Profondeur','typesol'=>'Type de sol','numsite'=>'Numero du site','distanceentree'=>'Distance a l\'entre','presenceeau'=>'Presence d\'eau');
+            $listeAttributPiege = array('codepiege'=>'Code du piege','datepose'=>'Date de pose','heurepose'=>'Heure de pose','daterecup'=>'Date de recuperation','heurerecup'=>'Heure de récupération','probleme'=>'Probleme','datetri'=>'Date de tri','temperature'=>"Temperature");
             $listeAttributEchantillon = array('numEchantillon'=>'Numero de l\'echantillon','formeStockage'=>'Forme de stockage','lieuStockage'=>'Lieu de stockage','niveauIdentification'=>'Niveau d\'identification','infecteBacterie'=>'Infecte par bacterie','nombreindividu'=>'Nombre d\'individu','classe'=>'Classe','ordre'=>'Ordre','famille'=>'Famille','sousfamille'=>'Sous-famille','genre'=>'Genre','espece'=>'Espece','photo'=>'Photo','initialeAuteur'=>'Initial de l\'auteur');
 
             /*echo"<div class='container'>";*/
@@ -323,11 +323,11 @@ include 'HTML/entete.html';
     </div> <!-- ferme la row -->
 
     <div class="row" style="margin-top:60px;">
-      <div class="col-sm-2 col-sm-offset-4">
-        <input style='float:right;' type="submit" name="extraire" value="Telecharger CSV" style="float:right;"/></br></br>
+      <div class="col-sm-2 col-sm-offset-4" id="extraireCSV">
+        <input style='float:right;' type="submit" name="extraire"  value="Telecharger CSV" style="float:right;"/></br></br>
       </div>
-      <div class="col-sm-2">
-        <input style='float:center;' type="submit" name="extraire" value="Telecharger Fasta" style="float:right;"/></br></br>
+      <div class="col-sm-2" style="display:none" id="extraireFasta">
+        <input style='float:center;' type="submit" name="extraire"  value="Telecharger Fasta" style="float:right;"/></br></br>
       </div>
     </form>
     <script src='./javascript/partieExtraction.js'></script>
