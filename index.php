@@ -1,75 +1,47 @@
 <?php
-include "BDD/bdd.php";
-$bdd=connexionbd();
-//include "html/entete.html";
+include 'HTML/entete.html';
+include 'HTML/pied.html';
+
+include 'verificationConnexion.php';
 ?>
 
-<!DOCTYPE html>
+<!--<div class="bg"></div> pour le background grotte d'avant-->
 
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<title>Authentification</title>
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+    <li data-target="#myCarousel" data-slide-to="3"></li>
+  </ol>
 
-  	<link rel="stylesheet" href="Bootstrap/bootstrap.css">
-  	<link rel = 'stylesheet' href = 'CSS/style.css' type='text/css' />
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+    <div class="item active">
+      <img src="Images/dhaeseCDH15038.jpg" class="img-responsive" >
+    </div>
 
-  	<script src="Bootstrap/jquery.js"></script>
-  	<script src="Bootstrap/bootstrap.js"></script>
-	</head>
+    <div class="item">
+      <img src="Images/dhaeseCDH14982.jpg" class="img-responsive">
+    </div>
 
-	<body class = "bg-warning" style="background:#C0C0C0;">
-	</br>
-	</br>
-	</br>
-	</br>
+    <div class="item">
+      <img src="Images/dhaeseCDH15079.jpg" class="img-responsive">
+    </div>
 
-<!-- Premier boite : avec le titre de la bdd -->
-	<div class="container-fluid">
-		<div class="text-center">
-			<h1> BD DEEP-Wol </h1>
-		</div>
-	</div>
-<!--Fin premiere boite -->
-
-	</br>
-
-<!-- Deuxieme boite : avec présentation de la bdd -->
-	<div class="container-fluid">
-		<div class="text-center">
-      <h4>En collaboration avec l'Université de Montpellier, le Muséum d’Histoire Naturelle de Paris et l’association OSEA</h4>
+    <div class="item">
+      <img src="Images/Entomobryae.png" class="img-responsive">
     </div>
   </div>
-<!--Fin deuxieme boite -->
 
-	</br>
-
-<!-- Troisieme boite : avec authentification pour la bdd -->
-	<div class="container-fluid" id="authentification">
-		<div class= "col-sm-4 col-sm-offset-4">
-		<form method= "GET" action="authentification.php" class="form-login" style="background:#6e523f;">
-			<h4 style="color:white;">Authentification</h4>
-		  <div class="input-group">
-		  	<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-				<input type="text" id="login" class="form-control input-sm chat-input" name="login" placeholder="Nom d'utilisateur" />
-			</div>
-
-			</br>
-
-			<div class="input-group">
-				<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-				<input type="password" id="mdp" name="mdp" class="form-control input-sm chat-input" placeholder="Mot de passe" />
-			</div>
-
-			</br>
-
-			<div class="wrapper" >
-				<input type="submit" name="submit" value="login"/>
-			</div>
-		</form>
-		</div>
-	</div>
-<!--Fin troisieme boite -->
-
-	</body>
-</html>
+  <!-- Left and right controls -->
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+    <!--span class="glyphicon glyphicon-chevron-left"></span>-->
+    <span class="sr-only">Précédent</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+    <!--<span class="glyphicon glyphicon-chevron-right"></span>-->
+    <span class="sr-only">Suivant</span>
+  </a>
+</div>

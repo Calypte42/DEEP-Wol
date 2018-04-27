@@ -3,7 +3,7 @@
 session_start();
 
 if (!$_SESSION['identifie']){
-    header('Location: .');
+    header('Location: connexion.php');
 }
 
 ?>

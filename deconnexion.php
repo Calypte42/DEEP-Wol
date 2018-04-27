@@ -14,6 +14,6 @@ if (ini_get("session.use_cookies")) {
 
 session_destroy(); // on supprime la session
 
-header('Location: .');
+header('Location: connexion.php');
 
 ?>
