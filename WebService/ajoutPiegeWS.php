@@ -5,7 +5,7 @@ $bdd = connexionbd();
 $req = $bdd->prepare('INSERT INTO Piege (codePiege,datePose,heurePose,
   dateRecup,heureRecup,temperature,probleme,dateTri,idSite,codeEquipeSpeleo)
     SELECT :codePiege,:datePose,:heurePose,
-      :dateRecup,:heureRecup,:probleme,:dateTri,:id,codeEquipe FROM EquipeSpeleo
+      :dateRecup,:heureRecup,:temperature,:probleme,:dateTri,:id,codeEquipe FROM EquipeSpeleo
       WHERE codeEquipe = :codeEquipeSpeleo;');
 
 
@@ -88,7 +88,7 @@ if ($_REQUEST['nom']=='Valider et ajouter un nouvel échantillon'){
 }
 
 if ($_REQUEST['nom']=='Valider et revenir au tableau des pièges'){
-  header("Refresh: 0; URL=../tableauPiege.php?nomGrotte=".$_REQUEST['nomGrotte']."&idGrotte=".$_REQUEST['idGrotte']."&site=".$_REQUEST['site']."&idSite=".$_REQUEST['idSite']);
+  header("Refresh: 5; URL=../tableauPiege.php?nomGrotte=".$_REQUEST['nomGrotte']."&idGrotte=".$_REQUEST['idGrotte']."&site=".$_REQUEST['site']."&idSite=".$_REQUEST['idSite']);
 }
 
 echo http_response_code();
