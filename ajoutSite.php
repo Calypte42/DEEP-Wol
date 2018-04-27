@@ -129,14 +129,14 @@ include 'consultationModification.php';
 
 		<div class = "col-sm-3" style = "float:right; margin-top:150px;">
 			<div id="divEquipeSpeleo" style="display:none;">
-					<form  id="formEquipeSpeleo"  method="POST" onsubmit="return ajaxAjout('./WebService/ajoutEquipeWS.php', 'divEquipeSpeleo', this.id, 'listeEquipeSpeleo','affichageAjoutEquipe', 1)">
+					<form  id="formEquipeSpeleo"  method="POST" onsubmit="return ajaxAjout('./WebService/ajoutEquipeWS.php', 'divEquipeSpeleo', this.id, 'listeEquipeSpeleo','affichageAjoutEquipe')">
 						<fieldset style = "padding-left:5px;" >
 							<legend class="scheduler-border"> Ajout Equipe spéleo </legend>
 							<label style = "float:left;">Equipe spéléo</label>&nbsp;
-							<input type="text" id="codeEquipe" name="codeEquipe" required size="20"/> *
+							<input class="valeurs" type="text" id="codeEquipe" name="codeEquipe" required size="20"/> *
 							</br></br>
 							<button type="submit">Ajouter une équipe</button>
-									<button type="button" onclick="affichageDiv('divEquipeSpeleo', 'affichageAjoutEquipe')">Annuler</button></br></br>
+							<button type="button" onclick="affichageDiv('divEquipeSpeleo', 'affichageAjoutEquipe')">Annuler</button></br></br>
 						</fieldset>
 					</form>
 			</div>

@@ -7,7 +7,8 @@ create table SystemeHydrographique (
     nom varchar(30),
     departement int,
     pays varchar(4),
-    CONSTRAINT departement_sup0 CHECK (departement>=0)
+    CONSTRAINT departement_sup0 CHECK (departement>=0),
+    CONSTRAINT systemeHydro_unique UNIQUE (nom, departement, pays)
 );
 
 create table Grotte (

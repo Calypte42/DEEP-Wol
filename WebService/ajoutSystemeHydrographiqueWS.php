@@ -2,16 +2,25 @@
 include '../BDD/bdd.php';
 $bdd = connexionbd();
 
-$req = $bdd->prepare('INSERT INTO SystemeHydrographique (nom,departement)
-VALUES (:nom,:departement);');
+$req = $bdd->prepare('INSERT INTO SystemeHydrographique (nom,departement,pays)
+VALUES (:nom,:departement,:pays);');
+
+if(isset($_REQUEST['pays'])){
+    $pays=$_REQUEST['pays'];
+} else {
+    $pays=null;
+}
+
 $req->execute(array(
-	'nom' => $_REQUEST['nom'],
-  'departement' => $_REQUEST['departement']
-
-/* Et on entre par exemple : http://localhost/~aurelien/TER/testBDD.php?nomEquipe=Equipe5 */
-
+    'nom' => $_REQUEST['nom'],
+    'departement' => $_REQUEST['departement'],
+    'pays' => $_REQUEST['pays']
 ));
 
-echo http_response_code();
+$last_id = $bdd->lastInsertId();
+
+$bdd = null;
+
+echo $last_id;
 
 ?>

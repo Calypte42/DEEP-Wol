@@ -8,6 +8,6 @@ $req->execute(array(
 	'codeEquipe' => $_REQUEST['codeEquipe'],
 ));
 
-echo http_response_code();
+echo $_REQUEST['codeEquipe'];
 
 ?>

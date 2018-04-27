@@ -74,7 +74,7 @@ include 'consultationModification.php';
 				</tbody>
 			</table>
 
-			<form style="float:right" name="versAjoutGrotte" method="POST" action="ajoutGrotte.php">
+			<form style="float:right" action="ajoutGrotte.php">
 				<input type="submit" value="Ajouter une grotte" />
 			</form>
 		</div>

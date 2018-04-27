@@ -8,7 +8,7 @@ $bdd = connexionbd();
 
 $req = $bdd->prepare('INSERT INTO Grotte (nomCavite,typeCavite,latitude,longitude,
   typeAcces,accesPublic,idSystemeHydrographique) SELECT :nomGrotte,:typeCavite,:latitude,
-  :longitude,:typeAcces,:accesPublic, id FROM SystemeHydrographique WHERE nom = :systemeHydro;');
+  :longitude,:typeAcces,:accesPublic, id FROM SystemeHydrographique WHERE id = :systemeHydro;');
 
   if(isset($_REQUEST['accesPublic'])){
     $accesPublic=$_REQUEST['accesPublic'];

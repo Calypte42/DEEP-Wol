@@ -4,17 +4,19 @@
 // idFormulaire : id du formulaire supplementaire
 // idSelect : id du select concerne par la modification dans le formulaire principal
 // idBouton : id du bouton qui fait apparaitre le formulaire supplementaire
-// nombreValeurs : IMPORTANT : correspond au nombre de valeurs à comparer avec
-// le select du formulaire principal (dans le cas ou on a des attributs concatenes)
-function ajaxAjout(url, idAffichage, idFormulaire, idSelect, idBouton, nombreValeurs) {
+// IMPORTANT : dans le cas où le formulaire contient plusieurs valeurs, veuillez
+// ajouter à chaque input la classe 'valeurs'
+
+function ajaxAjout(url, idAffichage, idFormulaire, idSelect, idBouton) {
 
     var liste = document.getElementById(idSelect);
     var listeOptions = liste.options;
     var formulaire = document.getElementById(idFormulaire);
+    var valeurs = formulaire.getElementsByClassName('valeurs');
     var nouvelleOption = "";
 
-    for (var i = 0; i < nombreValeurs; i++) {
-        nouvelleOption += formulaire.elements[i].value;
+    for (var i = 0; i < valeurs.length; i++) {
+        nouvelleOption += valeurs[i].value;
         nouvelleOption += " ";
     }
 
@@ -33,12 +35,14 @@ function ajaxAjout(url, idAffichage, idFormulaire, idSelect, idBouton, nombreVal
 
         request.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-
-                var option = document.createElement("option");
-                option.text = nouvelleOption;
-                option.value = nouvelleOption;
-                option.selected = true;
-                liste.add(option, liste[0]);
+                if (this.responseText) {
+                    valeur = this.responseText;
+                    var option = document.createElement("option");
+                    option.text = nouvelleOption;
+                    option.value = valeur;
+                    option.selected = true;
+                    liste.add(option, liste[0]);
+                }
             }
         };
 

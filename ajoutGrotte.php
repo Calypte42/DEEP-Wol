@@ -81,12 +81,17 @@ include 'consultationModification.php';
 							<label>Système hydrographique</label>
 							<select name="systemeHydro" id='listeSystemeHydrographique'>
 							<?php
-							$requete='SELECT nom from SystemeHydrographique ORDER BY nom';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
+							$requete='SELECT id, nom, departement, pays from SystemeHydrographique ORDER BY nom';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
 							$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 							foreach ($value as $array) { /* On parcourt les resultats possibles */
-								foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
-									echo "<option value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
-								}
+                                $id = $array['id'];
+                                $nom = $array['nom'];
+                                $departement = $array['departement'];
+                                $pays = $array['pays'];
+                                echo "<option value=\"$id\">$nom $departement $pays</option>";
+								//foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
+								//	echo "<option value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
+								//}
 							}
 
 							echo "</select>";
@@ -135,13 +140,15 @@ include 'consultationModification.php';
 
 		<div class= "col-sm-3" style = "float:right;">
 		<div id="divSystemeHydrographique" style="display:none;">
-				<form  id="formSystemeHydrographique"  method="post" onsubmit="return ajaxAjout('./WebService/ajoutSystemeHydrographiqueWS.php', 'divSystemeHydrographique', this.id, 'listeSystemeHydrographique','affichageSystemeHydrographique', 1)">
+				<form  id="formSystemeHydrographique"  method="post" onsubmit="return ajaxAjout('./WebService/ajoutSystemeHydrographiqueWS.php', 'divSystemeHydrographique', this.id, 'listeSystemeHydrographique','affichageSystemeHydrographique')">
 					<fieldset style = "padding-left:5px;" >
 						<legend class="scheduler-border"> Ajout système hydrographique </legend>
 							<label>nom</label>
-							<input type="text" id ="nom" name="nom" required size="30"/></br></br>
+							<input class="valeurs" type="text" id ="nom" name="nom" required size="30"/></br></br>
 							<label>département</label>
-							<input type="number" id ="departement" name="departement"/></br></br>
+							<input class="valeurs" type="number" id ="departement" name="departement"/></br></br>
+                            <label>pays</label>
+                            <input class="valeurs" type="text" id ="pays" name="pays" required size="2" maxlength="2"/></br></br>
 							<button type="submit">Ajouter un système hydrographique</button>
 							<button type="button" onclick="affichageDiv('divSystemeHydrographique', 'affichageSystemeHydrographique')">Annuler</button></br></br>
 					</fieldset>
