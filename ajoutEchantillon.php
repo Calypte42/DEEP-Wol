@@ -8,7 +8,7 @@ include 'verificationConnexion.php';
 include 'consultationModification.php';
 ?>
 
-			<div class= "col-sm-10">
+			<div class= "col-sm-7">
 
 			<?php
 			if(isset($_REQUEST['idGrotte']) AND (isset($_REQUEST['idSite']))){
@@ -73,10 +73,9 @@ include 'consultationModification.php';
 							echo "</select></br></br>";
 
 							/* rajout menu déroulant piege avec piege sélectionné auparavant */
-							echo "<label style='display: block; width:170px; float:left;' for='Piege'>Dans le piège </label>";
-							/*echo "<input type='hidden' name='idSite' value=$RetourIdSite>";*/
-							echo "<input type='hidden' name='piege' value=$RetourPiege>";
-							echo "<select name='piege'>";
+							echo "<label style='display: block; width:170px; float:left;' for='codePiege'>Dans le piège </label>";
+							//echo "<input type='hidden' name='codePiege' value=$RetourPiege>";
+							echo "<select name='codePiege'>";
 							$requete='SELECT codepiege from piege ORDER BY codepiege';
 							$value=requete($bdd,$requete);
 							foreach ($value as $array) {
@@ -118,7 +117,7 @@ include 'consultationModification.php';
 
 						/* rajout menu déroulant piege  */
 
-							echo "<label style='display: block; width:170px; float:left;' for='Piege'> Piege </label>";
+							echo "<label style='display: block; width:170px; float:left;' for='codePiege'> Piege </label>";
 							echo "<select name='codePiege'>";
 							$requete='SELECT codePiege from Piege ORDER BY codePiege';
 							$value=requete($bdd,$requete);
@@ -150,43 +149,68 @@ include 'consultationModification.php';
 						echo "<label for='codePiege'>Piège $RetourPiege </label>";
 						echo "<input type='hidden' name='codePiege' value=$RetourPiege>"; -->
 
-						<br/><br/>
-
+						</br></br>
 						<label style="display: block; width:170px; float:left;" for="type">Type d'échantillon</label>
-							<select name="type">
+							<select name="type" id='choixType'>
 									<option value="Pool"> Pool</option>
 									<option selected value="Individu">Individu</option>
 							</select>
 
 						<br/><br/>
 
+						<div id='disparaitreSiIndividu' style="display:none">
 						<label style="display: block; width:170px; float:left;" for='nombreIndividu'>Nombre d'individus</label>
-						<input type="number" name="nombreIndividu" id="nombreIndividu" /> (dans le pool : Faire disparaitre si type echantillon = Individu)
-
+						<input type="number" name="nombreIndividu" id="nombreIndividu" />
+					</div>
 						</br></br>
 
 						<label style="display: block; width:170px; float:left;">Numéro de l'échantillon</label>
 						<input required type="text" id ="numEchantillon" name="numEchantillon" size="20"/>*</br></br> <!-- recuperer la valeur precedemment remplie -->
 
-						<label style="display: block; width:170px; float:left;">Forme de stockage</label>  <!-- menu deroulant -->
+						<!--<label style="display: block; width:170px; float:left;">Forme de stockage</label>
 							<select name="formeStockage" id="formeStockage">
-								<option selected value="individuEntier">Individu entier</option> <!-- par défaut -->
+								<option selected value="individuEntier">Individu entier</option>
 								<option value="ADNextraitChelex">ADN extrait chelex</option>
 								<option value="ADNextraitColonne">ADN extrait colonne</option>
 								<option value="EnrichissementGenomeBacterien">Enrichissement génome bactérien</option>
-								<!--<option value="Pool">Pool</option>-->
-							</select>
+							</select>-->
+							<?php
+							echo "<label style='display: block; width:170px; float:left;' for='formeStockage'> Forme de stockage </label>";
+							echo "<select name='formeStockage' id='listeFormeStockage'>";
+							$requete='SELECT DISTINCT formeStockage from Echantillon ORDER BY formeStockage';
+							$value=requete($bdd,$requete);
+							foreach ($value as $array) {
+								foreach ($array as $key => $valeur) {
+									echo "<option value=\"$valeur\">$valeur</option>";
+								}
+							}
+							echo "</select>";
+							?>
+							&nbsp;
+							<input type = "button" id="affichageFormeStockage" value = "ajouter une forme de stokage" onclick="affichageDiv('divFormeStockage', this.id)">
 
 		       	</br></br>
 
-						<label style="display: block; width:170px; float:left;">Lieu de stockage</label>
-						<!--<input required type="text" id ="lieuStockage" name="lieuStockage" size="20"/>*</br></br>-->
-							<select name="lieuStockage" id="lieuStockage">
-								<option selected value="Montpellier">Montpellier</option> <!-- par défaut -->
-								<option value="Paris">Paris</option>
-							</select>
+						<?php
+						echo "<label style='display: block; width:170px; float:left;' for='lieuStockage'> Lieu de stockage </label>";
+						echo "<select name='lieuStockage' id='listeLieuStockage'>";
+						$requete='SELECT DISTINCT lieuStockage from Echantillon ORDER BY lieuStockage';
+						$value=requete($bdd,$requete);
+						foreach ($value as $array) {
+							foreach ($array as $key => $valeur) {
+								echo "<option value=\"$valeur\">$valeur</option>";
+							}
+						}
+						echo "</select>";
+						?>
+						&nbsp;
+						<input type = "button" id="affichageLieuStockage" value = "ajouter un lieu" onclick="affichageDiv('divLieuStockage', this.id)">
 
-						<input type = "button" value = "ajouter un lieu">
+					<!--	<label style="display: block; width:170px; float:left;">Lieu de stockage</label>
+							<select name="lieuStockage" id="lieuStockage">
+								<option selected value="Montpellier">Montpellier</option>
+								<option value="Paris">Paris</option>
+							</select>-->
 
 				    </br></br>
 
@@ -363,9 +387,39 @@ include 'consultationModification.php';
 					<!--</fieldset>-->
 			</p>
 			</form>
-			</div>
-		</div>
+		</div> <!--ferme div col-sm-->
+
+				<div class= "col-sm-3" style = "float:right; margin-top:150px;">
+					<div id="divFormeStockage" style="display:none;">
+						<form  id="formFormeStockage"  method="POST" onsubmit="return ajaxAjout('./WebService/ajoutFormeStockageWS.php', 'divFormeStockage', this.id, 'listeFormeStockage','affichageFormeStockage', 1)">
+							<fieldset style = "padding-left:5px;">
+								<legend class="scheduler-border"> Ajout forme de stockage </legend>
+									<label style = "float:left;">Forme de stockage</label>
+									<input type="text" id="formeStockage" name="formeStockage" required size="20"/>
+									</br></br>
+									<button type="submit">Ajouter une forme de stockage</button>
+									<button type="button" onclick="affichageDiv('divFormeStockage', 'affichageFormeStockage')">Annuler</button></br></br>
+							</fieldset>
+						</form>
+					</div>
+
+					<div id="divLieuStockage" style="display:none;">
+						<form  id="formLieuStockage"  method="POST" onsubmit="return ajaxAjout('./WebService/ajoutLieuStockageWS.php', 'divLieuStockage', this.id, 'listeLieuStockage','affichageLieuStockage', 1)">
+							<fieldset style = "padding-left:5px;">
+								<legend class="scheduler-border"> Ajout lieu de stockage </legend>
+									<label style = "float:left;">Lieu de stockage</label>
+									<input type="text" id="lieuStockage" name="lieuStockage" required size="20"/>
+									</br></br>
+									<button type="submit">Ajouter un lieu de stockage</button>
+									<button type="button" onclick="affichageDiv('divLieuStockage', 'affichageLieuStockage')">Annuler</button></br></br>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+
+		</div> <!-- ferme div row de consultationModification -->
 	</div>
+	<script src='./javascript/ajoutEchantillon.js'></script>
 
 <?php
 include 'HTML/pied.html';

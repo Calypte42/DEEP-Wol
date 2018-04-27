@@ -4,7 +4,14 @@ $bdd=connexionbd();
 
 include 'verificationConnexion.php';
 include 'consultationModification.php';
+$RetourNomGrotte=$_REQUEST['nomGrotte'];
+$RetourIdGrotte=$_REQUEST['idGrotte'];
+$RetourNomSite=$_REQUEST['site'];
+$RetourIdSite=$_REQUEST['idSite'];
+echo"<form method='post' action='tableauSite.php?grotte=$RetourNomGrotte&idGrotte=$RetourIdGrotte'>";
 ?>
+<input type="submit" value="Revenir au tableau des Sites" />
+</form>
 
 	<div class= "col-sm-10">
     <?php echo "Liste des pièges de la ".$_REQUEST['nomGrotte']. " et du ".$_REQUEST['site']; ?>
@@ -18,6 +25,7 @@ include 'consultationModification.php';
 					<th>Heure Recuperation</th>
 					<th>Probleme</th>
           <th>Date de tri</th>
+					<th>Temperature</th>
 					<th>Code equipe speleo</th>
 					<th>Modifier</th>
 					<th>Supprimer</th>
@@ -26,12 +34,9 @@ include 'consultationModification.php';
 			<tbody>
 
 			<?php
-$RetourNomGrotte=$_REQUEST['nomGrotte'];
-$RetourIdGrotte=$_REQUEST['idGrotte'];
-$RetourNomSite=$_REQUEST['site'];
-$RetourIdSite=$_REQUEST['idSite'];
 
-$requete='SELECT codePiege,datePose,heurePose,dateRecup,heureRecup,probleme,dateTri,codeEquipeSpeleo from Piege where IdSite=\''.$_REQUEST["idSite"].'\'';  /*On prepare une requete permettant de recupere l'ensemble de la table grotte*/
+
+$requete='SELECT codePiege,datePose,heurePose,dateRecup,heureRecup,probleme,dateTri,temperature,codeEquipeSpeleo from Piege where IdSite=\''.$_REQUEST["idSite"].'\'';  /*On prepare une requete permettant de recupere l'ensemble de la table grotte*/
 
 $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 foreach ($value as $valeur) { /* On parcourt le tableau de tableau */

@@ -21,7 +21,64 @@ echo"<form method='post' action='tableauEchantillon.php?piege=$RetourPiege&nomGr
 </form>
 
 <div class= "col-sm-10">
- <?php echo "Liste des analyses de l'$RetourEchantillon". " du ".$_REQUEST['site']." de la ".$_REQUEST['nomGrotte']; ?>
+  <?php echo "Liste des analyses de l'echantillon : $RetourEchantillon". " du site : ".$_REQUEST['site']." de la grotte : ".$_REQUEST['nomGrotte'];
+?>
+  <table class="table table-bordered table-condensed" style="margin-top: 10px;">
+    <thead>
+      <tr>
+        <th>Numero Echantillon</th>
+        <th>Forme de stockage</th>
+        <th>Lieu de stockage</th>
+        <th>Niveau d'identification</th>
+        <th>Infecte par bactérie</th>
+      </tr>
+    <thead>
+    <tbody>
+      <?php
+ $req='SELECT numEchantillon,formeStockage,lieuStockage,niveauIdentification,infecteBacterie from Echantillon e, Personne a, Taxonomie t where e.id=\''.$_REQUEST["idEchantillon"].'\' AND e.idAuteur=a.id AND e.idTaxonomie=t.id';
+
+ $value=requete($bdd,$req); /* value recupere la reponse de la requete */
+ foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
+ 	foreach ($valeur as $cle => $resultat) { /* On recupere la cle et la valeur de chaque element */
+ 				if(empty($resultat)){
+           echo "<td>Non renseigné</td>";
+ 					}else{
+ 				echo "<td>$resultat</td> ";
+ 			}
+
+ 		}}
+    echo "</tbody></table>";?>
+
+
+<table class="table table-bordered table-condensed" style="margin-top: 10px;">
+  <thead>
+    <tr>
+      <th>Classe</th>
+      <th>Ordre</th>
+      <th>Famille</th>
+      <th>Sous Famille</th>
+      <th>Genre</th>
+      <th>Espece</th>
+      <th>initiales auteur</th>
+    </tr>
+  <thead>
+  <tbody>
+    <?php
+$req='SELECT t.classe,t.ordre,t.famille,t.sousFamille,t.genre,t.espece, a.initiale from Echantillon e, Personne a, Taxonomie t where e.id=\''.$_REQUEST["idEchantillon"].'\' AND e.idAuteur=a.id AND e.idTaxonomie=t.id';
+
+$value=requete($bdd,$req); /* value recupere la reponse de la requete */
+foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
+foreach ($valeur as $cle => $resultat) { /* On recupere la cle et la valeur de chaque element */
+      if(empty($resultat)){
+         echo "<td>Non renseigné</td>";
+        }else{
+      echo "<td>$resultat</td> ";
+    }
+
+  }}
+  echo "</tbody></table>";?>
+
+
  <h4> Liste des PCR : </h4>
   <table class="table table-bordered table-condensed" style="margin-top: 10px;">
     <thead>
@@ -40,7 +97,7 @@ echo"<form method='post' action='tableauEchantillon.php?piege=$RetourPiege&nomGr
       <?php
 
 
-$requete='SELECT id,nomgene,resultat,datepcr,fasta,electrophoregramme FROM PCR';
+$requete='SELECT id,nomgene,resultat,dateAnalyse,fasta,electrophoregramme FROM Analyses WHERE type=\'PCR\'';
   /*On prepare une requete permettant de recupere l'ensemble de la table grotte*/
 
 $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
@@ -99,7 +156,7 @@ echo "</table>";
          <?php
 
 
-   $requete='SELECT id,nomgene,resultat,dateqpcr,fasta,electrophoregramme FROM qPCR';
+   $requete='SELECT id,nomgene,resultat,dateAnalyse,fasta,electrophoregramme FROM Analyses WHERE type=\'qPCR\'';
      /*On prepare une requete permettant de recupere l'ensemble de la table grotte*/
 
    $value=requete($bdd,$requete); /* value recupere la reponse de la requete */

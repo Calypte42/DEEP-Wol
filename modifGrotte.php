@@ -31,30 +31,56 @@ $grotte=requete($bdd,$requete); /* value recupere la reponse de la requete */
 					<label style="display: block; width:110px; float:left;">Nom</label>          <!-- Changer les size par rapport à la base de donnees -->
 					<input required type="text" id ="nomGrotte" name="nomGrotte" value="<?=$grotte[0]['nomcavite']?>" size="50"/> * </br></br>
 
-					<label style="display: block; width:110px; float:left;">Type de cavité</label>  <!-- menu deroulant : a preciser les valeurs -->
+					<!--<label style="display: block; width:110px; float:left;">Type de cavité</label>
 						<select name="typeCavite" id="typeCavite">
 							<option value="Standard">Standard</option>
 							<option value="Choix2">Choix2</option>
 							<option value="Choix3">Choix3</option>
-						</select>
+						</select>-->
+						<?php
+						echo "<label style='display: block; width:110px; float:left;' for='TypeCavite'> Type de cavité </label>";
+						echo "<select name='typeCavite'>";
+						$requete='SELECT DISTINCT typeCavite from Grotte ORDER BY typeCavite';
+						$value=requete($bdd,$requete);
+						foreach ($value as $array) {
+							foreach ($array as $key => $valeur) {
+								echo "<option value=\"$valeur\">$valeur</option>";
+							}
+						}
+						echo "</select>";
+					?>
+						&nbsp;
+						<input type = "button" id="affichageTypeCavite" value = "ajouter un type de cavité" onclick=""> <!-- rajout d'un bouton ajout d'une nouvelle équipe -->
+
+
 
 		      </br></br>
 
 					<label style="display: block; width:110px; float:left;">Latitude</label>
-					<input type="text" id ="latitude" name="latitude" value="<?=$grotte[0]['latitude']?>" size="10" placeholder = "30°"/>
-						<select name="orientationLatitude" id="orientationLatitude">
-							<option value="Est">Est</option>
-							<option value="Ouest">Ouest</option>
-						</select>
+					<input type="text" id ="latitude" name="latitude1" size="5" placeholder = "30"/>  <!-- type text pour simplifier la saisie -->
+					°
+					<input type="text" id ="latitude2" name="latitude2" size="5" placeholder = "30"/>  <!-- type text pour simplifier la saisie -->
+					'
+					<input type="text" id ="latitude3" name="latitude3" size="5" placeholder = "30"/>  <!-- type text pour simplifier la saisie -->
+					"
+					<select name="orientationLatitude" id="orientationLatitude">
+						<option selected value="Nord">Nord</option>
+						<option value="Sud">Sud</option>
+					</select>
 
 					</br></br>
 
 					<label style="display: block; width:110px; float:left;">Longitude</label>
-					<input type="text" id ="longitude" name="longitude" value="<?=$grotte[0]['longitude']?>" size="10" placeholder = "20°"/>
-						<select name="orientationLongitude" id="orientationLongitude">
-							<option value="Est">Est</option>
-							<option value="Ouest">Ouest</option>
-						</select>
+					<input type="text" id ="longitude" name="longitude1" size="5" placeholder = "20"/>  <!-- type text pour simplifier la saisie -->
+					°
+					<input type="text" id ="longitude2" name="longitude2" size="5" placeholder = "20"/>  <!-- type text pour simplifier la saisie -->
+					'
+					<input type="text" id ="longitude3" name="longitude3" size="5" placeholder = "20"/>  <!-- type text pour simplifier la saisie -->
+					"
+					<select name="orientationLongitude" id="orientationLongitude">
+						<option selected value="Est">Est</option>
+						<option value="Ouest">Ouest</option>
+					</select>
 
 					</br></br>
 

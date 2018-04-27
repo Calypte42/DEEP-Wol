@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     var affichageAjoutEquipe = document.getElementById('affichageAjoutEquipe')
-    var form = document.getElementById('distanceEntree');
+    var form = document.getElementById('divAjoutSite');
 
     affichageAjoutEquipe.addEventListener("click", function(event) {
-        event.preventDefault()
-        var affichage = document.getElementById('divEquipeSpeleo')
+        event.preventDefault();
+        var affichage = document.getElementById('divEquipeSpeleo');
         affichage.style.display = "inline";
         form.style.display = "none";
     });

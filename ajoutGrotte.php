@@ -9,12 +9,12 @@ include 'consultationModification.php';
 
 		<!-- FORMULAIRE D'AJOUT DE GROTTE -->
 
-		<div class= "col-sm-10">
+		<div class= "col-sm-7">
 			<form method="POST" action="tableauGrotte.php">
 				<input type="submit" value="Revenir au tableau des grottes" />
 			</form>
 			</br>
-			<form  id="ajoutGrotte"  method="POST" action = "WebService/ajoutGrotteWS.php"> <!-- reference au formulaire -->
+			<form  id="ajoutGrotte"  method="GET" action = "WebService/ajoutGrotteWS.php"> <!-- reference au formulaire -->
 			<p> <!-- car balise input ou select ne peut pas etre imbriquee directement dans form -->
 				<!--<fieldset class="scheduler-border fieldset-auto-width">-->
 					<legend class="scheduler-border"> Ajout d'une grotte </legend>
@@ -24,14 +24,28 @@ include 'consultationModification.php';
 							<label style="display: block; width:110px; float:left;">Nom</label>          <!-- Changer les size par rapport à la base de donnees -->
 							<input required type="text" id ="nomGrotte" name="nomGrotte" size="50"/> * </br></br>
 
-							<label style="display: block; width:110px; float:left;">Type de cavité</label>  <!-- menu deroulant : a preciser les valeurs -->
+						<!--	<label style="display: block; width:110px; float:left;">Type de cavité</label>
 								<select name="typeCavite" id="typeCavite">
 									<option value="Choix1">Choix1</option>
 									<option value="Choix2">Choix2</option>
 									<option value="Choix3">Choix3</option>
-								</select>
+								</select>-->
+								<?php
+								echo "<label style='display: block; width:110px; float:left;' for='TypeCavite'> Type de cavité </label>";
+								echo "<select name='typeCavite' id='listeTypeCavite'>";
+								$requete='SELECT DISTINCT typeCavite from Grotte ORDER BY typeCavite';
+								$value=requete($bdd,$requete);
+								foreach ($value as $array) {
+									foreach ($array as $key => $valeur) {
+										echo "<option value=\"$valeur\">$valeur</option>";
+									}
+								}
+								echo "</select>";
+							?>
+								&nbsp;
+								<input type = "button" id="affichageTypeCavite" value = "ajouter un type de cavité" onclick="affichageDiv('divTypeCavite', this.id)">
 
-					        </br></br>
+					    </br></br>
 
 							<label style="display: block; width:110px; float:left;">Latitude</label>
 							<input type="text" id ="latitude" name="latitude1" size="5" placeholder = "30"/>  <!-- type text pour simplifier la saisie -->
@@ -66,7 +80,6 @@ include 'consultationModification.php';
 
 							<label>Système hydrographique</label>
 							<select name="systemeHydro" id='listeSystemeHydrographique'>
-
 							<?php
 							$requete='SELECT nom from SystemeHydrographique ORDER BY nom';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
 							$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
@@ -77,9 +90,10 @@ include 'consultationModification.php';
 							}
 
 							echo "</select>";
-							?>
 
-							<input type = "button" id="affichageSystemeHydrographique" value = "ajouter un système hydrographique">
+							?>
+							&nbsp;
+							<input type = "button" id="affichageSystemeHydrographique" value = "ajouter un système hydrographique" onclick="affichageDiv('divSystemeHydrographique', this.id)">
 
 					    </br></br>
 
@@ -102,16 +116,37 @@ include 'consultationModification.php';
 			</p>
 			</form>
 
-		  <div id="divSystemeHydrographique" style="display:none;">
-		      <form  id="formSystemeHydrographique"  method="post">
-		          <label>nom</label>
-		          <input type="text" id ="nom" name="nom" required size="30"/></br></br>
-		          <label>département</label>
-		          <input type="number" id ="departement" name="departement"/></br></br>
-		          <button type="submit">Ajouter un système hydrographique</button>
-                  <button type="button">Annuler</button></br></br>
-		      </form>
-			</div>
+
+		</div>
+
+		<div class= "col-sm-3" style = "float:right; margin-top:150px;">
+		<div  id="divTypeCavite" style="display:none;">
+			<form  id="formTypeCavite"  method="POST" onsubmit="return ajaxAjout('./WebService/ajoutTypeCaviteWS.php', 'divTypeCavite', this.id, 'listeTypeCavite','affichageTypeCavite', 1)">
+				<fieldset style = "padding-left:5px;" >
+					<legend class="scheduler-border"> Ajout type cavité </legend>
+						<label>Type de cavité</label>
+						<input type="text" id="typeCavite" name="typeCavite" required size="20"/></br></br>
+						<button type="submit">Ajouter un type de cavité</button>
+						<button type="button" onclick="affichageDiv('divTypeCavite', 'affichageTypeCavite')">Annuler</button></br></br>
+				</fieldset>
+			</form>
+		</div>
+		</div>
+
+		<div class= "col-sm-3" style = "float:right;">
+		<div id="divSystemeHydrographique" style="display:none;">
+				<form  id="formSystemeHydrographique"  method="post" onsubmit="return ajaxAjout('./WebService/ajoutSystemeHydrographiqueWS.php', 'divSystemeHydrographique', this.id, 'listeSystemeHydrographique','affichageSystemeHydrographique', 1)">
+					<fieldset style = "padding-left:5px;" >
+						<legend class="scheduler-border"> Ajout système hydrographique </legend>
+							<label>nom</label>
+							<input type="text" id ="nom" name="nom" required size="30"/></br></br>
+							<label>département</label>
+							<input type="number" id ="departement" name="departement"/></br></br>
+							<button type="submit">Ajouter un système hydrographique</button>
+							<button type="button" onclick="affichageDiv('divSystemeHydrographique', 'affichageSystemeHydrographique')">Annuler</button></br></br>
+					</fieldset>
+				</form>
+		</div>
 		</div>
 	</div>
 </div>

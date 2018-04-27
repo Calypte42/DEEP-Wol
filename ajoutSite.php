@@ -9,7 +9,7 @@ include 'consultationModification.php';
 ?>
 		<!-- FORMULAIRE D'AJOUT DE SITE -->
 
-		<div class= "col-sm-10">
+		<div class= "col-sm-7">
 			<?php
 			if(isset($_REQUEST['idGrotte'])){
 				$RetourId=$_REQUEST['idGrotte'];
@@ -22,7 +22,7 @@ include 'consultationModification.php';
 			?>
 			</br>
 			<div id='divAjoutSite'>
-			<form  id="ajoutSite"  method="POST" action = "WebService/ajoutSiteWS.php"> <!-- reference au formulaire -->
+			<form  id="ajoutSite"  method="GET" action = "WebService/ajoutSiteWS.php"> <!-- reference au formulaire -->
 			<p>
 			<!--<fieldset class="scheduler-border">-->
 				<legend class="scheduler-border"> Ajout d'un site </legend>
@@ -93,8 +93,6 @@ include 'consultationModification.php';
 					<input type="number" id ="profondeur" name="profondeur" size = "5"/></br></br> <!-- a voir pour rajouter un pas (pour decimal) step =""-->
 
 					<!-- Mettre number -->
-					<label style="display: block; width:115px; float:left;">Temperature</label>
-					<input type="number" id ="temperature" name="temperature" size = "5"/> °C</br></br> <!-- a voir pour rajouter un pas (pour decimal) step =""-->
 
 					<label style="display: block; width:115px; float:left;">Type de sol</label>
 					<input type="text" id ="typeSol" name="typeSol" size="20"/></br></br>
@@ -120,24 +118,31 @@ include 'consultationModification.php';
 						echo "<input type='submit' name='nom' value='Valider et revenir au tableau des sites'>";
 					}
 					?>
-				</div>
-						</div>
 					</div>
+				</div>
+			</div> <!-- ferme divAjoutSite-->
 				<!--</fieldset>-->
 			</p>
 			</form>
 
-		  <div id="divEquipeSpeleo" style="display:none;">
-		      <form  id="formEquipeSpeleo"  method="POST" onsubmit="return ajaxAjout('./WebService/ajoutEquipeWS.php', 'divEquipeSpeleo', this.id, 'listeEquipeSpeleo','affichageAjoutEquipe', 1)">
-		          <label>Equipe spéleo</label>
-		          <input type="text" id="codeEquipe" name="codeEquipe" required size="20"/> *
-		          <button type="submit">Ajouter une équipe</button>
-                  <button type="button" onclick="affichageDiv('divEquipeSpeleo', 'affichageAjoutEquipe')">Annuler</button></br></br>
-		      </form>
-		  </div>
+		</div> <!--ferme col-sm-->
+
+		<div class = "col-sm-3" style = "float:right; margin-top:150px;">
+			<div id="divEquipeSpeleo" style="display:none;">
+					<form  id="formEquipeSpeleo"  method="POST" onsubmit="return ajaxAjout('./WebService/ajoutEquipeWS.php', 'divEquipeSpeleo', this.id, 'listeEquipeSpeleo','affichageAjoutEquipe', 1)">
+						<fieldset style = "padding-left:5px;" >
+							<legend class="scheduler-border"> Ajout Equipe spéleo </legend>
+							<label style = "float:left;">Equipe spéléo</label>&nbsp;
+							<input type="text" id="codeEquipe" name="codeEquipe" required size="20"/> *
+							</br></br>
+							<button type="submit">Ajouter une équipe</button>
+									<button type="button" onclick="affichageDiv('divEquipeSpeleo', 'affichageAjoutEquipe')">Annuler</button></br></br>
+						</fieldset>
+					</form>
+			</div>
 		</div>
-	</div>
-</div>
+	</div> <!-- div ferme row de consultationModification-->
+</div> <!-- ferme div container-fluid de consultationModification-->
 
 <?php
 include 'HTML/pied.html';

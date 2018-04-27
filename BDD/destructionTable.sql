@@ -9,10 +9,8 @@ TRUNCATE TABLE Compte RESTART IDENTITY CASCADE;
 
 drop view V_Echantillon_AvecTaxo;
 drop table Compte;
-drop table qPCR;
-drop table PCR;
-drop table CorrespondanceGeneBacterie;
-drop table Gene;
+drop table Analyse;
+drop table CorrespondanceEchantillonBacterie;
 drop table Bacterie;
 drop table Echantillon;
 drop table Taxonomie;

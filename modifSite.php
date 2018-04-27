@@ -67,8 +67,8 @@ $site=requete($bdd,$requete); /* value recupere la reponse de la requete */
 				<input type="number" id ="profondeur" name="profondeur" value="<?=$site[0]['profondeur']?>" size = "5"/></br></br> <!-- a voir pour rajouter un pas (pour decimal) step =""-->
 
 				<!-- Mettre number -->
-				<label style="display: block; width:115px; float:left;">Temperature</label>
-				<input type="number" id ="temperature" name="temperature" value="<?=$site[0]['temperature']?>" size = "5"/> °C</br></br> <!-- a voir pour rajouter un pas (pour decimal) step =""-->
+				<!--<label style="display: block; width:115px; float:left;">Temperature</label>
+				<input type="number" id ="temperature" name="temperature" value="<?=$site[0]['temperature']?>" size = "5"/> °C</br></br> -->
 
 				<label style="display: block; width:115px; float:left;">Type de sol</label>
 				<input type="text" id ="typeSol" name="typeSol" value="<?=$site[0]['typesol']?>" size="20"/></br></br>

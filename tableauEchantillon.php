@@ -14,7 +14,10 @@ $RetourIdGrotte=$_REQUEST['idGrotte'];
 $RetourNomSite=$_REQUEST['site'];
 $RetourIdSite=$_REQUEST['idSite'];
 $RetourPiege=$_REQUEST['piege'];
+echo"<form method='post' action='tableauPiege.php?nomGrotte=$RetourNomGrotte&idGrotte=$RetourIdGrotte&site=$RetourNomSite&idSite=$RetourIdSite'>";
 ?>
+<input type="submit" value="Revenir au tableau des Pieges" />
+</form>
 
 	<div class= "col-sm-10">
     <?php echo "Liste des échantillons de la ".$_REQUEST['nomGrotte']." du ".$_REQUEST['site']." du ".$_REQUEST['piege']; ?>

@@ -6,6 +6,7 @@ create table SystemeHydrographique (
     id SERIAL PRIMARY KEY,
     nom varchar(30),
     departement int,
+    pays varchar(4),
     CONSTRAINT departement_sup0 CHECK (departement>=0)
 );
 
@@ -13,8 +14,8 @@ create table Grotte (
     id SERIAL PRIMARY KEY,
     nomCavite varchar(50) UNIQUE NOT NULL,
     typeCavite varchar(20),
-    latitude varchar(10),
-    longitude varchar(10),
+    latitude varchar(20),
+    longitude varchar(20),
     typeAcces varchar(20),
     accesPublic boolean,
     idSystemeHydrographique int,
@@ -25,7 +26,6 @@ create table Grotte (
 create table Site (
     id SERIAL PRIMARY KEY,
     profondeur float,
-    temperature float,
     typeSol varchar(20),
     numSite varchar(40) NOT NULL,
     distanceEntree float NOT NULL,
@@ -46,6 +46,7 @@ create table Piege (
     heureRecup time,
     probleme varchar(200),
     dateTri date,
+    temperature float,
     codeEquipeSpeleo varchar(20) NOT NULL,
     IdSite int NOT NULL,
     CONSTRAINT EquipeSpeleo_FK FOREIGN KEY (codeEquipeSpeleo)
@@ -96,50 +97,27 @@ create table Gene (
     nom varchar(20) PRIMARY KEY
 );
 
-create table Bacterie (
-    clade varchar(1) PRIMARY KEY
-);
-
-create table CorrespondanceGeneBacterie (
-    id SERIAL PRIMARY KEY,
-    nomGene varchar(20) NOT NULL,
+create table CorrespondanceEchantillonBacterie (
+    idEchantillon int NOT NULL,
     clade varchar(1) NOT NULL,
-    CONSTRAINT nomGene_FK FOREIGN KEY (nomGene)
-        REFERENCES Gene(nom) ON UPDATE CASCADE ON DELETE CASCADE,
-    CONSTRAINT clade_FK FOREIGN KEY (clade)
-        REFERENCES Bacterie (clade) ON UPDATE CASCADE ON DELETE CASCADE
+    CONSTRAINT idEchantillon_FK FOREIGN KEY (idEchantillon)
+        REFERENCES Echantillon(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT CorrespondanceEchantillonBacterie_PK PRIMARY KEY (idEchantillon,clade)
 );
 
-create table PCR (
+create table Analyses (
     id SERIAL PRIMARY KEY,
     resultat varchar(10) NOT NULL,
+    type varchar(4) NOT NULL,
     idEchantillon int NOT NULL,
     nomGene varchar(20) NOT NULL,
-    datePCR date NOT NULL,
+    dateAnalyse date NOT NULL,
     fasta varchar(200),
     electrophoregramme varchar(200),
     CONSTRAINT idEchantillon_FK FOREIGN KEY (idEchantillon)
         REFERENCES Echantillon (id) ON DELETE CASCADE,
-    CONSTRAINT nomGene_FK FOREIGN KEY (nomGene)
-        REFERENCES Gene (nom) ON UPDATE CASCADE ON DELETE CASCADE,
-    CONSTRAINT PCR_dateEchantillonGene_UNIQUE UNIQUE (datePCR,idEchantillon,nomGene)
+    CONSTRAINT Analyse_dateEchantillonGene_UNIQUE UNIQUE (dateAnalyse,idEchantillon,nomGene)
 );
-
-create table qPCR (
-    id SERIAL PRIMARY KEY,
-    resultat varchar(10)NOT NULL,
-    idEchantillon int NOT NULL,
-    nomGene varchar(20) NOT NULL,
-    dateqPCR date NOT NULL,
-    fasta varchar(200),
-    electrophoregramme varchar(200),
-    CONSTRAINT idEchantillon_FK FOREIGN KEY (idEchantillon)
-        REFERENCES Echantillon (id) ON DELETE CASCADE,
-    CONSTRAINT nomGene_FK FOREIGN KEY (nomGene)
-        REFERENCES Gene (nom) ON UPDATE CASCADE ON DELETE CASCADE,
-    CONSTRAINT qPCR_dateEchantillonGene_UNIQUE UNIQUE (dateqPCR,idEchantillon,nomGene)
-);
-
 
 create table Compte (
     id SERIAL PRIMARY KEY,
@@ -150,6 +128,13 @@ create table Compte (
 CREATE VIEW V_Echantillon_AvecTaxo AS
 SELECT numEchantillon,formeStockage,lieuStockage,niveauIdentification,infecteBacterie,nombreIndividu,piege.codepiege,datepose,heurepose,daterecup,heurerecup,probleme,datetri,profondeur,temperature,typesol,numsite,distanceentree,presenceeau,nomcavite,typecavite,latitude,longitude,typeacces,accespublic,sys.nom AS nomSystemeHydrographique,departement,classe,ordre,famille,sousfamille,genre,espece,photo,p.initiale AS initialeAuteur from Echantillon e, Taxonomie t, Personne p, Piege piege, Site site, Grotte grotte, systemeHydrographique sys WHERE (e.idTaxonomie=t.id) AND (e.idAuteur=p.id) AND (e.codePiege=piege.codePiege) AND (piege.idSite=site.id) AND (site.idGrotte=grotte.id) AND (grotte.idSystemeHydrographique=sys.id);
 
+CREATE VIEW V_Analyse AS
+SELECT resultat,type,nomGene,dateAnalyse,fasta,electrophoregramme,numEchantillon,formeStockage,lieuStockage,niveauIdentification,infecteBacterie,nombreIndividu,piege.codepiege,datepose,heurepose,daterecup,heurerecup,probleme,datetri,profondeur,temperature,typesol,numsite,distanceentree,presenceeau,nomcavite,typecavite,latitude,longitude,typeacces,accespublic,sys.nom AS nomSystemeHydrographique,departement,classe,ordre,famille,sousfamille,genre,espece,photo,p.initiale AS initialeAuteur from Analyses analyses,Echantillon e, Taxonomie t, Personne p, Piege piege, Site site, Grotte grotte, systemeHydrographique sys WHERE (analyses.idEchantillon=e.id) AND (e.idTaxonomie=t.id) AND (e.idAuteur=p.id) AND (e.codePiege=piege.codePiege) AND (piege.idSite=site.id) AND (site.idGrotte=grotte.id) AND (grotte.idSystemeHydrographique=sys.id);
+
+/*
+CREATE VIEW V_Analyse_Fasta AS
+SELECT fasta from Analyses analyses,Echantillon e, Taxonomie t, Personne p, Piege piege, Site site, Grotte grotte, systemeHydrographique sys WHERE (analyses.idEchantillon=e.id) AND(e.idTaxonomie=t.id) AND (e.idAuteur=p.id) AND (e.codePiege=piege.codePiege) AND (piege.idSite=site.id) AND (site.idGrotte=grotte.id) AND (grotte.idSystemeHydrographique=sys.id);
+*/
 /*
 CREATE VIEW V_Fasta AS
 SELECT pcr.fasta AS fastaPCR,qpcr.fasta as fastaQPCR from
@@ -174,5 +159,4 @@ TRUNCATE TABLE Site RESTART IDENTITY CASCADE;
 TRUNCATE TABLE Personne RESTART IDENTITY CASCADE;
 TRUNCATE TABLE Taxonomie RESTART IDENTITY CASCADE;
 TRUNCATE TABLE Echantillon RESTART IDENTITY CASCADE;
-TRUNCATE TABLE CorrespondanceGeneBacterie RESTART IDENTITY CASCADE;
 TRUNCATE TABLE Compte RESTART IDENTITY CASCADE;

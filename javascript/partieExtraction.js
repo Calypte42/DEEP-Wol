@@ -17,13 +17,20 @@ function decocher(id) {
 
 var menuSelectionType = document.getElementById('choixExtraction');
 
+
 menuSelectionType.addEventListener("change",function(){
   var disparaitreSiFasta = document.getElementById('disparaitreSiFasta');
+  var boutonFasta = document.getElementById('extraireFasta');
+  var boutonCSV = document.getElementById('extraireCSV');
   if(menuSelectionType.value=='Fasta'){
     disparaitreSiFasta.style.display='none';
+    boutonFasta.style.display='block';
+    boutonCSV.style.display='none';
   }
   else{
     disparaitreSiFasta.style.display='inline';
+    boutonFasta.style.display='none';
+    boutonCSV.style.display='block';
   }
 })
 
@@ -38,53 +45,53 @@ var toutDecocherPiege = document.getElementById('deselectionPiege');
 var toutCocherEchantillon = document.getElementById('selectionEchantillon');
 var toutDecocherEchantillon = document.getElementById('deselectionEchantillon');
 
-toutCocherGeneral.addEventListener("click",function(event){
-  event.preventDefault();
+toutCocherGeneral.addEventListener("click",function(){
+
   cocher('disparaitreSiFasta');
 });
 
-toutDecocherGeneral.addEventListener("click",function(event){
-  event.preventDefault();
+toutDecocherGeneral.addEventListener("click",function(){
+
   decocher('disparaitreSiFasta');
 });
 
-toutCocherEchantillon.addEventListener("click",function(event){
-  event.preventDefault();
+toutCocherEchantillon.addEventListener("click",function(){
+
   cocher('divCheckEchantillon');
 });
 
-toutDecocherEchantillon.addEventListener("click",function(event){
-  event.preventDefault();
+toutDecocherEchantillon.addEventListener("click",function(){
+
   decocher('divCheckEchantillon');
 });
 
-toutCocherPiege.addEventListener("click",function(event){
-  event.preventDefault();
+toutCocherPiege.addEventListener("click",function(){
+
   cocher('divCheckPiege');
 });
 
-toutDecocherPiege.addEventListener("click",function(event){
-  event.preventDefault();
+toutDecocherPiege.addEventListener("click",function(){
+
   decocher('divCheckPiege');
 });
 
-toutCocherSite.addEventListener("click",function(event){
-  event.preventDefault();
+toutCocherSite.addEventListener("click",function(){
+
   cocher('divCheckSite');
 });
 
-toutDecocherSite.addEventListener("click",function(event){
-  event.preventDefault();
+toutDecocherSite.addEventListener("click",function(){
+
   decocher('divCheckSite');
 });
 
-toutCocherGrotte.addEventListener("click",function(event){
-  event.preventDefault();
+toutCocherGrotte.addEventListener("click",function(){
+
   cocher('divCheckGrotte');
 });
 
-toutDecocherGrotte.addEventListener("click",function(event){
-  event.preventDefault();
+toutDecocherGrotte.addEventListener("click",function(){
+
   decocher('divCheckGrotte');
 });
 

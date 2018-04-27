@@ -28,8 +28,13 @@ include 'consultationModification.php';
 
         </br>
 
+<<<<<<< HEAD
         <!-- FORMULAIRE D'AJOUT D'UNE PCR -->
         <form  id="ajoutPCR"  method="POST" action = "WebService/ajoutAnalyseWS.php" onsubmit="return controleAnalyse(this)" enctype='multipart/form-data'> <!-- reference au formulaire -->
+=======
+        <!-- FORMULAIRE D'AJOUT D'UNE ANALYSE -->
+        <form  id="ajoutAnalyse"  method="GET" action = "WebService/ajoutAnalyseWS.php" enctype='multipart/form-data'> <!-- reference au formulaire -->
+>>>>>>> f8cfd04d0fe2eba629822b76ec9e362416b8368d
         <p> <!-- car balise input ou select ne peut pas etre imbriquee directement dans form -->
           <!--<fieldset class="scheduler-border">-->
             <legend class="scheduler-border"> Ajout d'une analyse </legend>
@@ -75,9 +80,9 @@ include 'consultationModification.php';
 
                 </br></br>
                 <label for='choixPCR'> PCR</label>
-                <input type='radio' name='choixType' value="PCR" id='choixPCR' checked /> &nbsp;&nbsp;&nbsp;
+                <input type='radio' name='type' value="PCR" id='choixPCR' checked /> &nbsp;&nbsp;&nbsp;
                 <label for='choixqPCR'> qPCR</label>
-                <input type='radio' name='choixType' value="qPCR" id='choixqPCR'/>
+                <input type='radio' name='type' value="qPCR" id='choixqPCR'/>
 
               </br></br>
 

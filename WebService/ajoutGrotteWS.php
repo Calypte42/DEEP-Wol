@@ -45,6 +45,8 @@ $req = $bdd->prepare('INSERT INTO Grotte (nomCavite,typeCavite,latitude,longitud
     $latitude=null;
   }
 
+  echo "longitude";
+
 $req->execute(array(
 	'nomGrotte' => $_REQUEST['nomGrotte'],
   'typeCavite' => $_REQUEST['typeCavite'],

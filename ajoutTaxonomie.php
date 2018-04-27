@@ -61,7 +61,7 @@ include 'consultationModification.php';
 									/* on veut recuperer les valeurs de famille deja existantes dans la bdd */
 									echo "<label style='display: block; width:100px; float:left;' for='famille'>Famille </label>";
 									echo "<select name='' id='selectFamilleTaxo'>"; /* On cree une liste deroulante vide */
-									echo "<option value=\"Nouveau\">Nouveau</option>";
+									echo "<option value=\"Nouveau\">Nouvelle</option>";
 									$requete='SELECT DISTINCT famille from Taxonomie WHERE famille != \'null\' ORDER BY famille';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
 									$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 									foreach ($value as $array) { /* On parcourt les resultats possibles */
@@ -78,7 +78,7 @@ include 'consultationModification.php';
 									/* on veut recuperer les valeurs de sous-famille deja existantes dans la bdd */
 									echo "<label style='display: block; width:100px; float:left;' for='sousFamille'>Sous-famille </label>";
 									echo "<select name='' id='selectSousFamilleTaxo'>"; /* On cree une liste deroulante vide */
-									echo "<option value=\"Nouveau\">Nouveau</option>";
+									echo "<option value=\"Nouveau\">Nouvelle</option>";
 									$requete='SELECT DISTINCT sousfamille from Taxonomie WHERE sousFamille != \'null\' ORDER BY sousfamille';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
 									$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 									foreach ($value as $array) { /* On parcourt les resultats possibles */
