@@ -32,7 +32,7 @@ include 'consultationModification.php';
 								<?php
 								echo "<label style='display: block; width:110px; float:left;' for='typeCavite'> Type de cavité </label>";
 								echo "<select name='typeCavite' id='typeCavite' onchange='ajoutAutre(this.options[this.selectedIndex].value, \"autreDivCavite\", \"autreCavite\")'>";
-								$requete='SELECT typeCavite from Grotte ORDER BY typeCavite';
+								$requete='SELECT DISTINCT typeCavite from Grotte ORDER BY typeCavite';
 								$value=requete($bdd,$requete);
 								foreach ($value as $array) {
 									foreach ($array as $key => $valeur) {
