@@ -26,7 +26,7 @@ include 'consultationModification.php';
 		</form>-->
 		</br>
 		<!-- FORMULAIRE D'AJOUT DE PIEGE -->
-		<form  id="ajoutPiege"  method="GET" action = "WebService/ajoutPiegeWS.php"> <!-- reference au formulaire -->
+		<form  id="ajoutPiege"  method="GET" action = "WebService/ajoutPiegeWS.php" onsubmit="return controlePiege(this);"> <!-- reference au formulaire -->
 		<p>
 			<!--<fieldset class="scheduler-border">-->
 				<legend class="scheduler-border"> Ajout d'un piège </legend>
@@ -45,16 +45,17 @@ include 'consultationModification.php';
 							echo "<label style='display: block; width:150px; float:left;' for='idGrotte'>Dans la grotte </label>";
 							echo "<input type='hidden' name='idGrotte' value=$RetourIdGrotte>";
 							echo "<input type='hidden' name='nomGrotte' value=$RetourNomGrotte>";
-							echo "<select name='nomGrotte'>";
-							$requete='SELECT NomCavite from Grotte ORDER BY NomCavite';
+							echo "<select name='idGrotteForm' onchange='majSite(this.options[this.selectedIndex].value);'>";
+							$requete='SELECT id, nomCavite from Grotte ORDER BY NomCavite';
 							$value=requete($bdd,$requete);
 							foreach ($value as $array) {
-								foreach ($array as $key => $valeur) {
-									if($valeur==$RetourNomGrotte){
-										echo "<option selected value=\"$RetourNomGrotte\">$RetourNomGrotte</option>";
-									}else{
-										echo "<option value=\"$valeur\">$valeur</option>";}
-								}
+                                $id = $array['id'];
+                                $nomCavite = $array['nomcavite'];
+								if($nomCavite==$RetourNomGrotte){
+									echo "<option selected value=\"$id\">$nomCavite</option>";
+								}else{
+									echo "<option value=\"$id\">$nomCavite</option>";
+                                }
 							}
 							echo "</select></br></br>";
 
@@ -63,46 +64,45 @@ include 'consultationModification.php';
 							echo "<label style='display: block; width:150px; float:left;' for='idSite'>Dans le site </label>";
 							echo "<input type='hidden' name='idSite' value=$RetourIdSite>";
 							echo "<input type='hidden' name='site' value=$RetourNomSite>";
-							echo "<select name='site'>";
-							$requete='SELECT numsite from Site ORDER BY numsite';
+                            echo "<div id='choixSite' style='display: inline'>";
+							echo "<select name='idSiteForm'>";
+							$requete="SELECT id, numsite from Site WHERE idGrotte = $RetourIdGrotte ORDER BY numsite";
 							$value=requete($bdd,$requete);
 							foreach ($value as $array) {
-								foreach ($array as $key => $valeur) {
-									if($valeur==$RetourNomSite){
-										echo "<option selected value=\"$RetourNomSite\">$RetourNomSite</option>";
-									}else{
-										echo "<option value=\"$valeur\">$valeur</option>";}
-								}
+                                $id = $array['id'];
+                                $numSite = $array['numsite'];
+								if($numSite==$RetourNomSite){
+									echo "<option selected value=\"$id\">$numSite</option>";
+								}else{
+									echo "<option value=\"$id\">$numSite</option>";
+                                }
 							}
 							echo "</select>";
+                            echo "<input type='hidden' name='ajoutSite' value='' />";
+                            echo "</div>";
 
-							}else {
+						}else {
 
 						 	/* rajout menu déroulant grotte  */
 
 							echo "<label style='display: block; width:150px; float:left;' for='Grotte'> Grotte </label>";
-							echo "<select name='nomGrotte'>";
-							$requete='SELECT NomCavite from Grotte ORDER BY NomCavite';
-							$value=requete($bdd,$requete);
-							foreach ($value as $array) {
-								foreach ($array as $key => $valeur) {
-									echo "<option value=\"$valeur\">$valeur</option>";
-								}
-							}
+							echo "<select name='idGrotteForm' onchange=\"majSite(this.options[this.selectedIndex].value);\">";
+                            echo "<option disabled selected value>Choisir une grotte</option>";
+                            $requete='SELECT id, nomCavite from Grotte ORDER BY NomCavite';
+    						$value=requete($bdd,$requete);
+    						foreach ($value as $array) {
+                                $id = $array['id'];
+                                $nomCavite = $array['nomcavite'];
+    							echo "<option value=\"$id\">$nomCavite</option>";
+    						}
 							echo "</select></br></br>";
 
 							/* rajout menu déroulant site  */
 
 							echo "<label style='display: block; width:150px; float:left;' for='Site'> Site </label>";
-							echo "<select name='numSite'>";
-							$requete='SELECT numSite from Site ORDER BY numSite';
-							$value=requete($bdd,$requete);
-							foreach ($value as $array) {
-								foreach ($array as $key => $valeur) {
-									echo "<option value=\"$valeur\">$valeur</option>";
-								}
-							}
-							echo "</select>";
+                            echo "<div id='choixSite' style='display: none'>";
+                            echo "<input type='hidden' name='ajoutSite' value='' />";
+                            echo "</div>";
 						}
 						?>
 
@@ -133,7 +133,7 @@ include 'consultationModification.php';
 						</br></br>
 
 						<label style="display: block; width:150px; float:left;">Code du piège</label>
-						<input required type="text" id ="codePiege" name="codePiege" size="20"/>*</br></br>
+						<input required type="text" id ="codePiege" name="codePiege" size="20"/> *</br></br>
 
 						<label style="display: block; width:150px; float:left;">Date de pose</label>
 						<input type="date" id ="datePose" name="datePose"/>

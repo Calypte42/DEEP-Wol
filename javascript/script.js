@@ -24,7 +24,7 @@ function ajaxAjout(url, idAffichage, idFormulaire, idSelect, idBouton) {
 
     var ajoutOption = true;
     for (var i = 0; i < listeOptions.length; i++) {
-        if (listeOptions[i].text == nouvelleOption) {
+        if (listeOptions[i].text.trim() == nouvelleOption) {
             ajoutOption = false;
             listeOptions[i].selected = true;
         }
@@ -55,6 +55,25 @@ function ajaxAjout(url, idAffichage, idFormulaire, idSelect, idBouton) {
     return false;
 
 };
+
+function majSite(idGrotte) {
+    var request = new XMLHttpRequest();
+    var select = document.getElementById('choixSite');
+
+    if (select.style.display == 'none') {
+        select.style.display = 'inline';
+    }
+
+    request.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            if (this.responseText) {
+                select.innerHTML = this.responseText;
+            }
+        }
+    }
+    request.open("GET", "./WebService/listeSiteWS.php?idGrotte=" + idGrotte, true);
+    request.send();
+}
 
 function afficher(idDiv, typeAffichage) {
     var affichage = document.getElementById(idDiv);
@@ -137,11 +156,10 @@ function affichageDiv(idDiv, idBouton) {
 function ajoutAutre(valeurAutre, idDiv, idInput) {
     if (valeurAutre == 'autre') {
         document.getElementById(idDiv).style.display = "inline";
-        document.getElementById(idInput).required = "true";
-    }
-    else {
+        document.getElementById(idInput).required = true;
+    } else {
         document.getElementById(idDiv).style.display = "none";
-        document.getElementById(idInput).required = "false";
+        document.getElementById(idInput).required = false;
         document.getElementById(idInput).value = "";
     }
 }
@@ -172,6 +190,80 @@ function controleAnalyse(formulaire) {
             return true;
         }
     }
+
+}
+
+function controleGrotte(formulaire) {
+    if (document.getElementById("divSystemeHydrographique").style.display == "inline") {
+        alert("Veuillez valider l'ajout d'un système hydrographique ou annuler");
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function controleSite(formulaire) {
+    if (document.getElementById("divEquipeSpeleo").style.display == "inline") {
+        alert("Veuillez valider l'ajout d'un système hydrographique ou annuler");
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function controlePiege(formulaire) {
+    select = formulaire.elements['idGrotteForm'];
+    message = "";
+    erreur = false;
+
+    if (select.value == "") {
+        message += "- Veuillez choisir une grotte\n";
+        erreur = true;
+    }
+
+    ajoutSite = formulaire.elements['ajoutSite'];
+    if (ajoutSite.value != '') {
+        message += "- Veuillez ajouter un site\n";
+        erreur = true;
+    }
+
+    datePose = formulaire.elements['datePose'];
+    dateRecup = formulaire.elements['dateRecup'];
+    heurePose = formulaire.elements['heurePose'];
+    heureRecup = formulaire.elements['heureRecup'];
+    if (dateRecup.value != "" && datePose.value != "") {
+        if (dateRecup.value < datePose.value) {
+            message += "- La date de pose doit être antérieure à la date de récupération\n";
+            erreur = true;
+        } else if (dateRecup.value == datePose.value) {
+            if (heureRecup.value != "" && heurePose.value != "") {
+                if (heureRecup.value < heurePose.value) {
+                    message += "- L'heure de pose doit être antérieure à l'heure de récupération\n";
+                    erreur = true;
+                }
+            }
+        }
+    }
+
+    dateTri = formulaire.elements['dateTri'];
+    if (dateTri.value != "") {
+        if (dateRecup.value != "" && dateTri.value < dateRecup.value){
+            message += "- La date de récupération doit être antérieure à la date de tri\n";
+            erreur = true;
+        }
+
+        if (datePose.value != "" && dateTri.value < datePose.value) {
+            message += "- La date de pose doit être antérieure à la date de tri\n";
+            erreur = true;
+        }
+    }
+
+    if (erreur) {
+        alert(message);
+        return false;
+    }
+
+    return true;
 
 }
 

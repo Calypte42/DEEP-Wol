@@ -22,7 +22,7 @@ include 'consultationModification.php';
 			?>
 			</br>
 			<div id='divAjoutSite'>
-			<form  id="ajoutSite"  method="GET" action = "WebService/ajoutSiteWS.php"> <!-- reference au formulaire -->
+			<form  id="ajoutSite"  method="GET" action = "WebService/ajoutSiteWS.php" onsubmit="return controleSite(this);"> <!-- reference au formulaire -->
 			<p>
 			<!--<fieldset class="scheduler-border">-->
 				<legend class="scheduler-border"> Ajout d'un site </legend>
@@ -36,27 +36,28 @@ include 'consultationModification.php';
 						echo "<label style='display: block; width:115px; float:left;' for='idGrotte'>Dans la grotte </label>";
 						echo "<input type='hidden' name='idGrotte' value=$RetourId>";
 						echo "<input type='hidden' name='grotte' value=$Retour>";
-						echo "<select name='nomGrotte'>";
-						$requete='SELECT NomCavite from Grotte ORDER BY NomCavite';
+						echo "<select name='idGrotteForm'>";
+						$requete='SELECT id, nomCavite from Grotte ORDER BY NomCavite';
 						$value=requete($bdd,$requete);
 						foreach ($value as $array) {
-							foreach ($array as $key => $valeur) {
-								if($valeur==$Retour){
-									echo "<option selected value=\"$Retour\">$Retour</option>";
-								}else{
-									echo "<option value=\"$valeur\">$valeur</option>";}
-							}
+                            $id = $array['id'];
+                            $nomCavite = $array['nomcavite'];
+							if($nomCavite==$Retour){
+								echo "<option selected value=\"$id\">$nomCavite</option>";
+							}else{
+								echo "<option value=\"$id\">$nomCavite</option>";
+                            }
 						}
 						echo "</select>";
 					} else {
 						echo "<label style='display: block; width:115px; float:left;' for='Grotte'> Grotte </label>";
-						echo "<select name='nomGrotte'>";
-						$requete='SELECT NomCavite from Grotte ORDER BY NomCavite';
+						echo "<select name='idGrotte'>";
+						$requete='SELECT id, nomCavite from Grotte ORDER BY NomCavite';
 						$value=requete($bdd,$requete);
 						foreach ($value as $array) {
-							foreach ($array as $key => $valeur) {
-								echo "<option value=\"$valeur\">$valeur</option>";
-							}
+                            $id = $array['id'];
+                            $nomCavite = $array['nomcavite'];
+							echo "<option value=\"$id\">$nomCavite</option>";
 						}
 						echo "</select>";
 					}
@@ -94,9 +95,28 @@ include 'consultationModification.php';
 
 					<!-- Mettre number -->
 
-					<label style="display: block; width:115px; float:left;">Type de sol</label>
-					<input type="text" id ="typeSol" name="typeSol" size="20"/></br></br>
-					<!-- Mettre number -->
+					<label style="display: block; width:115px; float:left;" for='typeSol'>Type de sol</label>
+					<!--<input type="text" id ="typeSol" name="typeSol" size="20"/></br></br>-->
+                <?php
+                    echo "<select name='typeSol' id='typeSol' onchange='ajoutAutre(this.options[this.selectedIndex].value, \"autreDivSol\", \"autreSol\")'>";
+                    $requete='SELECT DISTINCT typeSol from Site ORDER BY typeSol';
+                    $value=requete($bdd,$requete);
+                    foreach ($value as $array) {
+                        foreach ($array as $key => $valeur) {
+                            if ($valeur != "Indéterminé") {
+                                echo "<option value=\"$valeur\">$valeur</option>";
+                            }
+                        }
+                    }
+                    echo "<option value='Indéterminé'>Indéterminé</option>";
+                    echo "<option value='autre'>Autre</option>";
+                    echo "</select>";
+                ?>
+                    <div id="autreDivSol" style="display:none;">Ajouter un type de sol : <input id="autreSol" type="text" name="autreSol" /> *</div>
+
+                    </br></br>
+
+                    <!-- Mettre number -->
 					<label style="display: block; width:115px; float:left;">Distance à l'entrée</label>
 					<input required type="number" id ="distanceEntree" name="distanceEntree" size="10"/> metres *</br></br> <!-- a voir pour rajouter un pas (pour decimal) step =""-->
 
@@ -105,8 +125,8 @@ include 'consultationModification.php';
 					<label for="presenceEauOui">oui</label>
 					<input type = "radio" id="presenceEauNon" name = "presenceEau" value="false">
 					<label for="presenceEauNon">non</label>
-                    <input type = "radio" id="presenceEauNull" name = "presenceEau" value="NULL">
-					<label for="presenceEauNull">non renseigné</label>
+                    <input type = "radio" id="presenceEauNull" name = "presenceEau" value="NULL" checked>
+					<label for="presenceEauNull">indéterminé</label>
 
 					</br>
 					</br>
