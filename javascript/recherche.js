@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 new_html += '</tr>';
                 for (var i = 0; i < ret.resultat.length; i++) {
                     new_html += '<tr>';
-                    new_html += '<td>' + ret.resultat[i].nomCavite + '</td>';
+                    new_html += '<td><a href=\'tableauSite.php?idGrotte='+ ret.resultat[i].id+'&grotte='+ret.resultat[i].nomCavite+'\'>' +  ret.resultat[i].nomCavite + '</a></td>';
                     new_html += '<td>' + ret.resultat[i].typeCavite + '</td>';
                     new_html += '<td>' + ret.resultat[i].latitude + '</td>';
                     new_html += '<td>' + ret.resultat[i].longitude + '</td>';
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     new_html += '</tr>';
                     for (var i = 0; i < ret.resultat.length; i++) {
                         new_html += '<tr>';
-                        new_html += '<td>' + ret.resultat[i].numSite + '</td>';
+                        new_html += '<td><a href=\'tableauPiege.php?idSite='+ret.resultat[i].id+'&site='+ret.resultat[i].numSite+'&idGrotte='+ret.resultat[i].idGrotte+'&nomGrotte='+ret.resultat[i].nomCavite+'\'>' + ret.resultat[i].numSite + '</a></td>';
                         new_html += '<td>' + ret.resultat[i].profondeur + '</td>';
                         new_html += '<td>' + ret.resultat[i].typeSol + '</td>';
                         new_html += '<td>' + ret.resultat[i].distanceEntree + '</td>';
@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         new_html += '</tr>';
                         for (var i = 0; i < ret.resultat.length; i++) {
                             new_html += '<tr>';
-                            new_html += '<td>' + ret.resultat[i].codePiege + '</td>';
+                            new_html += '<td><a href=\'tableauEchantillon.php?piege='+ ret.resultat[i].codePiege +'&nomGrotte='+ ret.resultat[i].nomCavite +'&idGrotte='+ ret.resultat[i].idGrotte +'&site='+ ret.resultat[i].numSite +'&idSite='+ ret.resultat[i].idSite +'\'>' + ret.resultat[i].codePiege + '</a></td>';
                             new_html += '<td>' + ret.resultat[i].datePose + '</td>';
                             new_html += '<td>' + ret.resultat[i].heurePose + '</td>';
                             new_html += '<td>' + ret.resultat[i].dateRecup + '</td>';
@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             new_html += '</tr>';
                             for (var i = 0; i < ret.resultat.length; i++) {
                                 new_html += '<tr>';
-                                new_html += '<td>' + ret.resultat[i].numEchantillon + '</td>';
+                                new_html += '<td><a href=\'tableauAnalyse.php?idEchantillon=' + ret.resultat[i].id + '&numEchantillon=' + ret.resultat[i].numEchantillon + '&piege=' + ret.resultat[i].codePiege + '&nomGrotte=' + ret.resultat[i].nomCavite + '&idGrotte=' + ret.resultat[i].idGrotte + '&site=' + ret.resultat[i].numSite + '&idSite=' + ret.resultat[i].idSite + '\'>' + ret.resultat[i].numEchantillon + '</a></td>';
                                 new_html += '<td>' + ret.resultat[i].formeStockage + '</td>';
                                 new_html += '<td>' + ret.resultat[i].lieuStockage + '</td>';
                                 new_html += '<td>' + ret.resultat[i].niveauIdentification + '</td>';
