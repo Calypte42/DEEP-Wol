@@ -12,9 +12,8 @@ include 'consultationModification.php';
       <option value="Grotte">Grotte</option>
       <option value="Site">Site</option>
       <option value="Piege">Piege</option>
-      <option value="Analyses">Analyses</option>
-      <option value="Taxonomie">Taxonomie</option>
       <option value="Echantillon">Echantillon</option>
+
     </select>
     <label for="recherche">Votre recherche : </label>
     <input type="text" name="recherche" />

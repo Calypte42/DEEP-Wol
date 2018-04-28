@@ -4,26 +4,103 @@ $bdd=connexionbd();
 
 if($_REQUEST['choixRecherche']=="Grotte"){
   $data = Array("resultat" => Array());
-  if ($_REQUEST['recherche']==''){
-      $query = $bdd->query('SELECT g.id,nomCavite,typeCavite,latitude,longitude,typeAcces,accesPublic,s.nom FROM Grotte g, SystemeHydrographique s WHERE idSystemeHydrographique=s.id ORDER BY nomCavite');
-    }else{
-        $requete = "SELECT g.id,nomCavite,typeCavite,latitude,longitude,typeAcces,accesPublic,s.nom
-         FROM Grotte g, SystemeHydrographique s
-         WHERE (
-          nomCavite LIKE '%". $_REQUEST['recherche'] ."%'
-          OR typeCavite LIKE '%". $_REQUEST['recherche'] ."%'
-          OR latitude LIKE '%". $_REQUEST['recherche'] ."%'
-          OR longitude LIKE '%". $_REQUEST['recherche'] ."%'
-          OR typeAcces LIKE '%". $_REQUEST['recherche'] ."%'
-          OR nom LIKE '%". $_REQUEST['recherche'] ."%' )
-          AND idSystemeHydrographique=s.id" ;
+  if (empty($_REQUEST['recherche'])){
+    $requete='SELECT g.id,nomCavite,typeCavite,latitude,longitude,typeAcces,accesPublic,s.nom FROM Grotte g, SystemeHydrographique s WHERE idSystemeHydrographique=s.id ORDER BY nomCavite';
+  }else{
+    $requete = "SELECT g.id,nomCavite,typeCavite,latitude,longitude,typeAcces,accesPublic,s.nom
+    FROM Grotte g, SystemeHydrographique s
+    WHERE (
+      LOWER (nomCavite) LIKE '%". strtolower($_REQUEST['recherche']) ."%'
+      OR LOWER(typeCavite) LIKE '%". strtolower($_REQUEST['recherche']) ."%'
+      OR LOWER (latitude) LIKE '%". strtolower($_REQUEST['recherche']) ."%'
+      OR LoWER (longitude) LIKE '%". strtolower($_REQUEST['recherche']) ."%'
+      OR LOWER (typeAcces) LIKE '%". strtolower($_REQUEST['recherche']) ."%'
+      OR LOWER (nom) LIKE '%". strtolower($_REQUEST['recherche']) ."%' )
+      AND idSystemeHydrographique=s.id" ;
     }
     $query = $bdd->query($requete);
     while ($donnees = $query->fetch()) {
-        $data['resultat'][] = Array('id'=>$donnees['id'], 'nomCavite'=>$donnees['nomcavite'],'typeCavite'=>$donnees['typecavite'],'latitude'=>$donnees['latitude'],'longitude'=>$donnees['longitude'],'typeAcces'=>$donnees['typeacces'],'accesPublic'=>$donnees['accespublic'],'nom'=>$donnees['nom']);
+      $data['resultat'][] = Array('id'=>$donnees['id'], 'nomCavite'=>$donnees['nomcavite'],'typeCavite'=>$donnees['typecavite'],'latitude'=>$donnees['latitude'],'longitude'=>$donnees['longitude'],'typeAcces'=>$donnees['typeacces'],'accesPublic'=>$donnees['accespublic'],'nom'=>$donnees['nom']);
     }
     header("Content-Type:application/json");
     echo json_encode($data);
   }
 
-?>
+
+
+  if($_REQUEST['choixRecherche']=="Site"){
+    $data = Array("resultat" => Array());
+    if (empty($_REQUEST['recherche'])){
+      $requete='SELECT s.id,numSite,profondeur,typeSol,distanceEntree,presenceEau,idGrotte,g.nomCavite,codeEquipeSpeleo FROM Grotte g,site s WHERE g.id=s.idGrotte ORDER BY numSite';
+    }else{
+      $requete = "SELECT s.id,numSite,profondeur,typeSol,distanceEntree,presenceEau,idGrotte,g.nomCavite,codeEquipeSpeleo
+      FROM Grotte g,site s
+      WHERE (
+        LOWER (numSite) LIKE '%". strtolower($_REQUEST['recherche']) ."%'
+        /*OR LOWER(profondeur) LIKE '%". strtolower($_REQUEST['recherche']) ."%'*/
+        OR LOWER (typeSol) LIKE '%". strtolower($_REQUEST['recherche']) ."%'
+        /*OR LoWER (distanceEntree) LIKE '%". strtolower($_REQUEST['recherche']) ."%'*/
+        OR LOWER (typeAcces) LIKE '%". strtolower($_REQUEST['recherche']) ."%'
+        OR LOWER (g.nomCavite) LIKE '%". strtolower($_REQUEST['recherche']) ."%'
+        OR LOWER (codeEquipeSpeleo) LIKE '%". strtolower($_REQUEST['recherche']) ."%')
+        AND g.id=s.idGrotte" ;
+      }
+      $query = $bdd->query($requete);
+      while ($donnees = $query->fetch()) {
+        $data['resultat'][] = Array('id'=>$donnees['id'], 'numSite'=>$donnees['numsite'],'profondeur'=>$donnees['profondeur'],'typeSol'=>$donnees['typesol'],'distanceEntree'=>$donnees['distanceentree'],'idGrotte'=>$donnees['idgrotte'],'nomCavite'=>$donnees['nomcavite'],'codeEquipeSpeleo'=>$donnees['codeequipespeleo']);
+      }
+      header("Content-Type:application/json");
+      echo json_encode($data);
+    }
+
+
+    if($_REQUEST['choixRecherche']=="Piege"){
+      $data = Array("resultat" => Array());
+      if (empty($_REQUEST['recherche'])){
+        $requete='SELECT codePiege,datePose,heurePose,dateRecup,heureRecup,probleme,dateTri,temperature,p.codeEquipeSpeleo,idSite, s.numSite,nomCavite,g.id as idGrotte FROM Grotte g, Site s, Piege p WHERE s.idGrotte=g.id AND p.idSite=s.id ORDER BY codePiege';
+      }else{
+        $requete = "SELECT codePiege,datePose,heurePose,dateRecup,heureRecup,probleme,dateTri,temperature,p.codeEquipeSpeleo,idSite, s.numSite,nomCavite,g.id as idGrotte
+        FROM Grotte g, Site s, Piege p
+        WHERE (
+          LOWER (codePiege) LIKE '%". strtolower($_REQUEST['recherche']) ."%'
+          OR LOWER(g.nomCavite) LIKE '%". strtolower($_REQUEST['recherche']) ."%'
+          OR LOWER (s.numSite) LIKE '%". strtolower($_REQUEST['recherche']) ."%')
+          AND s.idGrotte=g.id AND p.idSite=s.id" ;
+        }
+        $query = $bdd->query($requete);
+        while ($donnees = $query->fetch()) {
+          $data['resultat'][] = Array('codePiege'=>$donnees['codepiege'], 'datePose'=>$donnees['datepose'],'heurepose'=>$donnees['heurepose'],'dateRecup'=>$donnees['daterecup'],'heureRecup'=>$donnees['heurerecup'],'probleme'=>$donnees['probleme'],'dateTri'=>$donnees['datetri'],'codeEquipeSpeleo'=>$donnees['codeequipespeleo'],'idSite'=>$donnees['idsite'],'numSite'=>$donnees['numsite'],'nomCavite'=>$donnees['nomcavite'],'idGrotte'=>$donnees['idgrotte']);
+        }
+        header("Content-Type:application/json");
+        echo json_encode($data);
+      }
+
+
+      if($_REQUEST['choixRecherche']=="Echantillon"){
+        $data = Array("resultat" => Array());
+        if (empty($_REQUEST['recherche'])){
+          $requete='SELECT e.id,numEchantillon,formeStockage,lieuStockage,niveauIdentification,infecteBacterie,e.codePiege,initiale,idTaxonomie,nombreIndividu,s.id as idSite, s.numSite,nomCavite,g.id as idGrotte FROM Grotte g, Site s, Piege p, Echantillon e, Personne pe WHERE e.idAuteur=pe.id AND s.idGrotte=g.id AND p.idSite=s.id AND e.codePiege=p.codePiege ORDER BY numEchantillon';
+        }else{
+          $requete = "SELECT e.id,numEchantillon,formeStockage,lieuStockage,niveauIdentification,infecteBacterie,e.codePiege,initiale,idTaxonomie,nombreIndividu,s.id as idSite, s.numSite,nomCavite,g.id as idGrotte
+          FROM Grotte g, Site s, Piege p, Echantillon e, Personne pe
+          WHERE (
+            LOWER (numEchantillon) LIKE '%". strtolower($_REQUEST['recherche']) ."%'
+            OR LOWER(formeStockage) LIKE '%". strtolower($_REQUEST['recherche']) ."%'
+            OR LOWER (lieuStockage) LIKE '%". strtolower($_REQUEST['recherche']) ."%'
+            OR LoWER (niveauIdentification) LIKE '%". strtolower($_REQUEST['recherche']) ."%'
+            OR LOWER (e.codePiege) LIKE '%". strtolower($_REQUEST['recherche']) ."%'
+            OR LOWER (initiale) LIKE '%". strtolower($_REQUEST['recherche']) ."%'
+            OR LOWER (numSite) LIKE '%". strtolower($_REQUEST['recherche']) ."%'
+            OR LOWER (nomCavite) LIKE '%". strtolower($_REQUEST['recherche']) ."%' )
+            AND e.idAuteur=pe.id AND s.idGrotte=g.id AND p.idSite=s.id AND e.codePiege=p.codePiege" ;
+          }
+          $query = $bdd->query($requete);
+          while ($donnees = $query->fetch()) {
+            $data['resultat'][] = Array('id'=>$donnees['id'], 'numEchantillon'=>$donnees['numechantillon'],'formeStockage'=>$donnees['formestockage'],'lieuStockage'=>$donnees['lieustockage'],'niveauIdentification'=>$donnees['niveauidentification'],'infecteBacterie'=>$donnees['infectebacterie'],'codePiege'=>$donnees['codepiege'],'initiale'=>$donnees['initiale'], 'idTaxonomie'=>$donnees['idtaxonomie'],'nombreIndividu'=>$donnees['nombreindividu'],'idSite'=>$donnees['idsite'],'numSite'=>$donnees['numsite'],'nomCavite'=>$donnees['nomcavite'],'idGrotte'=>$donnees['idgrotte']);
+          }
+          header("Content-Type:application/json");
+          echo json_encode($data);
+        }
+
+
+            ?>
