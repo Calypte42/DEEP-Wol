@@ -75,6 +75,28 @@ function majSite(idGrotte) {
     request.send();
 }
 
+function verifIdentique(nom, table, valeur) {
+
+    var request = new XMLHttpRequest();
+    var  verif = false;
+
+    request.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            if (this.responseText) {
+                verif = true;
+            } else {
+                verif = false;
+            }
+        }
+    }
+
+    request.open("GET", "./WebService/verifIdentiqueWS.php?nom=" + nom +
+                                "&table=" + table + "&valeur=" + valeur, false);
+    request.send();
+
+    return verif;
+}
+
 function afficher(idDiv, typeAffichage) {
     var affichage = document.getElementById(idDiv);
     affichage.style.display = typeAffichage;
@@ -194,21 +216,48 @@ function controleAnalyse(formulaire) {
 }
 
 function controleGrotte(formulaire) {
-    if (document.getElementById("divSystemeHydrographique").style.display == "inline") {
-        alert("Veuillez valider l'ajout d'un système hydrographique ou annuler");
-        return false;
-    } else {
-        return true;
+    message = "";
+    erreur = false;
+
+    valeurNomCavite = formulaire.elements['nomGrotte'].value;
+    if (verifIdentique('nomcavite', 'grotte', valeurNomCavite)) {
+        message += "- Le nom de la grotte est déjà utilisée pour une autre grotte";
+        erreur = true;
     }
+
+    if (document.getElementById("divSystemeHydrographique").style.display == "inline") {
+        message += "- Veuillez valider l'ajout d'un système hydrographique ou annuler";
+        erreur = true;
+    }
+
+    if (erreur) {
+        alert(message);
+        return false;
+    }
+
+    return true;
 }
 
 function controleSite(formulaire) {
+    message = "";
+    erreur = false;
+
+    /*valeurNumSite = formulaire.elements['numSite'].value;
+    if (verifIdentique('numsite', 'site', valeurNumSite)) {
+        message += "- Le nom du site est déjà utilisée pour un autre site";
+        erreur = true;
+    }*/
+
     if (document.getElementById("divEquipeSpeleo").style.display == "inline") {
-        alert("Veuillez valider l'ajout d'un système hydrographique ou annuler");
+        message += alert("Veuillez valider l'ajout d'un système hydrographique ou annuler";
+        erreur = true;
+
+    if (erreur) {
+        alert(message);
         return false;
-    } else {
-        return true;
     }
+
+    return true;
 }
 
 function controlePiege(formulaire) {
