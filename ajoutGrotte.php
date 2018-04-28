@@ -32,7 +32,7 @@ include 'consultationModification.php';
 								</select>-->
 								<?php
 								echo "<label style='display: block; width:110px; float:left;' for='TypeCavite'> Type de cavité </label>";
-								echo "<select name='typeCavite' id='listeTypeCavite'>";
+								echo "<select name='typeCavite' id='listeTypeCavite' onchange='ajoutAutre(this.options[this.selectedIndex].value, 'autreDivCavite', 'autreCavite')''>";
 								$requete='SELECT DISTINCT typeCavite from Grotte ORDER BY typeCavite';
 								$value=requete($bdd,$requete);
 								foreach ($value as $array) {
@@ -40,10 +40,12 @@ include 'consultationModification.php';
 										echo "<option value=\"$valeur\">$valeur</option>";
 									}
 								}
+                                echo echo "<option value='autre'>Autre</option>";
 								echo "</select>";
 							?>
+                                <div id="autreDivCavite"><input id="autreCavite" type="text" name="autre" /></div>
 								&nbsp;
-								<input type = "button" id="affichageTypeCavite" value = "ajouter un type de cavité" onclick="affichageDiv('divTypeCavite', this.id)">
+								<!--<input type = "button" id="affichageTypeCavite" value = "ajouter un type de cavité" onclick="affichageDiv('divTypeCavite', this.id)">-->
 
 					    </br></br>
 

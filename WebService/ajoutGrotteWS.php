@@ -4,8 +4,6 @@ include '../BDD/bdd.php';
 $bdd = connexionbd();
 
 
-
-
 $req = $bdd->prepare('INSERT INTO Grotte (nomCavite,typeCavite,latitude,longitude,
   typeAcces,accesPublic,idSystemeHydrographique) SELECT :nomGrotte,:typeCavite,:latitude,
   :longitude,:typeAcces,:accesPublic, id FROM SystemeHydrographique WHERE id = :systemeHydro;');
@@ -47,9 +45,15 @@ $req = $bdd->prepare('INSERT INTO Grotte (nomCavite,typeCavite,latitude,longitud
 
   echo "longitude";
 
+  if ($_REQUEST['typeCavite'] == 'autre') {
+      $typeCavite = $_REQUEST['autre'];
+  } else {
+      $typeCavite = $_REQUEST['typeCavite'];
+  }
+
 $req->execute(array(
 	'nomGrotte' => $_REQUEST['nomGrotte'],
-  'typeCavite' => $_REQUEST['typeCavite'],
+  'typeCavite' => $typeCavite,
   'latitude' => $latitude,
   'longitude' => $longitude,
   'typeAcces' => $_REQUEST['typeAcces'],

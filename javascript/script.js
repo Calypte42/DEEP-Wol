@@ -134,6 +134,18 @@ function affichageDiv(idDiv, idBouton) {
 
 };
 
+function ajoutAutre(valeurAutre, idDiv, idInput) {
+    if (valeurAutre == 'Autre') {
+        document.getElementById(idDiv).style.display = "block";
+        document.getElementById(idInput).required = "true";
+    }
+    else {
+        document.getElementById(idDiv).style.display = "none";
+        document.getElementById(idInput).required = "false";
+        document.getElementById(idInput).value = "";
+    }
+}
+
 function controleAnalyse(formulaire) {
 
     if (formulaire.elements['fasta'].value) {
