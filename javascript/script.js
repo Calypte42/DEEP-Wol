@@ -135,8 +135,8 @@ function affichageDiv(idDiv, idBouton) {
 };
 
 function ajoutAutre(valeurAutre, idDiv, idInput) {
-    if (valeurAutre == 'Autre') {
-        document.getElementById(idDiv).style.display = "block";
+    if (valeurAutre == 'autre') {
+        document.getElementById(idDiv).style.display = "inline";
         document.getElementById(idInput).required = "true";
     }
     else {
