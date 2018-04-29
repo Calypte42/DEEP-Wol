@@ -249,8 +249,9 @@ function controleSite(formulaire) {
     }*/
 
     if (document.getElementById("divEquipeSpeleo").style.display == "inline") {
-        message += alert("Veuillez valider l'ajout d'un système hydrographique ou annuler";
+        message += "Veuillez valider l'ajout d'un système hydrographique ou annuler";
         erreur = true;
+    }
 
     if (erreur) {
         alert(message);
