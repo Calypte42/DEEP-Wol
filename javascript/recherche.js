@@ -11,19 +11,20 @@ document.addEventListener('DOMContentLoaded', function() {
             var new_html = '';
             console.log(ret);
             if (ret.resultat.length == 0) {
-                new_html += '<br/>Aucune données ne correspond a votre recherche';
+                new_html += '<div style ="margin-top:50px; text-align:center;"><br/>Aucune donnée ne correspond à votre recherche</div>';
                 document.querySelector('#listing').innerHTML = new_html; //reference la div dont id=listing sur recherche.php
             } else {
+                new_html += '<div class = "col-sm-10">';
                 new_html += '<div><br/>';
-                new_html += '<table>';
+                new_html += '<table class="table table-bordered table-condensed" style="margin-top: 50px; text-align:center;">';
                 new_html += '<tr>';
-                new_html += '<th> Nom Cavite </th>';
-                new_html += '<th>Type Cavite </th>';
-                new_html += '<th> Latitude </th>';
-                new_html += '<th> Longitude </th>';
-                new_html += '<th> Type Acces </th>';
-                new_html += '<th> Acces Public</th>';
-                new_html += '<th> Nom Systeme Hydrographique </th>';
+                new_html += '<th style="text-align:center;"> Nom Cavite </th>';
+                new_html += '<th style="text-align:center;">Type Cavite </th>';
+                new_html += '<th style="text-align:center;"> Latitude </th>';
+                new_html += '<th style="text-align:center;"> Longitude </th>';
+                new_html += '<th style="text-align:center;"> Type Acces </th>';
+                new_html += '<th style="text-align:center;"> Acces Public</th>';
+                new_html += '<th style="text-align:center;"> Nom Systeme Hydrographique </th>';
                 new_html += '</tr>';
                 for (var i = 0; i < ret.resultat.length; i++) {
                     new_html += '<tr>';
@@ -37,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     new_html += '</tr>';
                 }
                 new_html += '</table></div><br/>';
+                new_html += '</div>';
                 document.querySelector('#listing').innerHTML = new_html;
 
             }
@@ -57,19 +59,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 var new_html = '';
                 console.log(ret);
                 if (ret.resultat.length == 0) {
-                    new_html += '<br/>Aucune données ne correspond a votre recherche';
+                    new_html += '<div style ="margin-top:50px; text-align:center;"><br/>Aucune donnée ne correspond à votre recherche</div>';
                     document.querySelector('#listing').innerHTML = new_html; //reference la div dont id=listing sur recherche.php
                 } else {
+                    new_html += '<div class = "col-sm-10">';
                     new_html += '<div><br/>';
-                    new_html += '<table>';
+                    new_html += '<table class="table table-bordered table-condensed" style="margin-top: 50px; text-align:center;">';
                     new_html += '<tr>';
-                    new_html += '<th> Numero Site </th>';
-                    new_html += '<th>Profondeur </th>';
-                    new_html += '<th> Type de sol </th>';
-                    new_html += '<th> Distance a l\'entree </th>';
-                    new_html += '<th> Presence d\'eau </th>';
-                    new_html += '<th> Code Equipe Speleo</th>';
-                    new_html += '<th> Nom Grotte </th>';
+                    new_html += '<th style="text-align:center;"> Numero Site </th>';
+                    new_html += '<th style="text-align:center;">Profondeur </th>';
+                    new_html += '<th style="text-align:center;"> Type de sol </th>';
+                    new_html += '<th style="text-align:center;"> Distance a l\'entree </th>';
+                    new_html += '<th style="text-align:center;"> Presence d\'eau </th>';
+                    new_html += '<th style="text-align:center;"> Code Equipe Speleo</th>';
+                    new_html += '<th style="text-align:center;"> Nom Grotte </th>';
                     new_html += '</tr>';
                     for (var i = 0; i < ret.resultat.length; i++) {
                         new_html += '<tr>';
@@ -83,6 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         new_html += '</tr>';
                     }
                     new_html += '</table></div><br/>';
+                    new_html += '</div>';
                     document.querySelector('#listing').innerHTML = new_html;
 
                 }
@@ -106,22 +110,24 @@ document.addEventListener('DOMContentLoaded', function() {
                     var new_html = '';
                     console.log(ret);
                     if (ret.resultat.length == 0) {
-                        new_html += '<br/>Aucune données ne correspond a votre recherche';
+                        new_html += '<div style ="margin-top:50px; text-align:center;"><br/>Aucune donnée ne correspond à votre recherche</div>';
                         document.querySelector('#listing').innerHTML = new_html; //reference la div dont id=listing sur recherche.php
                     } else {
+                        new_html += '<div class = "col-sm-10">';
                         new_html += '<div><br/>';
-                        new_html += '<table>';
+                        new_html += '<table class="table table-bordered table-condensed" style="margin-top: 50px; text-align:center;">';
                         new_html += '<tr>';
-                        new_html += '<th>Code du Piege </th>';
-                        new_html += '<th>Date de pose</th>';
-                        new_html += '<th>Date de recuperation</th>';
-                        new_html += '<th>Heure de recuperation</th>';
-                        new_html += '<th>Probleme</th>';
-                        new_html += '<th>Date de tri</th>';
-                        new_html += '<th>Temperature</th>';
-                        new_html += '<th>Code Equipe Speleo</th>';
-                        new_html += '<th>Site</th>';
-                        new_html += '<th>Grotte</th>';
+                        new_html += '<th style="text-align:center;">Code du Piege </th>';
+                        new_html += '<th style="text-align:center;">Date de pose</th>';
+                        new_html += '<th style="text-align:center;">Heure de pose</th>';
+                        new_html += '<th style="text-align:center;">Date de recuperation</th>';
+                        new_html += '<th style="text-align:center;">Heure de recuperation</th>';
+                        new_html += '<th style="text-align:center;">Probleme</th>';
+                        new_html += '<th style="text-align:center;">Date de tri</th>';
+                        new_html += '<th style="text-align:center;">Temperature</th>';
+                        new_html += '<th style="text-align:center;">Code Equipe Speleo</th>';
+                        new_html += '<th style="text-align:center;">Site</th>';
+                        new_html += '<th style="text-align:center;">Grotte</th>';
                         new_html += '</tr>';
                         for (var i = 0; i < ret.resultat.length; i++) {
                             new_html += '<tr>';
@@ -139,6 +145,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             new_html += '</tr>';
                         }
                         new_html += '</table></div><br/>';
+                        new_html += '</div>';
                         document.querySelector('#listing').innerHTML = new_html;
 
                     }
@@ -161,21 +168,22 @@ document.addEventListener('DOMContentLoaded', function() {
                         var new_html = '';
                         console.log(ret);
                         if (ret.resultat.length == 0) {
-                            new_html += '<br/>Aucune données ne correspond a votre recherche';
+                            new_html += '<div style ="margin-top:50px; text-align:center;"><br/>Aucune donnée ne correspond à votre recherche</div>';
                             document.querySelector('#listing').innerHTML = new_html; //reference la div dont id=listing sur recherche.php
                         } else {
+                            new_html += '<div class = "col-sm-10">';
                             new_html += '<div><br/>';
-                            new_html += '<table>';
+                            new_html += '<table class="table table-bordered table-condensed" style="margin-top: 50px; text-align:center;">';
                             new_html += '<tr>';
-                            new_html += '<th>Numero echantillon</th>';
-                            new_html += '<th>Forme de stockage</th>';
-                            new_html += '<th>Lieu de stockage</th>';
-                            new_html += '<th>Niveau Identification</th>';
-                            new_html += '<th>Auteur identification</th>';
-                            new_html += '<th>Infecte Bacterie</th>';
-                            new_html += '<th>Code Piege</th>';
-                            new_html += '<th>Site</th>';
-                            new_html += '<th>Grotte</th>';
+                            new_html += '<th style="text-align:center;">Numero echantillon</th>';
+                            new_html += '<th style="text-align:center;">Forme de stockage</th>';
+                            new_html += '<th style="text-align:center;">Lieu de stockage</th>';
+                            new_html += '<th style="text-align:center;">Niveau Identification</th>';
+                            new_html += '<th style="text-align:center;">Auteur identification</th>';
+                            new_html += '<th style="text-align:center;">Infecte Bacterie</th>';
+                            new_html += '<th style="text-align:center;">Code Piege</th>';
+                            new_html += '<th style="text-align:center;">Site</th>';
+                            new_html += '<th style="text-align:center;">Grotte</th>';
                             new_html += '</tr>';
                             for (var i = 0; i < ret.resultat.length; i++) {
                                 new_html += '<tr>';
@@ -191,6 +199,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 new_html += '</tr>';
                             }
                             new_html += '</table></div><br/>';
+                            new_html += '</div>';
                             document.querySelector('#listing').innerHTML = new_html;
 
                         }

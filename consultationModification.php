@@ -24,6 +24,10 @@ include 'HTML/entete.html';
 			<a href='ajoutTaxonomie.php'>AJOUT TAXONOMIE</a>
 			<a href='ajoutGene.php'>AJOUT GENE</a>
 			<a href='ajoutAnalyse.php'>AJOUT ANALYSE</a>
+
+			</br>
+			</br>
+			</br>
 			<a href='recherche.php'>RECHERCHE</a>
 
 		</div>

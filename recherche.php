@@ -5,25 +5,30 @@ include 'verificationConnexion.php';
 include 'consultationModification.php';
 ?>
 
-<div id='selectionRechercher'>
-  <form method="POST" id="formRecherche" action="">
-    <label for="choixRecherche">Qu'est ce que vous recherchez ?</label>
-    <select name="choixRecherche" id="choixRecherche">
-      <option value="Grotte">Grotte</option>
-      <option value="Site">Site</option>
-      <option value="Piege">Piege</option>
-      <option value="Echantillon">Echantillon</option>
+    <div class= "col-sm-10" style = "text-align:center;" >
+      <div id='selectionRechercher'>
+        <form  method="POST" id="formRecherche" action="">
+          <label for="choixRecherche">Qu'est-ce que vous recherchez ?</label>
+          <select name="choixRecherche" id="choixRecherche">
+            <option value="Grotte">Grotte</option>
+            <option value="Site">Site</option>
+            <option value="Piege">Piege</option>
+            <option value="Echantillon">Echantillon</option>
+          </select>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <label for="recherche">Votre recherche : </label>
+          <input type="text" name="recherche" />
+          <input type="submit" value="Rechercher" id="submitRecherche" />
+        </form>
+      </div>
+    </div>
 
-    </select>
-    <label for="recherche">Votre recherche : </label>
-    <input type="text" name="recherche" />
-    <input type="submit" value="Rechercher" id="submitRecherche" />
-  </form>
-</div>
 
-<div id="listing">
 
-</div>
+
+      <div id="listing"></div>
+
+
 
 
 <script src="./javascript/recherche.js"></script>
