@@ -11,14 +11,22 @@
 
 		<script src="Bootstrap/jquery.js"></script>
 		<script src="Bootstrap/bootstrap.js"></script>
-
-        <script type="text/javascript" src="javascript/script.js"></script>
+    <script type="text/javascript" src="javascript/script.js"></script>
 	</head>
 
 	<body>
 <!-- BARRE DE NAVIGATION ET BOUTON DECONNEXION -->
   <nav class="navbar navbar-inverse navbar-fixed-top" style="width:100%;">
     <div class="container-fluid">
+			<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			</div>
+
+			<div class="collapse navbar-collapse" id="myNavbar">
     	<ul class="nav navbar-nav">
 				<li class="accueil" style="color:white;"><a href=".">ACCUEIL</a></li>
 				<li class="consultationModification"><a href="tableauGrotte.php">CONSULTATION / MODIFICATION DES DONNEES</a></li>
@@ -26,8 +34,10 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-          <li><a href="deconnexion.php">DECONNEXION</a></li>
+        <li><a href="deconnexion.php">DECONNEXION</a></li>
       </ul>
     </div>
+   </div>
   </nav>
+
 <!-- Fin barre de navigation -->
