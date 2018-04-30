@@ -1,9 +1,7 @@
 <?php
 include 'BDD/bdd.php';
 $bdd=connexionbd();
-?>
 
-<?php
 include 'verificationConnexion.php';
 include 'consultationModification.php';
 ?>
@@ -33,7 +31,7 @@ include 'consultationModification.php';
 					/* on veut recuperer les valeurs de grotte deja existantes dans la bdd */
 					if(isset($_REQUEST['idGrotte'])){
 					    	/*echo "<label for='idGrotte'>Dans la grotte : $Retour</label>";*/
-						echo "<label style='display: block; width:115px; float:left;' for='idGrotte'>Dans la grotte </label>";
+						echo "<label style='display: block; width:115px; float:left;' for='idGrotteForm'>Dans la grotte </label>";
 						echo "<input type='hidden' name='idGrotte' value=$RetourId>";
 						echo "<input type='hidden' name='grotte' value=$Retour>";
 						echo "<select name='idGrotteForm'>";
@@ -50,8 +48,8 @@ include 'consultationModification.php';
 						}
 						echo "</select>";
 					} else {
-						echo "<label style='display: block; width:115px; float:left;' for='Grotte'> Grotte </label>";
-						echo "<select name='idGrotte'>";
+						echo "<label style='display: block; width:115px; float:left;' for='idGrotteForm'> Grotte </label>";
+						echo "<select name='idGrotteForm'>";
 						$requete='SELECT id, nomCavite from Grotte ORDER BY NomCavite';
 						$value=requete($bdd,$requete);
 						foreach ($value as $array) {
@@ -69,7 +67,7 @@ include 'consultationModification.php';
 
 					<?php
 					/* on veut recuperer les valeurs de grotte deja existantes dans la bdd */
-					echo "<label style='display: block; width:115px; float:left;' for='equipeSpeleo'>Equipe spéléo </label>";
+					echo "<label style='display: block; width:115px; float:left;' for='codeEquipeSpeleo'>Equipe spéléo </label>";
 					echo "<select name='codeEquipeSpeleo' id='listeEquipeSpeleo'>"; /* On cree une liste deroulante vide */
 
 					$requete='SELECT codeEquipe from EquipeSpeleo';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */

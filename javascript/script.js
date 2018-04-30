@@ -56,22 +56,42 @@ function ajaxAjout(url, idAffichage, idFormulaire, idSelect, idBouton) {
 
 };
 
-function majSite(idGrotte) {
+function majSite(idGrotte, majPiege) {
     var request = new XMLHttpRequest();
-    var select = document.getElementById('choixSite');
+    var selectDiv = document.getElementById('choixSite');
 
-    if (select.style.display == 'none') {
-        select.style.display = 'inline';
+    if (selectDiv.style.display == 'none') {
+        selectDiv.style.display = 'inline';
     }
 
     request.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             if (this.responseText) {
-                select.innerHTML = this.responseText;
+                selectDiv.innerHTML = this.responseText;
             }
         }
     }
-    request.open("GET", "./WebService/listeSiteWS.php?idGrotte=" + idGrotte, true);
+    request.open("GET", "./WebService/listeSiteWS.php?idGrotte=" + idGrotte +
+                                                    "&majPiege=" + majPiege, true);
+    request.send();
+}
+
+function majPiege(idSite) {
+    var request = new XMLHttpRequest();
+    var selectDiv = document.getElementById('choixPiege');
+
+    if (selectDiv.style.display == 'none') {
+        selectDiv.style.display = 'inline';
+    }
+
+    request.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            if (this.responseText) {
+                selectDiv.innerHTML = this.responseText;
+            }
+        }
+    }
+    request.open("GET", "./WebService/listePiegeWS.php?idSite=" + idSite, true);
     request.send();
 }
 
@@ -105,6 +125,27 @@ function afficher(idDiv, typeAffichage) {
 function cacher(idDiv) {
     var affichage = document.getElementById(idDiv);
     affichage.style.display = "none";
+}
+
+function affichageDiv(idDiv, idBouton) {
+
+    var affichage = document.getElementById(idDiv);
+    var bouton = document.getElementById(idBouton);
+
+    if (affichage.style.display != "inline") {
+        affichage.style.display = "inline";
+        bouton.style.display = "none";
+    } else {
+        affichage.style.display = "none";
+        bouton.style.display = "inline";
+    }
+
+}
+
+function cacherPiege() {
+    var selectDiv = document.getElementById('choixPiege');
+    selectDiv.style.display = 'none';
+    selectDiv.innerHTML = "<input type='hidden' name='ajoutPiege' value='' />";
 }
 
 function supprimerValeur(idInput) {
@@ -160,21 +201,6 @@ function suppression(formulaire) {
     return false;
 }
 
-function affichageDiv(idDiv, idBouton) {
-
-    var affichage = document.getElementById(idDiv);
-    var bouton = document.getElementById(idBouton);
-
-    if (affichage.style.display != "inline") {
-        affichage.style.display = "inline";
-        bouton.style.display = "none";
-    } else {
-        affichage.style.display = "none";
-        bouton.style.display = "inline";
-    }
-
-};
-
 function ajoutAutre(valeurAutre, idDiv, idInput) {
     if (valeurAutre == 'autre') {
         document.getElementById(idDiv).style.display = "inline";
@@ -221,7 +247,7 @@ function controleGrotte(formulaire) {
 
     valeurNomCavite = formulaire.elements['nomGrotte'].value;
     if (verifIdentique('nomcavite', 'grotte', valeurNomCavite)) {
-        message += "- Le nom de la grotte est déjà utilisée pour une autre grotte";
+        message += "- Le nom de la grotte est déjà utilisée pour une autre grotte\n";
         erreur = true;
     }
 
@@ -271,6 +297,14 @@ function controlePiege(formulaire) {
         erreur = true;
     }
 
+    if(formulaire.elements['idSiteForm']) {
+        select = formulaire.elements['idSiteForm'];
+        if (select.value == "") {
+            message += "- Veuillez choisir un site\n";
+            erreur = true;
+        }
+    }
+
     ajoutSite = formulaire.elements['ajoutSite'];
     if (ajoutSite.value != '') {
         message += "- Veuillez ajouter un site\n";
@@ -303,7 +337,7 @@ function controlePiege(formulaire) {
         }
 
         if (datePose.value != "" && dateTri.value < datePose.value) {
-            message += "- La date de pose doit être antérieure à la date de tri\n";
+            message += "- La date de pose doit être antérieure à la date de tri";
             erreur = true;
         }
     }

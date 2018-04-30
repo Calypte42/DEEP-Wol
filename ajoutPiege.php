@@ -8,7 +8,7 @@ include 'verificationConnexion.php';
 include 'consultationModification.php';
 ?>
 
-		<div class= "col-sm-10">
+		<div class= "col-sm-7">
 
 		<?php
 		if(isset($_REQUEST['idGrotte']) AND (isset($_REQUEST['idSite']))){
@@ -42,10 +42,10 @@ include 'consultationModification.php';
 
 						  /* rajout menu déroulant grotte avec grotte sélectionnée auparavant */
 
-							echo "<label style='display: block; width:150px; float:left;' for='idGrotte'>Dans la grotte </label>";
+							echo "<label style='display: block; width:150px; float:left;' for='idGrotteForm'>Dans la grotte </label>";
 							echo "<input type='hidden' name='idGrotte' value=$RetourIdGrotte>";
 							echo "<input type='hidden' name='nomGrotte' value=$RetourNomGrotte>";
-							echo "<select name='idGrotteForm' onchange='majSite(this.options[this.selectedIndex].value);'>";
+							echo "<select name='idGrotteForm' onchange='majSite(this.options[this.selectedIndex].value, false);'>";
 							$requete='SELECT id, nomCavite from Grotte ORDER BY NomCavite';
 							$value=requete($bdd,$requete);
 							foreach ($value as $array) {
@@ -61,7 +61,7 @@ include 'consultationModification.php';
 
 							/* rajout menu déroulant site avec site sélectionné auparavant */
 
-							echo "<label style='display: block; width:150px; float:left;' for='idSite'>Dans le site </label>";
+							echo "<label style='display: block; width:150px; float:left;' for='idSiteForm'>Dans le site </label>";
 							echo "<input type='hidden' name='idSite' value=$RetourIdSite>";
 							echo "<input type='hidden' name='site' value=$RetourNomSite>";
                             echo "<div id='choixSite' style='display: inline'>";
@@ -85,8 +85,8 @@ include 'consultationModification.php';
 
 						 	/* rajout menu déroulant grotte  */
 
-							echo "<label style='display: block; width:150px; float:left;' for='Grotte'> Grotte </label>";
-							echo "<select name='idGrotteForm' onchange=\"majSite(this.options[this.selectedIndex].value);\">";
+							echo "<label style='display: block; width:150px; float:left;' for='idGrotteForm'> Grotte </label>";
+							echo "<select name='idGrotteForm' onchange=\"majSite(this.options[this.selectedIndex].value, false);\">";
                             echo "<option disabled selected value>Choisir une grotte</option>";
                             $requete='SELECT id, nomCavite from Grotte ORDER BY NomCavite';
     						$value=requete($bdd,$requete);
@@ -99,7 +99,7 @@ include 'consultationModification.php';
 
 							/* rajout menu déroulant site  */
 
-							echo "<label style='display: block; width:150px; float:left;' for='Site'> Site </label>";
+							echo "<label style='display: block; width:150px; float:left;' for='idSiteForm'> Site </label>";
                             echo "<div id='choixSite' style='display: none'>";
                             echo "<input type='hidden' name='ajoutSite' value='' />";
                             echo "</div>";
@@ -117,8 +117,8 @@ include 'consultationModification.php';
 
 						<?php
 						/* on veut recuperer les valeurs de numero de site deja existantes dans la bdd */
-						echo "<label for='codeEquipeSpeleo'>Equipe qui a posé le piège </label>";
-						echo "<select name='codeEquipeSpeleo'>"; /* On cree une liste deroulante vide */
+						echo "<label style='display: block; width:150px; float:left;' for='codeEquipeSpeleo'>Equipe qui a posé le piège</label>";
+						echo "<select name='codeEquipeSpeleo' id='listeEquipeSpeleo'>"; /* On cree une liste deroulante vide */
 
 						$requete='SELECT codeEquipe from EquipeSpeleo ORDER BY codeEquipe';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
 						$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
@@ -129,6 +129,8 @@ include 'consultationModification.php';
 						}
 						echo "</select>";
 						?>
+                        &nbsp;&nbsp;
+                        <input type = "button" id="affichageAjoutEquipe" value = "ajouter une équipe" onclick="affichageDiv('divEquipeSpeleo', this.id)">
 
 						</br></br>
 
@@ -178,6 +180,22 @@ include 'consultationModification.php';
 				</p>
 				</form>
 			</div>
+
+            <div class = "col-sm-3" style = "float:right; margin-top:150px;">
+                <div id="divEquipeSpeleo" style="display:none;">
+                        <form  id="formEquipeSpeleo"  method="POST" onsubmit="return ajaxAjout('./WebService/ajoutEquipeWS.php', 'divEquipeSpeleo', this.id, 'listeEquipeSpeleo','affichageAjoutEquipe')">
+                            <fieldset style = "padding-left:5px;" >
+                                <legend class="scheduler-border"> Ajout Equipe spéleo </legend>
+                                <label style = "float:left;">Equipe spéléo</label>&nbsp;
+                                <input class="valeurs" type="text" id="codeEquipe" name="codeEquipe" required size="20"/> *
+                                </br></br>
+                                <button type="submit">Ajouter une équipe</button>
+                                <button type="button" onclick="affichageDiv('divEquipeSpeleo', 'affichageAjoutEquipe')">Annuler</button></br></br>
+                            </fieldset>
+                        </form>
+                </div>
+            </div>
+
 		</div>
 	</div>
 

@@ -13,7 +13,12 @@ $requete="SELECT id, numSite from Site WHERE idGrotte = $idGrotte ORDER BY numSi
 $value=requete($bdd,$requete);
 
 if ($value) {
-    echo "<select name='idSiteForm'>";
+    echo "<select id='idSiteForm' name='idSiteForm'";
+    if ($_REQUEST['majPiege'] == 'true') {
+        echo "onchange='majPiege(this.options[this.selectedIndex].value)'";
+    }
+    echo ">";
+    echo "<option disabled selected value>Choisir un site</option>";
     foreach ($value as $array) {
         $id = $array['id'];
         $numSite = $array['numsite'];
