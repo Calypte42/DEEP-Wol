@@ -238,12 +238,16 @@ include 'consultationModification.php';
 						<p>
 							<fieldset class="scheduler-border">
 								<legend class="scheduler-border"> Taxonomie </legend>
+								<div class = "row">
+
 								<div class="control-group">
+
 									<div class="controls bootstrap-timepicker">
+										<div class = "col-sm-6" style = "border-right:1px solid lightgrey;">
 									</br>
 										<?php
 										/* on veut recuperer les valeurs de classe deja existantes dans la bdd */
-										echo "<label style='display: block; width:100px; float:left;' for='classe'>Classe </label>";
+										echo "<label style='display: block; width:90px; float:left;' for='classe'>Classe </label>";
 										echo "<select name='classe'>"; /* On cree une liste deroulante vide */
 										$requete='SELECT DISTINCT classe from Taxonomie ORDER BY classe';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
 										$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
@@ -260,7 +264,7 @@ include 'consultationModification.php';
 
 										<?php
 										/* on veut recuperer les valeurs de ordre deja existantes dans la bdd */
-										echo "<label style='display: block; width:100px; float:left;' for='ordre'>Ordre </label>";
+										echo "<label style='display: block; width:90px; float:left;' for='ordre'>Ordre </label>";
 										echo "<select name='ordre'>"; /* On cree une liste deroulante vide */
 										echo "<option value=\"Indetermine\">Indetermine</option>";
 										$requete='SELECT DISTINCT ordre from Taxonomie WHERE ordre != \'null\' ORDER BY ordre';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
@@ -277,7 +281,7 @@ include 'consultationModification.php';
 
 										<?php
 										/* on veut recuperer les valeurs de famille deja existantes dans la bdd */
-										echo "<label style='display: block; width:100px; float:left;' for='famille'>Famille </label>";
+										echo "<label style='display: block; width:90px; float:left;' for='famille'>Famille </label>";
 										echo "<select name='famille'>"; /* On cree une liste deroulante vide */
 										echo "<option value=\"Indetermine\">Indetermine</option>";
 										$requete='SELECT DISTINCT famille from Taxonomie WHERE famille != \'null\' ORDER BY famille';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
@@ -294,7 +298,7 @@ include 'consultationModification.php';
 
 										<?php
 										/* on veut recuperer les valeurs de sous-famille deja existantes dans la bdd */
-										echo "<label style='display: block; width:100px; float:left;' for='sousFamille'>Sous-famille </label>";
+										echo "<label style='display: block; width:90px; float:left;' for='sousFamille'>Sous-famille </label>";
 										echo "<select name='sousFamille'>"; /* On cree une liste deroulante vide */
 										echo "<option value=\"Indetermine\">Indetermine</option>";
 										$requete='SELECT DISTINCT sousfamille from Taxonomie WHERE sousFamille != \'null\' ORDER BY sousfamille';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
@@ -311,7 +315,7 @@ include 'consultationModification.php';
 
 										<?php
 										/* on veut recuperer les valeurs de genre deja existantes dans la bdd */
-										echo "<label style='display: block; width:100px; float:left;' for='genre'>Genre </label>";
+										echo "<label style='display: block; width:90px; float:left;' for='genre'>Genre </label>";
 										echo "<select name='genre'>"; /* On cree une liste deroulante vide */
 										echo "<option value=\"Indetermine\">Indetermine</option>";
 										$requete='SELECT DISTINCT genre from Taxonomie WHERE genre != \'null\' ORDER BY genre';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
@@ -328,7 +332,7 @@ include 'consultationModification.php';
 
 										<?php
 										/* on veut recuperer les valeurs de genre deja existantes dans la bdd */
-										echo "<label style='display: block; width:100px; float:left;' for='espece'>Espèce </label>";
+										echo "<label style='display: block; width:90px; float:left;' for='espece'>Espèce </label>";
 										echo "<select name='espece'>"; /* On cree une liste deroulante vide */
 										echo "<option value=\"Indetermine\">Indetermine</option>";
 										$requete='SELECT DISTINCT espece from Taxonomie WHERE espece != \'null\' ORDER BY espece';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
@@ -342,7 +346,15 @@ include 'consultationModification.php';
 										?>
 
 										</br></br>
-										<input style="float:right; margin-right:60px;" type = "button" value = "ajouter une taxonomie">
+										<!--<input style="float:right; margin-right:60px;" type = "button" value = "ajouter une taxonomie">-->
+										<input style="display:block; margin:auto;" type = "button" value = "valider la taxonomie">
+									</div> <!-- ferme la col-sm -->
+									<div = class = "col-sm-6" style = "margin-top:110px;">
+									</br>
+										<p style="text-align:center;"> <b>La taxonomie que vous cherchez n'existe pas ?</b></p></br>
+										<input style="display:block; margin:auto;" type = "button" value = "ajouter une taxonomie">
+									</div>
+								</div>
 										</fieldset>
 									</form>
 
