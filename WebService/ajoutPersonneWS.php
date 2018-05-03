@@ -2,11 +2,15 @@
 include '../BDD/bdd.php';
 $bdd = connexionbd();
 
-$req = $bdd->prepare('INSERT INTO Personne VALUES (:initiale);');
+$req = $bdd->prepare("INSERT INTO Personne (initiale) VALUES (:initiale)");
 $req->execute(array(
-	'initiale' => $_REQUEST['initialeAuteur']
+	'initiale' => $_REQUEST['personne']
 ));
 
-echo http_response_code();
+$last_id = $bdd->lastInsertId();
+
+$bdd = null;
+
+echo $last_id;
 
 ?>

@@ -102,7 +102,7 @@ $requete='SELECT id,nomgene,resultat,dateAnalyse,fasta,electrophoregramme FROM A
 
 $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
-  $date = $valeur['datepcr'];
+  $date = $valeur['dateanalyse'];
   foreach ($valeur as $cle => $resultat) { /* On recupere la cle et la valeur de chaque element */
       if($cle=='id'){
         $id=$resultat;

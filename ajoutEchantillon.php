@@ -347,7 +347,7 @@ include 'consultationModification.php';
 
 										</br></br>
 										<!--<input style="float:right; margin-right:60px;" type = "button" value = "ajouter une taxonomie">-->
-										<input style="display:block; margin:auto;" type = "button" value = "valider la taxonomie">
+										<!--<input style="display:block; margin:auto;" type = "button" value = "valider la taxonomie">-->
 									</div> <!-- ferme la col-sm -->
 									<div = class = "col-sm-6" style = "margin-top:110px;">
 									</br>
@@ -370,7 +370,7 @@ include 'consultationModification.php';
 						<?php
 						/* on veut recuperer les valeurs de grotte deja existantes dans la bdd */
 						echo "<label style='display: block; width:170px; float:left;' for='idAuteur'>Auteur  </label>";
-						echo "<select name='idAuteur'>"; /* On cree une liste deroulante vide */
+						echo "<select id='listePersonne' name='idAuteur'>"; /* On cree une liste deroulante vide */
 						$requete='SELECT id,initiale from Personne ORDER BY initiale';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
 						$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 						foreach ($value as $array) { /* On parcourt les resultats possibles */
@@ -414,7 +414,7 @@ include 'consultationModification.php';
 
 				<div class= "col-sm-3" style = "float:right; margin-top:800px;">
 					<div id="divPersonne" style="display:none;">
-						<form  id="formPersonne"  method="POST" onsubmit="return ajaxAjout('./WebService/ajoutPersonneWS.php', 'divPersonne', this.id, 'listePersonne','affichagePersonne', 1)">
+						<form  id="formPersonne"  method="POST" onsubmit="return ajaxAjout('./WebService/ajoutPersonneWS.php', 'divPersonne', this.id, 'listePersonne','affichagePersonne')">
 							<fieldset style = "padding-left:5px;">
 								<legend class="scheduler-border"> Ajout d'une personne </legend>
 									<label style = "float:left;">Veuillez ne renseigner que les initiales de la personne</label>

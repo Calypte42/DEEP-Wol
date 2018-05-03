@@ -33,6 +33,7 @@ create table Site (
     presenceEau boolean,
     idGrotte int NOT NULL,
     codeEquipeSpeleo varchar(20) NOT NULL,
+    CONSTRAINT site_unique UNIQUE (numsite, idGrotte, codeEquipeSpeleo),
     CONSTRAINT idGrotte_FK FOREIGN KEY (idGrotte)
         REFERENCES Grotte (id) ON DELETE CASCADE,
     CONSTRAINT codeEquipeSpeleo_FK FOREIGN KEY (codeEquipeSpeleo)
@@ -50,6 +51,7 @@ create table Piege (
     temperature float,
     codeEquipeSpeleo varchar(20) NOT NULL,
     IdSite int NOT NULL,
+    CONSTRAINT piege_unique UNIQUE (codePiege, codeEquipeSpeleo, IdSite),
     CONSTRAINT EquipeSpeleo_FK FOREIGN KEY (codeEquipeSpeleo)
         REFERENCES EquipeSpeleo (codeEquipe) ON UPDATE CASCADE ON DELETE CASCADE,
     CONSTRAINT site_FK FOREIGN KEY (IdSite)
@@ -58,7 +60,7 @@ create table Piege (
 
 create table Personne (
     id SERIAL PRIMARY KEY,
-    initiale varchar(4)
+    initiale varchar(4) UNIQUE
 );
 
 create table Taxonomie (
@@ -75,7 +77,7 @@ create table Taxonomie (
 
 create table Echantillon (
     id SERIAL PRIMARY KEY,
-    numEchantillon varchar(20) NOT NULL,
+    numEchantillon varchar(20) UNIQUE NOT NULL,
     formeStockage varchar(32) NOT NULL,
     lieuStockage varchar(20) NOT NULL,
     niveauIdentification varchar(12),
@@ -122,7 +124,7 @@ create table Analyses (
 
 create table Compte (
     id SERIAL PRIMARY KEY,
-    pseudo varchar(30),
+    pseudo varchar(30) UNIQUE,
     MDP varchar(20)
 );
 

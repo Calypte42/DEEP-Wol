@@ -2,7 +2,7 @@
 include '../BDD/bdd.php';
 $bdd = connexionbd();
 
-$requete='INSERT INTO Analyses (resultat,dateqPCR,fasta,electrophoregramme,idEchantillon,nomGene)
+$requete='INSERT INTO Analyses (type,resultat,dateanalyse,fasta,electrophoregramme,idEchantillon,nomGene)
    SELECT :type,:resultat,:dateAnalyse,:fasta,:electrophoregramme,:idEchantillon,nom
     FROM Gene WHERE nom = :nomGene;';
 
@@ -61,6 +61,9 @@ if(file_exists($tmpNameElectro) || is_uploaded_file($tmpNameElectro)) {
   $electrophoregramme=null;
 }
 
+echo $fasta;
+echo $electrophoregramme;
+
 
 $req->execute(array(
   'type' => $_REQUEST['type'],
@@ -74,11 +77,11 @@ $req->execute(array(
 ));
 
 if ($_REQUEST['nom']=='Valider et ajouter une nouvelle analyse'){
-  header("Refresh: 5; URL=../ajoutAnalyse.php?idEchantillon=".$_REQUEST['idEchantillon']."&numEchantillon=".$_REQUEST['numEchantillon']."&nomGrotte=".$_REQUEST['nomGrotte']."&idGrotte=".$_REQUEST['idGrotte']."&site=".$_REQUEST['site']."&idSite=".$_REQUEST['idSite']."&piege=".$_REQUEST['piege']);
+  //header("Refresh: 0; URL=../ajoutAnalyse.php?idEchantillon=".$_REQUEST['idEchantillon']."&numEchantillon=".$_REQUEST['numEchantillon']."&nomGrotte=".$_REQUEST['nomGrotte']."&idGrotte=".$_REQUEST['idGrotte']."&site=".$_REQUEST['site']."&idSite=".$_REQUEST['idSite']."&piege=".$_REQUEST['piege']);
 }
 
 if ($_REQUEST['nom']=='Valider et revenir au tableau des analyses'){
-  header("Refresh: 5; URL=../tableauAnalyse.php?idEchantillon=".$_REQUEST['idEchantillon']."&numEchantillon=".$_REQUEST['numEchantillon']."&nomGrotte=".$_REQUEST['nomGrotte']."&idGrotte=".$_REQUEST['idGrotte']."&site=".$_REQUEST['site']."&idSite=".$_REQUEST['idSite']."&piege=".$_REQUEST['piege']);
+  //header("Refresh: 0; URL=../tableauAnalyse.php?idEchantillon=".$_REQUEST['idEchantillon']."&numEchantillon=".$_REQUEST['numEchantillon']."&nomGrotte=".$_REQUEST['nomGrotte']."&idGrotte=".$_REQUEST['idGrotte']."&site=".$_REQUEST['site']."&idSite=".$_REQUEST['idSite']."&piege=".$_REQUEST['piege']);
 }
 
 echo http_response_code();

@@ -6,6 +6,18 @@ include '../BDD/bdd.php';
 $bdd = connexionbd();
 
 
+if ($_REQUEST['formeStockage' == 'autre']) {
+    $formeStrockage = $_REQUEST['autreFormeStockage'];
+} else {
+    $formeStrockage = $_REQUEST['formeStockage'];
+}
+
+if ($_REQUEST['lieuStockage' == 'autre']) {
+    $formeStrockage = $_REQUEST['autreLieuStockage'];
+} else {
+    $formeStrockage = $_REQUEST['lieuStockage'];
+}
+
 /* A cause des null dans la base de donnee on doit mettre en place
 des IS NULL dans les requetes, on ne peut donc pas utiliser la
 syntaxe :variable dans le prepare.
