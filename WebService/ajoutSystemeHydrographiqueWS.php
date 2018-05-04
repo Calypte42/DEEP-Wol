@@ -11,9 +11,15 @@ if(isset($_REQUEST['pays'])){
     $pays=null;
 }
 
+if(!empty($_REQUEST['departement'])) {
+    $departement = $_REQUEST['departement'];
+} else {
+    $departement = null;
+}
+
 $req->execute(array(
     'nom' => $_REQUEST['nom'],
-    'departement' => $_REQUEST['departement'],
+    'departement' => $departement,
     'pays' => $_REQUEST['pays']
 ));
 
