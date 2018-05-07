@@ -1,9 +1,10 @@
 <?php
+// ce fichier gère le téléchargement des fichiers fasta et csv
 include 'BDD/bdd.php';
 $bdd=connexionbd();
 
 
-// Preparation de la clause WHERE :
+//-------------------------------- Preparation de la clause WHERE :
 
 $listeWhere=" WHERE 1=1 AND ";
 
@@ -114,7 +115,7 @@ if(!empty($_REQUEST['selectChoixGene'])){
   $listeWhere=$listeWhere.' AND ';
 }
 $listeWhere=rtrim($listeWhere,' AND ');
-
+//--------------------------------FIN  Preparation de la clause WHERE ----------------
 
 // parametrage du nom du fichier en sorti avec nom par defaut
 if(!empty($_REQUEST['nomFichier'])){
@@ -128,11 +129,15 @@ if(!empty($_REQUEST['nomFichier'])){
   }
 }
 
+// ------------------------------ Gestion de l'extraction des fasta -------------------
+// Extraction mise au point grace au code trouvé ici ;
+// https://jeanbaptistemarie.com/notes/code/php/creer-un-fichier-csv-avec-php.html en Avril 2018
+
 if($_REQUEST['extraire']=='Telecharger CSV'){
 // Paramétrage de l'écriture du futur fichier CSV
 $chemin = './fichierTest.csv';
 $fichier = 'fichierTest.csv';
-$delimiteur = "\t"; // Pour une tabulation, utiliser $delimiteur = "t";
+$delimiteur = "\t"; // Pour une tabulation, utiliser $delimiteur = "\t";
 
 $enTete[]=array();
 $listeSelect="";
@@ -174,17 +179,7 @@ foreach ($value as $ligne) { /* On parcourt le tableau de tableau */
 
 // fermeture du fichier csv
 fclose($fichier_csv);
-/*
-header('Content-disposition: attachment; filename="' . $fichier . '"');
-header('Content-Type: application/force-download');
-header('Content-Transfer-Encoding: binary');
-header('Content-Length: '. filesize($chemin));
-header('Pragma: no-cache');
-header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
-header('Expires: 0');
-readfile($chemin);
-$file = 'file.csv';
- */
+
 
 header('Content-disposition: attachment; filename="'.$nomFichierSorti.'"');
 header('Content-type: application/octetstream');

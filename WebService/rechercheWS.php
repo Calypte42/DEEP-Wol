@@ -102,5 +102,27 @@ if($_REQUEST['choixRecherche']=="Grotte"){
           echo json_encode($data);
         }
 
+        if($_REQUEST['choixRecherche']=="Taxonomie"){
+          $data = Array("resultat" => Array());
+          if (empty($_REQUEST['recherche'])){
+            $requete='SELECT id,classe,ordre,famille,sousFamille,genre,espece FROM Taxonomie';
+          }else{
+            $requete = "SELECT id,classe,ordre,famille,sousFamille,genre,espece FROM Taxonomie
+            WHERE (
+              LOWER (classe) LIKE '%". strtolower($_REQUEST['recherche']) ."%'
+              OR LOWER(ordre) LIKE '%". strtolower($_REQUEST['recherche']) ."%'
+              OR LOWER (famille) LIKE '%". strtolower($_REQUEST['recherche']) ."%'
+              OR LoWER (sousFamille) LIKE '%". strtolower($_REQUEST['recherche']) ."%'
+              OR LOWER (genre) LIKE '%". strtolower($_REQUEST['recherche']) ."%'
+              OR LOWER (espece) LIKE '%". strtolower($_REQUEST['recherche']) ."%')" ;
+            }
+            $query = $bdd->query($requete);
+            while ($donnees = $query->fetch()) {
+              $data['resultat'][] = Array('id'=>$donnees['id'], 'classe'=>$donnees['classe'],'ordre'=>$donnees['ordre'],'famille'=>$donnees['famille'],'sousFamille'=>$donnees['sousfamille'],'genre'=>$donnees['genre'],'espece'=>$donnees['espece']);
+            }
+            header("Content-Type:application/json");
+            echo json_encode($data);
+          }
+
 
             ?>

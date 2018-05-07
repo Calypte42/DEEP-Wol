@@ -14,6 +14,9 @@ include 'consultationModification.php';
             <option value="Site">Site</option>
             <option value="Piege">Piege</option>
             <option value="Echantillon">Echantillon</option>
+            <option value="Taxonomie">Taxonomie</option>
+            <option value="Gene">Gène</option>
+            <option value="SystemeHydrographique">Systeme Hydrographique</option>
           </select>
           &nbsp;&nbsp;&nbsp;&nbsp;
           <label for="recherche">Votre recherche : </label>
