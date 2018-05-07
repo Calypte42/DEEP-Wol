@@ -2,28 +2,10 @@
 include 'BDD/bdd.php';
 $bdd=connexionbd();
 
-if($_REQUEST['extraire']=='Telecharger CSV'){
-// Paramétrage de l'écriture du futur fichier CSV
-$chemin = './fichierTest.csv';
-$fichier = 'fichierTest.csv';
-$delimiteur = ','; // Pour une tabulation, utiliser $delimiteur = "t";
-
-
-$enTete[]=array();
-$listeSelect="";
-$listeWhere=" WHERE 1=1 AND ";
-
-// On prepare la commande select avec les valeurs recuperer par les checkbox
-
-foreach ($_REQUEST['listeItem'] as $key) {
-  $listeSelect=$listeSelect.$key.',';
-  $enTete[0][]=$key; // On insere le nom de la table dans le tableau permettant d afficher le nom des colonnes dans le csv.
-}
-$listeSelect=rtrim($listeSelect,',');
-
-
 
 // Preparation de la clause WHERE :
+
+$listeWhere=" WHERE 1=1 AND ";
 
 if(!empty($_REQUEST['grotte'][0])){
   foreach ($_REQUEST['grotte'] as $key) {
@@ -125,10 +107,44 @@ if(!empty($_REQUEST['espece'][0])){
   $listeWhere=$listeWhere.' AND ';
 }
 
+if($_REQUEST['extraire']=='Telecharger Fasta'){
+if(!empty($_REQUEST['selectChoixGene'])){
+    $listeWhere=$listeWhere.'nomGene=\''.$_REQUEST['selectChoixGene'].'\'';
+  }
+  $listeWhere=$listeWhere.' AND ';
+}
 $listeWhere=rtrim($listeWhere,' AND ');
 
 
-// Permet de donner un nom au colonne dans le fichier csv. A revoir.
+// parametrage du nom du fichier en sorti avec nom par defaut
+if(!empty($_REQUEST['nomFichier'])){
+  $nomFichierSorti=$_REQUEST['nomFichier'];
+}else{
+  if($_REQUEST['extraire']=='Telecharger CSV'){
+    $nomFichierSorti="DEEP-CSV.csv";
+  }
+  if($_REQUEST['extraire']=='Telecharger Fasta'){
+    $nomFichierSorti="DEEP-Fasta.fasta";
+  }
+}
+
+if($_REQUEST['extraire']=='Telecharger CSV'){
+// Paramétrage de l'écriture du futur fichier CSV
+$chemin = './fichierTest.csv';
+$fichier = 'fichierTest.csv';
+$delimiteur = "\t"; // Pour une tabulation, utiliser $delimiteur = "t";
+
+$enTete[]=array();
+$listeSelect="";
+
+
+// On prepare la commande select avec les valeurs recuperer par les checkbox
+
+foreach ($_REQUEST['listeItem'] as $key) {
+  $listeSelect=$listeSelect.$key.',';
+  $enTete[0][]=$key; // On insere le nom de la table dans le tableau permettant d afficher le nom des colonnes dans le csv.
+}
+$listeSelect=rtrim($listeSelect,',');
 
 
 // Création du fichier csv (le fichier est vide pour le moment)
@@ -146,7 +162,7 @@ fputcsv($fichier_csv, $ligne, $delimiteur);
 }
 
 $requete='SELECT '.$listeSelect.' from V_Echantillon_AvecTaxo '.$listeWhere;
-//echo "$requete";
+echo "$requete";
 $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 
 
@@ -170,17 +186,36 @@ readfile($chemin);
 $file = 'file.csv';
  */
 
-header('Content-disposition: attachment; filename="' . $fichier . '"');
+header('Content-disposition: attachment; filename="'.$nomFichierSorti.'"');
 header('Content-type: application/octetstream');
 
 readfile($fichier);
 }
-if($_REQUEST['extraire']=='Telecharger Fasta'){
-/* code pour concatener deux fichier
- $fichier1 = 'fichier_1.txt';
- $fichier2 = 'fichier_2.txt';
 
- $data = file_get_contents($fichier2);
- file_put_contents($fichier1, $data, FILE_APPEND);*/
+
+if($_REQUEST['extraire']=='Telecharger Fasta'){
+
+  // fichier de base creer sur le serveur avant exportation
+  $fichier = 'fichierTest.fasta';
+
+  // on remet ce fichier vide pour pouvoir ecrire le contenu
+  fclose(fopen($fichier,"w"));
+  // on recupere les chemins des differents fichier fasta
+  $requete='SELECT fasta from V_Analyse '.$listeWhere;
+  $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
+
+
+  foreach ($value as $valeur) {
+    foreach ($valeur as $lien) {
+    $data = file_get_contents($lien);
+    file_put_contents($fichier, $data, FILE_APPEND);
+  }
+}
+
+
+  header('Content-disposition: attachment; filename="'.$nomFichierSorti.'"');
+  header('Content-type: application/octetstream');
+
+  readfile($fichier);
 }
 ?>

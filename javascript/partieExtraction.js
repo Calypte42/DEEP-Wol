@@ -20,15 +20,18 @@ var menuSelectionType = document.getElementById('choixExtraction');
 
 menuSelectionType.addEventListener("change",function(){
   var disparaitreSiFasta = document.getElementById('disparaitreSiFasta');
+  var apparaitreSiFasta= document.getElementById('apparaitreSiFasta');
   var boutonFasta = document.getElementById('extraireFasta');
   var boutonCSV = document.getElementById('extraireCSV');
   if(menuSelectionType.value=='Fasta'){
     disparaitreSiFasta.style.display='none';
+    apparaitreSiFasta.style.display='block';
     boutonFasta.style.display='block';
     boutonCSV.style.display='none';
   }
   else{
     disparaitreSiFasta.style.display='inline';
+    apparaitreSiFasta.style.display='none';
     boutonFasta.style.display='none';
     boutonCSV.style.display='block';
   }

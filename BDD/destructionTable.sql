@@ -4,13 +4,15 @@ TRUNCATE TABLE Site RESTART IDENTITY CASCADE;
 TRUNCATE TABLE Personne RESTART IDENTITY CASCADE;
 TRUNCATE TABLE Taxonomie RESTART IDENTITY CASCADE;
 TRUNCATE TABLE Echantillon RESTART IDENTITY CASCADE;
-TRUNCATE TABLE CorrespondanceGeneBacterie RESTART IDENTITY CASCADE;
+TRUNCATE TABLE CorrespondanceEchantillonBacterie RESTART IDENTITY CASCADE;
 TRUNCATE TABLE Compte RESTART IDENTITY CASCADE;
 
+drop VIEW V_Analyse;
 drop view V_Echantillon_AvecTaxo;
 drop table Compte;
-drop table Analyse;
+drop table Analyses;
 drop table CorrespondanceEchantillonBacterie;
+drop table Gene;
 drop table Bacterie;
 drop table Echantillon;
 drop table Taxonomie;

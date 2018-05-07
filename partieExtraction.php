@@ -26,11 +26,13 @@ include 'HTML/entete.html';
       </div>
     </div>
 
+    <label for="nomFichier">Nom du fichier téléchargé : </label>
+    <input type="text" name="nomFichier" />
+
       <div id="disparaitreSiFasta">
         <div class="row">
           <div class="col-sm-12" style="margin-top:20px; margin-bottom:10px;">
             <h4 style="border-bottom: 1px solid; border-top: 1px solid; padding-top:10px; font-size:20px;">Choix des attributs </h4>
-          <!--<h3> A enlever : Sofian il faudrait si possible que quand on clique sur tout tout ce coche et une fonction verifie que au moins un element est coche avant de valider</h3>-->
           </div>
         </div>
 
@@ -160,10 +162,24 @@ include 'HTML/entete.html';
       <p> Pour choisir plusieurs éléments dans une liste multiple, maintenez la touche CTRL enfoncée</p>
     </br>-->
 
+    <div style="display:none" id="apparaitreSiFasta">
+    <label for="selectChoixGene">Choix du gène à extraire : </label>
+    <select id=selectChoixGene name=selectChoixGene>
+    <?php
+    $requete='SELECT DISTINCT nom from Gene ORDER BY nom';
+    $value=requete($bdd,$requete);
+    foreach ($value as $array) {
+      foreach ($array as $key => $valeur) {
+        echo "<option value=\"$valeur\">$valeur</option>";
+      }
+    }
+    ?>
+    </select>
+    </div>
+
       <div class="row">
         <div class="col-sm-12" style="margin-top:20px; margin-bottom:10px;">
-          <h4 style="border-bottom: 1px solid; border-top: 1px solid; padding-top:10px; font-size:20px;">Choix des catégories </h4>
-        <!--<h3> A enlever : Sofian il faudrait si possible que quand on clique sur tout tout ce coche et une fonction verifie que au moins un element est coche avant de valider</h3>-->
+          <h4 style="border-bottom: 1px solid; border-top: 1px solid; padding-top:10px; font-size:20px;">Filtre des données </h4>
         </div>
       </div>
 
@@ -188,23 +204,7 @@ include 'HTML/entete.html';
       			  	}
       			  	echo "</select>";
       			  	?>
-    <!--      <div>
-          Choix des elements devant apparaitre dans le tableau de resultat : <br/>
-          <label for="CBGrotteTout">Tout</label>
-          <input type='checkbox' name='checkboxGrotte' id="CBGrotteTout" value="CBGrotteTout" />
-          <label for="CBNomCavite">Nom Cavite</label>
-          <input type='checkbox' name='checkboxGrotte' id="CBNomCavite" value="CBNomCavite" />
-          <label for="CBTypeCavite">Type Cavite</label>
-          <input type='checkbox' name='checkboxGrotte' id="CBTypeCavite" value="CBTypeCavite" />
-          <label for="CBLatitude">Latitude</label>
-          <input type='checkbox' name='checkboxGrotte' id="CBLatitude" value="CBLatitude" />
-          <label for="CBLongitude">Longitude</label>
-          <input type='checkbox' name='checkboxGrotte' id="CBLongitude" value="CBLongitude" />
-          <label for="CBTypeAcces">Type Acces</label>
-          <input type='checkbox' name='checkboxGrotte' id="CBTypeAcces" value="CBTypeAcces" />
-          <label for="CBAccesPublic">Acces Public</label>
-          <input type='checkbox' name='checkboxGrotte' id="CBAccesPublic" value="CBAccesPublic" />
-        </div>-->
+
                 </div>
               </div>
             </div>

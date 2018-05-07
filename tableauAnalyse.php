@@ -97,7 +97,7 @@ foreach ($valeur as $cle => $resultat) { /* On recupere la cle et la valeur de c
       <?php
 
 
-$requete='SELECT id,nomgene,resultat,dateAnalyse,fasta,electrophoregramme FROM Analyses WHERE type=\'PCR\'';
+$requete='SELECT id,nomgene,resultat,dateAnalyse,fasta,electrophoregramme FROM Analyses WHERE type=\'PCR\' AND idEchantillon=\''.$_REQUEST['idEchantillon'].'\'';
   /*On prepare une requete permettant de recupere l'ensemble de la table grotte*/
 
 $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
@@ -156,7 +156,7 @@ echo "</table>";
          <?php
 
 
-   $requete='SELECT id,nomgene,resultat,dateAnalyse,fasta,electrophoregramme FROM Analyses WHERE type=\'qPCR\'';
+   $requete='SELECT id,nomgene,resultat,dateAnalyse,fasta,electrophoregramme FROM Analyses WHERE type=\'qPCR\' AND idEchantillon=\''.$_REQUEST['idEchantillon'].'\'';
      /*On prepare une requete permettant de recupere l'ensemble de la table grotte*/
 
    $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
