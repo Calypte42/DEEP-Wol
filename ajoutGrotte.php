@@ -153,11 +153,11 @@ include 'consultationModification.php';
 					<fieldset style = "padding-left:5px;" >
 						<legend class="scheduler-border"> Ajout système hydrographique </legend>
 							<label>nom</label>
-							<input class="valeurs" type="text" id ="nom" name="nom" required size="30"/></br></br>
+							<input class="valeurs" type="text" id ="nom" name="nom" required size="30" maxlength="30"/></br></br>
 							<label>département</label>
 							<input class="valeurs" type="number" id ="departement" name="departement"/></br></br>
-                            <label>pays</label>
-                            <input class="valeurs" type="text" id ="pays" name="pays" required size="2" maxlength="2"/></br></br>
+              <label>pays</label>
+              <input class="valeurs" placeholder="FR" type="text" id ="pays" name="pays" required size="4" maxlength="4"/></br></br>
 							<button type="submit">Ajouter un système hydrographique</button>
 							<button type="button" onclick="affichageDiv('divSystemeHydrographique', 'affichageSystemeHydrographique')">Annuler</button></br></br>
 					</fieldset>

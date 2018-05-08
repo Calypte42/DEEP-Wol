@@ -35,7 +35,7 @@ echo"<form method='post' action='tableauGrotte.php'>";
 			$RetourId=$_REQUEST['idGrotte'];
 			$Retour=$_REQUEST['grotte'];
 
-$requete='SELECT id,numSite,profondeur,typeSol,distanceEntree,presenceEau,codeEquipeSpeleo from Site where idGrotte=\''.$_REQUEST["idGrotte"].'\' order by id';  /*On prepare une requete permettant de recupere l'ensemble de la table grotte*/
+$requete='SELECT id,numSite,profondeur,typeSol,distanceEntree,presenceEau,codeEquipeSpeleo from Site where idGrotte=\''.$_REQUEST["idGrotte"].'\' ORDER BY numSite';  /*On prepare une requete permettant de recupere l'ensemble de la table grotte*/
 
 $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 if($value!=null){

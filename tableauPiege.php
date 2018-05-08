@@ -36,7 +36,7 @@ echo"<form method='post' action='tableauSite.php?grotte=$RetourNomGrotte&idGrott
 			<?php
 
 
-$requete='SELECT codePiege,datePose,heurePose,dateRecup,heureRecup,probleme,dateTri,temperature,codeEquipeSpeleo from Piege where IdSite=\''.$_REQUEST["idSite"].'\'';  /*On prepare une requete permettant de recupere l'ensemble de la table grotte*/
+$requete='SELECT codePiege,datePose,heurePose,dateRecup,heureRecup,probleme,dateTri,temperature,codeEquipeSpeleo from Piege where IdSite=\''.$_REQUEST["idSite"].'\' ORDER BY codePiege';  /*On prepare une requete permettant de recupere l'ensemble de la table grotte*/
 
 $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 foreach ($value as $valeur) { /* On parcourt le tableau de tableau */

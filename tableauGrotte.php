@@ -26,7 +26,7 @@ include 'consultationModification.php';
 
 					<?php
 
-					$requete='SELECT g.id,nomCavite,typeCavite,latitude,longitude,typeAcces,accesPublic,h.nom from Grotte g, SystemeHydrographique h WHERE idSystemeHydrographique=h.id ORDER BY id';  /*On prepare une requete permettant de recupere l'ensemble de la table grotte*/
+					$requete='SELECT g.id,nomCavite,typeCavite,latitude,longitude,typeAcces,accesPublic,h.nom from Grotte g, SystemeHydrographique h WHERE idSystemeHydrographique=h.id ORDER BY nomCavite';  /*On prepare une requete permettant de recupere l'ensemble de la table grotte*/
 					$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 					foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
 						foreach ($valeur as $cle => $resultat) { /* On recupere la cle et la valeur de chaque element */

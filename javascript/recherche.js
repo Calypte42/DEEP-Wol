@@ -74,11 +74,6 @@ document.addEventListener('DOMContentLoaded', function() {
           new_html += "<input type='submit' value='Supprimer' />";
           new_html += "</form></td></tr>";
 
-
-
-
-
-          new_html += '</tr>';
         }
         new_html += '</table></div><br/>';
         new_html += '</div>';
@@ -98,6 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var request = new XMLHttpRequest(); // on prepare AJAX
 
     request.addEventListener('load', function(data) { // Quand la requete sera envoye on affichera
+      console.log(data.target.responseText);
       var ret = JSON.parse(data.target.responseText); // le resultat de la requete sous forme de tableau
       var new_html = '';
       console.log(ret);
@@ -169,10 +165,6 @@ document.addEventListener('DOMContentLoaded', function() {
           new_html += "<input type='submit' value='Supprimer' />";
           new_html += "</form></td></tr>";
 
-
-
-
-          new_html += '</tr>';
         }
         new_html += '</table></div><br/>';
         new_html += '</div>';
@@ -300,9 +292,6 @@ document.addEventListener('DOMContentLoaded', function() {
           new_html += "<input type='hidden' name='id' value='"+ret.resultat[i].codePiege+"' />";
           new_html += "<input type='submit' value='Supprimer' />";
           new_html += "</form></td></tr>";
-
-
-          new_html += '</tr>';
         }
         new_html += '</table></div><br/>';
         new_html += '</div>';
@@ -324,6 +313,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var request = new XMLHttpRequest(); // on prepare AJAX
 
     request.addEventListener('load', function(data) { // Quand la requete sera envoye on affichera
+      console.log(data.target.responseText);
       var ret = JSON.parse(data.target.responseText); // le resultat de la requete sous forme de tableau
       var new_html = '';
       console.log(ret);
@@ -377,13 +367,6 @@ document.addEventListener('DOMContentLoaded', function() {
           new_html += "<input type='submit' value='Supprimer' />";
           new_html += "</form></td></tr>";
 
-
-
-
-
-
-
-          new_html += '</tr>';
         }
         new_html += '</table></div><br/>';
         new_html += '</div>';
@@ -443,11 +426,121 @@ document.addEventListener('DOMContentLoaded', function() {
       request.open("POST", "WebService/rechercheWS.php"); // on envoie la requete
       request.send(new FormData(formRecherche));
 
+  }
+
+
+  function listeGene() {
+
+      var request = new XMLHttpRequest(); // on prepare AJAX
+
+      request.addEventListener('load', function(data) { // Quand la requete sera envoye on affichera
+          var ret = JSON.parse(data.target.responseText); // le resultat de la requete sous forme de tableau
+          var new_html = '';
+          console.log(ret);
+          if (ret.resultat.length == 0) {
+              new_html += '<div style ="margin-top:50px; text-align:center;"><br/>Aucune donnée ne correspond à votre recherche</div>';
+              document.querySelector('#listing').innerHTML = new_html; //reference la div dont id=listing sur recherche.php
+          } else {
+              new_html += '<div class = "col-sm-10">';
+              new_html += '<div><br/>';
+              new_html += '<table class="table table-bordered table-condensed" style="margin-top: 50px; text-align:center;">';
+              new_html += '<tr>';
+              new_html += '<th style="text-align:center;">Nom du gene</th>';
+              new_html += '</tr>';
+              for (var i = 0; i < ret.resultat.length; i++) {
+                  new_html += '<tr>';
+                  new_html += '<td>' + ret.resultat[i].nom + '</td>';
+                  new_html += '</tr>';
+              }
+              new_html += '</table></div><br/>';
+              new_html += '</div>';
+              document.querySelector('#listing').innerHTML = new_html;
+
+          }
+
+
+      });
+      request.open("POST", "WebService/rechercheWS.php"); // on envoie la requete
+      request.send(new FormData(formRecherche));
+
+
+  }
+
+
+  function listeSystemeHydro() {
+
+      var request = new XMLHttpRequest(); // on prepare AJAX
+
+      request.addEventListener('load', function(data) { // Quand la requete sera envoye on affichera
+          var ret = JSON.parse(data.target.responseText); // le resultat de la requete sous forme de tableau
+          var new_html = '';
+          console.log(ret);
+          if (ret.resultat.length == 0) {
+              new_html += '<div style ="margin-top:50px; text-align:center;"><br/>Aucune donnée ne correspond à votre recherche</div>';
+              document.querySelector('#listing').innerHTML = new_html; //reference la div dont id=listing sur recherche.php
+          } else {
+              new_html += '<div class = "col-sm-10">';
+              new_html += '<div><br/>';
+              new_html += '<table class="table table-bordered table-condensed" style="margin-top: 50px; text-align:center;">';
+              new_html += '<tr>';
+              new_html += '<th style="text-align:center;">Nom</th>';
+              new_html += '<th style="text-align:center;">departement</th>';
+              new_html += '<th style="text-align:center;">Pays</th>';
+              new_html += '</tr>';
+              for (var i = 0; i < ret.resultat.length; i++) {
+                  new_html += '<tr>';
+                  new_html += '<td>' + ret.resultat[i].nom + '</td>';
+                  new_html += '<td>' + ret.resultat[i].departement + '</td>';
+                  new_html += '<td>' + ret.resultat[i].pays + '</td>';
+                  new_html += '</tr>';
+              }
+              new_html += '</table></div><br/>';
+              new_html += '</div>';
+              document.querySelector('#listing').innerHTML = new_html;
+
+          }
+
+
+      });
+      request.open("POST", "WebService/rechercheWS.php"); // on envoie la requete
+      request.send(new FormData(formRecherche));
 
   }
 
     var formRecherche=document.getElementById("formRecherche");
     var select = document.getElementById("choixRecherche");
+
+    var divFiltre=document.getElementById("divFiltre");
+    var divFiltreGrotte=document.getElementById("divFiltreGrotte");
+    var divFiltreSite=document.getElementById("divFiltreSite");
+    var divFiltrePiege=document.getElementById("divFiltrePiege");
+
+    select.addEventListener("change",function(){
+      if(select.value=="Site" || select.value=="Piege" || select.value=="Echantillon"  ){
+        divFiltre.style.display="block";
+        if (select.value=="Echantillon"){
+          divFiltreGrotte.style.display="block";
+          divFiltreSite.style.display="block";
+          divFiltrePiege.style.display="block";
+        }
+        if (select.value=="Piege"){
+          divFiltreGrotte.style.display="block";
+          divFiltreSite.style.display="block";
+          divFiltrePiege.style.display="none";
+        }
+        if (select.value=="Site"){
+          divFiltreGrotte.style.display="block";
+          divFiltreSite.style.display="none";
+          divFiltrePiege.style.display="none";
+        }
+      }
+      else{
+        divFiltre.style.display="none";
+      }
+    });
+
+
+
 
     formRecherche.addEventListener("submit",function(event){
       event.preventDefault();
@@ -465,6 +558,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     if(select.value=="Taxonomie"){
     listeTaxonomie();
+    }
+    if(select.value=="Gene"){
+    listeGene();
+    }
+    if(select.value=="SystemeHydrographique"){
+    listeSystemeHydro();
     }
 
     })

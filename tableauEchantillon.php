@@ -41,7 +41,7 @@ echo"<form method='post' action='tableauPiege.php?nomGrotte=$RetourNomGrotte&idG
 			<?php
 
 
-$requete='SELECT e.id,numEchantillon,formeStockage,lieuStockage,niveauIdentification,infecteBacterie,a.initiale,t.genre,t.espece from Echantillon e, Personne a, Taxonomie t where codePiege=\''.$_REQUEST["piege"].'\' AND e.idAuteur=a.id AND e.idTaxonomie=t.id';  /*On prepare une requete permettant de recupere l'ensemble de la table grotte*/
+$requete='SELECT e.id,numEchantillon,formeStockage,lieuStockage,niveauIdentification,infecteBacterie,a.initiale,t.genre,t.espece from Echantillon e, Personne a, Taxonomie t where codePiege=\''.$_REQUEST["piege"].'\' AND e.idAuteur=a.id AND e.idTaxonomie=t.id ORDER BY numEchantillon';  /*On prepare une requete permettant de recupere l'ensemble de la table grotte*/
 
 $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 foreach ($value as $valeur) { /* On parcourt le tableau de tableau */

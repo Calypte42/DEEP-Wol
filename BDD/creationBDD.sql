@@ -4,9 +4,9 @@ create table EquipeSpeleo (
 
 create table SystemeHydrographique (
     id SERIAL PRIMARY KEY,
-    nom varchar(30),
+    nom varchar(30) NOT NULL,
     departement int,
-    pays varchar(4),
+    pays varchar(4) NOT NULL,
     CONSTRAINT departement_sup0 CHECK (departement>=0),
     CONSTRAINT systemeHydro_unique UNIQUE (nom, departement, pays)
 );
