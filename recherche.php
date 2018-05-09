@@ -23,12 +23,10 @@ include 'consultationModification.php';
           <input type="text" name="recherche" />
           <input style = "display:inline-block;" type="submit" value="Rechercher" id="submitRecherche" />
         </div>
-      </div>
+        
         </br>
-      </br>
         </br>
-          <div class = "row">
-            <div class = "col-sm-10" style = "text-align:center;">
+
           <div id="divFiltre" style="display:none">
             <p style ="display:inline-block;"><b>Spécifiez votre recherche : </b></p>&nbsp;&nbsp;&nbsp;
             <div id="divFiltreGrotte" style="display:none">
@@ -79,18 +77,13 @@ include 'consultationModification.php';
                </select>&nbsp;
             </div> <!-- Fin divFiltrePiege -->
           </div> <!-- Fin divFiltre -->
-        </div> <!-- fin col filtre -->
-      </div> <!-- fin row filtre -->
+        </div>
         </form>
-      </div> <!-- fin row consultationModification-->
-    </div> <!-- fin container fluid consultationModification-->
-
-
-
 
       <div id="listing"></div>
 
-
+    </div> <!-- fin row consultationModification-->
+  </div> <!-- fin container fluid consultationModification-->
 
 
 <script src="./javascript/recherche.js"></script>
