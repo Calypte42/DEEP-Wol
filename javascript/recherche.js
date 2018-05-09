@@ -519,17 +519,17 @@ document.addEventListener('DOMContentLoaded', function() {
       if(select.value=="Site" || select.value=="Piege" || select.value=="Echantillon"  ){
         divFiltre.style.display="block";
         if (select.value=="Echantillon"){
-          divFiltreGrotte.style.display="block";
-          divFiltreSite.style.display="block";
-          divFiltrePiege.style.display="block";
+          divFiltreGrotte.style.display="inline-block";
+          divFiltreSite.style.display="inline-block";
+          divFiltrePiege.style.display="inline-block";
         }
         if (select.value=="Piege"){
-          divFiltreGrotte.style.display="block";
-          divFiltreSite.style.display="block";
+          divFiltreGrotte.style.display="inline-block";
+          divFiltreSite.style.display="inline-block";
           divFiltrePiege.style.display="none";
         }
         if (select.value=="Site"){
-          divFiltreGrotte.style.display="block";
+          divFiltreGrotte.style.display="inline-block";
           divFiltreSite.style.display="none";
           divFiltrePiege.style.display="none";
         }

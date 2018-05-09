@@ -14,7 +14,7 @@ include 'consultationModification.php';
 				<input type="submit" value="Revenir au tableau des grottes" />
 			</form>
 			</br>
-			<form  id="ajoutGrotte"  method="GET" action = "WebService/ajoutGrotteWS.php" onsubmit="return controleGrotte(this);"> <!-- reference au formulaire -->
+			<form  id="ajoutGrotte"  method="POST" action = "WebService/ajoutGrotteWS.php" onsubmit="return controleGrotte(this);"> <!-- reference au formulaire -->
 			<p> <!-- car balise input ou select ne peut pas etre imbriquee directement dans form -->
 				<!--<fieldset class="scheduler-border fieldset-auto-width">-->
 					<legend class="scheduler-border"> Ajout d'une grotte </legend>

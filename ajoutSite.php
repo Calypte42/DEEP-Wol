@@ -125,7 +125,7 @@ include 'consultationModification.php';
 					<label for="presenceEauOui">oui</label>
 					<input type = "radio" id="presenceEauNon" name = "presenceEau" value="false">
 					<label for="presenceEauNon">non</label>
-                    <input type = "radio" id="presenceEauNull" name = "presenceEau" value="NULL" checked>
+          <input type = "radio" id="presenceEauNull" name = "presenceEau" value="null" checked>
 					<label for="presenceEauNull">indéterminé</label>
 
 					</br>

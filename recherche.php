@@ -21,11 +21,16 @@ include 'consultationModification.php';
           &nbsp;&nbsp;&nbsp;&nbsp;
           <label for="recherche">Votre recherche : </label>
           <input type="text" name="recherche" />
+          <input style = "display:inline-block;" type="submit" value="Rechercher" id="submitRecherche" />
+        </div>
+        
+        </br>
+        </br>
 
           <div id="divFiltre" style="display:none">
-            <h3>Filtre : </h3></br>
+            <p style ="display:inline-block;"><b>Spécifiez votre recherche : </b></p>&nbsp;&nbsp;&nbsp;
             <div id="divFiltreGrotte" style="display:none">
-              <label for="filtreGrotte"> Grotte : </label>
+              <label for="filtreGrotte"> Grotte</label>&nbsp;
               <select name="filtreGrotte" id="filtreGrotte">
                 <option value="toutes" selected>Toutes</option>
                 <?php
@@ -37,11 +42,11 @@ include 'consultationModification.php';
     								echo "<option value=\"$id\">$nomCavite</option>";
                   }
                   ?>
-              </select>
+              </select>&nbsp;&nbsp;&nbsp;
             </div> <!-- Fin divFiltreGrotte -->
             <div id="divFiltreSite" style="display:none">
 
-              <label for="filtreSite"> Site : </label>
+              <label for="filtreSite"> Site</label>&nbsp;
               <select name="filtreSite" id="filtreSite">
                 <option value="tous" selected>Tous</option>
                 <?php
@@ -53,10 +58,11 @@ include 'consultationModification.php';
 									echo "<option value=\"$id\">$numSite</option>";
                 }
               ?>
-            </select>
+            </select>&nbsp;&nbsp;&nbsp;
             </div><!-- Fin divFiltreSite -->
+
             <div id="divFiltrePiege" style="display:none">
-              <label for="filtrePiege"> Piege : </label>
+              <label for="filtrePiege"> Piège</label>&nbsp;
               <select name="filtrePiege" id="filtrePiege">
                 <option value="tous" selected>Tous</option>
                 <?php
@@ -68,21 +74,16 @@ include 'consultationModification.php';
                     }
                   }
                  ?>
-               </select>
+               </select>&nbsp;
             </div> <!-- Fin divFiltrePiege -->
           </div> <!-- Fin divFiltre -->
-          
-          <input type="submit" value="Rechercher" id="submitRecherche" />
+        </div>
         </form>
-      </div>
-    </div>
-
-
-
 
       <div id="listing"></div>
 
-
+    </div> <!-- fin row consultationModification-->
+  </div> <!-- fin container fluid consultationModification-->
 
 
 <script src="./javascript/recherche.js"></script>
