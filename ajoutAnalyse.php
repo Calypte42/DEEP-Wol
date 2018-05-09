@@ -5,7 +5,7 @@ $bdd=connexionbd();
 include 'verificationConnexion.php';
 include 'consultationModification.php';
 ?>
-
+        <script src="./javascript/eventListener.js" type="text/javascript"></script>
       <div class= "col-sm-10">
         <?php
         if(isset($_REQUEST['idEchantillon'])){

@@ -5,7 +5,9 @@ $bdd=connexionbd();
 include 'verificationConnexion.php';
 include 'consultationModification.php';
 ?>
-		<!-- FORMULAIRE D'AJOUT DE SITE -->
+        <script src="./javascript/eventListener.js" type="text/javascript"></script>
+
+    	<!-- FORMULAIRE D'AJOUT DE SITE -->
 
 		<div class= "col-sm-7">
 			<?php

@@ -7,7 +7,7 @@ $bdd=connexionbd();
 include 'verificationConnexion.php';
 include 'consultationModification.php';
 ?>
-
+            <script src="./javascript/eventListener.js" type="text/javascript"></script>
 			<div class= "col-sm-7">
 
 			<?php

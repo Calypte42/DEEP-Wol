@@ -6,6 +6,7 @@ include 'verificationConnexion.php';
 include 'consultationModification.php';
 ?>
 
+        <script src="./javascript/eventListener.js" type="text/javascript"></script>
 		<!-- FORMULAIRE D'AJOUT DE GROTTE -->
 
 		<div class= "col-sm-7">
