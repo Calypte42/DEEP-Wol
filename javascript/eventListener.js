@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 }
                 inputs[e].focus();
-                alert(inputs[e].type);
                 event.preventDefault();
             }
 
