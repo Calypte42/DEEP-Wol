@@ -25,12 +25,15 @@ if ($_REQUEST['typeSol'] == 'autre') {
 }
 
 // Gestion de presenceEau non coche
-if ($_REQUEST['presenceEau']=="NULL") {
-    $presenceEau=null;
-} else {
+if(isset($_REQUEST['presenceEau'])){
+  if($_REQUEST['presenceEau']!="null"){
     $presenceEau=$_REQUEST['presenceEau'];
+  }
+  else{$presenceEau=null;}
 }
-
+else {
+  $presenceEau=null;
+}
 
 $req->execute(array(
     'profondeur' => $profondeur,

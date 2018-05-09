@@ -29,7 +29,7 @@ include 'consultationModification.php';
 
 			</br>
 			<!-- FORMULAIRE D'AJOUT D'ECHANTILLON -->
-			<form  id="ajoutIndividu"  method="GET" action = "WebService/ajoutEchantillonWS.php"> <!-- reference au formulaire -->
+			<form  id="ajoutIndividu"  method="POST" action = "WebService/ajoutEchantillonWS.php"> <!-- reference au formulaire -->
 			<p>
 				<!--<fieldset class="scheduler-border">-->
 					<legend class="scheduler-border"> Ajout d'un échantillon </legend>
