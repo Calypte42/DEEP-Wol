@@ -4,8 +4,8 @@
 INSERT INTO EquipeSpeleo VALUES ('Equipe1');
 INSERT INTO EquipeSpeleo VALUES ('Equipe2');
 
-INSERT INTO SystemeHydrographique (nom,departement) VALUES ('Reseau1',34);
-INSERT INTO SystemeHydrographique (nom,departement) VALUES ('Reseau2',34);
+INSERT INTO SystemeHydrographique (nom,departement,pays) VALUES ('Reseau1',34,'FR');
+INSERT INTO SystemeHydrographique (nom,departement,pays) VALUES ('Reseau2',34,'FR');
 
 INSERT INTO Grotte(nomCavite,typeCavite,latitude,longitude,typeAcces,accesPublic,idSystemeHydrographique)
     VALUES('Grotte1','Standard',NULL,NULL,'Normal',TRUE,1);
