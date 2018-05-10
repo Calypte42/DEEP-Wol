@@ -31,8 +31,8 @@ $tableau = array();
 
 // Gestion des classes
 if ($_REQUEST['classe']=='Indetermine') {
-    $classe=null;
-    $taxoRequete= $taxoRequete."t.classe IS NULL ";
+    $classe='';
+    $taxoRequete= $taxoRequete."t.classe ='' ";
 } else {
     $classe=$_REQUEST['classe'];
     $taxoRequete=$taxoRequete."t.classe =:classe ";
@@ -43,8 +43,8 @@ $taxoRequete=$taxoRequete."AND ";
 
 // Gestion des ordres
 if ($_REQUEST['ordre']=='Indetermine') {
-    $ordre=null;
-    $taxoRequete= $taxoRequete."t.ordre IS NULL ";
+    $ordre='';
+    $taxoRequete= $taxoRequete."t.ordre ='' ";
 } else {
     $ordre=$_REQUEST['ordre'];
     $taxoRequete=$taxoRequete."t.ordre =:ordre ";
@@ -55,8 +55,8 @@ $taxoRequete=$taxoRequete."AND ";
 
 // Gestion des familles
 if ($_REQUEST['famille']=='Indetermine') {
-    $famille=null;
-    $taxoRequete= $taxoRequete."t.famille IS NULL ";
+    $famille='';
+    $taxoRequete= $taxoRequete."t.famille ='' ";
 } else {
     $famille=$_REQUEST['famille'];
     $taxoRequete=$taxoRequete."t.famille =:famille ";
@@ -68,8 +68,8 @@ $taxoRequete=$taxoRequete."AND ";
 // Gestion des sousFamilles
 
 if ($_REQUEST['sousFamille']=='Indetermine') {
-    $sousFamille=null;
-    $taxoRequete= $taxoRequete."t.sousFamille IS NULL ";
+    $sousFamille='';
+    $taxoRequete= $taxoRequete."t.sousFamille ='' ";
 } else {
     $sousFamille=$_REQUEST['sousFamille'];
     $taxoRequete=$taxoRequete."t.sousFamille =:sousFamille ";
@@ -80,8 +80,8 @@ $taxoRequete=$taxoRequete."AND ";
 
 // Gestion des genres
 if ($_REQUEST['genre']=='Indetermine') {
-    $genre=null;
-    $taxoRequete= $taxoRequete."t.genre IS NULL ";
+    $genre='';
+    $taxoRequete= $taxoRequete."t.genre ='' ";
 } else {
     $genre=$_REQUEST['genre'];
     $taxoRequete=$taxoRequete."t.genre =:genre ";
@@ -92,8 +92,8 @@ $taxoRequete=$taxoRequete."AND ";
 
 // Gestion des especes
 if ($_REQUEST['espece']=='Indetermine') {
-    $espece=null;
-    $taxoRequete= $taxoRequete."t.espece IS NULL ";
+    $espece='';
+    $taxoRequete= $taxoRequete."t.espece ='' ";
 } else {
     $espece=$_REQUEST['espece'];
     $taxoRequete=$taxoRequete."t.espece =:espece ";
@@ -136,6 +136,23 @@ if ($nombreResultat==1) {
 
     $req->execute($tableau);
 
+
+    $idEchantillon= $bdd->lastInsertId();
+
+
+    if($_REQUEST['bacterie'][0]!="Indetermine"){
+      $req = $bdd->prepare('INSERT INTO CorrespondanceEchantillonBacterie VALUES (:idEchantillon,:clade)');
+
+        foreach ($_REQUEST['bacterie'] as $key) {
+          $entre['idEchantillon']= $idEchantillon;
+          $entre['clade']= $key;
+
+          $req->execute($entre);
+      }
+    }
+
+
+
     if ($_REQUEST['nom']=='Valider et ajouter un nouvel échantillon') {
         if (isset($_REQUEST['idGrotte'])) {
             header("Refresh: 0; URL=../ajoutEchantillon.php?nomGrotte=".$_REQUEST['nomGrotte']."&idGrotte=".$_REQUEST['idGrotte']."&site=".$_REQUEST['site']."&idSite=".$_REQUEST['idSite']."&piege=".$_REQUEST['codePiege']);
@@ -150,6 +167,3 @@ if ($nombreResultat==1) {
 } else {
     echo "Il y a ".$nombreResultat." Taxonomie correspondante ! ";
 }
-
-
-echo http_response_code();

@@ -53,13 +53,40 @@ foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
                 $numEchantillon = $resultat;
 				echo "<td><a href='tableauAnalyse.php?idEchantillon=$id&numEchantillon=$resultat&piege=$RetourPiege&nomGrotte=$RetourNomGrotte&idGrotte=$RetourIdGrotte&site=$RetourNomSite&idSite=$RetourIdSite'>$resultat</a></td> ";
 			}else {
+				// Debut gestion des bacterie
+				if($cle=='infectebacterie'){
+					if($resultat=="oui"){
+						$requeteBacterie='SELECT clade FROM CorrespondanceEchantillonBacterie WHERE idEchantillon=\''.$id.'\'';
+						$resBacterie=requete($bdd,$requeteBacterie);
+						if(count($resBacterie)!=0){
+							echo "<td><ul>";
+							foreach ($resBacterie as $valeurBac) {
+								foreach ($valeurBac as $cladeBact) {
+									echo "<li style='color:green'>$cladeBact</li>";
+								}
+							}
+							echo "</ul></td>";
+						}
+						else{
+							echo "<td style='color:green'>$resultat</td>";
+						}
+					}
+					if($resultat=="non"){
+						echo "<td style='color:red'>$resultat</td>";
+					}
+					if($resultat=="nonDetermine"){
+						echo "<td>$resultat</td>";
+					}
+				}//Fin gestion des bacteries
+
+					else{
 				if(empty($resultat)){
           echo "<td>Non renseigné</td>";
 					}else{
 				echo "<td>$resultat</td> ";
 			}}
 
-		}}
+		}}}
         echo "<td><form method='GET' action='modifEchantillon.php'>";
         echo "<input type='hidden' name='id' value='$id' />";
         echo "<input type='hidden' name='nomGrotte' value='$RetourNomGrotte' />";
