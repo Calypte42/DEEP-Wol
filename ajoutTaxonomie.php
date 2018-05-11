@@ -11,7 +11,7 @@ include 'consultationModification.php';
 
 <!-- FORMULAIRE D'AJOUT DE LA TAXONOMIE -->
 <div class= "col-sm-10">
-	<form  id="ajoutTaxonomie"  method="POST" action = "WebService/ajoutTaxonomieWS.php"> <!-- reference au formulaire -->
+	<form  id="ajoutTaxonomie"  method="POST" action = "WebService/ajoutTaxonomieWS.php" enctype='multipart/form-data'> <!-- reference au formulaire -->
 		<p>
 			<!--<fieldset class="scheduler-border">-->
 			<legend class="scheduler-border"> Ajout d'une taxonomie </legend>

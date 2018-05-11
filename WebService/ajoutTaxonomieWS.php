@@ -13,9 +13,11 @@ if(isset($_FILES['photo']['tmp_name'])){
       move_uploaded_file($tmpNamePHOTO, "../files/photo/".$nom);
       $photo = "files/photo/" . $nom;
 
+  } else {
+      $photo=null;
+  }
+
 } else {
-  $photo=null;
-}}else{
   $photo=null;
 }
 
@@ -86,4 +88,4 @@ if(!empty($_REQUEST['classeTaxo'])){
           }}}}}}
 
 
-header('Refresh: 5; URL=../ajoutTaxonomie.php');
+header('Refresh: 0; URL=../ajoutTaxonomie.php');

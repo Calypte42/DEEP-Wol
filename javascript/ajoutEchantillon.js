@@ -52,7 +52,7 @@ function chargerImage(){
     console.log(ret.resultat.length);
     if (ret.resultat.length != 0) {
       console.log("je suis dans la modif");
-      imageTaxo.src=ret.resultat[0].photo;
+      imageTaxo.href=ret.resultat[0].photo;
       console.log("je suis dans la modif");
     }
 
