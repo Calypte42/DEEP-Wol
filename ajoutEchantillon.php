@@ -188,7 +188,7 @@ include 'consultationModification.php';
 								}
 							}
                             echo "<option value='Indéterminé'>Indéterminé</option>";
-                            echo "<option value='autre'>Autre</option>";
+                            echo "<option value='autre'>[Ajouter]</option>";
 							echo "</select>";
 							?>
                             <div id="autreDivFormeStockage" style="display:none;">Ajouter une forme de stockage : <input id="autreFormeStockage" type="text" name="autreFormeStockage" /> *</div>
@@ -210,7 +210,7 @@ include 'consultationModification.php';
 							}
 						}
                         echo "<option value='Indéterminé'>Indéterminé</option>";
-                        echo "<option value='autre'>Autre</option>";
+                        echo "<option value='autre'>[Ajouter]</option>";
 						echo "</select>";
 						?>
                         <div id="autreDivLieuStockage" style="display:none;">Ajouter un lieu de stockage : <input id="autreLieuStockage" type="text" name="autreLieuStockage" /> *</div>
@@ -386,7 +386,7 @@ include 'consultationModification.php';
 						<?php
 						/* on veut recuperer les valeurs de grotte deja existantes dans la bdd */
 						echo "<label style='display: block; width:170px; float:left;' for='idAuteur'>Auteur  </label>";
-						echo "<select id='listePersonne' name='idAuteur'>"; /* On cree une liste deroulante vide */
+						echo "<select id='listePersonne' name='idAuteur' onchange='ajoutDiv(this.options[this.selectedIndex].value, \"divPersonne\")'>"; /* On cree une liste deroulante vide */
 						$requete='SELECT id,initiale from Personne ORDER BY initiale';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
 						$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 						foreach ($value as $array) { /* On parcourt les resultats possibles */
@@ -401,10 +401,9 @@ include 'consultationModification.php';
 							}
 							echo "</option>";
 						}
+                        echo "<option value='autre'>[Ajouter]</option>";
 						echo "</select>";
 						?>
-
-						<input id="affichagePersonne" type = "button" value = "ajouter un auteur" onclick="affichageDiv('divPersonne', this.id)">
 
 						</br></br>
 
@@ -430,14 +429,13 @@ include 'consultationModification.php';
 
 				<div class= "col-sm-3" style = "float:right; margin-top:800px;">
 					<div id="divPersonne" style="display:none;">
-						<form  id="formPersonne"  method="POST" onsubmit="return ajaxAjout('./WebService/ajoutPersonneWS.php', 'divPersonne', this.id, 'listePersonne','affichagePersonne')">
+						<form  id="formPersonne"  method="POST" onsubmit="return ajaxAjout('./WebService/ajoutPersonneWS.php', 'divPersonne', this.id, 'listePersonne')">
 							<fieldset style = "padding-left:5px;">
 								<legend class="scheduler-border"> Ajout d'une personne </legend>
 									<label style = "float:left;">Veuillez ne renseigner que les initiales de la personne</label>
 									<input class="valeurs" type="text" id="personne" name="personne" required size="5" maxlength="5"/>
 									</br></br>
-									<button type="submit">Ajouter une personne</button>
-									<button type="button" onclick="affichageDiv('divPersonne', 'affichagePersonne')">Annuler</button></br></br>
+									<button type="submit">Ajouter une personne</button></br></br>
 							</fieldset>
 						</form>
 					</div>

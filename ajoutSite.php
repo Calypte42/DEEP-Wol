@@ -70,8 +70,8 @@ include 'consultationModification.php';
 					<?php
 					/* on veut recuperer les valeurs de grotte deja existantes dans la bdd */
 					echo "<label style='display: block; width:115px; float:left;' for='codeEquipeSpeleo'>Equipe spéléo </label>";
-					echo "<select name='codeEquipeSpeleo' id='listeEquipeSpeleo'>"; /* On cree une liste deroulante vide */
-
+					echo "<select name='codeEquipeSpeleo' id='listeEquipeSpeleo' onchange='ajoutDiv(this.options[this.selectedIndex].value, \"divEquipeSpeleo\")'>"; /* On cree une liste deroulante vide */
+                    echo "<option disabled selected value>Choisir</option>";
 					$requete='SELECT codeEquipe from EquipeSpeleo';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
 					$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 					foreach ($value as $array) { /* On parcourt les resultats possibles */
@@ -79,10 +79,9 @@ include 'consultationModification.php';
 							echo "<option value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
 						}
 					}
+                    echo "<option value='autre'>[Ajouter]</option>";
 					echo "</select>";
 					?>
-					&nbsp;&nbsp;
-					<input type = "button" id="affichageAjoutEquipe" value = "ajouter une équipe" onclick="affichageDiv('divEquipeSpeleo', this.id)"> <!-- rajout d'un bouton ajout d'une nouvelle équipe -->
 
 					</br></br>
 
@@ -109,7 +108,7 @@ include 'consultationModification.php';
                         }
                     }
                     echo "<option value='Indéterminé'>Indéterminé</option>";
-                    echo "<option value='autre'>Autre</option>";
+                    echo "<option value='autre'>[Ajouter]</option>";
                     echo "</select>";
                 ?>
                     <div id="autreDivSol" style="display:none;">Ajouter un type de sol : <input id="autreSol" type="text" name="autreSol" /> *</div>
@@ -149,14 +148,13 @@ include 'consultationModification.php';
 
 		<div class = "col-sm-3" style = "float:right; margin-top:150px;">
 			<div id="divEquipeSpeleo" style="display:none;">
-					<form  id="formEquipeSpeleo"  method="POST" onsubmit="return ajaxAjout('./WebService/ajoutEquipeWS.php', 'divEquipeSpeleo', this.id, 'listeEquipeSpeleo','affichageAjoutEquipe')">
+					<form  id="formEquipeSpeleo"  method="POST" onsubmit="return ajaxAjout('./WebService/ajoutEquipeWS.php', 'divEquipeSpeleo', this.id, 'listeEquipeSpeleo')">
 						<fieldset style = "padding-left:5px;" >
 							<legend class="scheduler-border"> Ajout Equipe spéleo </legend>
 							<label style = "float:left;">Equipe spéléo</label>&nbsp;
 							<input class="valeurs" type="text" id="codeEquipe" name="codeEquipe" required size="20"/> *
 							</br></br>
-							<button type="submit">Ajouter une équipe</button>
-							<button type="button" onclick="affichageDiv('divEquipeSpeleo', 'affichageAjoutEquipe')">Annuler</button></br></br>
+							<button type="submit">Ajouter une équipe</button></br></br>
 						</fieldset>
 					</form>
 			</div>

@@ -7,7 +7,7 @@
 // IMPORTANT : dans le cas où le formulaire contient plusieurs valeurs, veuillez
 // ajouter à chaque input la classe 'valeurs'
 
-function ajaxAjout(url, idAffichage, idFormulaire, idSelect, idBouton) {
+function ajaxAjout(url, idAffichage, idFormulaire, idSelect) {
 
     var liste = document.getElementById(idSelect);
     var listeOptions = liste.options;
@@ -41,7 +41,7 @@ function ajaxAjout(url, idAffichage, idFormulaire, idSelect, idBouton) {
                     option.text = nouvelleOption;
                     option.value = valeur;
                     option.selected = true;
-                    liste.add(option, liste[0]);
+                    liste.add(option, liste[1]);
                 }
             }
         };
@@ -50,7 +50,7 @@ function ajaxAjout(url, idAffichage, idFormulaire, idSelect, idBouton) {
         request.send(new FormData(formulaire));
     }
 
-    affichageDiv(idAffichage, idBouton);
+    cacher(idAffichage);
 
     return false;
 
@@ -98,7 +98,7 @@ function majPiege(idSite) {
 function verifIdentique(nom, table, valeur) {
 
     var request = new XMLHttpRequest();
-    var  verif = false;
+    var verif = false;
 
     request.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -117,6 +117,29 @@ function verifIdentique(nom, table, valeur) {
     return verif;
 }
 
+function verifIdentiqueSitePiege(id, num, codeEquipe, type) {
+
+    var request = new XMLHttpRequest();
+    var verif = false;
+
+    request.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            if (this.responseText) {
+                verif = true;
+            } else {
+                verif = false;
+            }
+        }
+    }
+
+    request.open("GET", "./WebService/verifIdentiqueSitePiegeWS.php?id=" + id +
+                                "&num=" + num + "&codeEquipe=" + codeEquipe +
+                                "&type=" + type, false);
+    request.send();
+
+    return verif;
+}
+
 function afficher(idDiv, typeAffichage) {
     var affichage = document.getElementById(idDiv);
     affichage.style.display = typeAffichage;
@@ -125,21 +148,6 @@ function afficher(idDiv, typeAffichage) {
 function cacher(idDiv) {
     var affichage = document.getElementById(idDiv);
     affichage.style.display = "none";
-}
-
-function affichageDiv(idDiv, idBouton) {
-
-    var affichage = document.getElementById(idDiv);
-    var bouton = document.getElementById(idBouton);
-
-    if (affichage.style.display != "inline") {
-        affichage.style.display = "inline";
-        bouton.style.display = "none";
-    } else {
-        affichage.style.display = "none";
-        bouton.style.display = "inline";
-    }
-
 }
 
 function cacherPiege() {
@@ -212,6 +220,14 @@ function ajoutAutre(valeurAutre, idDiv, idInput) {
     }
 }
 
+function ajoutDiv(valeurAutre, idDiv) {
+    if (valeurAutre == 'autre') {
+        document.getElementById(idDiv).style.display = "inline";
+    } else {
+        document.getElementById(idDiv).style.display = "none";
+    }
+}
+
 function controleAnalyse(formulaire) {
 
     if (formulaire.elements['fasta'].value) {
@@ -242,8 +258,14 @@ function controleAnalyse(formulaire) {
 }
 
 function controleGrotte(formulaire) {
+    select = formulaire.elements['systemeHydro'];
     message = "";
     erreur = false;
+
+    if (select.value == "") {
+        message += "- Veuillez choisir un système hydrographique\n";
+        erreur = true;
+    }
 
     valeurNomCavite = formulaire.elements['nomGrotte'].value;
     if (verifIdentique('nomcavite', 'grotte', valeurNomCavite)) {
@@ -252,7 +274,7 @@ function controleGrotte(formulaire) {
     }
 
     if (document.getElementById("divSystemeHydrographique").style.display == "inline") {
-        message += "- Veuillez valider l'ajout d'un système hydrographique ou annuler";
+        message += "- Veuillez valider l'ajout d'un système hydrographique";
         erreur = true;
     }
 
@@ -265,17 +287,25 @@ function controleGrotte(formulaire) {
 }
 
 function controleSite(formulaire) {
+    select = formulaire.elements['codeEquipeSpeleo'];
     message = "";
     erreur = false;
 
-    /*valeurNumSite = formulaire.elements['numSite'].value;
-    if (verifIdentique('numsite', 'site', valeurNumSite)) {
-        message += "- Le nom du site est déjà utilisée pour un autre site";
+    valeuridGrotte = formulaire.elements['idGrotteForm'].value;
+    valeurNumSite = formulaire.elements['numSite'].value;
+    valeurCodeEquipe = formulaire.elements['codeEquipeSpeleo'].value;
+    if (verifIdentiqueSitePiege(valeuridGrotte, valeurNumSite, valeurCodeEquipe, "site")) {
+        message += "- Il existe déjà un site du même nom pour la grotte et l'équipe choisies";
         erreur = true;
-    }*/
+    }
+
+    if (select.value == "") {
+        message += "- Veuillez choisir une équipe spéleo\n";
+        erreur = true;
+    }
 
     if (document.getElementById("divEquipeSpeleo").style.display == "inline") {
-        message += "Veuillez valider l'ajout d'un système hydrographique ou annuler";
+        message += "Veuillez valider l'ajout d'une équipe spéleo";
         erreur = true;
     }
 
@@ -289,11 +319,25 @@ function controleSite(formulaire) {
 
 function controlePiege(formulaire) {
     select = formulaire.elements['idGrotteForm'];
+    select2 = formulaire.elements['codeEquipeSpeleo'];
     message = "";
     erreur = false;
 
+    valeuridSite = formulaire.elements['idSiteForm'].value;
+    valeurCodePiege = formulaire.elements['codePiege'].value;
+    valeurCodeEquipe = formulaire.elements['codeEquipeSpeleo'].value;
+    if (verifIdentiqueSitePiege(valeuridSite, valeurCodePiege, valeurCodeEquipe, "piege")) {
+        message += "- Il existe déjà un code de piège du même nom pour la grotte, le site et l'équipe choisis";
+        erreur = true;
+    }
+
     if (select.value == "") {
         message += "- Veuillez choisir une grotte\n";
+        erreur = true;
+    }
+
+    if (select2.value == "") {
+        message += "- Veuillez choisir une équipe spéleo\n";
         erreur = true;
     }
 
