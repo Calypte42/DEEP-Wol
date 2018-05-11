@@ -43,7 +43,7 @@ include 'consultationModification.php';
 									}
 								}
                                 echo "<option value='Indéterminé'>Indéterminé</option>";
-                                echo "<option value='autre'>Autre</option>";
+                                echo "<option value='autre'>[Ajouter]</option>";
 								echo "</select>";
 							?>
                                 <div id="autreDivCavite" style="display:none;">Ajouter un type de cavité : <input id="autreCavite" type="text" name="autreCavite" /> *</div>
@@ -93,7 +93,7 @@ include 'consultationModification.php';
                                 }
                             }
                             echo "<option value='Indéterminé'>Indéterminé</option>";
-                            echo "<option value='autre'>Autre</option>";
+                            echo "<option value='autre'>[Ajouter]</option>";
                             echo "</select>";
                         ?>
                             <div id="autreDivTypeAcces" style="display:none;">Ajouter un type d'accès : <input id="autreTypeAcces" type="text" name="autreTypeAcces" /> *</div>
@@ -101,9 +101,10 @@ include 'consultationModification.php';
                             </br></br>
 
 							<label>Système hydrographique</label>
-							<select name="systemeHydro" id='listeSystemeHydrographique'>
+							<select name="systemeHydro" id='listeSystemeHydrographique' onchange="ajoutDiv(this.options[this.selectedIndex].value, 'divSystemeHydrographique')">
 							<?php
-							$requete='SELECT id, nom, departement, pays from SystemeHydrographique ORDER BY nom';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
+                            echo "<option disabled selected value>Choisir</option>";
+                            $requete='SELECT id, nom, departement, pays from SystemeHydrographique ORDER BY nom';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
 							$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 							foreach ($value as $array) { /* On parcourt les resultats possibles */
                                 $id = $array['id'];
@@ -115,12 +116,10 @@ include 'consultationModification.php';
 								//	echo "<option value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
 								//}
 							}
-
+                            echo "<option value='autre'>[Ajouter]</option>";
 							echo "</select>";
 
 							?>
-							&nbsp;
-							<input type = "button" id="affichageSystemeHydrographique" value = "ajouter un système hydrographique" onclick="affichageDiv('divSystemeHydrographique', this.id)">
 
 					    </br></br>
 
@@ -150,7 +149,7 @@ include 'consultationModification.php';
 
 		<div class= "col-sm-3" style = "float:right;">
 		<div id="divSystemeHydrographique" style="display:none;">
-				<form  id="formSystemeHydrographique"  method="post" onsubmit="return ajaxAjout('./WebService/ajoutSystemeHydrographiqueWS.php', 'divSystemeHydrographique', this.id, 'listeSystemeHydrographique','affichageSystemeHydrographique')">
+				<form  id="formSystemeHydrographique"  method="post" onsubmit="return ajaxAjout('./WebService/ajoutSystemeHydrographiqueWS.php', 'divSystemeHydrographique', this.id, 'listeSystemeHydrographique')">
 					<fieldset style = "padding-left:5px;" >
 						<legend class="scheduler-border"> Ajout système hydrographique </legend>
 							<label>nom</label>
@@ -159,8 +158,7 @@ include 'consultationModification.php';
 							<input class="valeurs" type="number" id ="departement" name="departement"/></br></br>
               <label>pays</label>
               <input class="valeurs" placeholder="FR" type="text" id ="pays" name="pays" required size="4" maxlength="4"/></br></br>
-							<button type="submit">Ajouter un système hydrographique</button>
-							<button type="button" onclick="affichageDiv('divSystemeHydrographique', 'affichageSystemeHydrographique')">Annuler</button></br></br>
+							<button type="submit">Ajouter un système hydrographique</button></br></br>
 					</fieldset>
 				</form>
 		</div>

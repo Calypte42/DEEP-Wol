@@ -18,8 +18,4 @@ foreach ($value as $array) {
     }
 }
 
-if ($verif) {
-    echo true;
-} else {
-    echo false;
-}
+echo $verif;
