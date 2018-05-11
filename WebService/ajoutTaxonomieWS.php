@@ -2,64 +2,76 @@
 // ne fonctionne pas avec les photos pour le moments
 include '../BDD/bdd.php';
 $bdd = connexionbd();
+
+// GESTION DES PHOTO
+if(isset($_FILES['photo']['tmp_name'])){
+  $tmpNamePHOTO = $_FILES['photo']['tmp_name'];
+
+  if(file_exists($tmpNamePHOTO) || is_uploaded_file($tmpNamePHOTO)) {
+      $nom = $_FILES['photo']['name'];
+
+      move_uploaded_file($tmpNamePHOTO, "../files/photo/".$nom);
+      $photo = "files/photo/" . $nom;
+
+} else {
+  $photo=null;
+}}else{
+  $photo=null;
+}
+
+$req = $bdd->prepare('INSERT INTO Taxonomie (classe,ordre,famille,sousFamille,genre,espece,photo) VALUES (:classe,:ordre,:famille,:sousFamille,:genre,:espece,:photo);');
+
 if(!empty($_REQUEST['classeTaxo'])){
-  $req = $bdd->prepare('INSERT INTO Taxonomie (classe,ordre,famille,sousFamille,genre,espece)
-  VALUES (:classe,:ordre,:famille,:sousFamille,:genre,:espece);');
   $req->execute(array(
     'classe' => $_REQUEST['classeTaxo'],
-    'ordre' => "",
-    'famille' => "",
-    'sousFamille' => "",
-    'genre' =>"" ,
-    'espece' => "",
+    'ordre' => '',
+    'famille' => '',
+    'sousFamille' => '',
+    'genre' =>'' ,
+    'espece' => '',
+    'photo' => $photo,
   ));
   if(!empty($_REQUEST['ordreTaxo'])){
-    $req = $bdd->prepare('INSERT INTO Taxonomie (classe,ordre,famille,sousFamille,genre,espece)
-    VALUES (:classe,:ordre,:famille,:sousFamille,:genre,:espece);');
     $req->execute(array(
       'classe' => $_REQUEST['classeTaxo'],
       'ordre' => $_REQUEST['ordreTaxo'],
-      'famille' =>"" ,
-      'sousFamille' => "",
-      'genre' => "",
-      'espece' => "",
+      'famille' =>'' ,
+      'sousFamille' => '',
+      'genre' => '',
+      'espece' => '',
+      'photo' => $photo,
     ));
     if(!empty($_REQUEST['familleTaxo'])){
-      $req = $bdd->prepare('INSERT INTO Taxonomie (classe,ordre,famille,sousFamille,genre,espece)
-      VALUES (:classe,:ordre,:famille,:sousFamille,:genre,:espece);');
       $req->execute(array(
         'classe' => $_REQUEST['classeTaxo'],
         'ordre' => $_REQUEST['ordreTaxo'],
         'famille' => $_REQUEST['familleTaxo'],
-        'sousFamille' => "",
-        'genre' => "",
-        'espece' => "",
+        'sousFamille' => '',
+        'genre' => '',
+        'espece' => '',
+        'photo' => $photo,
       ));
       if(!empty($_REQUEST['sousFamilleTaxo'])){
-        $req = $bdd->prepare('INSERT INTO Taxonomie (classe,ordre,famille,sousFamille,genre,espece)
-        VALUES (:classe,:ordre,:famille,:sousFamille,:genre,:espece);');
         $req->execute(array(
           'classe' => $_REQUEST['classeTaxo'],
           'ordre' => $_REQUEST['ordreTaxo'],
           'famille' => $_REQUEST['familleTaxo'],
           'sousFamille' => $_REQUEST['sousFamilleTaxo'],
-          'genre' => "",
-          'espece' =>"" ,
+          'genre' => '',
+          'espece' =>'' ,
+          'photo' => $photo,
         ));
         if(!empty($_REQUEST['genreTaxo'])){
-          $req = $bdd->prepare('INSERT INTO Taxonomie (classe,ordre,famille,sousFamille,genre,espece)
-          VALUES (:classe,:ordre,:famille,:sousFamille,:genre,:espece);');
           $req->execute(array(
             'classe' => $_REQUEST['classeTaxo'],
             'ordre' => $_REQUEST['ordreTaxo'],
             'famille' => $_REQUEST['familleTaxo'],
             'sousFamille' => $_REQUEST['sousFamilleTaxo'],
             'genre' => $_REQUEST['genreTaxo'],
-            'espece' => "",
+            'espece' => '',
+            'photo' => $photo,
           ));
           if(!empty($_REQUEST['especeTaxo'])){
-            $req = $bdd->prepare('INSERT INTO Taxonomie (classe,ordre,famille,sousFamille,genre,espece)
-            VALUES (:classe,:ordre,:famille,:sousFamille,:genre,:espece);');
             $req->execute(array(
               'classe' => $_REQUEST['classeTaxo'],
               'ordre' => $_REQUEST['ordreTaxo'],
@@ -67,12 +79,11 @@ if(!empty($_REQUEST['classeTaxo'])){
               'sousFamille' => $_REQUEST['sousFamilleTaxo'],
               'genre' => $_REQUEST['genreTaxo'],
               'espece' => $_REQUEST['especeTaxo'],
-              //'photo' => $_REQUEST['photo']
+              'photo' => $photo,
 
             ));
 
           }}}}}}
 
 
-
-          header('Refresh: 0; URL=../ajoutTaxonomie.php');
+header('Refresh: 5; URL=../ajoutTaxonomie.php');

@@ -1,5 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+
+
+function chargerImage(){
+
+
+}
   var select = document.getElementById('choixType');
   var div = document.getElementById('disparaitreSiIndividu');
   var divBacterie= document.getElementById('apparaitreSiInfecteBacterie');
@@ -23,5 +29,69 @@ document.addEventListener('DOMContentLoaded', function() {
       div.style.display='inline';
     }
 });
+
+
+var classe = document.getElementById('classe');
+var ordre = document.getElementById('ordre');
+var famille = document.getElementById('famille');
+var sousFamille = document.getElementById('sousFamille');
+var genre = document.getElementById('genre');
+var espece = document.getElementById('espece');
+var imageTaxo = document.getElementById('imageTaxo');
+
+
+
+function chargerImage(){
+  console.log("chargerImage");
+  var request = new XMLHttpRequest(); // on prepare AJAX
+
+  request.addEventListener('load', function(data) { // Quand la requete sera envoye on affichera
+    console.log(data.target.responseText);
+    var ret = JSON.parse(data.target.responseText); // le resultat de la requete sous forme de tableau
+    var new_html = '';
+    console.log(ret.resultat.length);
+    if (ret.resultat.length != 0) {
+      console.log("je suis dans la modif");
+      imageTaxo.src=ret.resultat[0].photo;
+      console.log("je suis dans la modif");
+    }
+
+  });
+  var requeteSelect="WebService/recherchePhotoWS.php?classe="+classe.value+"&ordre="+ordre.value+"&famille="+famille.value+"&sousFamille="+sousFamille.value+"&genre="+genre.value+"&espece="+espece.value;
+  console.log(requeteSelect);
+  request.open("POST", "./WebService/recherchePhotoWS.php"); // on envoie la requete
+  var donnee = new FormData();
+  donnee.append("classe",classe.value);
+  donnee.append("ordre",ordre.value);
+  donnee.append("famille",famille.value);
+  donnee.append("sousFamille",sousFamille.value);
+  donnee.append("genre",genre.value);
+  donnee.append("espece",espece.value);
+  request.send(donnee);
+
+
+};
+
+classe.addEventListener("change",function(){
+  chargerImage();
+});
+ordre.addEventListener("change",function(){
+  chargerImage();
+});
+famille.addEventListener("change",function(){
+  chargerImage();
+});
+sousFamille.addEventListener("change",function(){
+  chargerImage();
+});
+genre.addEventListener("change",function(){
+  chargerImage();
+});
+espece.addEventListener("change",function(){
+  chargerImage();
+});
+
+
+
 
 })
