@@ -404,6 +404,8 @@ document.addEventListener('DOMContentLoaded', function() {
               new_html += '<th style="text-align:center;">Sous-Famille</th>';
               new_html += '<th style="text-align:center;">Genre</th>';
               new_html += '<th style="text-align:center;">Espece</th>';
+              new_html += '<th style="text-align:center;">Photo</th>';
+              new_html += '<th style="text-align:center;">Modifier</th>';
               new_html += '</tr>';
               for (var i = 0; i < ret.resultat.length; i++) {
                   new_html += '<tr>';
@@ -413,6 +415,8 @@ document.addEventListener('DOMContentLoaded', function() {
                   new_html += '<td>' + ret.resultat[i].sousFamille + '</td>';
                   new_html += '<td>' + ret.resultat[i].genre + '</td>';
                   new_html += '<td>' + ret.resultat[i].espece + '</td>';
+                  if()
+                  new_html += '<td><img src=' + ret.resultat[i].photo + '</td>';
                   new_html += '</tr>';
               }
               new_html += '</table></div><br/>';

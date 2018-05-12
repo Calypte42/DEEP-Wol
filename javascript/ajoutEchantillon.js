@@ -38,6 +38,7 @@ var sousFamille = document.getElementById('sousFamille');
 var genre = document.getElementById('genre');
 var espece = document.getElementById('espece');
 var imageTaxo = document.getElementById('imageTaxo');
+var lienImageTaxo = document.getElementById('lienImageTaxo');
 
 
 
@@ -51,10 +52,10 @@ function chargerImage(){
     var new_html = '';
     console.log(ret.resultat.length);
     if (ret.resultat.length != 0) {
-      console.log("je suis dans la modif");
-      imageTaxo.href=ret.resultat[0].photo;
-      console.log("je suis dans la modif");
-    }
+      if(ret.resultat[0].photo!=null){
+      lienImageTaxo.href=ret.resultat[0].photo;
+      imageTaxo.src=ret.resultat[0].photo;
+    }}
 
   });
   var requeteSelect="WebService/recherchePhotoWS.php?classe="+classe.value+"&ordre="+ordre.value+"&famille="+famille.value+"&sousFamille="+sousFamille.value+"&genre="+genre.value+"&espece="+espece.value;
