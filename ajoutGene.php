@@ -18,7 +18,7 @@ include 'consultationModification.php';
 					<div class="controls bootstrap-timepicker">
 					</br>
 
-					<?php
+				<!--	<?php
 					echo "<label style='display: block; width:50px; float:left;' for='nomGene'> Nom </label>";
 					echo "<select name='nomGene'>";
 					echo "<option value=\"Nouveau\">Nouveau</option>";
@@ -31,10 +31,11 @@ include 'consultationModification.php';
 					}
 					echo "</select>&nbsp;&nbsp;&nbsp";
 					echo "<input type='text' id ='nomGene' name='nomGene' size='20'>";
-					?>
-					<!--	<label>Nom</label>
-						<input type="text" id ="nomGene" name="nomGene" size="20"/></br></br>-->
-					</br></br>
+					?>-->
+						<label>Nom</label>
+						<input type="text" id ="nomGene" name="nomGene" size="20"/>
+					</br>
+          </br>
 
 					<input type="submit" name="nom" value=" Valider et ajouter un nouveau gène">
 					</div>
