@@ -125,7 +125,9 @@ create table Analyses (
 create table Compte (
     id SERIAL PRIMARY KEY,
     pseudo varchar(30) UNIQUE,
-    MDP varchar(20)
+    MDP varchar(20),
+    role varchar(5),
+    CONSTRAINT admin_user CHECK role='admin' OR role='user'
 );
 
 CREATE VIEW V_Echantillon_AvecTaxo AS
