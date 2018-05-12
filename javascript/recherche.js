@@ -415,8 +415,14 @@ document.addEventListener('DOMContentLoaded', function() {
                   new_html += '<td>' + ret.resultat[i].sousFamille + '</td>';
                   new_html += '<td>' + ret.resultat[i].genre + '</td>';
                   new_html += '<td>' + ret.resultat[i].espece + '</td>';
-                  if()
-                  new_html += '<td><img src=' + ret.resultat[i].photo + '</td>';
+                  if(ret.resultat[i].photo!=null){
+                    new_html += '<td><a href="'+ret.resultat[i].photo+'" onclick="window.open(this.href, \'newwindow\',\'width=300,height=250\'); return false;"><img height="50px" width="50px" src="' + ret.resultat[i].photo + '"/></a></td>';
+                  }
+                  else{
+                      new_html += '<td></td>';
+                    }
+
+                  new_html += '<td> Modifier</td>';
                   new_html += '</tr>';
               }
               new_html += '</table></div><br/>';
