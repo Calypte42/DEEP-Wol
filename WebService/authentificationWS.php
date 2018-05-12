@@ -1,6 +1,6 @@
 <?php
 
-require_once 'BDD/bdd.php';
+require_once '../BDD/bdd.php';
 $bdd = connexionbd();
 
 // Web Service pour verification de l'authentification
@@ -28,13 +28,14 @@ $bdd = null;
 if ($mdp == $mdpUtilisateur) {
 
     $_SESSION['identifie'] = 1; // 1 pour connecté, 0 pour déconnecté
-    header('Refresh: 0; URL=.');
+    $_SESSION['login'] = $login;
+    header('Refresh: 0; URL=..');
     echo "Authentification réussie ! Redirection dans 3 secondes...";
     /*
 	http_response_code(200); // succès de la requête
     */
 } else {
-    header('Refresh: 3; URL=connexion.php');
+    header('Refresh: 3; URL=../connexion.php');
     echo "Echec de l'authentification ! Redirection dans 3 secondes...";
     /*
 	http_response_code(401); // utilisateur non authentifié

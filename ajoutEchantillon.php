@@ -29,7 +29,7 @@ include 'consultationModification.php';
 
 			</br>
 			<!-- FORMULAIRE D'AJOUT D'ECHANTILLON -->
-			<form  id="ajoutIndividu"  method="POST" action = "WebService/ajoutEchantillonWS.php"> <!-- reference au formulaire -->
+			<form  id="ajoutIndividu"  method="POST" action = "WebService/ajoutEchantillonWS.php" onsubmit="return controleEchantillon(this);"> <!-- reference au formulaire -->
 			<p>
 				<!--<fieldset class="scheduler-border">-->
 					<legend class="scheduler-border"> Ajout d'un échantillon </legend>
@@ -161,7 +161,7 @@ include 'consultationModification.php';
 
 						<div id='disparaitreSiIndividu' style="display:none">
 						<label style="display: block; width:170px; float:left;" for='nombreIndividu'>Nombre d'individus</label>
-						<input type="number" name="nombreIndividu" id="nombreIndividu" />
+						<input type="number" name="nombreIndividu" id="nombreIndividu" min="0" />
 					</div>
 						</br></br>
 
@@ -263,15 +263,16 @@ include 'consultationModification.php';
 										<?php
 										/* on veut recuperer les valeurs de classe deja existantes dans la bdd */
 										echo "<label style='display: block; width:90px; float:left;' for='classe'>Classe </label>";
-										echo "<select name='classe' id='classe'>"; /* On cree une liste deroulante vide */
-										$requete='SELECT DISTINCT classe from Taxonomie WHERE classe !=\'\' ORDER BY classe';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
+										echo "<select name='classe' id='classe' style='width:120px'>"; /* On cree une liste deroulante vide */
+                                        echo "<option disabled selected value>Choisir</option>";
+                                        $requete='SELECT DISTINCT classe from Taxonomie WHERE classe !=\'\' ORDER BY classe';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
 										$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 										foreach ($value as $array) { /* On parcourt les resultats possibles */
 											foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
 												echo "<option value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
 											}
 										}
-
+                                        echo "<option value=\"Indetermine\">Indetermine</option>";
 										echo "</select>";
 										?>
 
@@ -280,15 +281,16 @@ include 'consultationModification.php';
 										<?php
 										/* on veut recuperer les valeurs de ordre deja existantes dans la bdd */
 										echo "<label style='display: block; width:90px; float:left;' for='ordre'>Ordre </label>";
-										echo "<select name='ordre' id='ordre'>"; /* On cree une liste deroulante vide */
-										echo "<option value=\"Indetermine\">Indetermine</option>";
-										$requete='SELECT DISTINCT ordre from Taxonomie WHERE ordre != \'\' ORDER BY ordre';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
-										$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
-										foreach ($value as $array) { /* On parcourt les resultats possibles */
-											foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
-												echo "<option value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
-											}
-										}
+										echo "<select name='ordre' id='ordre' style='width:120px'>"; /* On cree une liste deroulante vide */
+                                        //echo "<option selected value></option>";
+                                        //$requete='SELECT DISTINCT ordre from Taxonomie WHERE ordre != \'\' ORDER BY ordre';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
+										//$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
+										//foreach ($value as $array) { /* On parcourt les resultats possibles */
+										//	foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
+										//		echo "<option value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
+										//	}
+										//}
+                                        //echo "<option value=\"Indetermine\">Indetermine</option>";
 										echo "</select>";
 										?>
 
@@ -297,15 +299,16 @@ include 'consultationModification.php';
 										<?php
 										/* on veut recuperer les valeurs de famille deja existantes dans la bdd */
 										echo "<label style='display: block; width:90px; float:left;' for='famille'>Famille </label>";
-										echo "<select name='famille' id='famille'>"; /* On cree une liste deroulante vide */
-										echo "<option value=\"Indetermine\">Indetermine</option>";
-										$requete='SELECT DISTINCT famille from Taxonomie WHERE famille != \'\' ORDER BY famille';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
-										$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
-										foreach ($value as $array) { /* On parcourt les resultats possibles */
-											foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
-												echo "<option value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
-											}
-										}
+										echo "<select name='famille' id='famille' style='width:120px'>"; /* On cree une liste deroulante vide */
+                                        //echo "<option selected value></option>";
+                                        //$requete='SELECT DISTINCT famille from Taxonomie WHERE famille != \'\' ORDER BY famille';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
+										//$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
+										//foreach ($value as $array) { /* On parcourt les resultats possibles */
+										//	foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
+										//		echo "<option value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
+										//	}
+										//}
+                                        //echo "<option value=\"Indetermine\">Indetermine</option>";
 										echo "</select>";
 										?>
 
@@ -314,15 +317,16 @@ include 'consultationModification.php';
 										<?php
 										/* on veut recuperer les valeurs de sous-famille deja existantes dans la bdd */
 										echo "<label style='display: block; width:90px; float:left;' for='sousFamille'>Sous-famille </label>";
-										echo "<select name='sousFamille' id='sousFamille'>"; /* On cree une liste deroulante vide */
-										echo "<option value=\"Indetermine\">Indetermine</option>";
-										$requete='SELECT DISTINCT sousfamille from Taxonomie WHERE sousFamille != \'\' ORDER BY sousfamille';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
-										$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
-										foreach ($value as $array) { /* On parcourt les resultats possibles */
-											foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
-												echo "<option value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
-											}
-										}
+										echo "<select name='sousFamille' id='sousFamille' style='width:120px'>"; /* On cree une liste deroulante vide */
+                                        //echo "<option disabled selected value>Choisir</option>";
+                                        //$requete='SELECT DISTINCT sousfamille from Taxonomie WHERE sousFamille != \'\' ORDER BY sousfamille';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
+										//$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
+										//foreach ($value as $array) { /* On parcourt les resultats possibles */
+										//	foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
+										//		echo "<option value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
+										//	}
+										//}
+                                        //echo "<option value=\"Indetermine\">Indetermine</option>";
 										echo "</select>";
 										?>
 
@@ -331,15 +335,16 @@ include 'consultationModification.php';
 										<?php
 										/* on veut recuperer les valeurs de genre deja existantes dans la bdd */
 										echo "<label style='display: block; width:90px; float:left;' for='genre'>Genre </label>";
-										echo "<select name='genre' id='genre'>"; /* On cree une liste deroulante vide */
-										echo "<option value=\"Indetermine\">Indetermine</option>";
-										$requete='SELECT DISTINCT genre from Taxonomie WHERE genre != \'\' ORDER BY genre';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
-										$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
-										foreach ($value as $array) { /* On parcourt les resultats possibles */
-											foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
-												echo "<option value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
-											}
-										}
+										echo "<select name='genre' id='genre' style='width:120px'>"; /* On cree une liste deroulante vide */
+                                        //echo "<option disabled selected value>Choisir</option>";
+                                        //$requete='SELECT DISTINCT genre from Taxonomie WHERE genre != \'\' ORDER BY genre';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
+										//$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
+										//foreach ($value as $array) { /* On parcourt les resultats possibles */
+										//	foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
+										//		echo "<option value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
+										//	}
+										//}
+                                        //echo "<option value=\"Indetermine\">Indetermine</option>";
 										echo "</select>";
 										?>
 
@@ -348,15 +353,16 @@ include 'consultationModification.php';
 										<?php
 										/* on veut recuperer les valeurs de genre deja existantes dans la bdd */
 										echo "<label style='display: block; width:90px; float:left;' for='espece'>Espèce </label>";
-										echo "<select name='espece' id='espece'>"; /* On cree une liste deroulante vide */
-										echo "<option value=\"Indetermine\">Indetermine</option>";
-										$requete='SELECT DISTINCT espece from Taxonomie WHERE espece != \'\' ORDER BY espece';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
-										$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
-										foreach ($value as $array) { /* On parcourt les resultats possibles */
-											foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
-												echo "<option value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
-											}
-										}
+										echo "<select name='espece' id='espece' style='width:120px'>"; /* On cree une liste deroulante vide */
+                                        //echo "<option disabled selected value>Choisir</option>";
+                                        //$requete='SELECT DISTINCT espece from Taxonomie WHERE espece != \'\' ORDER BY espece';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
+										//$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
+										//foreach ($value as $array) { /* On parcourt les resultats possibles */
+										//	foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
+										//		echo "<option value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
+										//	}
+										//}
+                                        //echo "<option value=\"Indetermine\">Indetermine</option>";
 										echo "</select>";
 										?>
 
@@ -366,7 +372,7 @@ include 'consultationModification.php';
 									</div> <!-- ferme la col-sm -->
 									<div = class = "col-sm-6" style = "margin-top:110px;">
 									</br>
-                  <a href="http://localhost/~aurelien/image3.jpeg" onclick="window.open(this.href, 'newwindow', 
+                  <a href="http://localhost/~aurelien/image3.jpeg" onclick="window.open(this.href, 'newwindow',
                                                     'width=300,height=250'); return false;" id="imageTaxo" >Image</a>
 										<p style="text-align:center;"> <b>La taxonomie que vous cherchez n'existe pas ?</b></p></br>
 										<input style="display:block; margin:auto;" type = "button" value = "ajouter une taxonomie">
@@ -388,7 +394,8 @@ include 'consultationModification.php';
 						/* on veut recuperer les valeurs de grotte deja existantes dans la bdd */
 						echo "<label style='display: block; width:170px; float:left;' for='idAuteur'>Auteur  </label>";
 						echo "<select id='listePersonne' name='idAuteur' onchange='ajoutDiv(this.options[this.selectedIndex].value, \"divPersonne\")'>"; /* On cree une liste deroulante vide */
-						$requete='SELECT id,initiale from Personne ORDER BY initiale';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
+                        echo "<option disabled selected value>Choisir</option>";
+                        $requete='SELECT id,initiale from Personne ORDER BY initiale';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
 						$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 						foreach ($value as $array) { /* On parcourt les resultats possibles */
 							echo "<option value=\"";

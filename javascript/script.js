@@ -72,7 +72,7 @@ function majSite(idGrotte, majPiege) {
         }
     }
     request.open("GET", "./WebService/listeSiteWS.php?idGrotte=" + idGrotte +
-                                                    "&majPiege=" + majPiege, true);
+        "&majPiege=" + majPiege, true);
     request.send();
 }
 
@@ -111,7 +111,7 @@ function verifIdentique(nom, table, valeur) {
     }
 
     request.open("GET", "./WebService/verifIdentiqueWS.php?nom=" + nom +
-                                "&table=" + table + "&valeur=" + valeur, false);
+        "&table=" + table + "&valeur=" + valeur, false);
     request.send();
 
     return verif;
@@ -133,8 +133,8 @@ function verifIdentiqueSitePiege(id, num, codeEquipe, type) {
     }
 
     request.open("GET", "./WebService/verifIdentiqueSitePiegeWS.php?id=" + id +
-                                "&num=" + num + "&codeEquipe=" + codeEquipe +
-                                "&type=" + type, false);
+        "&num=" + num + "&codeEquipe=" + codeEquipe +
+        "&type=" + type, false);
     request.send();
 
     return verif;
@@ -327,7 +327,7 @@ function controlePiege(formulaire) {
     valeurCodePiege = formulaire.elements['codePiege'].value;
     valeurCodeEquipe = formulaire.elements['codeEquipeSpeleo'].value;
     if (verifIdentiqueSitePiege(valeuridSite, valeurCodePiege, valeurCodeEquipe, "piege")) {
-        message += "- Il existe déjà un code de piège du même nom pour la grotte, le site et l'équipe choisis";
+        message += "- Il existe déjà un code de piège du même nom pour la grotte, le site et l'équipe choisis\n";
         erreur = true;
     }
 
@@ -341,7 +341,7 @@ function controlePiege(formulaire) {
         erreur = true;
     }
 
-    if(formulaire.elements['idSiteForm']) {
+    if (formulaire.elements['idSiteForm']) {
         select = formulaire.elements['idSiteForm'];
         if (select.value == "") {
             message += "- Veuillez choisir un site\n";
@@ -375,7 +375,7 @@ function controlePiege(formulaire) {
 
     dateTri = formulaire.elements['dateTri'];
     if (dateTri.value != "") {
-        if (dateRecup.value != "" && dateTri.value < dateRecup.value){
+        if (dateRecup.value != "" && dateTri.value < dateRecup.value) {
             message += "- La date de récupération doit être antérieure à la date de tri\n";
             erreur = true;
         }
@@ -393,6 +393,97 @@ function controlePiege(formulaire) {
 
     return true;
 
+}
+
+function controleEchantillon(formulaire) {
+    message = "";
+    erreur = false;
+
+    valeurNumEchantillon = formulaire.elements['numEchantillon'].value;
+    if (verifIdentique('numechantillon', 'echantillon', valeurNumEchantillon)) {
+        message += "- Le numéro d'échantillon est déjà utilisé\n";
+        erreur = true;
+    }
+
+    select2 = formulaire.elements['idGrotteForm'];
+    if (select2.value == "") {
+        message += "- Veuillez choisir une grotte\n";
+        erreur = true;
+    }
+
+    if (formulaire.elements['idSiteForm']) {
+        select = formulaire.elements['idSiteForm'];
+        if (select.value == "") {
+            message += "- Veuillez choisir un site\n";
+            erreur = true;
+        }
+    }
+
+    ajoutSite = formulaire.elements['ajoutSite'];
+    if (ajoutSite.value != '') {
+        message += "- Veuillez ajouter un site\n";
+        erreur = true;
+    }
+
+    ajoutPiege = formulaire.elements['ajoutPiege'];
+    if (ajoutPiege.value != '') {
+        message += "- Veuillez ajouter un piège\n";
+        erreur = true;
+    }
+
+    classe = formulaire.elements['classe'];
+    if (classe.value == "") {
+        message += "- Veuillez choisir une classe\n";
+        erreur = true;
+    }
+
+    ordre = formulaire.elements['ordre'];
+    if (classe.value == "") {
+        message += "- Veuillez choisir un ordre\n";
+        erreur = true;
+    }
+
+    famille = formulaire.elements['famille'];
+    if (famille.value == "") {
+        message += "- Veuillez choisir une famille\n";
+        erreur = true;
+    }
+
+    sousFamille = formulaire.elements['sousFamille'];
+    if (sousFamille.value == "") {
+        message += "- Veuillez choisir une sous famille\n";
+        erreur = true;
+    }
+
+    genre = formulaire.elements['genre'];
+    if (genre.value == "") {
+        message += "- Veuillez choisir un genre\n";
+        erreur = true;
+    }
+
+    espece = formulaire.elements['espece'];
+    if (espece.value == "") {
+        message += "- Veuillez choisir une espèce\n";
+        erreur = true;
+    }
+
+    select = formulaire.elements['idAuteur'];
+    if (select.value == "") {
+        message += "- Veuillez choisir un auteur\n";
+        erreur = true;
+    }
+
+    if (document.getElementById("divPersonne").style.display == "inline") {
+        message += "Veuillez valider l'ajout d'une personne";
+        erreur = true;
+    }
+
+    if (erreur) {
+        alert(message);
+        return false;
+    }
+
+    return true;
 }
 
 function urlExists(url) {
