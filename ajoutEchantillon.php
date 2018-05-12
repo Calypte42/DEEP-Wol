@@ -370,10 +370,13 @@ include 'consultationModification.php';
 										<!--<input style="float:right; margin-right:60px;" type = "button" value = "ajouter une taxonomie">-->
 										<!--<input style="display:block; margin:auto;" type = "button" value = "valider la taxonomie">-->
 									</div> <!-- ferme la col-sm -->
-									<div = class = "col-sm-6" style = "margin-top:110px;">
+									<div class = "col-sm-6" style = "margin-top:20px;">
 									</br>
-                  <a href="http://localhost/~aurelien/image3.jpeg" onclick="window.open(this.href, 'newwindow',
-                                                    'width=300,height=250'); return false;" id="imageTaxo" >Image</a>
+                  <a href="" onclick="window.open(this.href, 'newwindow',
+                  'width=300,height=250'); return false;" id="lienImageTaxo" ><img src="" id="imageTaxo" /></a>
+                </br>
+                </br>
+                </br>
 										<p style="text-align:center;"> <b>La taxonomie que vous cherchez n'existe pas ?</b></p></br>
 										<input style="display:block; margin:auto;" type = "button" value = "ajouter une taxonomie">
 									</div>

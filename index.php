@@ -1,12 +1,19 @@
 <?php
 include 'HTML/entete.html';
-include 'HTML/pied.html';
+
 
 include 'verificationConnexion.php';
 ?>
 
 <!--<div class="bg"></div> pour le background grotte d'avant-->
-
+<?php if ($_SESSION['admin']==1){
+  echo "<div style='display:block;margin-left:auto;margin-right:auto;z-index:2;' id=redirectionPhpPgAdmin>
+    <form action=\"../../phppgadmin\">
+      <input type=\"submit\" value=\"Vers phpPgAdmin\">
+    </form>
+  </div>";
+  }
+?>
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
@@ -45,3 +52,9 @@ include 'verificationConnexion.php';
     <span class="sr-only">Suivant</span>
   </a>
 </div>
+
+
+
+
+
+<?php include 'HTML/pied.html'; ?>

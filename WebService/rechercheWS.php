@@ -147,7 +147,7 @@ if($_REQUEST['choixRecherche']=="Grotte"){
         if($_REQUEST['choixRecherche']=="Taxonomie"){
           $data = Array("resultat" => Array());
           if (empty($_REQUEST['recherche'])){
-            $requete='SELECT id,classe,ordre,famille,sousFamille,genre,espece FROM Taxonomie';
+            $requete='SELECT id,classe,ordre,famille,sousFamille,genre,espece,photo FROM Taxonomie';
           }else{
             $requete = "SELECT id,classe,ordre,famille,sousFamille,genre,espece FROM Taxonomie
             WHERE (
@@ -160,7 +160,7 @@ if($_REQUEST['choixRecherche']=="Grotte"){
             }
             $query = $bdd->query($requete);
             while ($donnees = $query->fetch()) {
-              $data['resultat'][] = Array('id'=>$donnees['id'], 'classe'=>$donnees['classe'],'ordre'=>$donnees['ordre'],'famille'=>$donnees['famille'],'sousFamille'=>$donnees['sousfamille'],'genre'=>$donnees['genre'],'espece'=>$donnees['espece']);
+              $data['resultat'][] = Array('id'=>$donnees['id'], 'classe'=>$donnees['classe'],'ordre'=>$donnees['ordre'],'famille'=>$donnees['famille'],'sousFamille'=>$donnees['sousfamille'],'genre'=>$donnees['genre'],'espece'=>$donnees['espece'],'photo'=>$donnees['photo']);
             }
             header("Content-Type:application/json");
             echo json_encode($data);
