@@ -55,6 +55,8 @@ function chargerImage(){
       if(ret.resultat[0].photo!=null){
       lienImageTaxo.href=ret.resultat[0].photo;
       imageTaxo.src=ret.resultat[0].photo;
+      imageTaxo.setAttribute("width","200px");
+      imageTaxo.setAttribute("height","200px");
     }}
 
   });

@@ -367,7 +367,7 @@ include 'consultationModification.php';
 									<div class = "col-sm-6" style = "margin-top:20px;">
 									</br>
                   <a href="" onclick="window.open(this.href, 'newwindow',
-                  'width=300,height=250'); return false;" id="lienImageTaxo" ><img src="" id="imageTaxo" width="100%" height="100%"/></a>
+                  'width=300,height=250'); return false;" id="lienImageTaxo" ><img src="" id="imageTaxo" /></a>
                 </br>
                 </br>
                 </br>
