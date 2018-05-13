@@ -6,13 +6,13 @@ include '../BDD/bdd.php';
 $bdd = connexionbd();
 
 
-if ($_REQUEST['formeStockage' == 'autre']) {
+if ($_REQUEST['formeStockage']  == 'autre') {
     $formeStrockage = $_REQUEST['autreFormeStockage'];
 } else {
     $formeStrockage = $_REQUEST['formeStockage'];
 }
 
-if ($_REQUEST['lieuStockage' == 'autre']) {
+if ($_REQUEST['lieuStockage'] == 'autre') {
     $formeStrockage = $_REQUEST['autreLieuStockage'];
 } else {
     $formeStrockage = $_REQUEST['lieuStockage'];
@@ -157,7 +157,20 @@ if ($nombreResultat==1) {
         if (isset($_REQUEST['idGrotte'])) {
             header("Refresh: 0; URL=../ajoutEchantillon.php?nomGrotte=".$_REQUEST['nomGrotte']."&idGrotte=".$_REQUEST['idGrotte']."&site=".$_REQUEST['site']."&idSite=".$_REQUEST['idSite']."&piege=".$_REQUEST['codePiege']);
         } else {
-            header("Refresh: 0; URL=../ajoutEchantillon.php");
+            $codePiege = $_REQUEST['codePiege'];
+
+            $requete = "SELECT g.nomcavite, s.idgrotte, s.numsite, s.id
+                        FROM Grotte g, Site s
+                        WHERE (s.id = (SELECT p.idSite FROM Piege p WHERE p.codePiege = '$codePiege')
+                        AND g.id = s.idgrotte)";
+            $resultat = requete($bdd, $requete);
+
+            $nomGrotte = $resultat[0]['nomcavite'];
+            $idGrotte = $resultat[0]['idgrotte'];
+            $numSite = $resultat[0]['numsite'];
+            $idSite = $resultat[0]['id'];
+
+            header("Refresh: 0; URL=../ajoutEchantillon.php?nomGrotte=$nomGrotte&idGrotte=$idGrotte&site=$numSite&idSite=$idSite&piege=$codePiege");
         }
     }
 

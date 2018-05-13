@@ -127,7 +127,7 @@ create table Compte (
     pseudo varchar(30) UNIQUE,
     MDP varchar(20),
     role varchar(5),
-    CONSTRAINT admin_user CHECK role='admin' OR role='user'
+    CONSTRAINT admin_user CHECK (role='admin' OR role='user')
 );
 
 CREATE VIEW V_Echantillon_AvecTaxo AS

@@ -36,7 +36,7 @@ if ($mdp == $mdpUtilisateur) {
             $_SESSION['admin']=0;
           }
 
-    header('Refresh: 0; URL=.');
+    header('Refresh: 0; URL=..');
     echo "Authentification réussie ! Redirection dans 3 secondes...";
     /*
 	http_response_code(200); // succès de la requête

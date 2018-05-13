@@ -5,11 +5,36 @@ $bdd = connexionbd();
 
 $rang = $_REQUEST['rang'];
 
-$classe = $_REQUEST['classe'];
-$ordre = $_REQUEST['ordre'];
-$famille = $_REQUEST['famille'];
-$sousFamille = $_REQUEST['sousFamille'];
-$genre = $_REQUEST['genre'];
+if (isset($_REQUEST['classe'])) {
+    $classe = $_REQUEST['classe'];
+} else {
+    $classe = "";
+}
+
+if (isset($_REQUEST['ordre'])) {
+    $ordre = $_REQUEST['ordre'];
+} else {
+    $ordre = "";
+}
+
+
+if (isset($_REQUEST['famille'])) {
+    $famille = $_REQUEST['famille'];
+} else {
+    $famille = "";
+}
+
+if (isset($_REQUEST['sousFamille'])) {
+    $sousFamille = $_REQUEST['sousFamille'];
+} else {
+    $sousFamille = "";
+}
+
+if (isset($_REQUEST['genre'])) {
+    $genre = $_REQUEST['genre'];
+} else {
+    $genre = "";
+}
 
 $where = "classe = '$classe'";
 
@@ -45,6 +70,8 @@ if ($rang == "espece") {
 $resultat = requete($bdd, $requete);
 
 $rangMinuscule = strtolower($rang);
+
+$liste = [];
 
 foreach ($resultat as $array) {
     if (!empty($array[$rangMinuscule])) {

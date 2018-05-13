@@ -38,14 +38,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
         var donnees = new FormData();
 
-        donnees.append("classe", classe.value);
+        if (classe.value) {
+            donnees.append("classe", classe.value);
+        } else {
+            donnees.append("classe", "");
+        }
 
         if ((rang + 1) == 1) {
             rangMAJ = "ordre";
             ajaxMajTaxo(rangMAJ, donnees);
         }
 
-        donnees.append("ordre", ordre.value);
+        if (ordre.value) {
+            donnees.append("ordre", ordre.value);
+        } else {
+            donnees.append("ordre", "");
+        }
 
         if ((rang + 1) == 2) {
             rangMAJ = "famille";
@@ -54,7 +62,11 @@ document.addEventListener('DOMContentLoaded', function() {
             famille.options.length = 0;
         }
 
-        donnees.append("sousFamille", sousFamille.value);
+        if (famille.value) {
+            donnees.append("famille", famille.value);
+        } else {
+            donnees.append("famille", "");
+        }
 
         if ((rang + 1) == 3) {
             rangMAJ = "sousFamille";
@@ -63,7 +75,11 @@ document.addEventListener('DOMContentLoaded', function() {
             sousFamille.options.length = 0;
         }
 
-        donnees.append("famille", famille.value);
+        if (sousFamille.value) {
+            donnees.append("sousFamille", sousFamille.value);
+        } else {
+            donnees.append("sousFamille", "");
+        }
 
         if ((rang + 1) == 4) {
             rangMAJ = "genre";
@@ -72,7 +88,11 @@ document.addEventListener('DOMContentLoaded', function() {
             genre.options.length = 0;
         }
 
-        donnees.append("genre", genre.value);
+        if (genre.value) {
+            donnees.append("genre", genre.value);
+        } else {
+            donnees.append("genre", "");
+        }
 
         if ((rang + 1) == 5) {
             rangMAJ = "espece";
@@ -184,7 +204,6 @@ document.addEventListener('DOMContentLoaded', function() {
         chargerImage();
     });
     espece.addEventListener("change", function() {
-        majTaxo(5)
         chargerImage();
     });
 

@@ -102,7 +102,7 @@ include 'consultationModification.php';
                     $value=requete($bdd,$requete);
                     foreach ($value as $array) {
                         foreach ($array as $key => $valeur) {
-                            if ($valeur != "Indéterminé") {
+                            if (!($valeur == "") and $valeur != "Indéterminé") {
                                 echo "<option value=\"$valeur\">$valeur</option>";
                             }
                         }

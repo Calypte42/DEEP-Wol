@@ -75,7 +75,20 @@ if ($_REQUEST['nom']=='Valider et ajouter un nouveau piège') {
     if (isset($_REQUEST['idGrotte'])) {
         header("Refresh: 0; URL=../ajoutPiege.php?nomGrotte=".$_REQUEST['nomGrotte']."&idGrotte=".$_REQUEST['idGrotte']."&site=".$_REQUEST['site']."&idSite=".$_REQUEST['idSite']);
     } else {
-        header("Refresh: 0; URL=../ajoutPiege.php");
+
+        $idSite = $_REQUEST['idSiteForm'];
+
+        $requete = "SELECT g.nomcavite, s.idgrotte, s.numsite
+                    FROM Grotte g, Site s
+                    WHERE (s.id = $idSite AND g.id = s.idgrotte)";
+        $resultat = requete($bdd, $requete);
+
+        $idGrotte = $resultat[0]['idgrotte'];
+        $nomGrotte = $resultat[0]['nomcavite'];
+        $numSite = $resultat[0]['numsite'];
+
+
+        header("Refresh: 0; URL=../ajoutPiege.php?nomGrotte=$nomGrotte&idGrotte=$idGrotte&site=$numSite&idSite=$idSite");
     }
 }
 

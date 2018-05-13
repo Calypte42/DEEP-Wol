@@ -51,7 +51,13 @@ if ($_REQUEST['nom']=='Valider et ajouter un nouveau site') {
     if (isset($_REQUEST['idGrotte'])) {
         header("Refresh: 0; URL=../ajoutSite.php?idGrotte=".$_REQUEST['idGrotte']."&grotte=".$_REQUEST['grotte']);
     } else {
-        header("Refresh: 0; URL=../ajoutSite.php");
+
+        $idGrotte = $_REQUEST['idGrotteForm'];
+        $requete = "SELECT nomCavite FROM Grotte WHERE id = $idGrotte";
+        $resultat = requete($bdd, $requete);
+        $nomGrotte = $resultat[0]['nomcavite'];
+
+        header("Refresh: 0; URL=../ajoutSite.php?idGrotte=$idGrotte&grotte=$nomGrotte");
     }
 }
 

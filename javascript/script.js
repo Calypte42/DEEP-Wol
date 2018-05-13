@@ -140,6 +140,27 @@ function verifIdentiqueSitePiege(id, num, codeEquipe, type) {
     return verif;
 }
 
+function verifIdentiqueTaxo(formulaire) {
+
+    var request = new XMLHttpRequest();
+    var verif = false;
+
+    request.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            if (this.responseText) {
+                verif = true;
+            } else {
+                verif = false;
+            }
+        }
+    }
+
+    request.open("POST", "./WebService/verifIdentiqueTaxoWS.php", false);
+    request.send(new FormData(formulaire));
+
+    return verif;
+}
+
 function afficher(idDiv, typeAffichage) {
     var affichage = document.getElementById(idDiv);
     affichage.style.display = typeAffichage;
@@ -475,6 +496,53 @@ function controleEchantillon(formulaire) {
 
     if (document.getElementById("divPersonne").style.display == "inline") {
         message += "Veuillez valider l'ajout d'une personne";
+        erreur = true;
+    }
+
+    if (erreur) {
+        alert(message);
+        return false;
+    }
+
+    return true;
+}
+
+function controleGene(formulaire) {
+    input = formulaire.elements['nomGene'];
+    message = "";
+    erreur = false;
+
+    valeurNomGene = input.value;
+    if (verifIdentique('nom', 'gene', valeurNomGene)) {
+        message += "- Un gène du même nom existe déjà\n";
+        erreur = true;
+    }
+
+    if (erreur) {
+        alert(message);
+        return false;
+    }
+
+    return true;
+}
+
+function controleTaxo(formulaire) {
+    message = "";
+    erreur = false;
+
+    if (formulaire.elements['photo'].value) {
+
+        nomPhoto = formulaire.elements['photo'].files[0].name;
+        check = urlExists("./files/photo/" + nomPhoto);
+
+        if (check) {
+            message += "- Nom de fichier déjà existant, veuillez renommer votre fichier\n";
+            erreur = true;
+        }
+    }
+
+    if (verifIdentiqueTaxo(formulaire)) {
+        message += "- La taxonomie est déjà présente";
         erreur = true;
     }
 

@@ -10,7 +10,7 @@ include 'consultationModification.php';
         <script src="./javascript/eventListener.js" type="text/javascript"></script>
 		<!-- FORMULAIRE D'AJOUT D'UN GENE -->
 		<div class= "col-sm-10">
-		<form  id="ajoutGene"  method="POST" action = "WebService/ajoutGeneWS.php"> <!-- reference au formulaire -->
+		<form  id="ajoutGene"  method="POST" action = "WebService/ajoutGeneWS.php" onsubmit="return controleGene(this);"> <!-- reference au formulaire -->
 		<p>
 		<!--<fieldset class="scheduler-border">-->
 				<legend class="scheduler-border"> Ajout d'un gène </legend>
