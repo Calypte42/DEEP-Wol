@@ -291,7 +291,7 @@ function controleGrotte(formulaire, modif) {
     valeurNomCavite = formulaire.elements['nomGrotte'].value;
     if (modif) {
         nomCavitePrecedent = formulaire.elements['nomCavitePrecedent'].value;
-        if (!nomCavitePrecedent == valeurNomCavite) {
+        if (!(nomCavitePrecedent == valeurNomCavite)) {
             if (verifIdentique('nomcavite', 'grotte', valeurNomCavite)) {
                 message += "- Le nom de la grotte est déjà utilisée pour une autre grotte\n";
                 erreur = true;
@@ -328,13 +328,11 @@ function controleSite(formulaire, modif) {
     valeurCodeEquipe = formulaire.elements['codeEquipeSpeleo'].value;
 
     if (modif) {
-        idGrottePrecedent = formulaire.elements['idGrottePrecedent'].value;
         numSitePrecedent = formulaire.elements['numSitePrecedent'].value;
         codeEquipePrecedent = formulaire.elements['codeEquipePrecedent'].value;
-        if (!(idGrottePrecedent == valeuridGrotte && valeurNumSite == numSitePrecedent
-                    && codeEquipePrecedent == valeurCodeEquipe)) {
+        if (!(valeurNumSite == numSitePrecedent && codeEquipePrecedent == valeurCodeEquipe)) {
             if (verifIdentiqueSitePiege(valeuridGrotte, valeurNumSite, valeurCodeEquipe, "site")) {
-                message += "- Il existe déjà un site du même nom pour la grotte et l'équipe choisies";
+                message += "- Il existe déjà un site du même nom dans la grotte pour l'équipe choisie";
                 erreur = true;
             }
         }
@@ -363,18 +361,30 @@ function controleSite(formulaire, modif) {
     return true;
 }
 
-function controlePiege(formulaire) {
+function controlePiege(formulaire, modif) {
     select = formulaire.elements['idGrotteForm'];
     select2 = formulaire.elements['codeEquipeSpeleo'];
     message = "";
     erreur = false;
 
-    valeuridSite = formulaire.elements['idSiteForm'].value;
+    //valeuridSite = formulaire.elements['idSiteForm'].value;
     valeurCodePiege = formulaire.elements['codePiege'].value;
-    valeurCodeEquipe = formulaire.elements['codeEquipeSpeleo'].value;
-    if (verifIdentiqueSitePiege(valeuridSite, valeurCodePiege, valeurCodeEquipe, "piege")) {
-        message += "- Il existe déjà un code de piège du même nom pour la grotte, le site et l'équipe choisis\n";
-        erreur = true;
+    //valeurCodeEquipe = formulaire.elements['codeEquipeSpeleo'].value;
+
+    if (modif) {
+        codePiegePrecedent = formulaire.elements['codePiegePrecedent'].value;
+        //codeEquipePrecedent = formulaire.elements['codeEquipePrecedent'].value;
+        if (!(valeurCodePiege == codePiegePrecedent)) {
+            if (verifIdentique('codepiege', 'piege', valeurCodePiege)) {
+                message += "- Il existe déjà un piège du même nom de code dans la base de données\n";
+                erreur = true;
+            }
+        }
+    } else {
+        if (verifIdentique('codepiege', 'piege', valeurCodePiege)) {
+            message += "- Il existe déjà un code de piège du même nom de code dans la base de données\n";
+            erreur = true;
+        }
     }
 
     if (select.value == "") {
@@ -395,10 +405,12 @@ function controlePiege(formulaire) {
         }
     }
 
-    ajoutSite = formulaire.elements['ajoutSite'];
-    if (ajoutSite.value != '') {
-        message += "- Veuillez ajouter un site\n";
-        erreur = true;
+    if (!modif) {
+        ajoutSite = formulaire.elements['ajoutSite'];
+        if (ajoutSite.value != '') {
+            message += "- Veuillez ajouter un site\n";
+            erreur = true;
+        }
     }
 
     datePose = formulaire.elements['datePose'];

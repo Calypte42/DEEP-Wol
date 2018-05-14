@@ -24,7 +24,7 @@ include 'consultationModification.php';
 		</form>-->
 		</br>
 		<!-- FORMULAIRE D'AJOUT DE PIEGE -->
-		<form  id="ajoutPiege"  method="POST" action = "WebService/ajoutPiegeWS.php" onsubmit="return controlePiege(this);"> <!-- reference au formulaire -->
+		<form  id="ajoutPiege"  method="POST" action = "WebService/ajoutPiegeWS.php" onsubmit="return controlePiege(this, false);"> <!-- reference au formulaire -->
 		<p>
 			<!--<fieldset class="scheduler-border">-->
 				<legend class="scheduler-border"> Ajout d'un piège </legend>

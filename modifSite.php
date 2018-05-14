@@ -27,7 +27,7 @@ $site=requete($bdd,$requete); /* value recupere la reponse de la requete */
 			<form  id="ajoutSite"  method="POST" action = "WebService/modifSiteWS.php" onsubmit="return controleSite(this, true);"> <!-- reference au formulaire -->
 			<p>
 			<!--<fieldset class="scheduler-border">-->
-				<legend class="scheduler-border"> Grotte : <?=$Retour?> <br/>
+				<legend class="scheduler-border"> Grotte : <?=$Retour?> <br/><br/>
                         Modification du site : <?=$site[0]['numsite']?> </legend>
 				<div class="control-group">
 					<div class="controls bootstrap-timepicker">
