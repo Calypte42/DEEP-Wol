@@ -80,7 +80,7 @@ foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
 				}//Fin gestion des bacteries
 
 					else{
-				if(empty($resultat)){
+				if(isset($resultat)){
           echo "<td>Non renseigné</td>";
 					}else{
 				echo "<td>$resultat</td> ";

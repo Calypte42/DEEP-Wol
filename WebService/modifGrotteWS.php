@@ -15,19 +15,60 @@ if(isset($_REQUEST['accesPublic'])){
     $accesPublic=null;
 }
 
+if (isset($_REQUEST['longitude1'])&&!empty($_REQUEST['longitude1'])) {
+    $longitude=$_REQUEST['longitude1']."°";
+    if (!empty($_REQUEST['longitude2'])) {
+        $longitude=$longitude.$_REQUEST['longitude2']."'";
+        if (!empty($_REQUEST['longitude3'])) {
+            $longitude=$longitude.$_REQUEST['longitude3'].'"';
+        }
+    }
+    $longitude=$longitude." ".$_REQUEST['orientationLongitude'];
+} else {
+    $longitude=null;
+}
+
+if (isset($_REQUEST['latitude1'])&&!empty($_REQUEST['latitude1'])) {
+    $latitude=$_REQUEST['latitude1']."°";
+    if (!empty($_REQUEST['latitude2'])) {
+        $latitude=$latitude.$_REQUEST['latitude2']."'";
+        if (!empty($_REQUEST['latitude3'])) {
+            $latitude=$latitude.$_REQUEST['latitude3'].'"';
+        }
+    }
+    $latitude=$latitude." ".$_REQUEST['orientationLatitude'];
+} else {
+    $latitude=null;
+}
+
+if ($_REQUEST['typeCavite'] == 'autre') {
+    $typeCavite = $_REQUEST['autreCavite'];
+} else {
+    $typeCavite = $_REQUEST['typeCavite'];
+}
+
+if ($_REQUEST['typeAcces'] == 'autre') {
+    $typeAcces = $_REQUEST['autreTypeAcces'];
+} else {
+    $typeAcces = $_REQUEST['typeAcces'];
+}
+
+if ($_REQUEST['accesPublic'] == "NULL") {
+    $accesPublic=null;
+} else {
+    $accesPublic=$_REQUEST['accesPublic'];
+}
+
 $req->execute(array(
     'nomGrotte' => $_REQUEST['nomGrotte'],
-    'typeCavite' => $_REQUEST['typeCavite'],
-    'latitude' => $_REQUEST['latitude'],
-    'longitude' => $_REQUEST['longitude'],
-    'typeAcces' => $_REQUEST['typeAcces'],
+    'typeCavite' => $typeCavite,
+    'latitude' => $latitude,
+    'longitude' => $longitude,
+    'typeAcces' => $typeAcces,
     'accesPublic' => $accesPublic,
     'idSystemeHydrographique' => $_REQUEST['systemeHydro']
 ));
 
 header('Refresh: 0; URL=../tableauGrotte.php');
-
-echo http_response_code();
-
 
 ?>

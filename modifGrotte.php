@@ -7,142 +7,275 @@ include 'consultationModification.php';
 
 $id = $_GET['id'];
 $requete="SELECT * FROM Grotte WHERE id=$id";  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
-$grotte=requete($bdd,$requete); /* value recupere la reponse de la requete */
+$grotte=requete($bdd,$requete);
 ?>
 
-
+        <script src="./javascript/eventListener.js" type="text/javascript"></script>
 		<!-- FORMULAIRE D'AJOUT DE GROTTE -->
-			<div class= "col-sm-10">
-			<form method="POST" action="tableauGrotte.php">
+
+		<div class= "col-sm-7">
+			<form action="tableauGrotte.php">
 				<input type="submit" value="Revenir au tableau des grottes" />
 			</form>
-
 			</br>
-
-			<form  id="ajoutGrotte"  method="POST" action = "WebService/modifGrotteWS.php"> <!-- reference au formulaire -->
+			<form  id="ajoutGrotte"  method="POST" action = "WebService/modifGrotteWS.php" onsubmit="return controleGrotte(this, true);"> <!-- reference au formulaire -->
 			<p> <!-- car balise input ou select ne peut pas etre imbriquee directement dans form -->
-			<!--<fieldset class="scheduler-border fieldset-auto-width">-->
-				<legend class="scheduler-border"> Modification de la <?=$grotte[0]['nomcavite']?></legend>
-				<div class="control-group">
-					<div class="controls bootstrap-timepicker">
-					</br>
-          <input type="hidden" name="id" value="<?=$_GET['id']?>"/>
+				<!--<fieldset class="scheduler-border fieldset-auto-width">-->
+					<legend class="scheduler-border"> Modification de la grotte : <?=$grotte[0]['nomcavite']?> </legend>
+					<div class="control-group">
+						<div class="controls bootstrap-timepicker">
 
-					<label style="display: block; width:110px; float:left;">Nom</label>          <!-- Changer les size par rapport à la base de donnees -->
-					<input required type="text" id ="nomGrotte" name="nomGrotte" value="<?=$grotte[0]['nomcavite']?>" size="50"/> * </br></br>
+                            <input type="hidden" name="id" value="<?=$_GET['id']?>"/>
+                            <input type="hidden" name="nomCavitePrecedent" value="<?=$grotte[0]['nomcavite']?>"/>
 
-					<!--<label style="display: block; width:110px; float:left;">Type de cavité</label>
-						<select name="typeCavite" id="typeCavite">
-							<option value="Standard">Standard</option>
-							<option value="Choix2">Choix2</option>
-							<option value="Choix3">Choix3</option>
-						</select>-->
-						<?php
-						echo "<label style='display: block; width:110px; float:left;' for='TypeCavite'> Type de cavité </label>";
-						echo "<select name='typeCavite'>";
-						$requete='SELECT DISTINCT typeCavite from Grotte ORDER BY typeCavite';
-						$value=requete($bdd,$requete);
-						foreach ($value as $array) {
-							foreach ($array as $key => $valeur) {
-								echo "<option value=\"$valeur\">$valeur</option>";
+							<label style="display: block; width:110px; float:left;">Nom</label>          <!-- Changer les size par rapport à la base de donnees -->
+							<input required type="text" id ="nomGrotte" name="nomGrotte" size="50" value="<?=$grotte[0]['nomcavite']?>"/> * </br></br>
+
+						<!--	<label style="display: block; width:110px; float:left;">Type de cavité</label>
+								<select name="typeCavite" id="typeCavite">
+									<option value="Choix1">Choix1</option>
+									<option value="Choix2">Choix2</option>
+									<option value="Choix3">Choix3</option>
+								</select>-->
+								<?php
+								echo "<label style='display: block; width:110px; float:left;' for='typeCavite'> Type de cavité </label>";
+								echo "<select name='typeCavite' id='typeCavite' onchange='ajoutAutre(this.options[this.selectedIndex].value, \"autreDivCavite\", \"autreCavite\")'>";
+								$requete='SELECT DISTINCT typeCavite from Grotte ORDER BY typeCavite';
+								$value=requete($bdd,$requete);
+								foreach ($value as $array) {
+									foreach ($array as $key => $valeur) {
+                                        if ($valeur != "Indéterminé") {
+                                            if ($grotte[0]['typecavite'] == $valeur){
+                                                echo "<option selected value=\"$valeur\">$valeur</option>";
+                                            } else {
+                                                echo "<option value=\"$valeur\">$valeur</option>";
+                                            }
+
+                                        }
+									}
+								}
+                                if ($grotte[0]['typecavite'] == "Indéterminé") {
+                                    echo "<option selected value='Indéterminé'>Indéterminé</option>";
+                                } else {
+                                    echo "<option value='Indéterminé'>Indéterminé</option>";
+                                }
+                                echo "<option value='autre'>[Ajouter]</option>";
+								echo "</select>";
+							?>
+                                <div id="autreDivCavite" style="display:none;">Ajouter un type de cavité : <input id="autreCavite" type="text" name="autreCavite" /> *</div>
+								&nbsp;
+								<!--<input type = "button" id="affichageTypeCavite" value = "ajouter un type de cavité" onclick="affichageDiv('divTypeCavite', this.id)">-->
+
+					    </br></br>
+
+                            <?php
+                            if (!empty($grotte[0]['latitude'])) {
+                                $latitude = $grotte[0]['latitude'];
+                                $latitudeA = explode("°", $latitude);
+                                $latitude1 = $latitudeA[0];
+                                if (!empty($latitudeA[1]) and trim($latitudeA[1])!="Nord" and trim($latitudeA[1])!="Sud") {
+                                    $latitudeB = explode("'", $latitudeA[1]);
+                                    $latitude2 = $latitudeB[0];
+                                    if (!empty($latitudeB[1]) and trim($latitudeB[1])!="Nord" and trim($latitudeB[1])!="Sud") {
+                                        $latitudeC = explode("\"", $latitudeB[1]);
+                                        $latitude3 = $latitudeC[0];
+                                        $orientationLatitude = trim($latitudeC[1]);
+                                    } else {
+                                        $latitude3 = "";
+                                        $orientationLatitude = trim($latitudeB[1]);
+                                    }
+                                } else {
+                                    $latitude2 = "";
+                                    $latitude3 = "";
+                                    $orientationLatitude = trim($latitudeA[1]);
+                                }
+                            } else {
+                                $latitude1 = "";
+                                $latitude2 = "";
+                                $latitude3 = "";
+                                $orientationLatitude = null;
+                            }
+                            ?>
+
+							<label style="display: block; width:110px; float:left;">Latitude</label>
+							<input type="number" id ="latitude" name="latitude1" value="<?=$latitude1?>" size="5" placeholder = "30"/>  <!-- type text pour simplifier la saisie -->
+							°
+							<input type="number" id ="latitude2" name="latitude2" value="<?=$latitude2?>" size="5" placeholder = "30"/>  <!-- type text pour simplifier la saisie -->
+							'
+							<input type="number" id ="latitude3" name="latitude3" value="<?=$latitude3?>" size="5" placeholder = "30"/>  <!-- type text pour simplifier la saisie -->
+							"
+							<select name="orientationLatitude" id="orientationLatitude">
+                                <?php
+                                if ($orientationLatitude == "Nord") {
+                                    echo "<option selected value='Nord'>Nord</option>";
+                                    echo "<option value='Sud'>Sud</option>";
+                                } else {
+                                    echo "<option value='Nord'>Nord</option>";
+                                    echo "<option selected value='Sud'>Sud</option>";
+                                }
+                                ?>
+							</select>
+
+							</br></br>
+
+                            <?php
+                            if (!empty($grotte[0]['longitude'])) {
+                                $longitude = $grotte[0]['longitude'];
+                                $longitudeA = explode("°", $longitude);
+                                $longitude1 = $longitudeA[0];
+                                if (!empty($longitudeA[1]) and trim($longitudeA[1])!="Est" and trim($longitudeA[1])!="Ouest") {
+                                    $longitudeB = explode("'", $longitudeA[1]);
+                                    $longitude2 = $longitudeB[0];
+                                    if (!empty($longitudeB[1]) and trim($longitudeB[1])!="Est" and trim($longitudeB[1])!="Ouest") {
+                                        $longitudeC = explode("\"", $longitudeB[1]);
+                                        $longitude3 = $longitudeC[0];
+                                        $orientationLongitude = trim($longitudeC[1]);
+                                    } else {
+                                        $longitude3 = "";
+                                        $orientationLongitude = trim($longitudeB[1]);
+                                    }
+                                } else {
+                                    $longitude2 = "";
+                                    $longitude3 = "";
+                                    $orientationLongitude = trim($longitudeA[1]);
+                                }
+                            } else {
+                                $longitude1 = "";
+                                $longitude2 = "";
+                                $longitude3 = "";
+                                $orientationLongitude = null;
+                            }
+                            ?>
+
+							<label style="display: block; width:110px; float:left;">Longitude</label>
+							<input type="number" id ="longitude" name="longitude1" value="<?=$longitude1?>" size="5" placeholder = "20"/>  <!-- type text pour simplifier la saisie -->
+							°
+							<input type="number" id ="longitude2" name="longitude2" value="<?=$longitude2?>" size="5" placeholder = "20"/>  <!-- type text pour simplifier la saisie -->
+							'
+							<input type="number" id ="longitude3" name="longitude3" value="<?=$longitude3?>" size="5" placeholder = "20"/>  <!-- type text pour simplifier la saisie -->
+							"
+							<select name="orientationLongitude" id="orientationLongitude">
+                                <?php
+                                if ($orientationLongitude == "Est") {
+                                    echo "<option selected value='Est'>Est</option>";
+                                    echo "<option value='Ouest'>Ouest</option>";
+                                } else {
+                                    echo "<option value='Est'>Est</option>";
+                                    echo "<option selected value='Ouest'>Ouest</option>";
+                                }
+                                ?>
+							</select>
+
+							</br></br>
+
+							<label style="display: block; width:110px; float:left;" for='typeAcces'>Type d'accès</label>
+                        <?php
+                            echo "<select name='typeAcces' id='typeAcces' onchange='ajoutAutre(this.options[this.selectedIndex].value, \"autreDivTypeAcces\", \"autreTypeAcces\")'>";
+                            $requete='SELECT DISTINCT typeAcces from Grotte ORDER BY typeAcces';
+                            $value=requete($bdd,$requete);
+                            foreach ($value as $array) {
+                                foreach ($array as $key => $valeur) {
+                                    if ($valeur != "Indéterminé") {
+                                        if ($grotte[0]['typeacces'] == $valeur){
+                                            echo "<option selected value=\"$valeur\">$valeur</option>";
+                                        } else {
+                                            echo "<option value=\"$valeur\">$valeur</option>";
+                                        }
+                                    }
+                                }
+                            }
+                            if ($grotte[0]['typeacces'] == "Indéterminé") {
+                                echo "<option selected value='Indéterminé'>Indéterminé</option>";
+                            } else {
+                                echo "<option value='Indéterminé'>Indéterminé</option>";
+                            }
+                            echo "<option value='autre'>[Ajouter]</option>";
+                            echo "</select>";
+                        ?>
+                            <div id="autreDivTypeAcces" style="display:none;">Ajouter un type d'accès : <input id="autreTypeAcces" type="text" name="autreTypeAcces" /> *</div>
+
+                            </br></br>
+
+							<label>Système hydrographique</label>
+							<select name="systemeHydro" id='listeSystemeHydrographique' onchange="ajoutDiv(this.options[this.selectedIndex].value, 'divSystemeHydrographique')">
+							<?php
+                            echo "<option disabled selected value>Choisir</option>";
+                            $requete='SELECT id, nom, departement, pays from SystemeHydrographique ORDER BY nom';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
+							$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
+							foreach ($value as $array) { /* On parcourt les resultats possibles */
+                                $id = $array['id'];
+                                $nom = $array['nom'];
+                                $departement = $array['departement'];
+                                $pays = $array['pays'];
+                                if ($grotte[0]['idsystemehydrographique']==$array['id']) {
+                                    echo "<option selected value=\"$id\">$nom $departement $pays</option>";
+                                } else {
+                                    echo "<option value=\"$id\">$nom $departement $pays</option>";
+                                }
+								//foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
+								//	echo "<option value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
+								//}
 							}
-						}
-						echo "</select>";
-					?>
-						&nbsp;
-						<input type = "button" id="affichageTypeCavite" value = "ajouter un type de cavité" onclick=""> <!-- rajout d'un bouton ajout d'une nouvelle équipe -->
+                            echo "<option value='autre'>[Ajouter]</option>";
+							echo "</select>";
 
+							?>
 
+					    </br></br>
 
-		      </br></br>
+							<label>Accès au public </label>
+                            <?php
+                            echo "<input type='radio' id ='accesPublicOui' name='accesPublic' value='true' ";
+                            if ($grotte[0]['accespublic']) {
+                                echo "checked";
+                            }
+                            echo "/>";
+                            echo "<label for='accesPublicOui'>&nbsp;&nbsp;oui&nbsp;&nbsp;</label>";
+                            echo "<input type='radio' id='accesPublicNon' name='accesPublic' value='false' ";
+                            if (!empty($grotte[0]['accespublic'])) {
+                                if (!$grotte[0]['accespublic']) {
+                                	echo "checked";
+                                }
+                            }
+                            echo "/>";
+							echo "<label for='accesPublicNon'>non</label>";
+                            echo "<input type = 'radio' id='accesPublicNull' name = 'accesPublic' value='NULL' ";
+                            if (empty($grotte[0]['accespublic'])) {
+                                echo "checked";
+                            }
+                            echo "/>";
+                            ?>
+        					<label for="accesPublicNull">indéterminé</label>
 
-					<label style="display: block; width:110px; float:left;">Latitude</label>
-					<input type="text" id ="latitude" name="latitude1" size="5" placeholder = "30"/>  <!-- type text pour simplifier la saisie -->
-					°
-					<input type="text" id ="latitude2" name="latitude2" size="5" placeholder = "30"/>  <!-- type text pour simplifier la saisie -->
-					'
-					<input type="text" id ="latitude3" name="latitude3" size="5" placeholder = "30"/>  <!-- type text pour simplifier la saisie -->
-					"
-					<select name="orientationLatitude" id="orientationLatitude">
-						<option selected value="Nord">Nord</option>
-						<option value="Sud">Sud</option>
-					</select>
+							</br>
+							</br>
 
-					</br></br>
+							<input type="submit" name="nom" value="Valider et revenir au tableau des grottes"> &nbsp;&nbsp;
 
-					<label style="display: block; width:110px; float:left;">Longitude</label>
-					<input type="text" id ="longitude" name="longitude1" size="5" placeholder = "20"/>  <!-- type text pour simplifier la saisie -->
-					°
-					<input type="text" id ="longitude2" name="longitude2" size="5" placeholder = "20"/>  <!-- type text pour simplifier la saisie -->
-					'
-					<input type="text" id ="longitude3" name="longitude3" size="5" placeholder = "20"/>  <!-- type text pour simplifier la saisie -->
-					"
-					<select name="orientationLongitude" id="orientationLongitude">
-						<option selected value="Est">Est</option>
-						<option value="Ouest">Ouest</option>
-					</select>
-
-					</br></br>
-
-					<label style="display: block; width:110px; float:left;">Type d'accès</label>
-					<input type="text" id ="typeAcces" name="typeAcces" value="<?=$grotte[0]['typeacces']?>" size="20"/></br></br>
-
-					<label>Système hydrographique</label>
-						<select name="systemeHydro" id='listeSystemeHydrographique'>
-						<?php
-						$requete='SELECT id, nom from SystemeHydrographique ORDER BY nom';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
-						$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
-						foreach ($value as $array) { /* On parcourt les resultats possibles */
-		        	$nom = $array['nom'];
-		          $id = $array['id'];
-		          echo "<option value=\"$id\"";
-		          if ($grotte[0]['idsystemehydrographique']==$array['id']) {
-		          	echo "selected";
-		          }
-		          echo ">$nom</option>";
-						}
-						echo "</select>";
-						?>
-
-						<input type = "button" id="affichageSystemeHydrographique" value = "ajouter un système hydrographique">
-
-		        </br></br>
-
-						<label>Accès au public</label>&nbsp;&nbsp;
-						<?php
-            echo "<input type='radio' id ='accesPublicOui' name='accesPublic' value='true'";
-            if ($grotte[0]['accespublic']) {
-            	echo "checked";
-            }
-            echo "/>";
-            echo "<label for='accesPublicOui'>&nbsp;&nbsp;oui&nbsp;&nbsp;</label>";
-            echo "<input type='radio' id='accesPublicNon' name='accesPublic' value='false'";
-            if ($grotte[0]['accespublic']) {
-            	echo "checked";
-            }
-            echo "/>";
-            echo "<label for='accesPublicNon'>&nbsp;&nbsp;non&nbsp;&nbsp;</label>";
-						?>
-
-						</br></br>
-
-						<input type="submit" name="nom" value="Valider les modifications et revenir au tableau des grottes"> &nbsp;&nbsp;
-
+						</div>
 					</div>
-				</div>
-			<!--</fieldset>-->
-		</p>
-		</form>
+				<!--</fieldset>-->
+			</p>
+			</form>
 
-	    <div id="divSystemeHydrographique" style="display:none;">
-	        <form  id="formSystemeHydrographique"  method="post">
-	            <label>nom</label>
-	            <input type="text" id ="nom" name="nom" required size="30"/></br></br>
-	            <label>département</label>
-	            <input type="number" id ="departement" name="departement"/></br></br>
-	            <button type="submit">Ajouter un système hydrographique</button></br></br>
-	        </form>
-			</div>
+
+		</div>
+
+		<div class= "col-sm-3" style = "float:right;">
+		<div id="divSystemeHydrographique" style="display:none;">
+				<form  id="formSystemeHydrographique"  method="post" onsubmit="return ajaxAjout('./WebService/ajoutSystemeHydrographiqueWS.php', 'divSystemeHydrographique', this.id, 'listeSystemeHydrographique')">
+					<fieldset style = "padding-left:5px;" >
+						<legend class="scheduler-border"> Ajout système hydrographique </legend>
+							<label>nom</label>
+							<input class="valeurs" type="text" id ="nom" name="nom" required size="30" maxlength="30"/></br></br>
+							<label>département</label>
+							<input class="valeurs" type="number" id ="departement" name="departement"/></br></br>
+              <label>pays</label>
+              <input class="valeurs" placeholder="FR" type="text" id ="pays" name="pays" required size="4" maxlength="4"/></br></br>
+							<button type="submit">Ajouter un système hydrographique</button></br></br>
+					</fieldset>
+				</form>
+		</div>
 		</div>
 	</div>
 </div>

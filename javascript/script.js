@@ -210,7 +210,7 @@ function suppression(formulaire) {
         texte += "Souhaitez vous vraiment supprimer l'échantillon : " + nom;
         texte += "\nCETTE ACTION SUPPRIMERA EGALEMENT LES ELEMENTS LIES A L'ECHANTILLON :\n"
         texte += "analyses";
-    } else if (table == 'qPCR' || table == 'PCR') {
+    } else if (table == 'analyses') {
         texte += "Souhaitez vous vraiment supprimer l'analyse ?";
     }
 
@@ -278,7 +278,7 @@ function controleAnalyse(formulaire) {
 
 }
 
-function controleGrotte(formulaire) {
+function controleGrotte(formulaire, modif) {
     select = formulaire.elements['systemeHydro'];
     message = "";
     erreur = false;
@@ -289,10 +289,20 @@ function controleGrotte(formulaire) {
     }
 
     valeurNomCavite = formulaire.elements['nomGrotte'].value;
-    if (verifIdentique('nomcavite', 'grotte', valeurNomCavite)) {
-        message += "- Le nom de la grotte est déjà utilisée pour une autre grotte\n";
-        erreur = true;
+    if (modif) {
+        nomCavitePrecedent = formulaire.elements['nomCavitePrecedent'].value;
+        if (!nomCavitePrecedent == valeurNomCavite) {
+            if (verifIdentique('nomcavite', 'grotte', valeurNomCavite)) {
+                message += "- Le nom de la grotte est déjà utilisée pour une autre grotte\n";
+                erreur = true;
+            }
+    } else {
+        if (verifIdentique('nomcavite', 'grotte', valeurNomCavite)) {
+            message += "- Le nom de la grotte est déjà utilisée pour une autre grotte\n";
+            erreur = true;
+        }
     }
+
 
     if (document.getElementById("divSystemeHydrographique").style.display == "inline") {
         message += "- Veuillez valider l'ajout d'un système hydrographique";

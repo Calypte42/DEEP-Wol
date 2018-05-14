@@ -103,6 +103,7 @@ $requete='SELECT id,nomgene,resultat,dateAnalyse,fasta,electrophoregramme FROM A
 $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
   $date = $valeur['dateanalyse'];
+  $nomGene = $valeur['nomgene'];
   foreach ($valeur as $cle => $resultat) { /* On recupere la cle et la valeur de chaque element */
       if($cle=='id'){
         $id=$resultat;
@@ -123,8 +124,8 @@ foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
     }}
     echo ('<td><a href="">'."Modifier".'</a></td>');
     echo "<td><form method='GET' onsubmit='return suppression(this)'>";
-    echo "<input type='hidden' name='nom' value='$date' />";
-    echo "<input type='hidden' name='table' value='PCR' />";
+    echo "<input type='hidden' name='nom' value='$RetourEchantillon - $nomGene - $date' />";
+    echo "<input type='hidden' name='table' value='analyses' />";
     echo "<input type='hidden' name='colonne' value='id' />";
     echo "<input type='hidden' name='id' value='$id' />";
     echo "<input type='submit' value='Supprimer' />";
@@ -161,7 +162,8 @@ echo "</table>";
 
    $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
    foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
-     $date = $valeur['dateqpcr'];
+     $date = $valeur['dateanalyse'];
+     $nomGene = $valeur['nomgene'];
      foreach ($valeur as $cle => $resultat) { /* On recupere la cle et la valeur de chaque element */
          if($cle=='id'){
            $id=$resultat;
@@ -182,8 +184,8 @@ echo "</table>";
        }}
        echo ('<td><a href="">'."Modifier".'</a></td>');
        echo "<td><form method='GET' onsubmit='return suppression(this)'>";
-       echo "<input type='hidden' name='nom' value='$date' />";
-       echo "<input type='hidden' name='table' value='qPCR' />";
+       echo "<input type='hidden' name='nom' value='$RetourEchantillon - $nomGene - $date' />";
+       echo "<input type='hidden' name='table' value='analyses' />";
        echo "<input type='hidden' name='colonne' value='id' />";
        echo "<input type='hidden' name='id' value='$id' />";
        echo "<input type='submit' value='Supprimer' />";

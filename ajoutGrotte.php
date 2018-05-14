@@ -14,7 +14,7 @@ include 'consultationModification.php';
 				<input type="submit" value="Revenir au tableau des grottes" />
 			</form>
 			</br>
-			<form  id="ajoutGrotte"  method="POST" action = "WebService/ajoutGrotteWS.php" onsubmit="return controleGrotte(this);"> <!-- reference au formulaire -->
+			<form  id="ajoutGrotte"  method="POST" action = "WebService/ajoutGrotteWS.php" onsubmit="return controleGrotte(this, false);"> <!-- reference au formulaire -->
 			<p> <!-- car balise input ou select ne peut pas etre imbriquee directement dans form -->
 				<!--<fieldset class="scheduler-border fieldset-auto-width">-->
 					<legend class="scheduler-border"> Ajout d'une grotte </legend>
@@ -53,11 +53,11 @@ include 'consultationModification.php';
 					    </br></br>
 
 							<label style="display: block; width:110px; float:left;">Latitude</label>
-							<input type="text" id ="latitude" name="latitude1" size="5" placeholder = "30"/>  <!-- type text pour simplifier la saisie -->
+							<input type="number" id ="latitude" name="latitude1" size="5" placeholder = "30"/>  <!-- type text pour simplifier la saisie -->
 							°
-							<input type="text" id ="latitude2" name="latitude2" size="5" placeholder = "30"/>  <!-- type text pour simplifier la saisie -->
+							<input type="number" id ="latitude2" name="latitude2" size="5" placeholder = "30"/>  <!-- type text pour simplifier la saisie -->
 							'
-							<input type="text" id ="latitude3" name="latitude3" size="5" placeholder = "30"/>  <!-- type text pour simplifier la saisie -->
+							<input type="number" id ="latitude3" name="latitude3" size="5" placeholder = "30"/>  <!-- type text pour simplifier la saisie -->
 							"
 							<select name="orientationLatitude" id="orientationLatitude">
 								<option selected value="Nord">Nord</option>
@@ -67,11 +67,11 @@ include 'consultationModification.php';
 							</br></br>
 
 							<label style="display: block; width:110px; float:left;">Longitude</label>
-							<input type="text" id ="longitude" name="longitude1" size="5" placeholder = "20"/>  <!-- type text pour simplifier la saisie -->
+							<input type="number" id ="longitude" name="longitude1" size="5" placeholder = "20"/>  <!-- type text pour simplifier la saisie -->
 							°
-							<input type="text" id ="longitude2" name="longitude2" size="5" placeholder = "20"/>  <!-- type text pour simplifier la saisie -->
+							<input type="number" id ="longitude2" name="longitude2" size="5" placeholder = "20"/>  <!-- type text pour simplifier la saisie -->
 							'
-							<input type="text" id ="longitude3" name="longitude3" size="5" placeholder = "20"/>  <!-- type text pour simplifier la saisie -->
+							<input type="number" id ="longitude3" name="longitude3" size="5" placeholder = "20"/>  <!-- type text pour simplifier la saisie -->
 							"
 							<select name="orientationLongitude" id="orientationLongitude">
 								<option selected value="Est">Est</option>
