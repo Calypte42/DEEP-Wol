@@ -296,6 +296,7 @@ function controleGrotte(formulaire, modif) {
                 message += "- Le nom de la grotte est déjà utilisée pour une autre grotte\n";
                 erreur = true;
             }
+        }
     } else {
         if (verifIdentique('nomcavite', 'grotte', valeurNomCavite)) {
             message += "- Le nom de la grotte est déjà utilisée pour une autre grotte\n";
@@ -317,7 +318,7 @@ function controleGrotte(formulaire, modif) {
     return true;
 }
 
-function controleSite(formulaire) {
+function controleSite(formulaire, modif) {
     select = formulaire.elements['codeEquipeSpeleo'];
     message = "";
     erreur = false;
@@ -325,9 +326,23 @@ function controleSite(formulaire) {
     valeuridGrotte = formulaire.elements['idGrotteForm'].value;
     valeurNumSite = formulaire.elements['numSite'].value;
     valeurCodeEquipe = formulaire.elements['codeEquipeSpeleo'].value;
-    if (verifIdentiqueSitePiege(valeuridGrotte, valeurNumSite, valeurCodeEquipe, "site")) {
-        message += "- Il existe déjà un site du même nom pour la grotte et l'équipe choisies";
-        erreur = true;
+
+    if (modif) {
+        idGrottePrecedent = formulaire.elements['idGrottePrecedent'].value;
+        numSitePrecedent = formulaire.elements['numSitePrecedent'].value;
+        codeEquipePrecedent = formulaire.elements['codeEquipePrecedent'].value;
+        if (!(idGrottePrecedent == valeuridGrotte && valeurNumSite == numSitePrecedent
+                    && codeEquipePrecedent == valeurCodeEquipe)) {
+            if (verifIdentiqueSitePiege(valeuridGrotte, valeurNumSite, valeurCodeEquipe, "site")) {
+                message += "- Il existe déjà un site du même nom pour la grotte et l'équipe choisies";
+                erreur = true;
+            }
+        }
+    } else {
+        if (verifIdentiqueSitePiege(valeuridGrotte, valeurNumSite, valeurCodeEquipe, "site")) {
+            message += "- Il existe déjà un site du même nom pour la grotte et l'équipe choisies";
+            erreur = true;
+        }
     }
 
     if (select.value == "") {

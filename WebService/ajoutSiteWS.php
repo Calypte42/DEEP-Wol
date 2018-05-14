@@ -17,7 +17,6 @@ if (empty($_REQUEST['profondeur'])) {
 }
 
 
-// Gestion de typeSol vide
 if ($_REQUEST['typeSol'] == 'autre') {
     $typeSol=$_REQUEST['autreSol'];
 } else {
