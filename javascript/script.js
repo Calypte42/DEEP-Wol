@@ -249,30 +249,62 @@ function ajoutDiv(valeurAutre, idDiv) {
     }
 }
 
-function controleAnalyse(formulaire) {
+function controleAnalyse(formulaire, modif) {
 
     if (formulaire.elements['fasta'].value) {
 
         nomFASTA = formulaire.elements['fasta'].files[0].name;
-        check = urlExists("./files/fasta/" + nomFASTA);
 
-        if (check) {
-            alert("Nom de fichier fasta déjà existant, veuillez renommer votre fichier");
-            return false;
+        if (modif) {
+            nomFASTAPrecedent = formulaire.elements['nomFASTAPrecedent'].value;
+            if (!(nomFASTA == nomFASTAPrecedent)) {
+                check = urlExists("./files/fasta/" + nomFASTA);
+
+                if (check) {
+                    alert("Nom de fichier fasta déjà existant, veuillez renommer votre fichier");
+                    return false;
+                } else {
+                    return true;
+                }
+            }
         } else {
-            return true;
+            check = urlExists("./files/fasta/" + nomFASTA);
+
+            if (check) {
+                alert("Nom de fichier fasta déjà existant, veuillez renommer votre fichier");
+                return false;
+            } else {
+                return true;
+            }
         }
+
     }
 
     if (formulaire.elements['electrophoregramme'].value) {
         nomElectrophoregramme = formulaire.elements['electrophoregramme'].files[0].name;
-        check = urlExists("./files/electrophoregramme/" + nomElectrophoregramme);
 
-        if (check) {
-            alert("Nom d'electrophoregramme déjà existant, veuillez renommer votre fichier");
-            return false;
+        if (modif) {
+            nomElectroPrecedent = formulaire.elements['nomElectroPrecedent'].value;
+            if (!(nomElectrophoregrammet == nomElectroPrecedent)) {
+
+                check = urlExists("./files/electrophoregramme/" + nomElectrophoregramme);
+
+                if (check) {
+                    alert("Nom d'electrophoregramme déjà existant, veuillez renommer votre fichier");
+                    return false;
+                } else {
+                    return true;
+                }
+            }
         } else {
-            return true;
+            check = urlExists("./files/electrophoregramme/" + nomElectrophoregramme);
+
+            if (check) {
+                alert("Nom d'electrophoregramme déjà existant, veuillez renommer votre fichier");
+                return false;
+            } else {
+                return true;
+            }
         }
     }
 

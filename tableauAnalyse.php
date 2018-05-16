@@ -2,9 +2,7 @@
 include 'BDD/bdd.php';
 $bdd=connexionbd();
 
-?>
 
-<?php
 include 'verificationConnexion.php';
 include 'consultationModification.php';
 
@@ -113,16 +111,29 @@ foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
           echo "<td>Non renseigné</td>";
           }else{
                   if ($cle=='fasta'){
-                      echo "<td><a href='$resultat'>fichier fasta</a></td> ";
+                      echo "<td><a href='$resultat' onclick=\"window.open(this.href, 'newwindow',
+                      'width=800,height=600'); return false;\">fichier fasta</a></td> ";
                   } elseif ($cle=='electrophoregramme'){
-                      echo "<td><a href='$resultat'>electrophoregramme</a></td> ";
+                      echo "<td><a href='$resultat' onclick=\"window.open(this.href, 'newwindow',
+                      'width=800,height=600'); return false;\">electrophoregramme</a></td> ";
                   }else{
                       echo "<td>$resultat</td> ";
                   }
       }
 
     }}
-    echo ('<td><a href="">'."Modifier".'</a></td>');
+    echo "<td><form method='GET' action='modifAnalyse.php'>";
+    echo "<input type='hidden' name='id' value='$id' />";
+    echo "<input type='hidden' name='nomGrotte' value='$RetourNomGrotte' />";
+    echo "<input type='hidden' name='idGrotte' value='$RetourIdGrotte' />";
+    echo "<input type='hidden' name='site' value='$RetourNomSite' />";
+    echo "<input type='hidden' name='idSite' value='$RetourIdSite' />";
+    echo "<input type='hidden' name='piege' value='$RetourPiege' />";
+    echo "<input type='hidden' name='numEchantillon' value='$RetourEchantillon' />";
+    echo "<input type='hidden' name='idEchantillon' value='$RetourIdEchantillon' />";
+    echo "<input type='submit' value='Modifier' />";
+    echo "</form></td>";
+    //echo ('<td><a href="">'."Modifier".'</a></td>');
     echo "<td><form method='GET' onsubmit='return suppression(this)'>";
     echo "<input type='hidden' name='nom' value='$RetourEchantillon - $nomGene - $date' />";
     echo "<input type='hidden' name='table' value='analyses' />";
@@ -173,16 +184,29 @@ echo "</table>";
              echo "<td>Non renseigné</td>";
              }else{
                  if ($cle=='fasta'){
-                     echo "<td><a href='$resultat'>fichier fasta</a></td> ";
+                     echo "<td><a href='$resultat' onclick=\"window.open(this.href, 'newwindow',
+                     'width=800,height=600'); return false;\">fichier fasta</a></td> ";
                  } elseif ($cle=='electrophoregramme'){
-                     echo "<td><a href='$resultat'>electrophoregramme</a></td> ";
+                     echo "<td><a href='$resultat' onclick=\"window.open(this.href, 'newwindow',
+                     'width=800,height=600'); return false;\">electrophoregramme</a></td> ";
                  } else {
                      echo "<td>$resultat</td> ";
                  }
          }
 
        }}
-       echo ('<td><a href="">'."Modifier".'</a></td>');
+       echo "<td><form method='GET' action='modifAnalyse.php'>";
+       echo "<input type='hidden' name='id' value='$id' />";
+       echo "<input type='hidden' name='nomGrotte' value='$RetourNomGrotte' />";
+       echo "<input type='hidden' name='idGrotte' value='$RetourIdGrotte' />";
+       echo "<input type='hidden' name='site' value='$RetourNomSite' />";
+       echo "<input type='hidden' name='idSite' value='$RetourIdSite' />";
+       echo "<input type='hidden' name='piege' value='$RetourPiege' />";
+       echo "<input type='hidden' name='numEchantillon' value='$RetourEchantillon' />";
+       echo "<input type='hidden' name='idEchantillon' value='$RetourIdEchantillon' />";
+       echo "<input type='submit' value='Modifier' />";
+       echo "</form></td>";
+       //echo ('<td><a href="">'."Modifier".'</a></td>');
        echo "<td><form method='GET' onsubmit='return suppression(this)'>";
        echo "<input type='hidden' name='nom' value='$RetourEchantillon - $nomGene - $date' />";
        echo "<input type='hidden' name='table' value='analyses' />";

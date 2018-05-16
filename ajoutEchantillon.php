@@ -1,9 +1,7 @@
-/<?php
+<?php
 include 'BDD/bdd.php';
 $bdd=connexionbd();
-?>
 
-<?php
 include 'verificationConnexion.php';
 include 'consultationModification.php';
 ?>
