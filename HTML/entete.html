@@ -11,7 +11,10 @@
 
 		<script src="Bootstrap/jquery.js"></script>
 		<script src="Bootstrap/bootstrap.js"></script>
-    <script type="text/javascript" src="javascript/script.js"></script>
+        <script type="text/javascript" src="javascript/script.js"></script>
+
+        <script>var role="<?php echo $_SESSION['admin'];?>";</script>
+        <script type="text/javascript" src="javascript/verifAdmin.js"></script>
 	</head>
 
 	<body>
@@ -34,6 +37,7 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
+        <li id="admin"></li>
         <li><a href="deconnexion.php">DECONNEXION</a></li>
       </ul>
     </div>

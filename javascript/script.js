@@ -161,6 +161,26 @@ function verifIdentiqueTaxo(formulaire) {
     return verif;
 }
 
+function verifIdentiqueSystemeHydro(formulaire) {
+    var request = new XMLHttpRequest();
+    var verif = false;
+
+    request.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            if (this.responseText) {
+                verif = true;
+            } else {
+                verif = false;
+            }
+        }
+    }
+
+    request.open("POST", "./WebService/verifIdentiqueSystemeHydroWS.php", false);
+    request.send(new FormData(formulaire));
+
+    return verif;
+}
+
 function afficher(idDiv, typeAffichage) {
     var affichage = document.getElementById(idDiv);
     affichage.style.display = typeAffichage;
@@ -212,6 +232,14 @@ function suppression(formulaire) {
         texte += "analyses";
     } else if (table == 'analyses') {
         texte += "Souhaitez vous vraiment supprimer l'analyse ?";
+    } else if (table == 'gene') {
+        texte += "Souhaitez vous vraiment supprimer le gène : " + nom;
+        texte += "\nCETTE ACTION SUPPRIMERA EGALEMENT LES ELEMENTS LIES AU GENE :\n"
+        texte += "analyses";
+    } else if (table == 'systemehydrographique') {
+        texte += "Souhaitez vous vraiment supprimer le système hydrographique : " + nom;
+        texte += "\nCETTE ACTION SUPPRIMERA EGALEMENT LES ELEMENTS LIES AU SYSTEME HYDROGRAPHIQUE :\n"
+        texte += "grottes, sites, pièges, échantillons, analyses";
     }
 
     if (confirm(texte)) {
@@ -576,15 +604,25 @@ function controleEchantillon(formulaire) {
     return true;
 }
 
-function controleGene(formulaire) {
+function controleGene(formulaire, modif) {
     input = formulaire.elements['nomGene'];
     message = "";
     erreur = false;
 
     valeurNomGene = input.value;
-    if (verifIdentique('nom', 'gene', valeurNomGene)) {
-        message += "- Un gène du même nom existe déjà\n";
-        erreur = true;
+    if (modif) {
+        nomGenePrecedent = formulaire.elements['nomGenePrecedent'];
+        if (!(nomGenePrecedent == valeurNomGene)){
+            if (verifIdentique('nom', 'gene', valeurNomGene)) {
+                message += "- Un gène du même nom existe déjà\n";
+                erreur = true;
+            }
+        }
+    } else {
+        if (verifIdentique('nom', 'gene', valeurNomGene)) {
+            message += "- Un gène du même nom existe déjà\n";
+            erreur = true;
+        }
     }
 
     if (erreur) {
@@ -613,6 +651,34 @@ function controleTaxo(formulaire) {
     if (verifIdentiqueTaxo(formulaire)) {
         message += "- La taxonomie est déjà présente";
         erreur = true;
+    }
+
+    if (erreur) {
+        alert(message);
+        return false;
+    }
+
+    return true;
+}
+
+function controleSystemeHydro(formulaire) {
+    message = "";
+    erreur = false;
+
+    nom = formulaire.elements['nom'].value;
+    departement = formulaire.elements['departement'].value;
+    pays = formulaire.elements['pays'].value;
+
+    nomPrecedent = formulaire.elements['nomPrecedent'].value;
+    departementPrecedent = formulaire.elements['departementPrecedent'].value;
+    paysPrecedent = formulaire.elements['paysPrecedent'].value;
+
+    if (!((nomPrecedent == nom) && (departementPrecedent == departement)
+                                && (paysPrecedent == pays))) {
+        if (verifIdentiqueSystemeHydro(formulaire)) {
+            message += "- Il existe déjà un système hydrographique du même nom, département et pays\n";
+            erreur = true;
+        }
     }
 
     if (erreur) {

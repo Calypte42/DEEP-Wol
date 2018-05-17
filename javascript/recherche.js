@@ -456,10 +456,25 @@ document.addEventListener('DOMContentLoaded', function() {
               new_html += '<table class="table table-bordered table-condensed" style="margin-top: 50px; text-align:center;">';
               new_html += '<tr>';
               new_html += '<th style="text-align:center;">Nom du gene</th>';
+              new_html += '<th style="text-align:center;">Modifier</th>';
+              new_html += '<th style="text-align:center;">Supprimer</th>';
               new_html += '</tr>';
               for (var i = 0; i < ret.resultat.length; i++) {
                   new_html += '<tr>';
                   new_html += '<td>' + ret.resultat[i].nom + '</td>';
+
+                  new_html += "<td><form method='GET' action='modifGene.php'>";
+                  new_html += "<input type='hidden' name='id' value='"+ret.resultat[i].nom+"' />";
+                  new_html += "<input type='submit' value='Modifier' />";
+                  new_html += "</form></td>";
+              //new_html += ('<td><a href="">'."Modifier".'</a></td>');
+                  new_html += "<td><form method='GET' onsubmit='return suppression(this)'>";
+                  new_html += "<input type='hidden' name='nom' value='"+ret.resultat[i].nom+"' />";
+                  new_html += "<input type='hidden' name='table' value='gene' />";
+                  new_html += "<input type='hidden' name='colonne' value='nom' />";
+                  new_html += "<input type='hidden' name='id' value='"+ret.resultat[i].nom+"' />";
+                  new_html += "<input type='submit' value='Supprimer' />";
+                  new_html += "</form></td>";
                   new_html += '</tr>';
               }
               new_html += '</table></div><br/>';
@@ -502,6 +517,20 @@ document.addEventListener('DOMContentLoaded', function() {
                   new_html += '<td>' + ret.resultat[i].nom + '</td>';
                   new_html += '<td>' + ret.resultat[i].departement + '</td>';
                   new_html += '<td>' + ret.resultat[i].pays + '</td>';
+
+                  new_html += "<td><form method='GET' action='modifSystemeHydrographique.php'>";
+                  new_html += "<input type='hidden' name='id' value='"+ret.resultat[i].id+"' />";
+                  new_html += "<input type='submit' value='Modifier' />";
+                  new_html += "</form></td>";
+              //new_html += ('<td><a href="">'."Modifier".'</a></td>');
+                  new_html += "<td><form method='GET' onsubmit='return suppression(this)'>";
+                  new_html += "<input type='hidden' name='nom' value='"+ret.resultat[i].nom+" "+ret.resultat[i].departement+" "+ret.resultat[i].pays+"' />";
+                  new_html += "<input type='hidden' name='table' value='systemehydrographique' />";
+                  new_html += "<input type='hidden' name='colonne' value='id' />";
+                  new_html += "<input type='hidden' name='id' value='"+ret.resultat[i].id+"' />";
+                  new_html += "<input type='submit' value='Supprimer' />";
+                  new_html += "</form></td>";
+
                   new_html += '</tr>';
               }
               new_html += '</table></div><br/>';

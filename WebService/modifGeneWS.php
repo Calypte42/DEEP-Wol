@@ -10,7 +10,6 @@ $req->execute(array(
 	'nom' => $_REQUEST['nomGene'],
 ));
 
-header('Refresh: 0; URL=../ajoutGene.php');
-echo http_response_code();
+header('Refresh: 0; URL=../recherche.php');
 
 ?>
