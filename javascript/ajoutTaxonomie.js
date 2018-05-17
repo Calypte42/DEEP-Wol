@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
             genreTaxo.setAttribute('name', 'genreTaxo');
             genreTaxo.style.display = 'inline';
         } else {
-            selectClasseTaxo.setAttribute('name', 'genreTaxo');
+            selectGenreTaxo.setAttribute('name', 'genreTaxo');
             genreTaxo.style.display = 'none';
             genreTaxo.setAttribute('name', '');
         }
@@ -185,7 +185,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         donnees.append("rang", rang);
 
-        request.open("POST", "./WebService/listeTaxonomieWS.php", true);
+        request.open("POST", "./WebService/listeTaxonomieModifWS.php", true);
         request.send(donnees);
     }
 

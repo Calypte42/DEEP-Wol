@@ -34,7 +34,8 @@ document.addEventListener('DOMContentLoaded', function() {
     var imageTaxo = document.getElementById('imageTaxo');
     var lienImageTaxo = document.getElementById('lienImageTaxo');
 
-    function majTaxo(rang) {
+    function ajaxMajTaxo(rang) {
+        rangModifie = document.getElementById(rang).value;
 
         var donnees = new FormData();
 
@@ -44,22 +45,10 @@ document.addEventListener('DOMContentLoaded', function() {
             donnees.append("classe", "");
         }
 
-        if ((rang + 1) == 1) {
-            rangMAJ = "ordre";
-            ajaxMajTaxo(rangMAJ, donnees);
-        }
-
         if (ordre.value) {
             donnees.append("ordre", ordre.value);
         } else {
             donnees.append("ordre", "");
-        }
-
-        if ((rang + 1) == 2) {
-            rangMAJ = "famille";
-            ajaxMajTaxo(rangMAJ, donnees);
-        } else if ((rang + 1) < 2) {
-            famille.options.length = 0;
         }
 
         if (famille.value) {
@@ -68,24 +57,10 @@ document.addEventListener('DOMContentLoaded', function() {
             donnees.append("famille", "");
         }
 
-        if ((rang + 1) == 3) {
-            rangMAJ = "sousFamille";
-            ajaxMajTaxo(rangMAJ, donnees);
-        } else if ((rang + 1) < 3) {
-            sousFamille.options.length = 0;
-        }
-
         if (sousFamille.value) {
             donnees.append("sousFamille", sousFamille.value);
         } else {
             donnees.append("sousFamille", "");
-        }
-
-        if ((rang + 1) == 4) {
-            rangMAJ = "genre";
-            ajaxMajTaxo(rangMAJ, donnees);
-        } else if ((rang + 1) < 4) {
-            genre.options.length = 0;
         }
 
         if (genre.value) {
@@ -94,54 +69,112 @@ document.addEventListener('DOMContentLoaded', function() {
             donnees.append("genre", "");
         }
 
-        if ((rang + 1) == 5) {
-            rangMAJ = "espece";
-            ajaxMajTaxo(rangMAJ, donnees);
-        } else if ((rang + 1) < 5) {
-            espece.options.length = 0;
+        if (espece.value) {
+            donnees.append("espece", espece.value);
+        } else {
+            donnees.append("espece", "");
         }
 
-    }
+        if (classe.value != "") {
+            donnees.append("classeSelected", 1);
+        } else {
+            donnees.append("classeSelected", 0);
+        }
 
-    function ajaxMajTaxo(rang, donnees) {
+        if (ordre.value != "") {
+            donnees.append("ordreSelected", 1);
+        } else {
+            donnees.append("ordreSelected", 0);
+        }
+
+        if (famille.value != "") {
+            donnees.append("familleSelected", 1);
+        } else {
+            donnees.append("familleSelected", 0);
+        }
+
+        if (sousFamille.value != "") {
+            donnees.append("sousFamilleSelected", 1);
+        } else {
+            donnees.append("sousFamilleSelected", 0);
+        }
+
+        if (genre.value != "") {
+            donnees.append("genreSelected", 1);
+        } else {
+            donnees.append("genreSelected", 0);
+        }
+
+        if (espece.value != "") {
+            donnees.append("especeSelected", 1);
+        } else {
+            donnees.append("especeSelected", 0);
+        }
+
         var request = new XMLHttpRequest();
 
         request.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 if (this.responseText) {
-                    select = document.getElementById(rang);
-                    select.options.length = 0;
+                    json = JSON.parse(this.responseText);
+                    taxoSelect = ["classe", "ordre", "famille", "sousFamille", "genre", "espece"];
+                    x = 0
+                    multiple = false;
 
-                    var option = document.createElement("option");
+                    for (taxo in json) {
+                        select = document.getElementById(taxoSelect[x]);
+                        valeur = select.value;
+                        select.options.length = 0;
 
-                    option.text = "Choisir";
-                    option.value = "";
-                    option.selected = true;
-                    option.disabled = true;
-                    select.add(option);
+                        var option = document.createElement("option");
+                        option.text = "";
+                        option.value = "";
+                        select.add(option);
 
-                    liste = JSON.parse(this.responseText);
+                        liste = json[taxo];
 
-                    if (!(liste == null)) {
-                        for (var i = 0; i < liste.length; i++) {
-                            var option = document.createElement("option");
-                            option.text = liste[i];
-                            option.value = liste[i];
-                            select.add(option);
+                        if (!(liste == null)) {
+
+                            nombreValeurs = Object.keys(liste).length;
+                            for (var i = 0; i < liste.length; i++) {
+                                if (liste[i] == "") {
+                                    nombreValeurs --;
+                                }
+                            }
+
+                            if (nombreValeurs > 1) {
+                                multiple = true;
+                            }
+
+                            for (var i = 0; i < liste.length; i++) {
+                                if (liste[i] == "") {
+                                    var option = document.createElement("option");
+                                    option.text = "Indetermine";
+                                    option.value = "Indetermine";
+                                    select.add(option, select[1]);
+                                } else {
+                                    var option = document.createElement("option");
+                                    option.text = liste[i];
+                                    option.value = liste[i];
+                                    if ((valeur == liste[i]))
+                                        option.selected = true;
+                                    else if ((nombreValeurs == 1) && !multiple && (rangModifie != "Indetermine") && (rangModifie != ""))
+                                        option.selected = true;
+                                    select.add(option);
+                                }
+                            }
                         }
+
+                        x += 1;
                     }
 
-                    var option = document.createElement("option");
-                    option.text = "Indetermine";
-                    option.value = "Indetermine";
-                    select.add(option);
                 }
             }
         };
 
         donnees.append("rang", rang);
 
-        request.open("POST", "./WebService/listeTaxonomieWS.php", true);
+        request.open("POST", "./WebService/listeTaxonomieWS.php");
         request.send(donnees);
     }
 
@@ -184,26 +217,27 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     classe.addEventListener("change", function() {
-        majTaxo(0)
+        ajaxMajTaxo("classe");
         chargerImage();
     });
     ordre.addEventListener("change", function() {
-        majTaxo(1)
+        ajaxMajTaxo("ordre");
         chargerImage();
     });
     famille.addEventListener("change", function() {
-        majTaxo(2)
+        ajaxMajTaxo("famille");
         chargerImage();
     });
     sousFamille.addEventListener("change", function() {
-        majTaxo(3)
+        ajaxMajTaxo("sousFamille");
         chargerImage();
     });
     genre.addEventListener("change", function() {
-        majTaxo(4)
+        ajaxMajTaxo("genre");
         chargerImage();
     });
     espece.addEventListener("change", function() {
+        ajaxMajTaxo("espece");
         chargerImage();
     });
 

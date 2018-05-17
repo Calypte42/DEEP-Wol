@@ -36,46 +36,55 @@ if (isset($_REQUEST['genre'])) {
     $genre = "";
 }
 
-$where = "classe = '$classe'";
-
-if ($rang == "ordre") {
-    $requete = "SELECT DISTINCT $rang FROM Taxonomie WHERE $where";
+if (isset($_REQUEST['espece'])) {
+    $espece = $_REQUEST['espece'];
+} else {
+    $espece = "";
 }
 
-$where .= " AND ordre = '$ordre'";
+$selected = [];
 
-if ($rang == "famille") {
-    $requete = "SELECT DISTINCT $rang FROM Taxonomie WHERE $where";
+
+if ($_REQUEST['classeSelected'] == 1) {
+    $selected['classe'] = $classe;
+}
+if ($_REQUEST['ordreSelected'] == 1) {
+    $selected['ordre'] = $ordre;
+}
+if ($_REQUEST['familleSelected'] == 1) {
+    $selected['famille'] = $famille;
+}
+if ($_REQUEST['sousFamilleSelected'] == 1) {
+    $selected['sousFamille'] = $sousFamille;
+}
+if ($_REQUEST['genreSelected'] == 1) {
+    $selected['genre'] = $genre;
+}
+if ($_REQUEST['especeSelected'] == 1) {
+    $selected['espece'] = $espece;
 }
 
-$where .= " AND famille = '$famille'";
-
-if ($rang == "sousFamille") {
-    $requete = "SELECT DISTINCT $rang FROM Taxonomie WHERE $where";
+$where = "WHERE ";
+foreach ($selected as $key => $value) {
+    $where .= $key . " = '". $value . "' AND ";
 }
+$where = substr($where, 0, -5);
 
-$where .= " AND sousFamille = '$sousFamille'";
-
-if ($rang == "genre") {
-    $requete = "SELECT DISTINCT $rang FROM Taxonomie WHERE $where";
-}
-
-
-$where .= " AND genre = '$genre'";
-
-if ($rang == "espece") {
-    $requete = "SELECT DISTINCT $rang FROM Taxonomie WHERE $where";
-}
+$requete = "SELECT DISTINCT classe, ordre, famille, sousFamille, genre, espece FROM Taxonomie $where";
 
 $resultat = requete($bdd, $requete);
-
-$rangMinuscule = strtolower($rang);
 
 $liste = [];
 
 foreach ($resultat as $array) {
-    if (!empty($array[$rangMinuscule])) {
-        $liste[] = $array[$rangMinuscule];
+    foreach ($array as $key => $value) {
+        if (isset($liste[$key])) {
+            if (!in_array($value, $liste[$key])) {
+                $liste[$key][] = $value;
+            }
+        } else {
+            $liste[$key][] = $value;
+        }
     }
 }
 
