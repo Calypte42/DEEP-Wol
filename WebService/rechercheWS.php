@@ -206,4 +206,44 @@ if($_REQUEST['choixRecherche']=="Grotte"){
                 echo json_encode($data);
               }
 
+
+              //------------------------------------------------------------------------------------------------
+
+              if($_REQUEST['choixRecherche']=="EquipeSpeleo"){
+                $data = Array("resultat" => Array());
+                if (empty($_REQUEST['recherche'])){
+                  $requete='SELECT codeEquipe FROM EquipeSpeleo';
+                }else{
+                  $requete = "SELECT codeEquipe FROM EquipeSpeleo
+                  WHERE (
+                    LOWER (codeEquipe) LIKE '%". strtolower($_REQUEST['recherche']) ."%')" ;
+                  }
+                  $query = $bdd->query($requete);
+                  while ($donnees = $query->fetch()) {
+                    $data['resultat'][] = Array('codeEquipe'=>$donnees['codeequipe']);
+                  }
+                  header("Content-Type:application/json");
+                  echo json_encode($data);
+                }
+
+
+                //------------------------------------------------------------------------------------------------
+
+                if($_REQUEST['choixRecherche']=="Personne"){
+                  $data = Array("resultat" => Array());
+                  if (empty($_REQUEST['recherche'])){
+                    $requete='SELECT id,initiale FROM Personne';
+                  }else{
+                    $requete = "SELECT id,initiale FROM Personne
+                    WHERE (
+                      LOWER (initiale) LIKE '%". strtolower($_REQUEST['recherche']) ."%')" ;
+                    }
+                    $query = $bdd->query($requete);
+                    while ($donnees = $query->fetch()) {
+                      $data['resultat'][] = Array('id'=>$donnees['id'], 'initiale'=>$donnees['initiale']);
+                    }
+                    header("Content-Type:application/json");
+                    echo json_encode($data);
+                  }
+
             ?>

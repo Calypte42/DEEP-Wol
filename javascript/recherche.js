@@ -546,6 +546,91 @@ document.addEventListener('DOMContentLoaded', function() {
 
   }
 
+
+  function listeEquipeSpelo() {
+
+      var request = new XMLHttpRequest(); // on prepare AJAX
+
+      request.addEventListener('load', function(data) { // Quand la requete sera envoye on affichera
+          var ret = JSON.parse(data.target.responseText); // le resultat de la requete sous forme de tableau
+          var new_html = '';
+          console.log(ret);
+          if (ret.resultat.length == 0) {
+              new_html += '<div style ="margin-top:50px; text-align:center;"><br/>Aucune donnée ne correspond à votre recherche</div>';
+              document.querySelector('#listing').innerHTML = new_html; //reference la div dont id=listing sur recherche.php
+          } else {
+              new_html += '<div class = "col-sm-10">';
+              new_html += '<div><br/>';
+              new_html += '<table class="table table-bordered table-condensed" style="margin-top: 50px; text-align:center;">';
+              new_html += '<tr>';
+              new_html += '<th style="text-align:center;">Code Equipe</th>';
+              new_html += '<th style="text-align:center;">Modifier</th>';
+              new_html += '</tr>';
+              for (var i = 0; i < ret.resultat.length; i++) {
+                  new_html += '<tr>';
+                  new_html += '<td>' + ret.resultat[i].codeEquipe + '</td>';
+                  new_html += "<td><form method='GET' action='modifEquipeSpeleo.php'>";
+                  new_html += "<input type='hidden' name='codeEquipe' value='"+ret.resultat[i].codeEquipe+"' />";
+                  new_html += "<input type='submit' value='Modifier' />";
+                  new_html += "</form></td>";
+
+                  new_html += '</tr>';
+              }
+              new_html += '</table></div><br/>';
+              new_html += '</div>';
+              document.querySelector('#listing').innerHTML = new_html;
+
+          }
+
+
+      });
+      request.open("POST", "WebService/rechercheWS.php"); // on envoie la requete
+      request.send(new FormData(formRecherche));
+
+  }
+
+  function listePersonne() {
+
+      var request = new XMLHttpRequest(); // on prepare AJAX
+
+      request.addEventListener('load', function(data) { // Quand la requete sera envoye on affichera
+          var ret = JSON.parse(data.target.responseText); // le resultat de la requete sous forme de tableau
+          var new_html = '';
+          console.log(ret);
+          if (ret.resultat.length == 0) {
+              new_html += '<div style ="margin-top:50px; text-align:center;"><br/>Aucune donnée ne correspond à votre recherche</div>';
+              document.querySelector('#listing').innerHTML = new_html; //reference la div dont id=listing sur recherche.php
+          } else {
+              new_html += '<div class = "col-sm-10">';
+              new_html += '<div><br/>';
+              new_html += '<table class="table table-bordered table-condensed" style="margin-top: 50px; text-align:center;">';
+              new_html += '<tr>';
+              new_html += '<th style="text-align:center;">Initiales</th>';
+              new_html += '<th style="text-align:center;">Modifier</th>';
+              new_html += '</tr>';
+              for (var i = 0; i < ret.resultat.length; i++) {
+                  new_html += '<tr>';
+                  new_html += '<td>' + ret.resultat[i].initiale + '</td>';
+                  new_html += "<td><form method='GET' action='modifPersonne.php'>";
+                  new_html += "<input type='hidden' name='id' value='"+ret.resultat[i].id+"' />";
+                  new_html += "<input type='submit' value='Modifier' />";
+                  new_html += "</form></td>";
+
+                  new_html += '</tr>';
+              }
+              new_html += '</table></div><br/>';
+              new_html += '</div>';
+              document.querySelector('#listing').innerHTML = new_html;
+
+          }
+
+
+      });
+      request.open("POST", "WebService/rechercheWS.php"); // on envoie la requete
+      request.send(new FormData(formRecherche));
+
+  }
+
     var formRecherche=document.getElementById("formRecherche");
     var select = document.getElementById("choixRecherche");
 
@@ -603,6 +688,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     if(select.value=="SystemeHydrographique"){
     listeSystemeHydro();
+    }
+    if(select.value=="EquipeSpeleo"){
+    listeEquipeSpelo();
+    }
+    if(select.value=="Personne"){
+    listePersonne();
     }
 
     })
