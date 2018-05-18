@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 }
                             }
 
-                            if (nombreValeurs > 1) {
+                            if (nombreValeurs > 1 && rang != taxoSelect[x]) {
                                 multiple = true;
                             }
 
@@ -151,6 +151,9 @@ document.addEventListener('DOMContentLoaded', function() {
                                     var option = document.createElement("option");
                                     option.text = "Indetermine";
                                     option.value = "Indetermine";
+                                    if (valeur == "Indetermine") {
+                                        option.selected = true;
+                                    }
                                     select.add(option, select[1]);
                                 } else {
                                     var option = document.createElement("option");

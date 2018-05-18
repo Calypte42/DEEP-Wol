@@ -56,6 +56,58 @@ function ajaxAjout(url, idAffichage, idFormulaire, idSelect) {
 
 };
 
+function ajoutBacterie(idAffichage, idFormulaire, idSelect, idBouton) {
+
+    var liste = document.getElementById(idSelect);
+    var listeOptions = liste.options;
+    var formulaire = document.getElementById(idFormulaire);
+    var valeurs = formulaire.getElementsByClassName('valeurs');
+    var nouvelleOption = "";
+
+    for (var i = 0; i < valeurs.length; i++) {
+        nouvelleOption += valeurs[i].value;
+        nouvelleOption += " ";
+    }
+
+    nouvelleOption = nouvelleOption.trim();
+
+    var ajoutOption = true;
+    for (var i = 0; i < listeOptions.length; i++) {
+        if (listeOptions[i].text == nouvelleOption) {
+            ajoutOption = false;
+            listeOptions[i].selected = true;
+        }
+    }
+
+    if (ajoutOption) {
+        var option = document.createElement("option");
+        option.text = nouvelleOption;
+        option.value = nouvelleOption;
+        option.selected = true;
+        liste.add(option, liste[0]);
+    }
+
+    affichageDiv(idAffichage, idBouton);
+
+    return false;
+
+};
+
+function affichageDiv(idDiv, idBouton) {
+
+    var affichage = document.getElementById(idDiv);
+    var bouton = document.getElementById(idBouton);
+
+    if (affichage.style.display != "inline") {
+        affichage.style.display = "inline";
+        bouton.style.display = "none";
+    } else {
+        affichage.style.display = "none";
+        bouton.style.display = "inline";
+    }
+
+};
+
 function majSite(idGrotte, majPiege) {
     var request = new XMLHttpRequest();
     var selectDiv = document.getElementById('choixSite');
@@ -557,6 +609,40 @@ function controleEchantillon(formulaire) {
         erreur = true;
     }
 
+    selectForme = formulaire.elements['formeStockage'];
+    if (selectForme.value == "") {
+        message += "- Veuillez choisir une forme de stockage\n";
+        erreur = true;
+    }
+
+    selectLieu = formulaire.elements['lieuStockage'];
+    if (selectLieu.value == "") {
+        message += "- Veuillez choisir un lieu de stockage\n";
+        erreur = true;
+    }
+
+
+    if (document.getElementById("divBacterie").style.display == "inline") {
+        message += "Veuillez valider l'ajout d'une bactérie";
+        erreur = true;
+    }
+
+    if (document.getElementById("infecteBacterie").value == "oui") {
+
+        bacterie = document.getElementById("bacterie").options;
+        compteur = 0;
+        for (var i = 0; i < bacterie.length; i++) {
+            if (bacterie[i].selected) {
+                compteur += 1;
+            }
+        }
+
+        if (compteur == 0) {
+            message += "- Veuillez choisir au moins un gène\n";
+            erreur = true;
+        }
+    }
+
     classe = formulaire.elements['classe'];
     if (classe.value == "") {
         message += "- Veuillez choisir une classe\n";
@@ -596,18 +682,6 @@ function controleEchantillon(formulaire) {
     select = formulaire.elements['idAuteur'];
     if (select.value == "") {
         message += "- Veuillez choisir un auteur\n";
-        erreur = true;
-    }
-
-    selectForme = formulaire.elements['formeStockage'];
-    if (selectForme.value == "") {
-        message += "- Veuillez choisir une forme de stockage\n";
-        erreur = true;
-    }
-
-    selectLieu = formulaire.elements['lieuStockage'];
-    if (selectLieu.value == "") {
-        message += "- Veuillez choisir un lieu de stockage\n";
         erreur = true;
     }
 

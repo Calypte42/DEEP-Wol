@@ -48,7 +48,7 @@ $requete='SELECT e.id,numEchantillon,formeStockage,lieuStockage,niveauIdentifica
 $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
 	foreach ($valeur as $cle => $resultat) { /* On recupere la cle et la valeur de chaque element */
-		echo "$resultat";
+		//echo "$resultat";
       if($cle=='id'){
         $id=$resultat;
       }else{

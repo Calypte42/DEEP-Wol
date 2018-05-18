@@ -138,12 +138,11 @@ if ($nombreResultat==1) {
 
 
     if($_REQUEST['bacterie'][0]!="Indetermine"){
-      $req = $bdd->prepare('INSERT INTO CorrespondanceEchantillonBacterie VALUES (:idEchantillon,:clade)');
 
-        foreach ($_REQUEST['bacterie'] as $key) {
+        foreach ($_REQUEST['bacterie'] as $clade) {
+          $req = $bdd->prepare('INSERT INTO CorrespondanceEchantillonBacterie VALUES (:idEchantillon,:clade)');
           $entre['idEchantillon']= $idEchantillon;
-          $entre['clade']= $key;
-
+          $entre['clade']= $clade;
           $req->execute($entre);
       }
     }

@@ -228,8 +228,7 @@ include 'consultationModification.php';
 
               <div id="apparaitreSiInfecteBacterie" style="display:none">
                 <?php
-                echo"<select multiple name='bacterie'>"; /* On cree une liste deroulante */
-                echo "<option selected = 'selected' value='Indetermine'>Indetermine</option>"; /*possibilité de selectionner toutes les grottes */
+                echo"<select multiple id='bacterie' name='bacterie[]'>"; /* On cree une liste deroulante */
                 $requete='SELECT DISTINCT clade from CorrespondanceEchantillonBacterie ORDER BY clade';  /* On prepare une requete permettant de recupere l'ensemble des valeurs qui nous interessent   */
                   $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
                   foreach ($value as $array) { /* On parcours les resultats possible (ici 1 seul) */
@@ -239,6 +238,8 @@ include 'consultationModification.php';
                   }
                   echo "</select>";
                   ?>
+
+                  <input type = "button" id="affichageBacterie" value = "ajouter une bactérie" onclick="affichageDiv('divBacterie', this.id)">
               </div>
 
 				    </br></br>
@@ -447,21 +448,21 @@ include 'consultationModification.php';
 							</fieldset>
 						</form>
 					</div>
-            <!--
-                <div class = "col-sm-3" style = "float:right; margin-top:150px;">
+
+                <div class = "col-sm-20" style = "float:right; margin-top:150px;">
         			<div id="divBacterie" style="display:none;">
-        					<form  id="formBacterie"  method="POST" onsubmit="return ajaxAjout('./WebService/ajoutEquipeWS.php', 'divBacterie', this.id, 'bacterie')">
+        					<form  id="formBacterie"  method="POST" onsubmit="return ajoutBacterie('divBacterie', this.id, 'bacterie', 'affichageBacterie')">
         						<fieldset style = "padding-left:5px;" >
-        							<legend class="scheduler-border"> Ajout Equipe spéleo </legend>
-        							<label style = "float:left;">Equipe spéléo</label>&nbsp;
+        							<legend class="scheduler-border"> Ajout bactérie </legend>
+        							<label style = "float:left;">Clade</label>&nbsp;
         							<input class="valeurs" type="text" id="clade" name="clade" required size="20"/> *
         							</br></br>
-        							<button type="submit">Ajouter une équipe</button></br></br>
+        							<button type="submit">Ajouter une bactérie</button></br></br>
         						</fieldset>
         					</form>
         			</div>
         		</div>
-            -->
+
 
 		</div> <!-- ferme div row de consultationModification -->
 	</div>
