@@ -26,7 +26,7 @@ include 'consultationModification.php';
 
 					<?php
 
-					$requete='SELECT g.id,nomCavite,typeCavite,latitude,longitude,typeAcces,accesPublic,h.nom from Grotte g, SystemeHydrographique h WHERE idSystemeHydrographique=h.id ORDER BY nomCavite';  /*On prepare une requete permettant de recupere l'ensemble de la table grotte*/
+					$requete='SELECT g.id,nomCavite,typeCavite,latitude,longitude,typeAcces,accesPublic from Grotte g, SystemeHydrographique h WHERE idSystemeHydrographique=h.id ORDER BY nomCavite';  /*On prepare une requete permettant de recupere l'ensemble de la table grotte*/
 					$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 					foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
 						foreach ($valeur as $cle => $resultat) { /* On recupere la cle et la valeur de chaque element */
@@ -55,6 +55,16 @@ include 'consultationModification.php';
 								}
 							}
 						}
+                        $requete="SELECT nom, departement, pays from SystemeHydrographique
+                                    WHERE id=(SELECT idSystemeHydrographique FROM Grotte WHERE id=$id)";
+    					$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
+
+                        $nomSystemeHydro = $value[0]['nom'];
+                        $departementSystemeHydro = $value[0]['departement'];
+                        $paysSystemeHydro = $value[0]['pays'];
+                        echo "<td>$nomSystemeHydro - $departementSystemeHydro - $paysSystemeHydro</td>";
+
+
 			        echo "<td><form method='GET' action='modifGrotte.php'>";
 			        echo "<input type='hidden' name='id' value='$id' />";
 			        echo "<input type='submit' value='Modifier' />";

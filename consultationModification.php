@@ -12,7 +12,7 @@ include 'HTML/entete.html';
 	<div class="row">
 		<div class= "col-sm-2 sidenav" id='menuVertical'>
 
-			<a href='recherche.php'>RECHERCHE DIVERSES</a>
+			<a href='recherche.php'>RECHERCHE</a>
 
 			</br>
 			</br>

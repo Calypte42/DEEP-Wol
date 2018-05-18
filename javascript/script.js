@@ -240,6 +240,14 @@ function suppression(formulaire) {
         texte += "Souhaitez vous vraiment supprimer le système hydrographique : " + nom;
         texte += "\nCETTE ACTION SUPPRIMERA EGALEMENT LES ELEMENTS LIES AU SYSTEME HYDROGRAPHIQUE :\n"
         texte += "grottes, sites, pièges, échantillons, analyses";
+    } else if (table == 'equipespeleo') {
+        texte += "Souhaitez vous vraiment supprimer l'équipe de spéléographique' : " + nom;
+        texte += "\nCETTE ACTION SUPPRIMERA EGALEMENT LES ELEMENTS LIES A L'EQUIPE SPELEO :\n"
+        texte += "sites, pièges, échantillons, analyses";
+    } else if (table == 'personne') {
+        texte += "Souhaitez vous vraiment supprimer la personne : " + nom;
+        texte += "\nCETTE ACTION SUPPRIMERA EGALEMENT LES ELEMENTS LIES A CETTE PERSONNE :\n"
+        texte += "échantillons, analyses";
     }
 
     if (confirm(texte)) {
@@ -591,6 +599,18 @@ function controleEchantillon(formulaire) {
         erreur = true;
     }
 
+    selectForme = formulaire.elements['formeStockage'];
+    if (selectForme.value == "") {
+        message += "- Veuillez choisir une forme de stockage\n";
+        erreur = true;
+    }
+
+    selectLieu = formulaire.elements['lieuStockage'];
+    if (selectLieu.value == "") {
+        message += "- Veuillez choisir un lieu de stockage\n";
+        erreur = true;
+    }
+
     if (document.getElementById("divPersonne").style.display == "inline") {
         message += "Veuillez valider l'ajout d'une personne";
         erreur = true;
@@ -677,6 +697,50 @@ function controleSystemeHydro(formulaire) {
                                 && (paysPrecedent == pays))) {
         if (verifIdentiqueSystemeHydro(formulaire)) {
             message += "- Il existe déjà un système hydrographique du même nom, département et pays\n";
+            erreur = true;
+        }
+    }
+
+    if (erreur) {
+        alert(message);
+        return false;
+    }
+
+    return true;
+}
+
+function controlePersonne(formulaire) {
+    input = formulaire.elements['nomPersonne'];
+    message = "";
+    erreur = false;
+
+    valeurNomPersonne = input.value;
+    nomPersonnePrecedente = formulaire.elements['initialesPersonnePrecedente'];
+    if (!(nomPersonnePrecedente == valeurNomPersonne)){
+        if (verifIdentique('initiale', 'personne', valeurNomPersonne)) {
+            message += "- Les initiales existent déjà";
+            erreur = true;
+        }
+    }
+
+    if (erreur) {
+        alert(message);
+        return false;
+    }
+
+    return true;
+}
+
+function controleEquipeSpeleo(formulaire) {
+    input = formulaire.elements['codeEquipe'];
+    message = "";
+    erreur = false;
+
+    valeurCodeEquipe = input.value;
+    codeEquipePrecedent = formulaire.elements['codeEquipePrecedent'];
+    if (!(codeEquipePrecedent == valeurCodeEquipe)){
+        if (verifIdentique('codeEquipe', 'EquipeSpeleo', valeurCodeEquipe)) {
+            message += "- Le code équipe existe déjà";
             erreur = true;
         }
     }

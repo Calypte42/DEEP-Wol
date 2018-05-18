@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     select.add(option);
 
                     select.setAttribute('name', '');
-                    input.setAttribute('name', rang);
+                    input.setAttribute('name', rang + "Taxo");
                     input.style.display = 'inline';
 
                     liste = JSON.parse(this.responseText);

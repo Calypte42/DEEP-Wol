@@ -176,16 +176,14 @@ include 'consultationModification.php';
 							<?php
 							echo "<label style='display: block; width:170px; float:left;' for='formeStockage'> Forme de stockage </label>";
 							echo "<select name='formeStockage' id='listeFormeStockage' onchange='ajoutAutre(this.options[this.selectedIndex].value, \"autreDivFormeStockage\", \"autreFormeStockage\")'>";
-							$requete='SELECT DISTINCT formeStockage from Echantillon ORDER BY formeStockage';
+                            echo "<option disabled selected value>Choisir</option>";
+                            $requete='SELECT DISTINCT formeStockage from Echantillon ORDER BY formeStockage';
 							$value=requete($bdd,$requete);
 							foreach ($value as $array) {
 								foreach ($array as $key => $valeur) {
-                                    if ($valeur != "Indéterminé") {
-                                        echo "<option value=\"$valeur\">$valeur</option>";
-                                    }
+                                    echo "<option value=\"$valeur\">$valeur</option>";
 								}
 							}
-                            echo "<option value='Indéterminé'>Indéterminé</option>";
                             echo "<option value='autre'>[Ajouter]</option>";
 							echo "</select>";
 							?>
@@ -198,16 +196,14 @@ include 'consultationModification.php';
 						<?php
 						echo "<label style='display: block; width:170px; float:left;' for='lieuStockage'> Lieu de stockage </label>";
 						echo "<select name='lieuStockage' id='listeLieuStockage' onchange='ajoutAutre(this.options[this.selectedIndex].value, \"autreDivLieuStockage\", \"autreLieuStockage\")'>";
-						$requete='SELECT DISTINCT lieuStockage from Echantillon ORDER BY lieuStockage';
+                        echo "<option disabled selected value>Choisir</option>";
+                        $requete='SELECT DISTINCT lieuStockage from Echantillon ORDER BY lieuStockage';
 						$value=requete($bdd,$requete);
 						foreach ($value as $array) {
 							foreach ($array as $key => $valeur) {
-                                if ($valeur != "Indéterminé") {
-                                    echo "<option value=\"$valeur\">$valeur</option>";
-                                }
+                                echo "<option value=\"$valeur\">$valeur</option>";
 							}
 						}
-                        echo "<option value='Indéterminé'>Indéterminé</option>";
                         echo "<option value='autre'>[Ajouter]</option>";
 						echo "</select>";
 						?>
@@ -232,7 +228,7 @@ include 'consultationModification.php';
 
               <div id="apparaitreSiInfecteBacterie" style="display:none">
                 <?php
-                echo"<select multiple name='bacterie[]'>"; /* On cree une liste deroulante */
+                echo"<select multiple name='bacterie'>"; /* On cree une liste deroulante */
                 echo "<option selected = 'selected' value='Indetermine'>Indetermine</option>"; /*possibilité de selectionner toutes les grottes */
                 $requete='SELECT DISTINCT clade from CorrespondanceEchantillonBacterie ORDER BY clade';  /* On prepare une requete permettant de recupere l'ensemble des valeurs qui nous interessent   */
                   $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
@@ -451,6 +447,21 @@ include 'consultationModification.php';
 							</fieldset>
 						</form>
 					</div>
+            <!--
+                <div class = "col-sm-3" style = "float:right; margin-top:150px;">
+        			<div id="divBacterie" style="display:none;">
+        					<form  id="formBacterie"  method="POST" onsubmit="return ajaxAjout('./WebService/ajoutEquipeWS.php', 'divBacterie', this.id, 'bacterie')">
+        						<fieldset style = "padding-left:5px;" >
+        							<legend class="scheduler-border"> Ajout Equipe spéleo </legend>
+        							<label style = "float:left;">Equipe spéléo</label>&nbsp;
+        							<input class="valeurs" type="text" id="clade" name="clade" required size="20"/> *
+        							</br></br>
+        							<button type="submit">Ajouter une équipe</button></br></br>
+        						</fieldset>
+        					</form>
+        			</div>
+        		</div>
+            -->
 
 		</div> <!-- ferme div row de consultationModification -->
 	</div>

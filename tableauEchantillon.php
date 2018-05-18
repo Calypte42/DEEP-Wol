@@ -20,8 +20,10 @@ echo"<form method='post' action='tableauPiege.php?nomGrotte=$RetourNomGrotte&idG
 </form>
 
 	<div class= "col-sm-10">
-    <?php echo "Liste des échantillons de la ".$_REQUEST['nomGrotte']." du ".$_REQUEST['site']." du ".$_REQUEST['piege']; ?>
-		<table class="table table-bordered table-condensed" style="margin-top: 10px;">
+    <?php
+    echo "Liste des échantillons de la grotte : ".$_REQUEST['nomGrotte']." du site : ".$_REQUEST['site']." du piège : ".$_REQUEST['piege'];
+    ?>
+        <table class="table table-bordered table-condensed" style="margin-top: 10px;">
 			<thead>
 				<tr>
 					<th>Numero Echantillon</th>
@@ -29,9 +31,9 @@ echo"<form method='post' action='tableauPiege.php?nomGrotte=$RetourNomGrotte&idG
 					<th>Lieu de stockage</th>
 					<th>Niveau d'identification</th>
 					<th>Infecte par bactérie</th>
-          <th>Auteur identification</th>
-          <th>Genre</th>
-          <th>Espece</th>
+                      <th>Auteur identification</th>
+                      <th>Genre</th>
+                      <th>Espece</th>
 					<th>Modifier</th>
 					<th>Supprimer</th>
 				</tr>
@@ -76,7 +78,7 @@ foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
 						echo "<td style='color:red'>$resultat</td>";
 					}
 					if($resultat=="nonDetermine"){
-						echo "<td>$resultat</td>";
+						echo "<td>Non déterminé</td>";
 					}
 				}//Fin gestion des bacteries
 
@@ -107,7 +109,6 @@ foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
         echo "</form></td></tr>";
 		//echo('<td><a href="">'."Supprimer".'</a></td></tr>');
 }
-echo "</table>";
 ?>
 			</tbody>
 		</table>

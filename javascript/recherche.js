@@ -406,6 +406,7 @@ document.addEventListener('DOMContentLoaded', function() {
               new_html += '<th style="text-align:center;">Espece</th>';
               new_html += '<th style="text-align:center;">Photo</th>';
               new_html += '<th style="text-align:center;">Modifier</th>';
+              new_html += '<th style="text-align:center;"> Supprimer </th>';
               new_html += '</tr>';
               for (var i = 0; i < ret.resultat.length; i++) {
                   new_html += '<tr>';
@@ -508,9 +509,11 @@ document.addEventListener('DOMContentLoaded', function() {
               new_html += '<div><br/>';
               new_html += '<table class="table table-bordered table-condensed" style="margin-top: 50px; text-align:center;">';
               new_html += '<tr>';
-              new_html += '<th style="text-align:center;">Nom</th>';
-              new_html += '<th style="text-align:center;">departement</th>';
-              new_html += '<th style="text-align:center;">Pays</th>';
+              new_html += '<th style="text-align:center;"> Nom </th>';
+              new_html += '<th style="text-align:center;"> Departement </th>';
+              new_html += '<th style="text-align:center;"> Pays </th>';
+              new_html += '<th style="text-align:center;"> Modifier </th>';
+              new_html += '<th style="text-align:center;"> Supprimer </th>';
               new_html += '</tr>';
               for (var i = 0; i < ret.resultat.length; i++) {
                   new_html += '<tr>';
@@ -565,6 +568,7 @@ document.addEventListener('DOMContentLoaded', function() {
               new_html += '<tr>';
               new_html += '<th style="text-align:center;">Code Equipe</th>';
               new_html += '<th style="text-align:center;">Modifier</th>';
+              new_html += '<th style="text-align:center;"> Supprimer </th>';
               new_html += '</tr>';
               for (var i = 0; i < ret.resultat.length; i++) {
                   new_html += '<tr>';
@@ -572,6 +576,13 @@ document.addEventListener('DOMContentLoaded', function() {
                   new_html += "<td><form method='GET' action='modifEquipeSpeleo.php'>";
                   new_html += "<input type='hidden' name='codeEquipe' value='"+ret.resultat[i].codeEquipe+"' />";
                   new_html += "<input type='submit' value='Modifier' />";
+                  new_html += "</form></td>";
+                  new_html += "<td><form method='GET' onsubmit='return suppression(this)'>";
+                  new_html += "<input type='hidden' name='nom' value='"+ret.resultat[i].codeEquipe+"' />";
+                  new_html += "<input type='hidden' name='table' value='equipespeleo' />";
+                  new_html += "<input type='hidden' name='colonne' value='codeEquipe' />";
+                  new_html += "<input type='hidden' name='id' value='"+ret.resultat[i].codeEquipe+"' />";
+                  new_html += "<input type='submit' value='Supprimer' />";
                   new_html += "</form></td>";
 
                   new_html += '</tr>';
@@ -607,6 +618,7 @@ document.addEventListener('DOMContentLoaded', function() {
               new_html += '<tr>';
               new_html += '<th style="text-align:center;">Initiales</th>';
               new_html += '<th style="text-align:center;">Modifier</th>';
+              new_html += '<th style="text-align:center;"> Supprimer </th>';
               new_html += '</tr>';
               for (var i = 0; i < ret.resultat.length; i++) {
                   new_html += '<tr>';
@@ -614,6 +626,13 @@ document.addEventListener('DOMContentLoaded', function() {
                   new_html += "<td><form method='GET' action='modifPersonne.php'>";
                   new_html += "<input type='hidden' name='id' value='"+ret.resultat[i].id+"' />";
                   new_html += "<input type='submit' value='Modifier' />";
+                  new_html += "</form></td>";
+                  new_html += "<td><form method='GET' onsubmit='return suppression(this)'>";
+                  new_html += "<input type='hidden' name='nom' value='"+ret.resultat[i].initiale+"' />";
+                  new_html += "<input type='hidden' name='table' value='personne' />";
+                  new_html += "<input type='hidden' name='colonne' value='id' />";
+                  new_html += "<input type='hidden' name='id' value='"+ret.resultat[i].id+"' />";
+                  new_html += "<input type='submit' value='Supprimer' />";
                   new_html += "</form></td>";
 
                   new_html += '</tr>';

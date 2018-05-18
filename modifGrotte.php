@@ -18,7 +18,7 @@ $grotte=requete($bdd,$requete);
 				<input type="submit" value="Revenir au tableau des grottes" />
 			</form>
 			</br>
-			<form  id="ajoutGrotte"  method="POST" action = "WebService/modifGrotteWS.php" onsubmit="return controleGrotte(this, true);"> <!-- reference au formulaire -->
+			<form  id="modifGrotte"  method="POST" action = "WebService/modifGrotteWS.php" onsubmit="return controleGrotte(this, true);"> <!-- reference au formulaire -->
 			<p> <!-- car balise input ou select ne peut pas etre imbriquee directement dans form -->
 				<!--<fieldset class="scheduler-border fieldset-auto-width">-->
 					<legend class="scheduler-border"> Modification de la grotte : <?=$grotte[0]['nomcavite']?> </legend>
@@ -44,7 +44,7 @@ $grotte=requete($bdd,$requete);
 								$value=requete($bdd,$requete);
 								foreach ($value as $array) {
 									foreach ($array as $key => $valeur) {
-                                        if ($valeur != "Indéterminé") {
+                                        if ($valeur != "") {
                                             if ($grotte[0]['typecavite'] == $valeur){
                                                 echo "<option selected value=\"$valeur\">$valeur</option>";
                                             } else {
@@ -54,7 +54,7 @@ $grotte=requete($bdd,$requete);
                                         }
 									}
 								}
-                                if ($grotte[0]['typecavite'] == "Indéterminé") {
+                                if ($grotte[0]['typecavite'] == "") {
                                     echo "<option selected value='Indéterminé'>Indéterminé</option>";
                                 } else {
                                     echo "<option value='Indéterminé'>Indéterminé</option>";
@@ -175,7 +175,7 @@ $grotte=requete($bdd,$requete);
                             $value=requete($bdd,$requete);
                             foreach ($value as $array) {
                                 foreach ($array as $key => $valeur) {
-                                    if ($valeur != "Indéterminé") {
+                                    if ($valeur != "") {
                                         if ($grotte[0]['typeacces'] == $valeur){
                                             echo "<option selected value=\"$valeur\">$valeur</option>";
                                         } else {
@@ -184,7 +184,7 @@ $grotte=requete($bdd,$requete);
                                     }
                                 }
                             }
-                            if ($grotte[0]['typeacces'] == "Indéterminé") {
+                            if ($grotte[0]['typeacces'] == "") {
                                 echo "<option selected value='Indéterminé'>Indéterminé</option>";
                             } else {
                                 echo "<option value='Indéterminé'>Indéterminé</option>";
