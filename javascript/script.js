@@ -573,40 +573,47 @@ function controlePiege(formulaire, modif) {
 
 }
 
-function controleEchantillon(formulaire) {
+function controleEchantillon(formulaire, modif) {
     message = "";
     erreur = false;
 
     valeurNumEchantillon = formulaire.elements['numEchantillon'].value;
-    if (verifIdentique('numechantillon', 'echantillon', valeurNumEchantillon)) {
-        message += "- Le numéro d'échantillon est déjà utilisé\n";
-        erreur = true;
-    }
-
-    select2 = formulaire.elements['idGrotteForm'];
-    if (select2.value == "") {
-        message += "- Veuillez choisir une grotte\n";
-        erreur = true;
-    }
-
-    if (formulaire.elements['idSiteForm']) {
-        select = formulaire.elements['idSiteForm'];
-        if (select.value == "") {
-            message += "- Veuillez choisir un site\n";
-            erreur = true;
+    if (modif) {
+        numEchantillonPrecedent = formulaire.elements['numEchantillonPrecedent'].value;
+        if (!(numEchantillonPrecedent == valeurNumEchantillon)) {
+            if (verifIdentique('numechantillon', 'echantillon', valeurNumEchantillon)) {
+                message += "- Le numéro d'échantillon est déjà utilisé\n";
+                erreur = true;
+            }
         }
     }
 
-    ajoutSite = formulaire.elements['ajoutSite'];
-    if (ajoutSite.value != '') {
-        message += "- Veuillez ajouter un site\n";
-        erreur = true;
-    }
+    if (!modif) {
+        select2 = formulaire.elements['idGrotteForm'];
+        if (select2.value == "") {
+            message += "- Veuillez choisir une grotte\n";
+            erreur = true;
+        }
 
-    ajoutPiege = formulaire.elements['ajoutPiege'];
-    if (ajoutPiege.value != '') {
-        message += "- Veuillez ajouter un piège\n";
-        erreur = true;
+        if (formulaire.elements['idSiteForm']) {
+            select = formulaire.elements['idSiteForm'];
+            if (select.value == "") {
+                message += "- Veuillez choisir un site\n";
+                erreur = true;
+            }
+        }
+
+        ajoutSite = formulaire.elements['ajoutSite'];
+        if (ajoutSite.value != '') {
+            message += "- Veuillez ajouter un site\n";
+            erreur = true;
+        }
+
+        ajoutPiege = formulaire.elements['ajoutPiege'];
+        if (ajoutPiege.value != '') {
+            message += "- Veuillez ajouter un piège\n";
+            erreur = true;
+        }
     }
 
     selectForme = formulaire.elements['formeStockage'];
@@ -638,7 +645,7 @@ function controleEchantillon(formulaire) {
         }
 
         if (compteur == 0) {
-            message += "- Veuillez choisir au moins un gène\n";
+            message += "- Veuillez choisir au moins une bactérie\n";
             erreur = true;
         }
     }
@@ -693,6 +700,19 @@ function controleEchantillon(formulaire) {
     if (erreur) {
         alert(message);
         return false;
+    }
+
+    infecteBacterie = formulaire.elements['infecteBacterie'].value;
+    infecteBacteriePrecedent = formulaire.elements['infecteBacteriePrecedent'].value;
+    if (modif) {
+        if (infecteBacteriePrecedent == "oui" &&(infecteBacterie == "nonDetermine" || infecteBacterie == "non")) {
+            message = "Etes vous sûr de passer la présence de bactéries de oui à non ou indéterminé ?\n \
+            Cela supprimera toutes les correspondances entre l'échantillon et le(s) bacterie(s)";
+            if (!confirm(message)) {
+                return false;
+            }
+
+        }
     }
 
     return true;

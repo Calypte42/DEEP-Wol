@@ -137,7 +137,7 @@ if ($nombreResultat==1) {
     $idEchantillon= $bdd->lastInsertId();
 
 
-    if($_REQUEST['bacterie'][0]!="Indetermine"){
+    if($_REQUEST['infecteBacterie'] !="nonDetermine" and $_REQUEST['infecteBacterie'] !="non"){
 
         foreach ($_REQUEST['bacterie'] as $clade) {
           $req = $bdd->prepare('INSERT INTO CorrespondanceEchantillonBacterie VALUES (:idEchantillon,:clade)');

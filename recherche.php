@@ -33,7 +33,7 @@ include 'consultationModification.php';
             <p style ="display:inline-block;"><b>Spécifiez votre recherche : </b></p>&nbsp;&nbsp;&nbsp;
             <div id="divFiltreGrotte" style="display:none">
               <label for="filtreGrotte"> Grotte</label>&nbsp;
-              <select name="filtreGrotte" id="filtreGrotte">
+              <select name="filtreGrotte" id="filtreGrotte" >
                 <option value="toutes" selected>Toutes</option>
                 <?php
                 $requete='SELECT id, nomCavite from Grotte ORDER BY NomCavite';
@@ -49,7 +49,7 @@ include 'consultationModification.php';
             <div id="divFiltreSite" style="display:none">
 
               <label for="filtreSite"> Site</label>&nbsp;
-              <select name="filtreSite" id="filtreSite">
+              <select name="filtreSite" id="filtreSite" >
                 <option value="tous" selected>Tous</option>
                 <?php
               $requete="SELECT id, numsite from Site ORDER BY numsite";
@@ -65,7 +65,7 @@ include 'consultationModification.php';
 
             <div id="divFiltrePiege" style="display:none">
               <label for="filtrePiege"> Piège</label>&nbsp;
-              <select name="filtrePiege" id="filtrePiege">
+              <select name="filtrePiege" id="filtrePiege" >
                 <option value="tous" selected>Tous</option>
                 <?php
                 $requete='SELECT codepiege from piege ORDER BY codepiege';

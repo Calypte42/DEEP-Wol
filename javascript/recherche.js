@@ -1,5 +1,33 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+    function majListes(type) {
+        grotteSelect = document.getElementById("filtreGrotte");
+        siteSelect = document.getElementById("filtreSite");
+        piegeSelect = document.getElementById("filtrePiege");
+
+        formulaire = new FormData();
+
+        formulaire.append("grotte", grotteSelect.value);
+        formulaire.append("site", siteSelect.value);
+        formulaire.append("piege", piegeSelect.value);
+        formulaire.append("type", type);
+
+        var request = new XMLHttpRequest(); // on prepare AJAX
+
+        request.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                if (this.responseText) {
+
+                }
+            }
+        };
+
+        donnees.append("type", type);
+
+        request.open("POST", "./WebService/listeRechercheWS.php");
+        request.send(formulaire);
+    }
+
 
   // Affiche la liste des tuples de la bdd
   function listeGrotte() {
