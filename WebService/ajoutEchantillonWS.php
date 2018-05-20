@@ -7,15 +7,15 @@ $bdd = connexionbd();
 
 
 if ($_REQUEST['formeStockage']  == 'autre') {
-    $formeStrockage = $_REQUEST['autreFormeStockage'];
+    $formeStockage = $_REQUEST['autreFormeStockage'];
 } else {
-    $formeStrockage = $_REQUEST['formeStockage'];
+    $formeStockage = $_REQUEST['formeStockage'];
 }
 
 if ($_REQUEST['lieuStockage'] == 'autre') {
-    $formeStrockage = $_REQUEST['autreLieuStockage'];
+    $lieuStockage = $_REQUEST['autreLieuStockage'];
 } else {
-    $formeStrockage = $_REQUEST['lieuStockage'];
+    $lieuStockage = $_REQUEST['lieuStockage'];
 }
 
 /* A cause des null dans la base de donnee on doit mettre en place
@@ -108,7 +108,6 @@ $maRequeteVerif = $debutTaxoRequete.$taxoRequete;
 
 $reqVerif = $bdd->prepare($maRequeteVerif.';');
 
-
 $reqVerif->execute($tableau);
 
 $nombreResultat=$reqVerif->rowCount();
@@ -126,27 +125,24 @@ if ($nombreResultat==1) {
     } else {
         $tableau['nombreIndividu']=1;
     }
-    $tableau['formeStockage']= $_REQUEST['formeStockage'];
-    $tableau['lieuStockage']= $_REQUEST['lieuStockage'];
+    $tableau['formeStockage']= $formeStockage;
+    $tableau['lieuStockage']= $lieuStockage;
     $tableau['niveauIdentification']= $_REQUEST['niveauIdentification'];
     $tableau['infecteBacterie']= $_REQUEST['infecteBacterie'];
     $tableau['codePiege']= $_REQUEST['codePiege'];
     $tableau['idAuteur']= $_REQUEST['idAuteur'];
 
-
     $req->execute($tableau);
-
 
     $idEchantillon= $bdd->lastInsertId();
 
 
     if($_REQUEST['bacterie'][0]!="Indetermine"){
-      $req = $bdd->prepare('INSERT INTO CorrespondanceEchantillonBacterie VALUES (:idEchantillon,:clade)');
 
-        foreach ($_REQUEST['bacterie'] as $key) {
+        foreach ($_REQUEST['bacterie'] as $clade) {
+          $req = $bdd->prepare('INSERT INTO CorrespondanceEchantillonBacterie VALUES (:idEchantillon,:clade)');
           $entre['idEchantillon']= $idEchantillon;
-          $entre['clade']= $key;
-
+          $entre['clade']= $clade;
           $req->execute($entre);
       }
     }

@@ -56,6 +56,58 @@ function ajaxAjout(url, idAffichage, idFormulaire, idSelect) {
 
 };
 
+function ajoutBacterie(idAffichage, idFormulaire, idSelect, idBouton) {
+
+    var liste = document.getElementById(idSelect);
+    var listeOptions = liste.options;
+    var formulaire = document.getElementById(idFormulaire);
+    var valeurs = formulaire.getElementsByClassName('valeurs');
+    var nouvelleOption = "";
+
+    for (var i = 0; i < valeurs.length; i++) {
+        nouvelleOption += valeurs[i].value;
+        nouvelleOption += " ";
+    }
+
+    nouvelleOption = nouvelleOption.trim();
+
+    var ajoutOption = true;
+    for (var i = 0; i < listeOptions.length; i++) {
+        if (listeOptions[i].text == nouvelleOption) {
+            ajoutOption = false;
+            listeOptions[i].selected = true;
+        }
+    }
+
+    if (ajoutOption) {
+        var option = document.createElement("option");
+        option.text = nouvelleOption;
+        option.value = nouvelleOption;
+        option.selected = true;
+        liste.add(option, liste[0]);
+    }
+
+    affichageDiv(idAffichage, idBouton);
+
+    return false;
+
+};
+
+function affichageDiv(idDiv, idBouton) {
+
+    var affichage = document.getElementById(idDiv);
+    var bouton = document.getElementById(idBouton);
+
+    if (affichage.style.display != "inline") {
+        affichage.style.display = "inline";
+        bouton.style.display = "none";
+    } else {
+        affichage.style.display = "none";
+        bouton.style.display = "inline";
+    }
+
+};
+
 function majSite(idGrotte, majPiege) {
     var request = new XMLHttpRequest();
     var selectDiv = document.getElementById('choixSite');
@@ -240,6 +292,14 @@ function suppression(formulaire) {
         texte += "Souhaitez vous vraiment supprimer le système hydrographique : " + nom;
         texte += "\nCETTE ACTION SUPPRIMERA EGALEMENT LES ELEMENTS LIES AU SYSTEME HYDROGRAPHIQUE :\n"
         texte += "grottes, sites, pièges, échantillons, analyses";
+    } else if (table == 'equipespeleo') {
+        texte += "Souhaitez vous vraiment supprimer l'équipe de spéléographique' : " + nom;
+        texte += "\nCETTE ACTION SUPPRIMERA EGALEMENT LES ELEMENTS LIES A L'EQUIPE SPELEO :\n"
+        texte += "sites, pièges, échantillons, analyses";
+    } else if (table == 'personne') {
+        texte += "Souhaitez vous vraiment supprimer la personne : " + nom;
+        texte += "\nCETTE ACTION SUPPRIMERA EGALEMENT LES ELEMENTS LIES A CETTE PERSONNE :\n"
+        texte += "échantillons, analyses";
     }
 
     if (confirm(texte)) {
@@ -549,6 +609,40 @@ function controleEchantillon(formulaire) {
         erreur = true;
     }
 
+    selectForme = formulaire.elements['formeStockage'];
+    if (selectForme.value == "") {
+        message += "- Veuillez choisir une forme de stockage\n";
+        erreur = true;
+    }
+
+    selectLieu = formulaire.elements['lieuStockage'];
+    if (selectLieu.value == "") {
+        message += "- Veuillez choisir un lieu de stockage\n";
+        erreur = true;
+    }
+
+
+    if (document.getElementById("divBacterie").style.display == "inline") {
+        message += "Veuillez valider l'ajout d'une bactérie";
+        erreur = true;
+    }
+
+    if (document.getElementById("infecteBacterie").value == "oui") {
+
+        bacterie = document.getElementById("bacterie").options;
+        compteur = 0;
+        for (var i = 0; i < bacterie.length; i++) {
+            if (bacterie[i].selected) {
+                compteur += 1;
+            }
+        }
+
+        if (compteur == 0) {
+            message += "- Veuillez choisir au moins un gène\n";
+            erreur = true;
+        }
+    }
+
     classe = formulaire.elements['classe'];
     if (classe.value == "") {
         message += "- Veuillez choisir une classe\n";
@@ -677,6 +771,50 @@ function controleSystemeHydro(formulaire) {
                                 && (paysPrecedent == pays))) {
         if (verifIdentiqueSystemeHydro(formulaire)) {
             message += "- Il existe déjà un système hydrographique du même nom, département et pays\n";
+            erreur = true;
+        }
+    }
+
+    if (erreur) {
+        alert(message);
+        return false;
+    }
+
+    return true;
+}
+
+function controlePersonne(formulaire) {
+    input = formulaire.elements['nomPersonne'];
+    message = "";
+    erreur = false;
+
+    valeurNomPersonne = input.value;
+    nomPersonnePrecedente = formulaire.elements['initialesPersonnePrecedente'];
+    if (!(nomPersonnePrecedente == valeurNomPersonne)){
+        if (verifIdentique('initiale', 'personne', valeurNomPersonne)) {
+            message += "- Les initiales existent déjà";
+            erreur = true;
+        }
+    }
+
+    if (erreur) {
+        alert(message);
+        return false;
+    }
+
+    return true;
+}
+
+function controleEquipeSpeleo(formulaire) {
+    input = formulaire.elements['codeEquipe'];
+    message = "";
+    erreur = false;
+
+    valeurCodeEquipe = input.value;
+    codeEquipePrecedent = formulaire.elements['codeEquipePrecedent'];
+    if (!(codeEquipePrecedent == valeurCodeEquipe)){
+        if (verifIdentique('codeEquipe', 'EquipeSpeleo', valeurCodeEquipe)) {
+            message += "- Le code équipe existe déjà";
             erreur = true;
         }
     }

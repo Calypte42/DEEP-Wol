@@ -36,47 +36,80 @@ if (isset($_REQUEST['genre'])) {
     $genre = "";
 }
 
-$where = "classe = '$classe'";
-
-if ($rang == "ordre") {
-    $requete = "SELECT DISTINCT $rang FROM Taxonomie WHERE $where";
+if (isset($_REQUEST['espece'])) {
+    $espece = $_REQUEST['espece'];
+} else {
+    $espece = "";
 }
 
-$where .= " AND ordre = '$ordre'";
+$selected = [];
 
-if ($rang == "famille") {
-    $requete = "SELECT DISTINCT $rang FROM Taxonomie WHERE $where";
+
+if ($_REQUEST['classeSelected'] == 1) {
+    $selected['classe'] = $classe;
+}
+if ($_REQUEST['ordreSelected'] == 1) {
+    $selected['ordre'] = $ordre;
+}
+if ($_REQUEST['familleSelected'] == 1) {
+    $selected['famille'] = $famille;
+}
+if ($_REQUEST['sousFamilleSelected'] == 1) {
+    $selected['sousFamille'] = $sousFamille;
+}
+if ($_REQUEST['genreSelected'] == 1) {
+    $selected['genre'] = $genre;
+}
+if ($_REQUEST['especeSelected'] == 1) {
+    $selected['espece'] = $espece;
 }
 
-$where .= " AND famille = '$famille'";
-
-if ($rang == "sousFamille") {
-    $requete = "SELECT DISTINCT $rang FROM Taxonomie WHERE $where";
-}
-
-$where .= " AND sousFamille = '$sousFamille'";
-
-if ($rang == "genre") {
-    $requete = "SELECT DISTINCT $rang FROM Taxonomie WHERE $where";
-}
-
-
-$where .= " AND genre = '$genre'";
-
-if ($rang == "espece") {
-    $requete = "SELECT DISTINCT $rang FROM Taxonomie WHERE $where";
-}
-
-$resultat = requete($bdd, $requete);
-
-$rangMinuscule = strtolower($rang);
+$listeTaxo = array("classe", "ordre", "famille", "sousFamille", "genre", "espece");
 
 $liste = [];
 
-foreach ($resultat as $array) {
-    if (!empty($array[$rangMinuscule])) {
-        $liste[] = $array[$rangMinuscule];
+foreach ($listeTaxo as $x => $rangTaxo) {
+    $where = "WHERE ";
+
+    foreach ($selected as $key => $value) {
+        if (($rangTaxo != $key) and $value != "Indetermine") {
+            $where .= $key . " = '". $value . "' AND ";
+        }
     }
+    if ($where != "WHERE ") {
+        $where = substr($where, 0, -5);
+    } else {
+        $where .= $rangTaxo . " = '" . $value . "'";
+    }
+
+    $requete = "SELECT DISTINCT $rangTaxo FROM Taxonomie $where";
+    //echo "SELECT DISTINCT $rangTaxo FROM Taxonomie $where\n";
+    $resultat = requete($bdd, $requete);
+
+    foreach ($resultat as $array) {
+        foreach ($array as $key => $value) {
+            if (isset($liste[$key])) {
+                if (!in_array($value, $liste[$key])) {
+                    $liste[$key][] = $value;
+                }
+            } else {
+                $liste[$key][] = $value;
+            }
+        }
+    }
+}
+
+$nombreValeurs = 0;
+foreach ($liste as $array) {
+    foreach ($array as $key => $value) {
+        if ($value != "" and $key != $rang) {
+            $nombreValeurs += 1;
+        }
+    }
+}
+
+if ($nombreValeurs == 5) {
+    $liste[$rang] = array($selected[$rang]);
 }
 
 header("Content-Type:application/json");

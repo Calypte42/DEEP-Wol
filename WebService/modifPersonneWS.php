@@ -1,11 +1,13 @@
 <?php
-//Fonctionnel !
+
+//fonctionnel !
+
 include '../BDD/bdd.php';
 $bdd = connexionbd();
 
-$req = $bdd->prepare('UPDATE EquipeSpeleo SET codeEquipe=:codeEquipe WHERE codeEquipe=:id;');
+$req = $bdd->prepare('UPDATE Personne SET initiale=:nomPersonne WHERE id=:id;');
 $req->execute(array(
-	'codeEquipe' => $_REQUEST['codeEquipe'],
+	'nomPersonne' => $_REQUEST['nomPersonne'],
     'id' => $_REQUEST['id']
 ));
 

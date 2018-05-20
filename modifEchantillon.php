@@ -30,7 +30,7 @@ $echantillon=requete($bdd,$requete); /* value recupere la reponse de la requete 
 
 			</br>
 			<!-- FORMULAIRE D'AJOUT D'ECHANTILLON -->
-			<form  id="ajoutIndividu"  method="POST" action = "WebService/ajoutEchantillonWS.php" onsubmit="return controleEchantillon(this);"> <!-- reference au formulaire -->
+			<form  id="modifIndividu"  method="POST" action = "WebService/ajoutEchantillonWS.php" onsubmit="return controleEchantillon(this);"> <!-- reference au formulaire -->
 			<p>
 				<!--<fieldset class="scheduler-border">-->
 					<legend class="scheduler-border"> Grotte : <?=$RetourNomGrotte?> <br/>

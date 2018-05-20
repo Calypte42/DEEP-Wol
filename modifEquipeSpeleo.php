@@ -5,7 +5,7 @@ $bdd=connexionbd();
 include 'verificationConnexion.php';
 include 'consultationModification.php';
 
-$nomGene = $_GET['id'];
+$codeEquipe = $_GET['codeEquipe'];
 ?>
         <script src="./javascript/eventListener.js" type="text/javascript"></script>
 		<!-- FORMULAIRE D'AJOUT D'UN GENE -->
@@ -13,20 +13,20 @@ $nomGene = $_GET['id'];
             <form action="recherche.php">
 				<input type="submit" value="Retour" />
 			</form>
-			</br>
-		<form  id="modifGene"  method="POST" action = "WebService/modifGeneWS.php" onsubmit="return controleGene(this, true);"> <!-- reference au formulaire -->
+            </br>
+		<form  id="modifPersonne"  method="POST" action = "WebService/modifEquipeWS.php" onsubmit="return controleEquipeSpeleo(this);"> <!-- reference au formulaire -->
 		<p>
 		<!--<fieldset class="scheduler-border">-->
-				<legend class="scheduler-border"> Modification du gène : <?=$nomGene?> </legend>
+				<legend class="scheduler-border"> Modification du code de l'équipe de spéléologie : <?=$codeEquipe?> </legend>
 				<div class="control-group">
 					<div class="controls bootstrap-timepicker">
 					</br>
 
-                    <input type="hidden" name="id" value="<?=$nomGene?>">
-                    <input type="hidden" name="nomGenePrecedent" value="<?=$nomGene?>">
+                    <input type="hidden" name="id" value="<?=$codeEquipe?>">
+                    <input type="hidden" name="codeEquipePrecedent" value="<?=$codeEquipe?>">
 
-						<label>Nom</label>
-						<input required type="text" id ="nomGene" name="nomGene" size="20" value="<?=$nomGene?>"/>
+						<label>Code Equipe</label>
+						<input required type="text" id ="codeEquipe" name="codeEquipe" size="20" value="<?=$codeEquipe?>"/>
 					</br>
           </br>
 

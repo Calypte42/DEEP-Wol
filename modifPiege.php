@@ -26,7 +26,7 @@ $piege=requete($bdd,$requete); /* value recupere la reponse de la requete */
 		</form>-->
 		</br>
 		<!-- FORMULAIRE D'AJOUT DE PIEGE -->
-		<form  id="ajoutPiege"  method="POST" action = "WebService/modifPiegeWS.php" onsubmit="return controlePiege(this, true);"> <!-- reference au formulaire -->
+		<form  id="modifPiege"  method="POST" action = "WebService/modifPiegeWS.php" onsubmit="return controlePiege(this, true);"> <!-- reference au formulaire -->
 		<p>
 			<!--<fieldset class="scheduler-border">-->
 				<legend class="scheduler-border"> Grotte : <?=$RetourNomGrotte?> <br/>

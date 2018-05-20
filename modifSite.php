@@ -24,7 +24,7 @@ $site=requete($bdd,$requete); /* value recupere la reponse de la requete */
 			?>
 			</br>
 			<div id='divAjoutSite'>
-			<form  id="ajoutSite"  method="POST" action = "WebService/modifSiteWS.php" onsubmit="return controleSite(this, true);"> <!-- reference au formulaire -->
+			<form  id="modifSite"  method="POST" action = "WebService/modifSiteWS.php" onsubmit="return controleSite(this, true);"> <!-- reference au formulaire -->
 			<p>
 			<!--<fieldset class="scheduler-border">-->
 				<legend class="scheduler-border"> Grotte : <?=$Retour?> <br/><br/>
@@ -80,7 +80,7 @@ $site=requete($bdd,$requete); /* value recupere la reponse de la requete */
                     $value=requete($bdd,$requete);
                     foreach ($value as $array) {
                         foreach ($array as $key => $valeur) {
-                            if (!($valeur == "") and $valeur != "Indéterminé") {
+                            if (!($valeur == "") and $valeur != "") {
                                 if ($site[0]['typesol'] == $valeur) {
                                     echo "<option selected value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
                                 } else {
@@ -89,7 +89,7 @@ $site=requete($bdd,$requete); /* value recupere la reponse de la requete */
                             }
                         }
                     }
-                    if ($site[0]['typesol'] == "Indéterminé") {
+                    if ($site[0]['typesol'] == "") {
                         echo "<option selected value='Indéterminé'>Indéterminé</option>";
                     } else {
                         echo "<option value='Indéterminé'>Indéterminé</option>";

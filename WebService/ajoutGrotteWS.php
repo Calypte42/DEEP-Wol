@@ -38,12 +38,16 @@ if (isset($_REQUEST['latitude1'])&&!empty($_REQUEST['latitude1'])) {
 
 if ($_REQUEST['typeCavite'] == 'autre') {
     $typeCavite = $_REQUEST['autreCavite'];
+} elseif ($_REQUEST['typeCavite'] == "Indéterminé") {
+    $typeCavite = null;
 } else {
     $typeCavite = $_REQUEST['typeCavite'];
 }
 
 if ($_REQUEST['typeAcces'] == 'autre') {
     $typeAcces = $_REQUEST['autreTypeAcces'];
+} elseif ($_REQUEST['typeAcces'] == 'Indéterminé') {
+    $typeAcces = null;
 } else {
     $typeAcces = $_REQUEST['typeAcces'];
 }

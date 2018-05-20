@@ -102,7 +102,7 @@ create table Gene (
 
 create table CorrespondanceEchantillonBacterie (
     idEchantillon int NOT NULL,
-    clade varchar(1) NOT NULL,
+    clade varchar(20) NOT NULL,
     CONSTRAINT idEchantillon_FK FOREIGN KEY (idEchantillon)
         REFERENCES Echantillon(id) ON UPDATE CASCADE ON DELETE CASCADE,
     CONSTRAINT CorrespondanceEchantillonBacterie_PK PRIMARY KEY (idEchantillon,clade)

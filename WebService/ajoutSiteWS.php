@@ -19,6 +19,8 @@ if (empty($_REQUEST['profondeur'])) {
 
 if ($_REQUEST['typeSol'] == 'autre') {
     $typeSol=$_REQUEST['autreSol'];
+} elseif ($_REQUEST['typeSol'] == 'Indéterminé') {
+    $typeSol=null;
 } else {
     $typeSol=$_REQUEST['typeSol'];
 }

@@ -12,7 +12,11 @@ $systemeHydro=requete($bdd,$requete);
         <script src="./javascript/eventListener.js" type="text/javascript"></script>
 		<!-- FORMULAIRE D'AJOUT D'UN GENE -->
 		<div class= "col-sm-10">
-		<form  id="ajoutSystemeHydro"  method="POST" action = "WebService/modifSystemeHydrographiqueWS.php" onsubmit="return controleSystemeHydro(this);"> <!-- reference au formulaire -->
+            <form action="recherche.php">
+				<input type="submit" value="Retour" />
+			</form>
+            </br>
+		<form  id="modifSystemeHydro"  method="POST" action = "WebService/modifSystemeHydrographiqueWS.php" onsubmit="return controleSystemeHydro(this);"> <!-- reference au formulaire -->
 		<p>
 		<!--<fieldset class="scheduler-border">-->
 				<legend class="scheduler-border"> Modification du système hydrographique : <?=$systemeHydro[0]['nom']?> <?=$systemeHydro[0]['departement']?> <?=$systemeHydro[0]['pays']?></legend>
@@ -27,15 +31,15 @@ $systemeHydro=requete($bdd,$requete);
                     <input type="hidden" name="paysPrecedent" value="<?=$systemeHydro[0]['pays']?>">
 
 						<label>Nom</label>
-						<input type="text" id ="nom" name="nom" size="20" value="<?=$systemeHydro[0]['nom']?>"/>
+						<input type="text" required id ="nom" name="nom" size="20" value="<?=$systemeHydro[0]['nom']?>"/>
 					</br>
                     </br>
                         <label>Département</label>
-                        <input type="text" id ="departement" name="departement" size="20" value="<?=$systemeHydro[0]['departement']?>"/>
+                        <input type="text" required id ="departement" name="departement" size="20" value="<?=$systemeHydro[0]['departement']?>"/>
                     </br>
                     </br>
                         <label>Pays</label>
-                        <input type="text" id ="pays" name="pays" size="20" value="<?=$systemeHydro[0]['pays']?>"/>
+                        <input type="text" required id ="pays" name="pays" size="20" value="<?=$systemeHydro[0]['pays']?>"/>
                     </br>
           </br>
 

@@ -17,7 +17,7 @@ include 'consultationModification.php';
             <option value="Taxonomie">Taxonomie</option>
             <option value="Gene">Gène</option>
             <option value="SystemeHydrographique">Systeme Hydrographique</option>
-            <option value="EquipeSpeleo">Equipe Spéléologues</option>
+            <option value="EquipeSpeleo">Equipe de spéléologie</option>
             <option value="Personne">Personne</option>
           </select>
           &nbsp;&nbsp;&nbsp;&nbsp;
