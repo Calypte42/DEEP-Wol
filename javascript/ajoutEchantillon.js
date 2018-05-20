@@ -166,6 +166,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 lienImageTaxo.style = "pointer-events: none;";
                 lienImageTaxo.href = "";
                 imageTaxo.setAttribute("alt", "Pas d'image disponible");
+                imageTaxo.src="";
             }
 
         });
