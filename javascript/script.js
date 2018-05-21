@@ -853,6 +853,31 @@ function controleEquipeSpeleo(formulaire) {
     return true;
 }
 
+function controleExtraction(formulaire) {
+    message = "";
+    checkboxes = document.getElementsByClassName('checkboxExtraction');
+    erreur = false;
+    check = false;
+
+    for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked == true) {
+            check = true;
+        }
+    }
+
+    if (!check) {
+        erreur = true;
+        message += "- Veuillez cocher au moins une case";
+    }
+
+    if (erreur) {
+        alert(message);
+        return false;
+    }
+
+    return true;
+}
+
 function urlExists(url) {
     var http = new XMLHttpRequest();
     http.open('HEAD', url, false);

@@ -17,7 +17,7 @@ include 'HTML/entete.html';
   Tout d'abord selectionner les élements que vous voulez voir apparaitre dans le tableau de résultat
   puis appliquer les filtres desire en selectionnant les grottes, sites et pieges qui vous interessent !
 </p>-->
-      <form id="formulaire" method="GET" action="telechargementCSV.php">
+      <form id="formulaire" method="GET" onsubmit="return controleExtraction(this);" action="telechargementCSV.php">
         <label for="choixExtraction">Type de données à extraire</label>
         <select name="choixExtraction" id="choixExtraction">
           <option value="CSV">Données : Format CSV </option>
@@ -48,7 +48,7 @@ include 'HTML/entete.html';
             echo "<input style='float:right;' type='button' id='boutonToutSelectionner' value='Tout selectionner'>";
           echo "</div>";
           echo "<div class='col-sm-2'>";
-            echo "<input style='float:center;' type='button' id='boutonToutDeselectionner' value='Tout deselectionner'>";
+            echo "<input style='float:center;' type='button'  id='boutonToutDeselectionner' value='Tout deselectionner'>";
           echo "</div>";
         echo "</div>";
 
@@ -77,7 +77,7 @@ include 'HTML/entete.html';
               echo "<label style='margin-top:15px;' for=$key>$value</label>";
               echo "</div>";
               echo"<div class='col-sm-1'>";
-              echo "<input style='margin-top:15px;' type='checkbox' name='listeItem[]' id=$key value=$key>";
+              echo "<input style='margin-top:15px;' class='checkboxExtraction' type='checkbox' name='listeItem[]' id=$key value=$key>";
               echo "</div>";
             }
             echo"</fieldset>";
@@ -94,7 +94,7 @@ include 'HTML/entete.html';
               echo "<label style='margin-top:15px;' for=$key>$value</label>";
               echo "</div>";
               echo"<div class='col-sm-1'>";
-              echo "<input style='margin-top:15px;' type='checkbox' name='listeItem[]' id=$key value=$key>";
+              echo "<input style='margin-top:15px;' class='checkboxExtraction' type='checkbox' name='listeItem[]' id=$key value=$key>";
               echo "</div>";
             }
             echo"</fieldset>";
@@ -126,7 +126,7 @@ include 'HTML/entete.html';
               echo "<label style='margin-top:15px;' for=$key>$value</label>";
               echo "</div>";
               echo"<div class='col-sm-1'>";
-              echo "<input style='margin-top:15px;' type='checkbox' name='listeItem[]' id=$key value=$key>";
+              echo "<input style='margin-top:15px;' class='checkboxExtraction' type='checkbox' name='listeItem[]' id=$key value=$key>";
               echo "</div>";
             }
             echo"</fieldset>";
@@ -142,7 +142,7 @@ include 'HTML/entete.html';
               echo "<label style='margin-top:15px;' for=$key>$value</label>";
               echo "</div>";
               echo"<div class='col-sm-1'>";
-              echo "<input style='margin-top:15px;' type='checkbox' name='listeItem[]' id=$key value=$key>";
+              echo "<input style='margin-top:15px;' class='checkboxExtraction' type='checkbox' name='listeItem[]' id=$key value=$key>";
               echo "</div>";
             }
             echo"</fieldset>";
