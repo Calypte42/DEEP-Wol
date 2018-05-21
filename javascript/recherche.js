@@ -160,6 +160,8 @@ function majListes(type) {
                         option.value = idSite;
                         if (idSite == json['siteSelected']) {
                             option.selected = true;
+                        } else if (idSite == valeurNumSite) {
+                            option.selected = true;
                         }
                         selectSite.add(option);
                     }
