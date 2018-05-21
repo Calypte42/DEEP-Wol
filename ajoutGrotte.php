@@ -16,7 +16,7 @@ include 'consultationModification.php';
 			</br>
 			<form  id="ajoutGrotte"  method="POST" action = "WebService/ajoutGrotteWS.php" onsubmit="return controleGrotte(this, false);"> <!-- reference au formulaire -->
 			<p> <!-- car balise input ou select ne peut pas etre imbriquee directement dans form -->
-				<!--<fieldset class="scheduler-border fieldset-auto-width">-->
+
 					<legend class="scheduler-border"> Ajout d'une grotte </legend>
 					<div class="control-group">
 						<div class="controls bootstrap-timepicker">
@@ -24,12 +24,7 @@ include 'consultationModification.php';
 							<label style="display: block; width:110px; float:left;">Nom</label>          <!-- Changer les size par rapport à la base de donnees -->
 							<input required type="text" id ="nomGrotte" name="nomGrotte" size="50"/> * </br></br>
 
-						<!--	<label style="display: block; width:110px; float:left;">Type de cavité</label>
-								<select name="typeCavite" id="typeCavite">
-									<option value="Choix1">Choix1</option>
-									<option value="Choix2">Choix2</option>
-									<option value="Choix3">Choix3</option>
-								</select>-->
+
 								<?php
 								echo "<label style='display: block; width:110px; float:left;' for='typeCavite'> Type de cavité </label>";
 								echo "<select style='width:200px;' data-placeholder='Choisissez un type de cavité...' class='chosen-select' name='typeCavite' id='typeCavite' onchange='ajoutAutre(this.options[this.selectedIndex].value, \"autreDivCavite\", \"autreCavite\")'>";
@@ -48,7 +43,7 @@ include 'consultationModification.php';
 							?>
                                 <div id="autreDivCavite" style="display:none;">Ajouter un type de cavité : <input id="autreCavite" type="text" name="autreCavite" /> *</div>
 								&nbsp;
-								<!--<input type = "button" id="affichageTypeCavite" value = "ajouter un type de cavité" onclick="affichageDiv('divTypeCavite', this.id)">-->
+
 
 					    </br></br>
 
@@ -112,9 +107,7 @@ include 'consultationModification.php';
                                 $departement = $array['departement'];
                                 $pays = $array['pays'];
                                 echo "<option value=\"$id\">$nom $departement $pays</option>";
-								//foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
-								//	echo "<option value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
-								//}
+
 							}
                             echo "<option value='autre'>[Ajouter]</option>";
 							echo "</select>";
@@ -140,7 +133,6 @@ include 'consultationModification.php';
 
 						</div>
 					</div>
-				<!--</fieldset>-->
 			</p>
 			</form>
 

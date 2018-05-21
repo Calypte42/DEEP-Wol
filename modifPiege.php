@@ -22,13 +22,12 @@ $piege=requete($bdd,$requete); /* value recupere la reponse de la requete */
 		echo "<input type='submit' value='Revenir au tableau des pièges' />";
 		echo "</form>";
 		?>
-		<!--<input type="submit" value="Retour vers tableau des pièges" />
-		</form>-->
+
 		</br>
 		<!-- FORMULAIRE D'AJOUT DE PIEGE -->
 		<form  id="modifPiege"  method="POST" action = "WebService/modifPiegeWS.php" onsubmit="return controlePiege(this, true);"> <!-- reference au formulaire -->
 		<p>
-			<!--<fieldset class="scheduler-border">-->
+
 				<legend class="scheduler-border"> Grotte : <?=$RetourNomGrotte?> <br/>
                         Site : <?=$RetourNomSite?> <br/><br/>
                         Modification du piège : <?=$piege[0]['codepiege']?></legend>
@@ -103,7 +102,7 @@ $piege=requete($bdd,$requete); /* value recupere la reponse de la requete */
 
 						</div>
 				</div>
-					<!--</fieldset>-->
+					
 				</p>
 				</form>
 			</div>

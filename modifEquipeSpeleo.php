@@ -16,7 +16,7 @@ $codeEquipe = $_GET['codeEquipe'];
             </br>
 		<form  id="modifPersonne"  method="POST" action = "WebService/modifEquipeWS.php" onsubmit="return controleEquipeSpeleo(this);"> <!-- reference au formulaire -->
 		<p>
-		<!--<fieldset class="scheduler-border">-->
+
 				<legend class="scheduler-border"> Modification du code de l'équipe de spéléologie : <?=$codeEquipe?> </legend>
 				<div class="control-group">
 					<div class="controls bootstrap-timepicker">
@@ -33,7 +33,7 @@ $codeEquipe = $_GET['codeEquipe'];
 					<input type="submit" name="nom" value=" Valider la modification">
 					</div>
 				</div>
-			<!--</fieldset>-->
+		
 		</p>
 		</form>
 		</div>

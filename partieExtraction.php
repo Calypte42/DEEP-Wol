@@ -9,14 +9,11 @@ include 'verificationConnexion.php';
 include 'HTML/entete.html';
 ?>
 
-<!--<h2> Voici la page d'extraction des données des échantillons</h2></br>-->
+
 <div class="container-fluid" style="margin-top:70px;">
   <div class="row">
     <div class="col-sm-12">
-<!--<p>
-  Tout d'abord selectionner les élements que vous voulez voir apparaitre dans le tableau de résultat
-  puis appliquer les filtres desire en selectionnant les grottes, sites et pieges qui vous interessent !
-</p>-->
+
       <form id="formulaire" method="GET" onsubmit="return controleExtraction(this);" action="telechargementCSV.php">
         <label for="choixExtraction">Type de données à extraire</label>
         <select name="choixExtraction" id="choixExtraction">
@@ -44,7 +41,7 @@ include 'HTML/entete.html';
             $listeAttributPiege = array('codepiege'=>'Code du piege','datepose'=>'Date de pose','heurepose'=>'Heure de pose','daterecup'=>'Date de recuperation','heurerecup'=>'Heure de récupération','probleme'=>'Probleme','datetri'=>'Date de tri','temperature'=>"Temperature");
             $listeAttributEchantillon = array('numEchantillon'=>'Numero de l\'echantillon','formeStockage'=>'Forme de stockage','lieuStockage'=>'Lieu de stockage','niveauIdentification'=>'Niveau d\'identification','infecteBacterie'=>'Infecte par bacterie','nombreindividu'=>'Nombre d\'individu','classe'=>'Classe','ordre'=>'Ordre','famille'=>'Famille','sousfamille'=>'Sous-famille','genre'=>'Genre','espece'=>'Espece','initialeAuteur'=>'Initial de l\'auteur');
 
-            /*echo"<div class='container'>";*/
+
             echo "<input style='float:right;' type='button' id='boutonToutSelectionner' value='Tout selectionner'>";
           echo "</div>";
           echo "<div class='col-sm-2'>";
@@ -68,7 +65,7 @@ include 'HTML/entete.html';
         echo"<div class='row'>";
           echo"<div class='col-sm-6' id='divCheckEchantillon'>";
             echo "<fieldset style='margin-top:3px; background-color: lightgrey; border:double; padding-right:10px; padding-left:10px; padding-bottom:10px; padding-top:10px;'>";
-            /*echo "<legend style='text-align:center; font-size:18px;'> Attributs des échantillons</legend>";*/
+
             echo "<input type='button' value='Tout selectionner' id='selectionEchantillon'/>";
             echo "<input style='float:right;' type='button' value='Tout deselectionner' id='deselectionEchantillon'/></br>";
 
@@ -85,7 +82,7 @@ include 'HTML/entete.html';
 
           echo"<div class='col-sm-6' id='divCheckPiege'>";
             echo "<fieldset style='margin-top:3px; background-color: lightgrey; border:double; padding-right:10px; padding-left:10px; padding-bottom:10px; padding-top:10px;'>";
-            /*echo "<legend style='text-align:center; font-size:18px;'> Attributs des pièges</legend>";*/
+
             echo "<input type='button' value='Tout selectionner' id='selectionPiege'/>";
             echo "<input style='float:right;' type='button' value='Tout deselectionner' id='deselectionPiege'/></br>";
 
@@ -118,7 +115,7 @@ include 'HTML/entete.html';
         echo"<div class='row'>";
           echo"<div class='col-sm-6' id='divCheckSite'>";
             echo "<fieldset style='margin-top:3px; background-color: lightgrey; border:double; padding-right:10px; padding-left:10px; padding-bottom:10px; padding-top:10px;'>";
-            /*echo "<legend style='text-align:center; font-size:18px;'> Attributs des sites</legend>";*/
+
             echo "<input type='button' value='Tout selectionner' id='selectionSite'/>";
             echo "<input style='float:right;' type='button' value='Tout deselectionner' id='deselectionSite'/></br>";
             foreach ($listeAttributSite as $key => $value) {
@@ -134,7 +131,7 @@ include 'HTML/entete.html';
 
           echo"<div class='col-sm-6' id='divCheckGrotte'>";
             echo "<fieldset style='margin-top:3px; background-color: lightgrey; border:double; padding-right:10px; padding-left:10px; padding-bottom:10px; padding-top:10px;'>";
-            /*echo "<legend style='text-align:center; font-size:18px;'> Attributs des grottes</legend>";*/
+
             echo "<input type='button' value='Tout selectionner' id='selectionGrotte'/>";
             echo "<input style='float:right;' type='button' value='Tout deselectionner' id='deselectionGrotte'/></br>";
             foreach ($listeAttributGrotte as $key => $value) {
@@ -152,15 +149,7 @@ include 'HTML/entete.html';
 
       echo"</div>"; /* ferme l'id disparaitreSiFasta */
             ?>
-<!--</div>  ferme la div container-fluid -->
 
-        <!--  </fieldset>-->
-      <!--  </div> De la division disparaitreSiFasta -->
-      <!--</br>
-      </br>
-      <div class="container">
-      <p> Pour choisir plusieurs éléments dans une liste multiple, maintenez la touche CTRL enfoncée</p>
-    </br>-->
 
     <div style="display:none" id="apparaitreSiFasta">
     <label for="selectChoixGene">Choix du gène à extraire : </label>
@@ -186,7 +175,6 @@ include 'HTML/entete.html';
       <div class="row" style="margin-left:150px;">
   <!-- ****************** DEBUT LISTE DEROULANTE Grotte ********************* -->
         <div class="col-sm-3">
-      	<!--<fieldset class="scheduler-border">-->
       		<legend class="scheduler-border"> Grotte </legend>
       		<div class="control-group">
       			<div class="controls bootstrap-timepicker">
@@ -208,13 +196,13 @@ include 'HTML/entete.html';
                 </div>
               </div>
             </div>
-        <!--</fieldset>-->
+
       </div> <!-- faire la div col-sm de grotte-->
 
     <!-- ****************** DEBUT LISTE DEROULANTE Site ********************* -->
 
       <div class="col-sm-3">
-      <!--<fieldset class="scheduler-border">-->
+
 	      <legend class="scheduler-border"> Site </legend>
 	      <div class="control-group">
 		      <div class="controls bootstrap-timepicker">
@@ -235,13 +223,13 @@ include 'HTML/entete.html';
           	</div>
           </div>
         </div>
-        <!--</fieldset>-->
+
       </div>
 
 	<!-- ****************** DEBUT LISTE DEROULANTE Piege ********************* -->
-    <!--  <div class="row">-->
+
       <div class="col-sm-3">
-      <!--  <fieldset class="scheduler-border">-->
+
 	      <legend class="scheduler-border"> Piège </legend>
 	        <div class="control-group">
 		        <div class="controls bootstrap-timepicker">
@@ -262,13 +250,13 @@ include 'HTML/entete.html';
               </div>
           	</div>
         	</div>
-        <!--</fieldset>-->
+
       </div>
 
 	<!-- ****************** DEBUT LISTE DEROULANTE Echantillon ********************* -->
 
       <div class="col-sm-3">
-      <!--<fieldset class="scheduler-border">-->
+
 	      <legend class="scheduler-border"> Echantillon </legend>
 	        <div class="control-group">
 		        <div class="controls bootstrap-timepicker">
@@ -289,7 +277,7 @@ include 'HTML/entete.html';
               </div>
           	</div>
         	</div>
-        <!--</fieldset>-->
+      
         </div>
       </div> <!-- ferme la row -->
 

@@ -16,7 +16,7 @@ $nomGene = $_GET['id'];
 			</br>
 		<form  id="modifGene"  method="POST" action = "WebService/modifGeneWS.php" onsubmit="return controleGene(this, true);"> <!-- reference au formulaire -->
 		<p>
-		<!--<fieldset class="scheduler-border">-->
+
 				<legend class="scheduler-border"> Modification du gène : <?=$nomGene?> </legend>
 				<div class="control-group">
 					<div class="controls bootstrap-timepicker">
@@ -33,7 +33,7 @@ $nomGene = $_GET['id'];
 					<input type="submit" name="nom" value=" Valider la modification">
 					</div>
 				</div>
-			<!--</fieldset>-->
+		
 		</p>
 		</form>
 		</div>

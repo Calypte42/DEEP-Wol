@@ -69,7 +69,7 @@ include 'consultationModification.php';
 			        echo "<input type='hidden' name='id' value='$id' />";
 			        echo "<input type='submit' value='Modifier' />";
 			        echo "</form></td>";
-					//echo ('<td><a href="">'."Modifier".'</a></td>');
+
                     echo "<td><form method='GET' onsubmit='return suppression(this)'>";
                     echo "<input type='hidden' name='nom' value='$nomCavite' />";
                     echo "<input type='hidden' name='table' value='grotte' />";
@@ -77,7 +77,7 @@ include 'consultationModification.php';
 			        echo "<input type='hidden' name='id' value='$id' />";
 			        echo "<input type='submit' value='Supprimer' />";
 			        echo "</form></td></tr>";
-					//echo('<td><a href="">'."Supprimer".'</a></td></tr>');
+				
 					}
 					echo "</table>";
 					?>

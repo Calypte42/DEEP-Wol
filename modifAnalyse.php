@@ -27,15 +27,14 @@ $analyse=requete($bdd,$requete); /* value recupere la reponse de la requete */
         echo "</form>";
 
         ?>
-      <!--  <input type='submit' value='Revenir au tableau des analyses' />
-      </form>-->
+
 
         </br>
 
         <!-- FORMULAIRE D'AJOUT D'UNE PCR -->
         <form  id="modifAnalyse"  method="POST" action = "WebService/modifAnalyseWS.php" onsubmit="return controleAnalyse(this, true)" enctype='multipart/form-data'> <!-- reference au formulaire -->
         <p> <!-- car balise input ou select ne peut pas etre imbriquee directement dans form -->
-          <!--<fieldset class="scheduler-border">-->
+
             <legend class="scheduler-border"> Grotte : <?=$RetourNomGrotte?> <br/>
                     Site : <?=$RetourNomSite?> <br/>
                     Piège : <?=$RetourPiege?> <br/>
@@ -183,7 +182,7 @@ $analyse=requete($bdd,$requete); /* value recupere la reponse de la requete */
 
               </div>
             </div>
-    <!--</fieldset>-->
+  
         </p>
         </form>
       </div>

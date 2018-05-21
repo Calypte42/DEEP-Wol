@@ -18,12 +18,8 @@ if ($_REQUEST['lieuStockage'] == 'autre') {
     $lieuStockage = $_REQUEST['lieuStockage'];
 }
 
-/* A cause des null dans la base de donnee on doit mettre en place
-des IS NULL dans les requetes, on ne peut donc pas utiliser la
-syntaxe :variable dans le prepare.
-De ce fait si il faut comparer a null on modifie la syntaxe
-des requetes.
-On construit egalement les tableaux des execute au fur et a mesure */
+
+/* On construit les tableaux des execute au fur et a mesure */
 
 $taxoRequete='';
 $debutTaxoRequete='SELECT * FROM Taxonomie t WHERE ';

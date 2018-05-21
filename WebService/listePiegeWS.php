@@ -5,9 +5,7 @@ $bdd = connexionbd();
 
 $idSite = $_REQUEST['idSite'];
 
-/*$requete="SELECT nomCavite from Grotte WHERE id = $idGrotte";
-$value=requete($bdd,$requete);
-$nomGrotte = $value[0]['nomcavite'];*/
+
 
 $requete="SELECT codePiege from Piege WHERE idSite = $idSite ORDER BY codePiege";
 $value=requete($bdd,$requete);
@@ -24,7 +22,6 @@ if ($value) {
 
 } else {
     echo "Pas de piège disponible ! ";
-    //echo "<button onclick=\"window.location.href='./ajoutSite.php?idGrotte=$idGrotte&grotte=$nomGrotte'\">Ajouter un site</button>";
     echo "<input type='hidden' name='ajoutPiege' value='true' />";
 }
 

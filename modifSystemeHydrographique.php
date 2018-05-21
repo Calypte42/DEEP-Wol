@@ -18,7 +18,7 @@ $systemeHydro=requete($bdd,$requete);
             </br>
 		<form  id="modifSystemeHydro"  method="POST" action = "WebService/modifSystemeHydrographiqueWS.php" onsubmit="return controleSystemeHydro(this);"> <!-- reference au formulaire -->
 		<p>
-		<!--<fieldset class="scheduler-border">-->
+
 				<legend class="scheduler-border"> Modification du système hydrographique : <?=$systemeHydro[0]['nom']?> <?=$systemeHydro[0]['departement']?> <?=$systemeHydro[0]['pays']?></legend>
 				<div class="control-group">
 					<div class="controls bootstrap-timepicker">
@@ -46,7 +46,6 @@ $systemeHydro=requete($bdd,$requete);
 					<input type="submit" value=" Valider la modification">
 					</div>
 				</div>
-			<!--</fieldset>-->
 		</p>
 		</form>
 		</div>

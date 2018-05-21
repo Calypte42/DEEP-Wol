@@ -18,7 +18,7 @@ $personne=requete($bdd,$requete);
             </br>
 		<form  id="modifPersonne"  method="POST" action = "WebService/modifPersonneWS.php" onsubmit="return controlePersonne(this);"> <!-- reference au formulaire -->
 		<p>
-		<!--<fieldset class="scheduler-border">-->
+
 				<legend class="scheduler-border"> Modification des initiales de la personne : <?=$personne[0]['initiale']?> </legend>
 				<div class="control-group">
 					<div class="controls bootstrap-timepicker">
@@ -35,7 +35,7 @@ $personne=requete($bdd,$requete);
 					<input type="submit" name="nom" value=" Valider la modification">
 					</div>
 				</div>
-			<!--</fieldset>-->
+
 		</p>
 		</form>
 		</div>

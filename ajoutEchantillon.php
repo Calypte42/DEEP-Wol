@@ -22,14 +22,13 @@ include 'consultationModification.php';
 			}
 			?>
 
-			<!--<input type='submit' value='Retour au tableau des échantillons' />
-			</form>-->
+
 
 			</br>
 			<!-- FORMULAIRE D'AJOUT D'ECHANTILLON -->
 			<form  id="ajoutIndividu"  method="POST" action = "WebService/ajoutEchantillonWS.php" onsubmit="return controleEchantillon(this, false);"> <!-- reference au formulaire -->
 			<p>
-				<!--<fieldset class="scheduler-border">-->
+
 					<legend class="scheduler-border"> Ajout d'un échantillon </legend>
 					<div class="control-group">
 						<div class="controls bootstrap-timepicker">
@@ -79,7 +78,7 @@ include 'consultationModification.php';
 
 							/* rajout menu déroulant piege avec piege sélectionné auparavant */
 							echo "<label style='display: block; width:170px; float:left;' for='codePiege'>Dans le piège </label>";
-							//echo "<input type='hidden' name='codePiege' value=$RetourPiege>";
+
                             echo "<div id='choixPiege' style='display: inline'>";
 							echo "<select style='width:200px;' data-placeholder='Choisissez un piège...' class='chosen-select' name='codePiege'>";
                             echo "<option disabled selected value></option>";
@@ -166,7 +165,7 @@ include 'consultationModification.php';
 							?>
                             <div id="autreDivFormeStockage" style="display:none;">Ajouter une forme de stockage : <input id="autreFormeStockage" type="text" name="autreFormeStockage" /> *</div>
 							&nbsp;
-							<!--<input type = "button" id="affichageFormeStockage" value = "ajouter une forme de stokage" onclick="affichageDiv('divFormeStockage', this.id)">-->
+
 
 		       	</br></br>
 
@@ -186,13 +185,7 @@ include 'consultationModification.php';
 						?>
                         <div id="autreDivLieuStockage" style="display:none;">Ajouter un lieu de stockage : <input id="autreLieuStockage" type="text" name="autreLieuStockage" /> *</div>
 						&nbsp;
-						<!--<input type = "button" id="affichageLieuStockage" value = "ajouter un lieu" onclick="affichageDiv('divLieuStockage', this.id)">-->
 
-					<!--	<label style="display: block; width:170px; float:left;">Lieu de stockage</label>
-							<select name="lieuStockage" id="lieuStockage">
-								<option selected value="Montpellier">Montpellier</option>
-								<option value="Paris">Paris</option>
-							</select>-->
 
 				    </br></br>
 
@@ -342,8 +335,7 @@ include 'consultationModification.php';
 										?>
 
 										</br></br>
-										<!--<input style="float:right; margin-right:60px;" type = "button" value = "ajouter une taxonomie">-->
-										<!--<input style="display:block; margin:auto;" type = "button" value = "valider la taxonomie">-->
+
 									</div> <!-- ferme la col-sm -->
 									<div class = "col-sm-6" style = "margin-top:70px;">
 									</br>
@@ -352,8 +344,7 @@ include 'consultationModification.php';
                 </br>
                 </br>
                 </br>
-										<!--<p style="text-align:center;"> <b>La taxonomie que vous cherchez n'existe pas ?</b></p></br>
-										<input style="display:block; margin:auto;" type = "button" value = "ajouter une taxonomie">-->
+
 									</div>
 								</div>
 										</fieldset>
@@ -393,11 +384,7 @@ include 'consultationModification.php';
 
 						</br></br>
 
-					<!--	<input type = "button" id="affichageAjoutPCR" value = "ajouter une PCR">
-						&nbsp;&nbsp;&nbsp;
-						<input style="margin-left:15px;" type = "button" id="affichageAjoutqPCR" value = "ajouter une qPCR">
 
-					</br></br>-->
 
 						<input type="submit" name="nom" value="Valider et ajouter un nouvel échantillon"> &nbsp;&nbsp;&nbsp;
 
@@ -408,7 +395,7 @@ include 'consultationModification.php';
 						?>
 						</div>
 					</div>
-					<!--</fieldset>-->
+					
 			</p>
 			</form>
 		</div> <!--ferme div col-sm-->

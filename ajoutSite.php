@@ -24,7 +24,6 @@ include 'consultationModification.php';
 			<div id='divAjoutSite'>
 			<form  id="ajoutSite"  method="GET" action = "WebService/ajoutSiteWS.php" onsubmit="return controleSite(this, false);"> <!-- reference au formulaire -->
 			<p>
-			<!--<fieldset class="scheduler-border">-->
 				<legend class="scheduler-border"> Ajout d'un site </legend>
 				<div class="control-group">
 					<div class="controls bootstrap-timepicker">
@@ -32,7 +31,6 @@ include 'consultationModification.php';
 					<?php
 					/* on veut recuperer les valeurs de grotte deja existantes dans la bdd */
 					if(isset($_REQUEST['idGrotte'])){
-					    	/*echo "<label for='idGrotte'>Dans la grotte : $Retour</label>";*/
 						echo "<label style='display: block; width:115px; float:left;' for='idGrotteForm'>Dans la grotte </label>";
 						echo "<input type='hidden' name='idGrotte' value=$RetourId>";
 						echo "<input type='hidden' name='grotte' value=$Retour>";
@@ -61,9 +59,7 @@ include 'consultationModification.php';
 						}
 						echo "</select>";
 					}
-				/*	echo "<label for='idGrotte'>Dans la grotte : $Retour</label>";
-					echo "<input type='hidden' name='idGrotte' value=$RetourId>";
-					echo "<input type='hidden' name='grotte' value=$Retour>";*/
+
 					?>
 					</br></br>
 
@@ -95,7 +91,7 @@ include 'consultationModification.php';
 					<!-- Mettre number -->
 
 					<label style="display: block; width:115px; float:left;" for='typeSol'>Type de sol</label>
-					<!--<input type="text" id ="typeSol" name="typeSol" size="20"/></br></br>-->
+
                 <?php
                     echo "<select style='width:200px;' data-placeholder='Choisissez un type de sol...' class='chosen-select' name='typeSol' id='typeSol' onchange='ajoutAutre(this.options[this.selectedIndex].value, \"autreDivSol\", \"autreSol\")'>";
                     $requete='SELECT DISTINCT typeSol from Site ORDER BY typeSol';
@@ -140,7 +136,7 @@ include 'consultationModification.php';
 					</div>
 				</div>
 			</div> <!-- ferme divAjoutSite-->
-				<!--</fieldset>-->
+			
 			</p>
 			</form>
 

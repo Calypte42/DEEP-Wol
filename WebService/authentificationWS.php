@@ -38,15 +38,11 @@ if ($mdp == $mdpUtilisateur) {
 
     header('Refresh: 0; URL=..');
     echo "Authentification réussie ! Redirection dans 3 secondes...";
-    /*
-	http_response_code(200); // succès de la requête
-    */
+
 } else {
     header('Refresh: 3; URL=../connexion.php');
     echo "Echec de l'authentification ! Redirection dans 3 secondes...";
-    /*
-	http_response_code(401); // utilisateur non authentifié
-    */
+
 }
 
 ?>

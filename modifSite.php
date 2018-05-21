@@ -26,7 +26,6 @@ $site=requete($bdd,$requete); /* value recupere la reponse de la requete */
 			<div id='divAjoutSite'>
 			<form  id="modifSite"  method="POST" action = "WebService/modifSiteWS.php" onsubmit="return controleSite(this, true);"> <!-- reference au formulaire -->
 			<p>
-			<!--<fieldset class="scheduler-border">-->
 				<legend class="scheduler-border"> Grotte : <?=$Retour?> <br/><br/>
                         Modification du site : <?=$site[0]['numsite']?> </legend>
 				<div class="control-group">
@@ -67,13 +66,13 @@ $site=requete($bdd,$requete); /* value recupere la reponse de la requete */
 					<input required = "required" type="text" id ="numSite" name="numSite" value="<?=$site[0]['numsite']?>" size="40"/> * </br></br>
 
 					<label style="display: block; width:115px; float:left;">Profondeur</label>
-					<!-- Mettre number -->
+
 					<input type="number" id ="profondeur" name="profondeur" value="<?=$site[0]['profondeur']?>" size = "5"/></br></br> <!-- a voir pour rajouter un pas (pour decimal) step =""-->
 
-					<!-- Mettre number -->
+
 
 					<label style="display: block; width:115px; float:left;" for='typeSol'>Type de sol</label>
-					<!--<input type="text" id ="typeSol" name="typeSol" size="20"/></br></br>-->
+
                 <?php
                     echo "<select style='width:200px;' data-placeholder='Choisissez un type de sol...' class='chosen-select' name='typeSol' id='typeSol' onchange='ajoutAutre(this.options[this.selectedIndex].value, \"autreDivSol\", \"autreSol\")'>";
                     $requete='SELECT DISTINCT typeSol from Site ORDER BY typeSol';
@@ -101,7 +100,7 @@ $site=requete($bdd,$requete); /* value recupere la reponse de la requete */
 
                     </br></br>
 
-                    <!-- Mettre number -->
+
 					<label style="display: block; width:115px; float:left;">Distance à l'entrée</label>
 					<input required type="number" id ="distanceEntree" name="distanceEntree" value="<?=$site[0]['distanceentree']?>" size="10"/> metres *</br></br> <!-- a voir pour rajouter un pas (pour decimal) step =""-->
 
@@ -141,7 +140,7 @@ $site=requete($bdd,$requete); /* value recupere la reponse de la requete */
 					</div>
 				</div>
 			</div> <!-- ferme divAjoutSite-->
-				<!--</fieldset>-->
+			
 			</p>
 			</form>
 

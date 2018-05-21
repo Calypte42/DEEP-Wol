@@ -11,7 +11,7 @@ include 'consultationModification.php';
 <div class= "col-sm-10">
 	<form  id="ajoutTaxonomie"  method="POST" action = "WebService/ajoutTaxonomieWS.php" enctype='multipart/form-data' onsubmit="return controleTaxo(this);"> <!-- reference au formulaire -->
 		<p>
-			<!--<fieldset class="scheduler-border">-->
+
 			<legend class="scheduler-border"> Ajout d'une taxonomie </legend>
 			<div class="control-group">
 				<div class="controls bootstrap-timepicker">
@@ -122,7 +122,6 @@ include 'consultationModification.php';
 
 					</div>
 				</div>
-				<!--</fieldset>-->
 			</p>
 		</form>
 	</div>

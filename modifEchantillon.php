@@ -24,14 +24,13 @@ $echantillon=requete($bdd,$requete); /* value recupere la reponse de la requete 
 				echo "</form>";
 			?>
 
-			<!--<input type='submit' value='Retour au tableau des échantillons' />
-			</form>-->
+
 
 			</br>
 			<!-- FORMULAIRE D'AJOUT D'ECHANTILLON -->
 			<form  id="modifIndividu"  method="POST" action = "WebService/modifEchantillonWS.php" onsubmit="return controleEchantillon(this, true);"> <!-- reference au formulaire -->
 			<p>
-				<!--<fieldset class="scheduler-border">-->
+
 					<legend class="scheduler-border"> Grotte : <?=$RetourNomGrotte?> <br/>
                             Site : <?=$RetourNomSite?> <br/>
                             Piège : <?=$RetourPiege?> <br/><br/>
@@ -81,13 +80,7 @@ $echantillon=requete($bdd,$requete); /* value recupere la reponse de la requete 
 						<label style="display: block; width:170px; float:left;">Numéro de l'échantillon</label>
 						<input required type="text" id ="numEchantillon" name="numEchantillon" maxlength="20" value="<?=$echantillon[0]['numechantillon']?>" size="20"/> *</br></br> <!-- recuperer la valeur precedemment remplie -->
 
-						<!--<label style="display: block; width:170px; float:left;">Forme de stockage</label>
-							<select name="formeStockage" id="formeStockage">
-								<option selected value="individuEntier">Individu entier</option>
-								<option value="ADNextraitChelex">ADN extrait chelex</option>
-								<option value="ADNextraitColonne">ADN extrait colonne</option>
-								<option value="EnrichissementGenomeBacterien">Enrichissement génome bactérien</option>
-							</select>-->
+
 							<?php
 							echo "<label style='display: block; width:170px; float:left;' for='formeStockage'> Forme de stockage </label>";
 							echo "<select style='width:200px;' data-placeholder='Choisissez une forme de stockage...' class='chosen-select' name='formeStockage' id='listeFormeStockage' onchange='ajoutAutre(this.options[this.selectedIndex].value, \"autreDivFormeStockage\", \"autreFormeStockage\")'>";
@@ -108,7 +101,6 @@ $echantillon=requete($bdd,$requete); /* value recupere la reponse de la requete 
 							?>
                             <div id="autreDivFormeStockage" style="display:none;">Ajouter une forme de stockage : <input id="autreFormeStockage" type="text" name="autreFormeStockage" /> *</div>
 							&nbsp;
-							<!--<input type = "button" id="affichageFormeStockage" value = "ajouter une forme de stokage" onclick="affichageDiv('divFormeStockage', this.id)">-->
 
 		       	</br></br>
 
@@ -132,13 +124,7 @@ $echantillon=requete($bdd,$requete); /* value recupere la reponse de la requete 
 						?>
                         <div id="autreDivLieuStockage" style="display:none;">Ajouter un lieu de stockage : <input id="autreLieuStockage" type="text" name="autreLieuStockage" /> *</div>
 						&nbsp;
-						<!--<input type = "button" id="affichageLieuStockage" value = "ajouter un lieu" onclick="affichageDiv('divLieuStockage', this.id)">-->
 
-					<!--	<label style="display: block; width:170px; float:left;">Lieu de stockage</label>
-							<select name="lieuStockage" id="lieuStockage">
-								<option selected value="Montpellier">Montpellier</option>
-								<option value="Paris">Paris</option>
-							</select>-->
 
 				    </br></br>
 
@@ -352,8 +338,7 @@ $echantillon=requete($bdd,$requete); /* value recupere la reponse de la requete 
 										?>
 
 										</br></br>
-										<!--<input style="float:right; margin-right:60px;" type = "button" value = "ajouter une taxonomie">-->
-										<!--<input style="display:block; margin:auto;" type = "button" value = "valider la taxonomie">-->
+
 									</div> <!-- ferme la col-sm -->
 									<div class = "col-sm-6" style = "margin-top:70px;">
 									</br>
@@ -377,8 +362,7 @@ $echantillon=requete($bdd,$requete); /* value recupere la reponse de la requete 
                 </br>
                 </br>
                 </br>
-										<!--<p style="text-align:center;"> <b>La taxonomie que vous cherchez n'existe pas ?</b></p></br>
-										<input style="display:block; margin:auto;" type = "button" value = "ajouter une taxonomie">-->
+
 									</div>
 								</div>
 										</fieldset>
@@ -429,17 +413,13 @@ $echantillon=requete($bdd,$requete); /* value recupere la reponse de la requete 
 
 						</br></br>
 
-					<!--	<input type = "button" id="affichageAjoutPCR" value = "ajouter une PCR">
-						&nbsp;&nbsp;&nbsp;
-						<input style="margin-left:15px;" type = "button" id="affichageAjoutqPCR" value = "ajouter une qPCR">
 
-					</br></br>-->
 
 
 						<input type='submit' name='nom' value='Valider et revenir au tableau des échantillons'>
 						</div>
 					</div>
-					<!--</fieldset>-->
+					
 			</p>
 			</form>
 		</div> <!--ferme div col-sm-->

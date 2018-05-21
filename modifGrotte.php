@@ -20,7 +20,7 @@ $grotte=requete($bdd,$requete);
 			</br>
 			<form  id="modifGrotte"  method="POST" action = "WebService/modifGrotteWS.php" onsubmit="return controleGrotte(this, true);"> <!-- reference au formulaire -->
 			<p> <!-- car balise input ou select ne peut pas etre imbriquee directement dans form -->
-				<!--<fieldset class="scheduler-border fieldset-auto-width">-->
+
 					<legend class="scheduler-border"> Modification de la grotte : <?=$grotte[0]['nomcavite']?> </legend>
 					<div class="control-group">
 						<div class="controls bootstrap-timepicker">
@@ -31,12 +31,7 @@ $grotte=requete($bdd,$requete);
 							<label style="display: block; width:110px; float:left;">Nom</label>          <!-- Changer les size par rapport à la base de donnees -->
 							<input required type="text" id ="nomGrotte" name="nomGrotte" size="50" value="<?=$grotte[0]['nomcavite']?>"/> * </br></br>
 
-						<!--	<label style="display: block; width:110px; float:left;">Type de cavité</label>
-								<select name="typeCavite" id="typeCavite">
-									<option value="Choix1">Choix1</option>
-									<option value="Choix2">Choix2</option>
-									<option value="Choix3">Choix3</option>
-								</select>-->
+
 								<?php
 								echo "<label style='display: block; width:110px; float:left;' for='typeCavite'> Type de cavité </label>";
 								echo "<select style='width:200px;' data-placeholder='Choisissez un type de cavité...' class='chosen-select' name='typeCavite' id='typeCavite' onchange='ajoutAutre(this.options[this.selectedIndex].value, \"autreDivCavite\", \"autreCavite\")'>";
@@ -64,7 +59,7 @@ $grotte=requete($bdd,$requete);
 							?>
                                 <div id="autreDivCavite" style="display:none;">Ajouter un type de cavité : <input id="autreCavite" type="text" name="autreCavite" /> *</div>
 								&nbsp;
-								<!--<input type = "button" id="affichageTypeCavite" value = "ajouter un type de cavité" onclick="affichageDiv('divTypeCavite', this.id)">-->
+
 
 					    </br></br>
 
@@ -212,9 +207,7 @@ $grotte=requete($bdd,$requete);
                                 } else {
                                     echo "<option value=\"$id\">$nom $departement $pays</option>";
                                 }
-								//foreach ($array as $key => $valeur) { /*Et on recupere les valeurs */
-								//	echo "<option value=\"$valeur\">$valeur</option>"; /* Que l'on ajoute dans la liste deroulante */
-								//}
+
 							}
                             echo "<option value='autre'>[Ajouter]</option>";
 							echo "</select>";
@@ -254,7 +247,7 @@ $grotte=requete($bdd,$requete);
 
 						</div>
 					</div>
-				<!--</fieldset>-->
+			
 			</p>
 			</form>
 

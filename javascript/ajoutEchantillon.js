@@ -241,29 +241,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-    /*classe.addEventListener("change", function() {
-        ajaxMajTaxo("classe");
-        chargerImage();
-    });
-    ordre.addEventListener("change", function() {
-        ajaxMajTaxo("ordre");
-        chargerImage();
-    });
-    famille.addEventListener("change", function() {
-        ajaxMajTaxo("famille");
-        chargerImage();
-    });
-    sousFamille.addEventListener("change", function() {
-        ajaxMajTaxo("sousFamille");
-        chargerImage();
-    });
-    genre.addEventListener("change", function() {
-        ajaxMajTaxo("genre");
-        chargerImage();
-    });
-    espece.addEventListener("change", function() {
-        ajaxMajTaxo("espece");
-        chargerImage();
-    });*/
-
 })

@@ -24,19 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    /*
-    selectClasseTaxo.addEventListener('change', function() {
-        if (selectClasseTaxo.value == "Nouveau") {
-            selectClasseTaxo.setAttribute('name', '');
-            classeTaxo.setAttribute('name', 'classeTaxo');
-            classeTaxo.style.display = 'inline';
-        } else {
-            selectClasseTaxo.setAttribute('name', 'classeTaxo');
-            classeTaxo.style.display = 'none';
-            classeTaxo.setAttribute('name', '');
-        }
-    });
-    */
+
 
     $("#selectOrdreTaxo").chosen().change( function() {
         majTaxo(1)
@@ -51,19 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    /*
-    selectOrdreTaxo.addEventListener('change', function() {
-        if (selectOrdreTaxo.value == "Nouveau") {
-            selectOrdreTaxo.setAttribute('name', '');
-            ordreTaxo.setAttribute('name', 'ordreTaxo');
-            ordreTaxo.style.display = 'inline';
-        } else {
-            selectOrdreTaxo.setAttribute('name', 'ordreTaxo');
-            ordreTaxo.style.display = 'none';
-            ordreTaxo.setAttribute('name', '');
-        }
-    });
-    */
+
 
     $("#selectFamilleTaxo").chosen().change( function() {
         majTaxo(2)
@@ -78,19 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    /*
-    selectFamilleTaxo.addEventListener('change', function() {
-        if (selectFamilleTaxo.value == "Nouveau") {
-            selectFamilleTaxo.setAttribute('name', '');
-            familleTaxo.setAttribute('name', 'familleTaxo');
-            familleTaxo.style.display = 'inline';
-        } else {
-            selectFamilleTaxo.setAttribute('name', 'familleTaxo');
-            familleTaxo.style.display = 'none';
-            familleTaxo.setAttribute('name', '');
-        }
-    });
-    */
+
 
     $("#selectSousFamilleTaxo").chosen().change( function() {
         majTaxo(3)
@@ -105,19 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    /*
-    selectSousFamilleTaxo.addEventListener('change', function() {
-        if (selectSousFamilleTaxo.value == "Nouveau") {
-            selectSousFamilleTaxo.setAttribute('name', '');
-            sousFamilleTaxo.setAttribute('name', 'sousFamilleTaxo');
-            sousFamilleTaxo.style.display = 'inline';
-        } else {
-            selectSousFamilleTaxo.setAttribute('name', 'sousFamilleTaxo');
-            sousFamilleTaxo.style.display = 'none';
-            sousFamilleTaxo.setAttribute('name', '');
-        }
-    });
-    */
+
 
     $("#selectGenreTaxo").chosen().change( function() {
         majTaxo(4)
@@ -132,19 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    /*
-    selectGenreTaxo.addEventListener('change', function() {
-        if (selectGenreTaxo.value == "Nouveau") {
-            selectGenreTaxo.setAttribute('name', '');
-            genreTaxo.setAttribute('name', 'genreTaxo');
-            genreTaxo.style.display = 'inline';
-        } else {
-            selectGenreTaxo.setAttribute('name', 'genreTaxo');
-            genreTaxo.style.display = 'none';
-            genreTaxo.setAttribute('name', '');
-        }
-    });
-    */
+
 
     function majTaxo(rang) {
 
@@ -265,22 +205,6 @@ document.addEventListener('DOMContentLoaded', function() {
         request.send(donnees);
     }
 
-    /*
-    selectClasseTaxo.addEventListener("change", function() {
-        majTaxo(0)
-    });
-    selectOrdreTaxo.addEventListener("change", function() {
-        majTaxo(1)
-    });
-    selectFamilleTaxo.addEventListener("change", function() {
-        majTaxo(2)
-    });
-    selectSousFamilleTaxo.addEventListener("change", function() {
-        majTaxo(3)
-    });
-    selectGenreTaxo.addEventListener("change", function() {
-        majTaxo(4)
-    });
-    */
+  
 
 });

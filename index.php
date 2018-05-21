@@ -3,7 +3,7 @@ include 'verificationConnexion.php';
 include 'HTML/entete.html';
 ?>
 
-<!--<div class="bg"></div> pour le background grotte d'avant-->
+
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
@@ -35,11 +35,11 @@ include 'HTML/entete.html';
 
   <!-- Left and right controls -->
   <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-    <!--span class="glyphicon glyphicon-chevron-left"></span>-->
+
     <span class="sr-only">Précédent</span>
   </a>
   <a class="right carousel-control" href="#myCarousel" data-slide="next">
-    <!--<span class="glyphicon glyphicon-chevron-right"></span>-->
+    
     <span class="sr-only">Suivant</span>
   </a>
 </div>

@@ -133,7 +133,7 @@ foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
     echo "<input type='hidden' name='idEchantillon' value='$RetourIdEchantillon' />";
     echo "<input type='submit' value='Modifier' />";
     echo "</form></td>";
-    //echo ('<td><a href="">'."Modifier".'</a></td>');
+
     echo "<td><form method='GET' onsubmit='return suppression(this)'>";
     echo "<input type='hidden' name='nom' value='$RetourEchantillon - $nomGene - $date' />";
     echo "<input type='hidden' name='table' value='analyses' />";
@@ -141,7 +141,7 @@ foreach ($value as $valeur) { /* On parcourt le tableau de tableau */
     echo "<input type='hidden' name='id' value='$id' />";
     echo "<input type='submit' value='Supprimer' />";
     echo "</form></td></tr>";
-    //echo('<td><a href="">'."Supprimer".'</a></td></tr>');
+
 }
 echo "</table>";
 ?>
@@ -206,7 +206,7 @@ echo "</table>";
        echo "<input type='hidden' name='idEchantillon' value='$RetourIdEchantillon' />";
        echo "<input type='submit' value='Modifier' />";
        echo "</form></td>";
-       //echo ('<td><a href="">'."Modifier".'</a></td>');
+
        echo "<td><form method='GET' onsubmit='return suppression(this)'>";
        echo "<input type='hidden' name='nom' value='$RetourEchantillon - $nomGene - $date' />";
        echo "<input type='hidden' name='table' value='analyses' />";
@@ -214,7 +214,7 @@ echo "</table>";
        echo "<input type='hidden' name='id' value='$id' />";
        echo "<input type='submit' value='Supprimer' />";
        echo "</form></td></tr>";
-       //echo('<td><a href="">'."Supprimer".'</a></td></tr>');
+    
    }
    echo "</table>";
    ?>

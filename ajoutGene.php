@@ -10,7 +10,7 @@ include 'consultationModification.php';
 		<div class= "col-sm-10">
 		<form  id="ajoutGene"  method="POST" action = "WebService/ajoutGeneWS.php" onsubmit="return controleGene(this, false);"> <!-- reference au formulaire -->
 		<p>
-		<!--<fieldset class="scheduler-border">-->
+
 				<legend class="scheduler-border"> Ajout d'un gène </legend>
 				<div class="control-group">
 					<div class="controls bootstrap-timepicker">
@@ -38,7 +38,7 @@ include 'consultationModification.php';
 					<input type="submit" name="nom" value=" Valider et ajouter un nouveau gène">
 					</div>
 				</div>
-			<!--</fieldset>-->
+			
 		</p>
 		</form>
 		</div>

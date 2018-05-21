@@ -23,15 +23,14 @@ include 'consultationModification.php';
         echo "</form>";
         }
         ?>
-      <!--  <input type='submit' value='Revenir au tableau des analyses' />
-      </form>-->
+
 
         </br>
 
         <!-- FORMULAIRE D'AJOUT D'UNE PCR -->
         <form  id="ajoutAnalyse"  method="POST" action = "WebService/ajoutAnalyseWS.php" onsubmit="return controleAnalyse(this, false)" enctype='multipart/form-data'> <!-- reference au formulaire -->
         <p> <!-- car balise input ou select ne peut pas etre imbriquee directement dans form -->
-          <!--<fieldset class="scheduler-border">-->
+
             <legend class="scheduler-border"> Ajout d'une analyse </legend>
             <div class="control-group">
               <div class="controls bootstrap-timepicker">
@@ -39,7 +38,7 @@ include 'consultationModification.php';
                 <?php
                 if(isset($_REQUEST['idEchantillon'])){
                   echo "<label style='display: block; width:115px; float:left;' for='idEchantillon'>Echantillon </label>";
-                  /*echo "Pour l'échantillon : $RetourEchantillon";*/
+
                   echo "<input type='hidden' name='nomGrotte' value='$RetourNomGrotte' />";
                   echo "<input type='hidden' name='idGrotte' value='$RetourIdGrotte' />";
                   echo "<input type='hidden' name='site' value='$RetourNomSite' />";
@@ -139,7 +138,6 @@ include 'consultationModification.php';
 
               </div>
             </div>
-    <!--</fieldset>-->
         </p>
         </form>
       </div>

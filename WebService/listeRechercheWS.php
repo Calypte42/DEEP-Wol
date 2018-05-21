@@ -23,9 +23,6 @@ if ($_REQUEST['piege'] == 'tous') {
     $piege = $_REQUEST['piege'];
 }
 
-//$listeNoms = ['grotte' => 'nomcavite', 'site' => 'numsite', 'piege' => 'codepiege'];
-//$listeValeurs = ['grotte' => $grotte, 'site' => $site, 'piege' => $piege];
-
 $resultat = [];
 $resultat['grotte'] = Array();
 $resultat['site'] = Array();

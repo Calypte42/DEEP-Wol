@@ -20,22 +20,18 @@ include 'consultationModification.php';
 			echo "</form>";
 		}
 		?>
-		<!--<input type="submit" value="Retour vers tableau des pièges" />
-		</form>-->
+
 		</br>
 		<!-- FORMULAIRE D'AJOUT DE PIEGE -->
 		<form  id="ajoutPiege"  method="POST" action = "WebService/ajoutPiegeWS.php" onsubmit="return controlePiege(this, false);"> <!-- reference au formulaire -->
 		<p>
-			<!--<fieldset class="scheduler-border">-->
+
 				<legend class="scheduler-border"> Ajout d'un piège </legend>
 				<div class="control-group">
 					<div class="controls bootstrap-timepicker">
 
 						<?php
-						/* on veut recuperer les valeurs de grotte deja existantes dans la bdd*/
-							/*echo "<label for='grotte'>Dans la $RetourNomGrotte </label>";
-							echo "<input type='hidden' value=$RetourNomGrotte name='nomGrotte'>";
-							echo"<input type='hidden' value=$RetourIdGrotte name='idGrotte'>";*/
+
 						if(isset($_REQUEST['idGrotte']) AND (isset($_REQUEST['idSite']))){
 
 						  /* rajout menu déroulant grotte avec grotte sélectionnée auparavant */
@@ -105,10 +101,7 @@ include 'consultationModification.php';
 						?>
 
 						<?php
-						/* on veut recuperer les valeurs de numero de site deja existantes dans la bdd */
-						/*echo "<label for='numSite'>Numéro du $RetourNomSite </label>";
-						echo "<input type='hidden' value=$RetourNomSite name='site'>";
-						echo "<input type='hidden' value=$RetourIdSite name='idSite'>";*/
+
 						?>
 
 						</br></br>
@@ -173,7 +166,7 @@ include 'consultationModification.php';
 						?>
 						</div>
 				</div>
-					<!--</fieldset>-->
+					
 				</p>
 				</form>
 			</div>
