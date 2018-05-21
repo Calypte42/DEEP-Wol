@@ -167,7 +167,7 @@ fputcsv($fichier_csv, $ligne, $delimiteur);
 }
 
 $requete='SELECT '.$listeSelect.' from V_Echantillon_AvecTaxo '.$listeWhere;
-echo "$requete";
+
 $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 
 

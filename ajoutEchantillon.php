@@ -129,24 +129,7 @@ include 'consultationModification.php';
 						}
 						?>
 
-						<!-- on veut recuperer les valeurs de grotte deja existantes dans la bdd */
-					/*	echo "<label for='grotte'>Dans la $RetourNomGrotte </label>";
-							echo "<input type='hidden' value=$RetourIdGrotte name='idGrotte'>";
-							echo "<input type='hidden' value=$RetourNomGrotte name='nomGrotte'>";
-						?>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-
-						on veut recuperer les valeurs de numero de site deja existantes dans la bdd
-						echo "<label for='numSite'>Numéro du $RetourNomSite </label>";
-						echo "<input type='hidden' value=$RetourIdSite name='idSite'>";
-						echo "<input type='hidden' value=$RetourNomSite name='site'>";
-
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-
-						echo "<label for='codePiege'>Piège $RetourPiege </label>";
-						echo "<input type='hidden' name='codePiege' value=$RetourPiege>"; -->
 
 						</br></br>
 						<label style="display: block; width:170px; float:left;" for="type">Type d'échantillon</label>
@@ -164,15 +147,9 @@ include 'consultationModification.php';
 						</br></br>
 
 						<label style="display: block; width:170px; float:left;">Numéro de l'échantillon</label>
-						<input required type="text" id ="numEchantillon" name="numEchantillon" size="20"/> *</br></br> <!-- recuperer la valeur precedemment remplie -->
+						<input required type="text" id ="numEchantillon" name="numEchantillon" maxlength="20" size="20"/> *</br></br> <!-- recuperer la valeur precedemment remplie -->
 
-						<!--<label style="display: block; width:170px; float:left;">Forme de stockage</label>
-							<select name="formeStockage" id="formeStockage">
-								<option selected value="individuEntier">Individu entier</option>
-								<option value="ADNextraitChelex">ADN extrait chelex</option>
-								<option value="ADNextraitColonne">ADN extrait colonne</option>
-								<option value="EnrichissementGenomeBacterien">Enrichissement génome bactérien</option>
-							</select>-->
+
 							<?php
 							echo "<label style='display: block; width:170px; float:left;' for='formeStockage'> Forme de stockage </label>";
 							echo "<select style='width:200px;' data-placeholder='Choisissez une forme de stockage...' class='chosen-select' name='formeStockage' id='listeFormeStockage' onchange='ajoutAutre(this.options[this.selectedIndex].value, \"autreDivFormeStockage\", \"autreFormeStockage\")'>";

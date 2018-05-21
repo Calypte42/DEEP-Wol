@@ -132,7 +132,7 @@ include 'consultationModification.php';
 						</br></br>
 
 						<label style="display: block; width:150px; float:left;">Code du piège</label>
-						<input required type="text" id ="codePiege" name="codePiege" size="20"/> *</br></br>
+						<input required type="text" id ="codePiege" name="codePiege" maxlength="10" size="10"/> *</br></br>
 
 						<label style="display: block; width:150px; float:left;">Date de pose</label>
 						<input type="date" id ="datePose" name="datePose"/>

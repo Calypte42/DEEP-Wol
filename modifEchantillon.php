@@ -79,7 +79,7 @@ $echantillon=requete($bdd,$requete); /* value recupere la reponse de la requete 
 						</br></br>
 
 						<label style="display: block; width:170px; float:left;">Numéro de l'échantillon</label>
-						<input required type="text" id ="numEchantillon" name="numEchantillon" value="<?=$echantillon[0]['numechantillon']?>" size="20"/> *</br></br> <!-- recuperer la valeur precedemment remplie -->
+						<input required type="text" id ="numEchantillon" name="numEchantillon" maxlength="20" value="<?=$echantillon[0]['numechantillon']?>" size="20"/> *</br></br> <!-- recuperer la valeur precedemment remplie -->
 
 						<!--<label style="display: block; width:170px; float:left;">Forme de stockage</label>
 							<select name="formeStockage" id="formeStockage">

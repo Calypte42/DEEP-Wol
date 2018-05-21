@@ -61,8 +61,7 @@ if(file_exists($tmpNameElectro) || is_uploaded_file($tmpNameElectro)) {
   $electrophoregramme=null;
 }
 
-echo $fasta;
-echo $electrophoregramme;
+
 
 
 $req->execute(array(
@@ -77,7 +76,11 @@ $req->execute(array(
 ));
 
 if ($_REQUEST['nom']=='Valider et ajouter une nouvelle analyse'){
-  header("Refresh: 0; URL=../ajoutAnalyse.php?idEchantillon=".$_REQUEST['idEchantillon']."&numEchantillon=".$_REQUEST['numEchantillon']."&nomGrotte=".$_REQUEST['nomGrotte']."&idGrotte=".$_REQUEST['idGrotte']."&site=".$_REQUEST['site']."&idSite=".$_REQUEST['idSite']."&piege=".$_REQUEST['piege']);
+  if(empty($_REQUEST['piege'])){
+    header("Refresh: 0; URL=../ajoutAnalyse.php");
+  }else{
+    header("Refresh: 0; URL=../ajoutAnalyse.php?idEchantillon=".$_REQUEST['idEchantillon']."&numEchantillon=".$_REQUEST['numEchantillon']."&nomGrotte=".$_REQUEST['nomGrotte']."&idGrotte=".$_REQUEST['idGrotte']."&site=".$_REQUEST['site']."&idSite=".$_REQUEST['idSite']."&piege=".$_REQUEST['piege']);
+}
 }
 
 if ($_REQUEST['nom']=='Valider et revenir au tableau des analyses'){

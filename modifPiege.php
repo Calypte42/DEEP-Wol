@@ -68,7 +68,7 @@ $piege=requete($bdd,$requete); /* value recupere la reponse de la requete */
 						</br></br>
 
 						<label style="display: block; width:150px; float:left;">Code du piège</label>
-						<input required type="text" id ="codePiege" name="codePiege" value="<?=$piege[0]['codepiege']?>" size="20"/> *</br></br>
+						<input required type="text" id ="codePiege" name="codePiege" maxlength="10" value="<?=$piege[0]['codepiege']?>" size="20"/> *</br></br>
 
 						<label style="display: block; width:150px; float:left;">Date de pose</label>
 						<input type="date" id ="datePose" name="datePose" value="<?=$piege[0]['datepose']?>"/>
