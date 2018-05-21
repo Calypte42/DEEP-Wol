@@ -306,7 +306,7 @@ include 'HTML/entete.html';
 
           echo"<select multiple name='".$nomBase."[]'>";
           echo "<option selected = 'selected' value=''>Tous</option>";
-              $requete="SELECT DISTINCT $nomBase from Taxonomie WHERE $nomBase!=\"\" ORDER BY $nomBase";  /*   */
+              $requete="SELECT DISTINCT $nomBase from Taxonomie WHERE $nomBase!='' ORDER BY $nomBase";  /*   */
               $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
               foreach ($value as $array) {
           foreach ($array as $key => $valeur) {
