@@ -27,7 +27,7 @@ include 'consultationModification.php';
 
 			</br>
 			<!-- FORMULAIRE D'AJOUT D'ECHANTILLON -->
-			<form  id="ajoutIndividu"  method="POST" action = "WebService/ajoutEchantillonWS.php" onsubmit="return controleEchantillon(this);"> <!-- reference au formulaire -->
+			<form  id="ajoutIndividu"  method="POST" action = "WebService/ajoutEchantillonWS.php" onsubmit="return controleEchantillon(this, false);"> <!-- reference au formulaire -->
 			<p>
 				<!--<fieldset class="scheduler-border">-->
 					<legend class="scheduler-border"> Ajout d'un échantillon </legend>
@@ -39,7 +39,7 @@ include 'consultationModification.php';
 							echo "<label style='display: block; width:170px; float:left;' for='idGrotteForm'>Dans la grotte </label>";
 							echo "<input type='hidden' name='idGrotte' value=$RetourIdGrotte>";
 							echo "<input type='hidden' name='nomGrotte' value=$RetourNomGrotte>";
-							echo "<select name='idGrotteForm' onchange='majSite(this.options[this.selectedIndex].value, true); cacherPiege();'>";
+							echo "<select style='width:200px;' data-placeholder='Choisissez une grotte...' class='chosen-select' name='idGrotteForm' onchange='majSite(this.options[this.selectedIndex].value, true); cacherPiege();'>";
 							$requete='SELECT id, nomCavite from Grotte ORDER BY NomCavite';
 							$value=requete($bdd,$requete);
                             foreach ($value as $array) {
@@ -59,8 +59,8 @@ include 'consultationModification.php';
 							echo "<input type='hidden' name='idSite' value=$RetourIdSite>";
 							echo "<input type='hidden' name='site' value=$RetourNomSite>";
                             echo "<div id='choixSite' style='display: inline'>";
-							echo "<select name='idSiteForm'>";
-                            echo "<option disabled selected value>Choisir un site</option>";
+							echo "<select style='width:200px;' data-placeholder='Choisissez un site...' class='chosen-select' name='idSiteForm'>";
+                            echo "<option disabled selected value></option>";
 							$requete="SELECT id, numsite from Site WHERE idGrotte = $RetourIdGrotte ORDER BY numsite";
 							$value=requete($bdd,$requete);
 							foreach ($value as $array) {
@@ -81,8 +81,8 @@ include 'consultationModification.php';
 							echo "<label style='display: block; width:170px; float:left;' for='codePiege'>Dans le piège </label>";
 							//echo "<input type='hidden' name='codePiege' value=$RetourPiege>";
                             echo "<div id='choixPiege' style='display: inline'>";
-							echo "<select name='codePiege'>";
-                            echo "<option disabled selected value>Choisir un piège</option>";
+							echo "<select style='width:200px;' data-placeholder='Choisissez un piège...' class='chosen-select' name='codePiege'>";
+                            echo "<option disabled selected value></option>";
 							$requete='SELECT codepiege from piege ORDER BY codepiege';
 							$value=requete($bdd,$requete);
 							foreach ($value as $array) {
@@ -101,8 +101,8 @@ include 'consultationModification.php';
 						/* rajout menu déroulant grotte  */
 
 							echo "<label style='display: block; width:170px; float:left;' for='idGrotteForm'> Grotte </label>";
-                            echo "<select name='idGrotteForm' onchange='majSite(this.options[this.selectedIndex].value, true); cacherPiege();'>";
-                            echo "<option disabled selected value>Choisir une grotte</option>";
+                            echo "<select style='width:200px;' data-placeholder='Choisissez une grotte...' class='chosen-select' name='idGrotteForm' onchange='majSite(this.options[this.selectedIndex].value, true); cacherPiege();'>";
+                            echo "<option disabled selected value></option>";
                             $requete='SELECT id, nomCavite from Grotte ORDER BY NomCavite';
     						$value=requete($bdd,$requete);
     						foreach ($value as $array) {
@@ -175,8 +175,8 @@ include 'consultationModification.php';
 							</select>-->
 							<?php
 							echo "<label style='display: block; width:170px; float:left;' for='formeStockage'> Forme de stockage </label>";
-							echo "<select name='formeStockage' id='listeFormeStockage' onchange='ajoutAutre(this.options[this.selectedIndex].value, \"autreDivFormeStockage\", \"autreFormeStockage\")'>";
-                            echo "<option disabled selected value>Choisir</option>";
+							echo "<select style='width:200px;' data-placeholder='Choisissez une forme de stockage...' class='chosen-select' name='formeStockage' id='listeFormeStockage' onchange='ajoutAutre(this.options[this.selectedIndex].value, \"autreDivFormeStockage\", \"autreFormeStockage\")'>";
+                            echo "<option disabled selected value></option>";
                             $requete='SELECT DISTINCT formeStockage from Echantillon ORDER BY formeStockage';
 							$value=requete($bdd,$requete);
 							foreach ($value as $array) {
@@ -195,8 +195,8 @@ include 'consultationModification.php';
 
 						<?php
 						echo "<label style='display: block; width:170px; float:left;' for='lieuStockage'> Lieu de stockage </label>";
-						echo "<select name='lieuStockage' id='listeLieuStockage' onchange='ajoutAutre(this.options[this.selectedIndex].value, \"autreDivLieuStockage\", \"autreLieuStockage\")'>";
-                        echo "<option disabled selected value>Choisir</option>";
+						echo "<select style='width:200px;' data-placeholder='Choisissez un lieu de stockage...' class='chosen-select' name='lieuStockage' id='listeLieuStockage' onchange='ajoutAutre(this.options[this.selectedIndex].value, \"autreDivLieuStockage\", \"autreLieuStockage\")'>";
+                        echo "<option disabled selected value></option>";
                         $requete='SELECT DISTINCT lieuStockage from Echantillon ORDER BY lieuStockage';
 						$value=requete($bdd,$requete);
 						foreach ($value as $array) {
@@ -228,7 +228,7 @@ include 'consultationModification.php';
 
               <div id="apparaitreSiInfecteBacterie" style="display:none">
                 <?php
-                echo"<select multiple id='bacterie' name='bacterie[]'>"; /* On cree une liste deroulante */
+                echo"<select data-placeholder='Choisissez une ou plusieurs bactérie(s)' class='chosen-select-width' multiple id='bacterie' name='bacterie[]'>"; /* On cree une liste deroulante */
                 $requete='SELECT DISTINCT clade from CorrespondanceEchantillonBacterie ORDER BY clade';  /* On prepare une requete permettant de recupere l'ensemble des valeurs qui nous interessent   */
                   $value=requete($bdd,$requete); /* value recupere la reponse de la requete */
                   foreach ($value as $array) { /* On parcours les resultats possible (ici 1 seul) */
@@ -258,7 +258,7 @@ include 'consultationModification.php';
 										<?php
 										/* on veut recuperer les valeurs de classe deja existantes dans la bdd */
 										echo "<label style='display: block; width:90px; float:left;' for='classe'>Classe </label>";
-										echo "<select name='classe' id='classe' style='width:120px'>"; /* On cree une liste deroulante vide */
+										echo "<select style='width:170px;' data-placeholder='Choisir...' class='chosen-select-deselect' name='classe' id='classe' onchange=\"ajaxMajTaxo('classe');\">"; /* On cree une liste deroulante vide */
                                         echo "<option selected value></option>";
                                         echo "<option value=\"Indetermine\">Indetermine</option>";
                                         $requete='SELECT DISTINCT classe from Taxonomie WHERE classe !=\'\' ORDER BY classe';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
@@ -276,7 +276,7 @@ include 'consultationModification.php';
 										<?php
 										/* on veut recuperer les valeurs de ordre deja existantes dans la bdd */
 										echo "<label style='display: block; width:90px; float:left;' for='ordre'>Ordre </label>";
-										echo "<select name='ordre' id='ordre' style='width:120px'>"; /* On cree une liste deroulante vide */
+										echo "<select style='width:170px;' data-placeholder='Choisir...' class='chosen-select-deselect' name='ordre' id='ordre' onchange=\"ajaxMajTaxo('ordre');\">"; /* On cree une liste deroulante vide */
                                         echo "<option selected value></option>";
                                         echo "<option value=\"Indetermine\">Indetermine</option>";
                                         $requete='SELECT DISTINCT ordre from Taxonomie WHERE ordre != \'\' ORDER BY ordre';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
@@ -295,7 +295,7 @@ include 'consultationModification.php';
 										<?php
 										/* on veut recuperer les valeurs de famille deja existantes dans la bdd */
 										echo "<label style='display: block; width:90px; float:left;' for='famille'>Famille </label>";
-										echo "<select name='famille' id='famille' style='width:120px'>"; /* On cree une liste deroulante vide */
+										echo "<select style='width:170px;' data-placeholder='Choisir...' class='chosen-select-deselect' name='famille' id='famille' onchange=\"ajaxMajTaxo('famille');\">"; /* On cree une liste deroulante vide */
                                         echo "<option selected value></option>";
                                         echo "<option value=\"Indetermine\">Indetermine</option>";
                                         $requete='SELECT DISTINCT famille from Taxonomie WHERE famille != \'\' ORDER BY famille';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
@@ -314,7 +314,7 @@ include 'consultationModification.php';
 										<?php
 										/* on veut recuperer les valeurs de sous-famille deja existantes dans la bdd */
 										echo "<label style='display: block; width:90px; float:left;' for='sousFamille'>Sous-famille </label>";
-										echo "<select name='sousFamille' id='sousFamille' style='width:120px'>"; /* On cree une liste deroulante vide */
+										echo "<select style='width:170px;' data-placeholder='Choisir...' class='chosen-select-deselect' name='sousFamille' id='sousFamille' onchange=\"ajaxMajTaxo('sousFamille');\">"; /* On cree une liste deroulante vide */
                                         echo "<option selected value></option>";
                                         echo "<option value=\"Indetermine\">Indetermine</option>";
                                         $requete='SELECT DISTINCT sousfamille from Taxonomie WHERE sousFamille != \'\' ORDER BY sousfamille';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
@@ -332,7 +332,7 @@ include 'consultationModification.php';
 										<?php
 										/* on veut recuperer les valeurs de genre deja existantes dans la bdd */
 										echo "<label style='display: block; width:90px; float:left;' for='genre'>Genre </label>";
-										echo "<select name='genre' id='genre' style='width:120px'>"; /* On cree une liste deroulante vide */
+										echo "<select style='width:170px;' data-placeholder='Choisir...' class='chosen-select-deselect' name='genre' id='genre' onchange=\"ajaxMajTaxo('genre');\">"; /* On cree une liste deroulante vide */
                                         echo "<option selected value></option>";
                                         echo "<option value=\"Indetermine\">Indetermine</option>";
                                         $requete='SELECT DISTINCT genre from Taxonomie WHERE genre != \'\' ORDER BY genre';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
@@ -350,7 +350,7 @@ include 'consultationModification.php';
 										<?php
 										/* on veut recuperer les valeurs de genre deja existantes dans la bdd */
 										echo "<label style='display: block; width:90px; float:left;' for='espece'>Espèce </label>";
-										echo "<select name='espece' id='espece' style='width:120px'>"; /* On cree une liste deroulante vide */
+										echo "<select style='width:170px;' data-placeholder='Choisir...' class='chosen-select-deselect' name='espece' id='espece' onchange=\"ajaxMajTaxo('espece');\">"; /* On cree une liste deroulante vide */
                                         echo "<option selected value></option>";
                                         echo "<option value=\"Indetermine\">Indetermine</option>";
                                         $requete='SELECT DISTINCT espece from Taxonomie WHERE espece != \'\' ORDER BY espece';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
@@ -368,15 +368,15 @@ include 'consultationModification.php';
 										<!--<input style="float:right; margin-right:60px;" type = "button" value = "ajouter une taxonomie">-->
 										<!--<input style="display:block; margin:auto;" type = "button" value = "valider la taxonomie">-->
 									</div> <!-- ferme la col-sm -->
-									<div class = "col-sm-6" style = "margin-top:20px;">
+									<div class = "col-sm-6" style = "margin-top:70px;">
 									</br>
                   <a href="" onclick="window.open(this.href, 'newwindow',
                   'width=300,height=250'); return false;" id="lienImageTaxo" ><img src="" id="imageTaxo" /></a>
                 </br>
                 </br>
                 </br>
-										<p style="text-align:center;"> <b>La taxonomie que vous cherchez n'existe pas ?</b></p></br>
-										<input style="display:block; margin:auto;" type = "button" value = "ajouter une taxonomie">
+										<!--<p style="text-align:center;"> <b>La taxonomie que vous cherchez n'existe pas ?</b></p></br>
+										<input style="display:block; margin:auto;" type = "button" value = "ajouter une taxonomie">-->
 									</div>
 								</div>
 										</fieldset>
@@ -394,8 +394,8 @@ include 'consultationModification.php';
 						<?php
 						/* on veut recuperer les valeurs de grotte deja existantes dans la bdd */
 						echo "<label style='display: block; width:170px; float:left;' for='idAuteur'>Auteur  </label>";
-						echo "<select id='listePersonne' name='idAuteur' onchange='ajoutDiv(this.options[this.selectedIndex].value, \"divPersonne\")'>"; /* On cree une liste deroulante vide */
-                        echo "<option disabled selected value>Choisir</option>";
+						echo "<select style='width:120px;' data-placeholder='Choisir une personne' class='chosen-select' id='listePersonne' name='idAuteur' onchange='ajoutDiv(this.options[this.selectedIndex].value, \"divPersonne\")'>"; /* On cree une liste deroulante vide */
+                        echo "<option disabled selected value></option>";
                         $requete='SELECT id,initiale from Personne ORDER BY initiale';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
 						$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 						foreach ($value as $array) { /* On parcourt les resultats possibles */

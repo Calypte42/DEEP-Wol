@@ -1,5 +1,201 @@
-document.addEventListener('DOMContentLoaded', function() {
+function majListes(type) {
+    grotteSelect = document.getElementById("filtreGrotte");
+    siteSelect = document.getElementById("filtreSite");
+    piegeSelect = document.getElementById("filtrePiege");
 
+    formulaire = new FormData();
+
+    formulaire.append("grotte", grotteSelect.value);
+    formulaire.append("site", siteSelect.value);
+    formulaire.append("piege", piegeSelect.value);
+    formulaire.append("type", type);
+
+    var request = new XMLHttpRequest(); // on prepare AJAX
+
+    request.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            if (this.responseText) {
+                json = JSON.parse(this.responseText);
+
+                selectGrotte = document.getElementById("filtreGrotte");
+                selectSite = document.getElementById("filtreSite");
+                selectPiege = document.getElementById("filtrePiege");
+
+                if (type == "grotte") {
+
+                    selectSite.options.length = 0;
+                    var option = document.createElement("option");
+                    option.text = "Tous";
+                    option.value = "tous";
+                    selectSite.add(option);
+
+                    listeSites = json["site"];
+                    compteurSite = 0
+                    for (idSite in listeSites) {
+                        numSite = listeSites[idSite];
+
+                        var option = document.createElement("option");
+                        option.text = numSite;
+                        option.value = idSite;
+                        selectSite.add(option);
+
+                        compteurSite += 1;
+                    }
+
+                    if (compteurSite == 1) {
+                        selectSite.options[1].selected = true;
+                    }
+
+                    selectPiege.options.length = 0;
+                    var option = document.createElement("option");
+                    option.text = "Tous";
+                    option.value = "tous";
+                    selectPiege.add(option);
+
+                    listePieges = json["piege"];
+                    for (i in listePieges) {
+                        codePiege = listePieges[i];
+
+                        var option = document.createElement("option");
+                        option.text = codePiege;
+                        option.value = codePiege;
+                        if (compteurSite == 1 && listePieges.length == 1) {
+                            option.selected = true;
+                        }
+                        selectPiege.add(option);
+                    }
+
+                } else if (type == "site") {
+                    listeOptions = selectGrotte.options;
+                    valeurNumSite = selectSite.value;
+                    valeurCodePiege = selectPiege.value;
+
+                    grotte = json['grotte'];
+                    compteurGrotte = 0;
+                    for (g in grotte) {
+                        idGrotte = g;
+                        compteurGrotte += 1;
+                    }
+
+                    if (compteurGrotte == 1) {
+                        for (var i = 0; i < listeOptions.length; i++) {
+                            if (listeOptions[i].value == idGrotte) {
+                                listeOptions[i].selected = true;
+                            }
+                        }
+                    }
+
+                    selectSite.options.length = 0;
+                    var option = document.createElement("option");
+                    option.text = "Tous";
+                    option.value = "tous";
+                    selectSite.add(option);
+
+                    compteurSite = 0;
+                    listeSites = json["site"];
+                    for (idSite in listeSites) {
+                        numSite = listeSites[idSite];
+
+                        var option = document.createElement("option");
+                        option.text = numSite;
+                        option.value = idSite;
+                        if (idSite == valeurNumSite) {
+                            option.selected = true;
+                        }
+                        selectSite.add(option);
+                        compteurSite += 1;
+                    }
+
+                    selectPiege.options.length = 0;
+                    var option = document.createElement("option");
+                    option.text = "Tous";
+                    option.value = "tous";
+                    selectPiege.add(option);
+
+                    listePieges = json["piege"];
+                    for (i in listePieges) {
+                        codePiege = listePieges[i];
+
+                        var option = document.createElement("option");
+                        option.text = codePiege;
+                        option.value = codePiege;
+                        if (compteurSite == 1 && listePieges.length == 1) {
+                            option.selected = true;
+                        }
+                        selectPiege.add(option);
+                    }
+
+                } else if (type == "piege") {
+                    listeOptions = selectGrotte.options;
+                    valeurNumSite = selectSite.value;
+                    valeurCodePiege = selectPiege.value;
+
+                    grotte = json['grotte'];
+                    compteurGrotte = 0;
+                    for (g in grotte) {
+                        idGrotte = g;
+                        compteurGrotte += 1;
+                    }
+
+                    if (compteurGrotte == 1) {
+                        for (var i = 0; i < listeOptions.length; i++) {
+                            if (listeOptions[i].value == idGrotte) {
+                                listeOptions[i].selected = true;
+                            }
+                        }
+                    }
+
+                    selectSite.options.length = 0;
+                    var option = document.createElement("option");
+                    option.text = "Tous";
+                    option.value = "tous";
+                    selectSite.add(option);
+
+                    listeSites = json["site"];
+                    for (idSite in listeSites) {
+                        numSite = listeSites[idSite];
+
+                        var option = document.createElement("option");
+                        option.text = numSite;
+                        option.value = idSite;
+                        if (idSite == json['siteSelected']) {
+                            option.selected = true;
+                        } else if (idSite == valeurNumSite) {
+                            option.selected = true;
+                        }
+                        selectSite.add(option);
+                    }
+
+                    selectPiege.options.length = 0;
+                    var option = document.createElement("option");
+                    option.text = "Tous";
+                    option.value = "tous";
+                    selectPiege.add(option);
+
+                    listePieges = json["piege"];
+                    for (i in listePieges) {
+                        codePiege = listePieges[i];
+
+                        var option = document.createElement("option");
+                        option.text = codePiege;
+                        option.value = codePiege;
+                        if (valeurCodePiege == codePiege) {
+                            option.selected = true;
+                        }
+                        selectPiege.add(option);
+                    }
+                }
+
+                $(".chosen-select-width").trigger("chosen:updated");
+            }
+        }
+    };
+
+    request.open("POST", "./WebService/listeRechercheWS.php");
+    request.send(formulaire);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
 
   // Affiche la liste des tuples de la bdd
   function listeGrotte() {
@@ -405,8 +601,8 @@ document.addEventListener('DOMContentLoaded', function() {
               new_html += '<th style="text-align:center;">Genre</th>';
               new_html += '<th style="text-align:center;">Espece</th>';
               new_html += '<th style="text-align:center;">Photo</th>';
-              new_html += '<th style="text-align:center;">Modifier</th>';
-              new_html += '<th style="text-align:center;"> Supprimer </th>';
+              /*new_html += '<th style="text-align:center;">Modifier</th>';
+              new_html += '<th style="text-align:center;"> Supprimer </th>';*/
               new_html += '</tr>';
               for (var i = 0; i < ret.resultat.length; i++) {
                   new_html += '<tr>';
@@ -423,7 +619,7 @@ document.addEventListener('DOMContentLoaded', function() {
                       new_html += '<td></td>';
                     }
 
-                  new_html += '<td> Modifier</td>';
+                  //new_html += '<td> Modifier</td>';
                   new_html += '</tr>';
               }
               new_html += '</table></div><br/>';

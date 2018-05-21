@@ -78,8 +78,10 @@ foreach ($listeTaxo as $x => $rangTaxo) {
     }
     if ($where != "WHERE ") {
         $where = substr($where, 0, -5);
+    } elseif (isset($selected[$rangTaxo])){
+        $where .= $rangTaxo . " = '" . $selected[$rangTaxo] . "'";
     } else {
-        $where .= $rangTaxo . " = '" . $value . "'";
+        $where = "";
     }
 
     $requete = "SELECT DISTINCT $rangTaxo FROM Taxonomie $where";

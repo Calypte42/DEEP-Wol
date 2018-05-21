@@ -27,6 +27,7 @@ function ajaxAjout(url, idAffichage, idFormulaire, idSelect) {
         if (listeOptions[i].text.trim() == nouvelleOption) {
             ajoutOption = false;
             listeOptions[i].selected = true;
+            $(".chosen-select").trigger("chosen:updated");
         }
     }
 
@@ -42,6 +43,7 @@ function ajaxAjout(url, idAffichage, idFormulaire, idSelect) {
                     option.value = valeur;
                     option.selected = true;
                     liste.add(option, liste[1]);
+                    $(".chosen-select").trigger("chosen:updated");
                 }
             }
         };
@@ -76,6 +78,7 @@ function ajoutBacterie(idAffichage, idFormulaire, idSelect, idBouton) {
         if (listeOptions[i].text == nouvelleOption) {
             ajoutOption = false;
             listeOptions[i].selected = true;
+            $(".chosen-select-width").trigger("chosen:updated");
         }
     }
 
@@ -85,6 +88,7 @@ function ajoutBacterie(idAffichage, idFormulaire, idSelect, idBouton) {
         option.value = nouvelleOption;
         option.selected = true;
         liste.add(option, liste[0]);
+        $(".chosen-select-width").trigger("chosen:updated");
     }
 
     affichageDiv(idAffichage, idBouton);
@@ -120,6 +124,7 @@ function majSite(idGrotte, majPiege) {
         if (this.readyState == 4 && this.status == 200) {
             if (this.responseText) {
                 selectDiv.innerHTML = this.responseText;
+                $(".chosen-select").chosen();
             }
         }
     }
@@ -140,6 +145,7 @@ function majPiege(idSite) {
         if (this.readyState == 4 && this.status == 200) {
             if (this.responseText) {
                 selectDiv.innerHTML = this.responseText;
+                $(".chosen-select").chosen();
             }
         }
     }
@@ -573,40 +579,47 @@ function controlePiege(formulaire, modif) {
 
 }
 
-function controleEchantillon(formulaire) {
+function controleEchantillon(formulaire, modif) {
     message = "";
     erreur = false;
 
     valeurNumEchantillon = formulaire.elements['numEchantillon'].value;
-    if (verifIdentique('numechantillon', 'echantillon', valeurNumEchantillon)) {
-        message += "- Le numéro d'échantillon est déjà utilisé\n";
-        erreur = true;
-    }
-
-    select2 = formulaire.elements['idGrotteForm'];
-    if (select2.value == "") {
-        message += "- Veuillez choisir une grotte\n";
-        erreur = true;
-    }
-
-    if (formulaire.elements['idSiteForm']) {
-        select = formulaire.elements['idSiteForm'];
-        if (select.value == "") {
-            message += "- Veuillez choisir un site\n";
-            erreur = true;
+    if (modif) {
+        numEchantillonPrecedent = formulaire.elements['numEchantillonPrecedent'].value;
+        if (!(numEchantillonPrecedent == valeurNumEchantillon)) {
+            if (verifIdentique('numechantillon', 'echantillon', valeurNumEchantillon)) {
+                message += "- Le numéro d'échantillon est déjà utilisé\n";
+                erreur = true;
+            }
         }
     }
 
-    ajoutSite = formulaire.elements['ajoutSite'];
-    if (ajoutSite.value != '') {
-        message += "- Veuillez ajouter un site\n";
-        erreur = true;
-    }
+    if (!modif) {
+        select2 = formulaire.elements['idGrotteForm'];
+        if (select2.value == "") {
+            message += "- Veuillez choisir une grotte\n";
+            erreur = true;
+        }
 
-    ajoutPiege = formulaire.elements['ajoutPiege'];
-    if (ajoutPiege.value != '') {
-        message += "- Veuillez ajouter un piège\n";
-        erreur = true;
+        if (formulaire.elements['idSiteForm']) {
+            select = formulaire.elements['idSiteForm'];
+            if (select.value == "") {
+                message += "- Veuillez choisir un site\n";
+                erreur = true;
+            }
+        }
+
+        ajoutSite = formulaire.elements['ajoutSite'];
+        if (ajoutSite.value != '') {
+            message += "- Veuillez ajouter un site\n";
+            erreur = true;
+        }
+
+        ajoutPiege = formulaire.elements['ajoutPiege'];
+        if (ajoutPiege.value != '') {
+            message += "- Veuillez ajouter un piège\n";
+            erreur = true;
+        }
     }
 
     selectForme = formulaire.elements['formeStockage'];
@@ -638,7 +651,7 @@ function controleEchantillon(formulaire) {
         }
 
         if (compteur == 0) {
-            message += "- Veuillez choisir au moins un gène\n";
+            message += "- Veuillez choisir au moins une bactérie\n";
             erreur = true;
         }
     }
@@ -693,6 +706,19 @@ function controleEchantillon(formulaire) {
     if (erreur) {
         alert(message);
         return false;
+    }
+
+    infecteBacterie = formulaire.elements['infecteBacterie'].value;
+    infecteBacteriePrecedent = formulaire.elements['infecteBacteriePrecedent'].value;
+    if (modif) {
+        if (infecteBacteriePrecedent == "oui" &&(infecteBacterie == "nonDetermine" || infecteBacterie == "non")) {
+            message = "Etes vous sûr de passer la présence de bactéries de oui à non ou indéterminé ?\n \
+            Cela supprimera toutes les correspondances entre l'échantillon et le(s) bacterie(s)";
+            if (!confirm(message)) {
+                return false;
+            }
+
+        }
     }
 
     return true;
@@ -817,6 +843,31 @@ function controleEquipeSpeleo(formulaire) {
             message += "- Le code équipe existe déjà";
             erreur = true;
         }
+    }
+
+    if (erreur) {
+        alert(message);
+        return false;
+    }
+
+    return true;
+}
+
+function controleExtraction(formulaire) {
+    message = "";
+    checkboxes = document.getElementsByClassName('checkboxExtraction');
+    erreur = false;
+    check = false;
+
+    for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked == true) {
+            check = true;
+        }
+    }
+
+    if (!check) {
+        erreur = true;
+        message += "- Veuillez cocher au moins une case";
     }
 
     if (erreur) {

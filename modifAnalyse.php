@@ -94,7 +94,7 @@ $analyse=requete($bdd,$requete); /* value recupere la reponse de la requete */
               </br></br>
 
                 <label style="display: block; width:150px;; float:left;">Nom du gène</label>
-                  <select name="nomGene" id='listeGene'>
+                  <select style='width:200px;' data-placeholder='Choisir un gène' class='chosen-select' name="nomGene" id='listeGene'>
                   <?php
           				$requete='SELECT nom from gene ORDER BY nom';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
           				$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
@@ -189,3 +189,7 @@ $analyse=requete($bdd,$requete); /* value recupere la reponse de la requete */
       </div>
     </div>
   </div>
+
+</body>
+
+<?php include 'HTML/pied.html'; ?>

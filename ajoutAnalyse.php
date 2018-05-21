@@ -47,7 +47,7 @@ include 'consultationModification.php';
                   echo "<input type='hidden' name='piege' value='$RetourPiege' />";
                   echo "<input type='hidden' name='numEchantillon' value='$RetourEchantillon' />";
                   echo "<input type='hidden' name='idEchantillon' value='$RetourIdEchantillon' />";
-                  echo "<select name='idEchantillon'>";
+                  echo "<select style='width:200px;' data-placeholder='Choisir...' class='chosen-select' name='idEchantillon'>";
                   $requete='SELECT id, numEchantillon from echantillon ORDER BY numEchantillon';
                   $value=requete($bdd,$requete);
                   foreach ($value as $array) {
@@ -61,7 +61,7 @@ include 'consultationModification.php';
                   echo "</select>";
                 } else {
                   echo "<label style='display: block; width:115px; float:left;' for='echantillon'> Echantillon </label>";
-                  echo "<select name='idEchantillon'>";
+                  echo "<select style='width:200px;' data-placeholder='Choisir...' class='chosen-select' name='idEchantillon'>";
                   $requete='SELECT id, numEchantillon from echantillon ORDER BY numEchantillon';
                   $value=requete($bdd,$requete);
                   foreach ($value as $array) {
@@ -82,7 +82,7 @@ include 'consultationModification.php';
               </br></br>
 
                 <label style="display: block; width:150px;; float:left;">Nom du gène</label>
-                  <select name="nomGene" id='listeGene'>
+                  <select style='width:200px;' data-placeholder='Choisir...' class='chosen-select' name="nomGene" id='listeGene'>
                   <?php
           				$requete='SELECT nom from gene ORDER BY nom';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
           				$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
@@ -145,3 +145,7 @@ include 'consultationModification.php';
       </div>
     </div>
   </div>
+
+</body>
+
+<?php include 'HTML/pied.html'; ?>

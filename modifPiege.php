@@ -48,7 +48,7 @@ $piege=requete($bdd,$requete); /* value recupere la reponse de la requete */
 
 						<?php
 						echo "<label style='display: block; width:150px; float:left;' for='codeEquipeSpeleo'>Equipe qui a posé le piège</label>";
-						echo "<select name='codeEquipeSpeleo' id='listeEquipeSpeleo' onchange='ajoutDiv(this.options[this.selectedIndex].value, \"divEquipeSpeleo\")'>"; /* On cree une liste deroulante vide */
+						echo "<select style='width:200px;' data-placeholder='Choisissez une équipe spéleo...' class='chosen-select' name='codeEquipeSpeleo' id='listeEquipeSpeleo' onchange='ajoutDiv(this.options[this.selectedIndex].value, \"divEquipeSpeleo\")'>"; /* On cree une liste deroulante vide */
                         echo "<option disabled selected value>Choisir</option>";
 						$requete='SELECT codeEquipe from EquipeSpeleo ORDER BY codeEquipe';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
 						$value=requete($bdd,$requete); /* value recupere la reponse de la requete */

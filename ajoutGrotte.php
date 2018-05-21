@@ -32,7 +32,7 @@ include 'consultationModification.php';
 								</select>-->
 								<?php
 								echo "<label style='display: block; width:110px; float:left;' for='typeCavite'> Type de cavité </label>";
-								echo "<select name='typeCavite' id='typeCavite' onchange='ajoutAutre(this.options[this.selectedIndex].value, \"autreDivCavite\", \"autreCavite\")'>";
+								echo "<select style='width:200px;' data-placeholder='Choisissez un type de cavité...' class='chosen-select' name='typeCavite' id='typeCavite' onchange='ajoutAutre(this.options[this.selectedIndex].value, \"autreDivCavite\", \"autreCavite\")'>";
 								$requete='SELECT DISTINCT typeCavite from Grotte ORDER BY typeCavite';
 								$value=requete($bdd,$requete);
 								foreach ($value as $array) {
@@ -82,7 +82,7 @@ include 'consultationModification.php';
 
 							<label style="display: block; width:110px; float:left;" for='typeAcces'>Type d'accès</label>
                         <?php
-                            echo "<select name='typeAcces' id='typeAcces' onchange='ajoutAutre(this.options[this.selectedIndex].value, \"autreDivTypeAcces\", \"autreTypeAcces\")'>";
+                            echo "<select style='width:200px;' data-placeholder='Choisissez un type d'accès'...' class='chosen-select' name='typeAcces' id='typeAcces' onchange='ajoutAutre(this.options[this.selectedIndex].value, \"autreDivTypeAcces\", \"autreTypeAcces\")'>";
                             $requete='SELECT DISTINCT typeAcces from Grotte ORDER BY typeAcces';
                             $value=requete($bdd,$requete);
                             foreach ($value as $array) {
@@ -101,9 +101,9 @@ include 'consultationModification.php';
                             </br></br>
 
 							<label>Système hydrographique</label>
-							<select name="systemeHydro" id='listeSystemeHydrographique' onchange="ajoutDiv(this.options[this.selectedIndex].value, 'divSystemeHydrographique')">
+							<select style='width:200px;' data-placeholder='Choisissez un système hydrographique...' class='chosen-select' name="systemeHydro" id='listeSystemeHydrographique' onchange="ajoutDiv(this.options[this.selectedIndex].value, 'divSystemeHydrographique')">
 							<?php
-                            echo "<option disabled selected value>Choisir</option>";
+                            echo "<option disabled selected value></option>";
                             $requete='SELECT id, nom, departement, pays from SystemeHydrographique ORDER BY nom';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
 							$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 							foreach ($value as $array) { /* On parcourt les resultats possibles */

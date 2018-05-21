@@ -36,7 +36,7 @@ include 'consultationModification.php';
 						echo "<label style='display: block; width:115px; float:left;' for='idGrotteForm'>Dans la grotte </label>";
 						echo "<input type='hidden' name='idGrotte' value=$RetourId>";
 						echo "<input type='hidden' name='grotte' value=$Retour>";
-						echo "<select name='idGrotteForm'>";
+						echo "<select style='width:200px;' data-placeholder='Choisissez une grotte...' class='chosen-select' name='idGrotteForm'>";
 						$requete='SELECT id, nomCavite from Grotte ORDER BY NomCavite';
 						$value=requete($bdd,$requete);
 						foreach ($value as $array) {
@@ -51,7 +51,7 @@ include 'consultationModification.php';
 						echo "</select>";
 					} else {
 						echo "<label style='display: block; width:115px; float:left;' for='idGrotteForm'> Grotte </label>";
-						echo "<select name='idGrotteForm'>";
+						echo "<select style='width:200px;' data-placeholder='Choisissez une grotte...' class='chosen-select' name='idGrotteForm'>";
 						$requete='SELECT id, nomCavite from Grotte ORDER BY NomCavite';
 						$value=requete($bdd,$requete);
 						foreach ($value as $array) {
@@ -70,8 +70,8 @@ include 'consultationModification.php';
 					<?php
 					/* on veut recuperer les valeurs de grotte deja existantes dans la bdd */
 					echo "<label style='display: block; width:115px; float:left;' for='codeEquipeSpeleo'>Equipe spéléo </label>";
-					echo "<select name='codeEquipeSpeleo' id='listeEquipeSpeleo' onchange='ajoutDiv(this.options[this.selectedIndex].value, \"divEquipeSpeleo\")'>"; /* On cree une liste deroulante vide */
-                    echo "<option disabled selected value>Choisir</option>";
+					echo "<select style='width:200px;' data-placeholder='Choisissez une équipe...' class='chosen-select' name='codeEquipeSpeleo' id='listeEquipeSpeleo' onchange='ajoutDiv(this.options[this.selectedIndex].value, \"divEquipeSpeleo\")'>"; /* On cree une liste deroulante vide */
+                    echo "<option disabled selected value></option>";
 					$requete='SELECT codeEquipe from EquipeSpeleo';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
 					$value=requete($bdd,$requete); /* value recupere la reponse de la requete */
 					foreach ($value as $array) { /* On parcourt les resultats possibles */
@@ -97,7 +97,7 @@ include 'consultationModification.php';
 					<label style="display: block; width:115px; float:left;" for='typeSol'>Type de sol</label>
 					<!--<input type="text" id ="typeSol" name="typeSol" size="20"/></br></br>-->
                 <?php
-                    echo "<select name='typeSol' id='typeSol' onchange='ajoutAutre(this.options[this.selectedIndex].value, \"autreDivSol\", \"autreSol\")'>";
+                    echo "<select style='width:200px;' data-placeholder='Choisissez un type de sol...' class='chosen-select' name='typeSol' id='typeSol' onchange='ajoutAutre(this.options[this.selectedIndex].value, \"autreDivSol\", \"autreSol\")'>";
                     $requete='SELECT DISTINCT typeSol from Site ORDER BY typeSol';
                     $value=requete($bdd,$requete);
                     foreach ($value as $array) {
