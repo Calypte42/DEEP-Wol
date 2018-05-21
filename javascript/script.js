@@ -856,13 +856,18 @@ function controleEquipeSpeleo(formulaire) {
 function controleExtraction(formulaire) {
     message = "";
     checkboxes = document.getElementsByClassName('checkboxExtraction');
+    choixExtraction = formulaire.elements['choixExtraction'];
     erreur = false;
     check = false;
 
-    for (var i = 0; i < checkboxes.length; i++) {
-        if (checkboxes[i].checked == true) {
-            check = true;
+    if (choixExtraction.value == 'CSV') {
+        for (var i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked == true) {
+                check = true;
+            }
         }
+    } else {
+        check = true;
     }
 
     if (!check) {
