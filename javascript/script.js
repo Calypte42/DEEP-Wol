@@ -27,6 +27,7 @@ function ajaxAjout(url, idAffichage, idFormulaire, idSelect) {
         if (listeOptions[i].text.trim() == nouvelleOption) {
             ajoutOption = false;
             listeOptions[i].selected = true;
+            $(".chosen-select").trigger("chosen:updated");
         }
     }
 
@@ -42,6 +43,7 @@ function ajaxAjout(url, idAffichage, idFormulaire, idSelect) {
                     option.value = valeur;
                     option.selected = true;
                     liste.add(option, liste[1]);
+                    $(".chosen-select").trigger("chosen:updated");
                 }
             }
         };
@@ -76,6 +78,7 @@ function ajoutBacterie(idAffichage, idFormulaire, idSelect, idBouton) {
         if (listeOptions[i].text == nouvelleOption) {
             ajoutOption = false;
             listeOptions[i].selected = true;
+            $(".chosen-select-width").trigger("chosen:updated");
         }
     }
 
@@ -85,6 +88,7 @@ function ajoutBacterie(idAffichage, idFormulaire, idSelect, idBouton) {
         option.value = nouvelleOption;
         option.selected = true;
         liste.add(option, liste[0]);
+        $(".chosen-select-width").trigger("chosen:updated");
     }
 
     affichageDiv(idAffichage, idBouton);
@@ -120,6 +124,7 @@ function majSite(idGrotte, majPiege) {
         if (this.readyState == 4 && this.status == 200) {
             if (this.responseText) {
                 selectDiv.innerHTML = this.responseText;
+                $(".chosen-select").chosen();
             }
         }
     }
@@ -140,6 +145,7 @@ function majPiege(idSite) {
         if (this.readyState == 4 && this.status == 200) {
             if (this.responseText) {
                 selectDiv.innerHTML = this.responseText;
+                $(".chosen-select").chosen();
             }
         }
     }

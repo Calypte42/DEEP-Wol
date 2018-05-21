@@ -13,8 +13,8 @@ $requete="SELECT codePiege from Piege WHERE idSite = $idSite ORDER BY codePiege"
 $value=requete($bdd,$requete);
 
 if ($value) {
-    echo "<select id='codePiege' name='codePiege'>";
-    echo "<option disabled selected value>Choisir un piège</option>";
+    echo "<select style='width:200px;' data-placeholder='Choisissez un piège...' class='chosen-select' id='codePiege' name='codePiege'>";
+    echo "<option disabled selected value></option>";
     foreach ($value as $array) {
         $codePiege = $array['codepiege'];
         echo "<option value=\"$codePiege\">$codePiege</option>";
