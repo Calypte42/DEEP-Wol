@@ -220,7 +220,7 @@ $echantillon=requete($bdd,$requete); /* value recupere la reponse de la requete 
 										$taxonomie=requete($bdd,$requete); /* value recupere la reponse de la requete */
 										/* on veut recuperer les valeurs de classe deja existantes dans la bdd */
 										echo "<label style='display: block; width:90px; float:left;' for='classe'>Classe </label>";
-										echo "<select style='width:120px;' data-placeholder='Choisir...' class='chosen-select-deselect' name='classe' id='classe' style='width:120px' onchange=\"ajaxMajTaxo('classe');\">"; /* On cree une liste deroulante vide */
+										echo "<select style='width:170px;' data-placeholder='Choisir...' class='chosen-select-deselect' name='classe' id='classe' style='width:120px' onchange=\"ajaxMajTaxo('classe');\">"; /* On cree une liste deroulante vide */
                                         echo "<option value></option>";
                                         $classe = $taxonomie[0]['classe'];
                                         if ($classe == "") {
@@ -242,7 +242,7 @@ $echantillon=requete($bdd,$requete); /* value recupere la reponse de la requete 
 										<?php
 										/* on veut recuperer les valeurs de ordre deja existantes dans la bdd */
 										echo "<label style='display: block; width:90px; float:left;' for='ordre'>Ordre </label>";
-										echo "<select style='width:120px;' data-placeholder='Choisir...' class='chosen-select-deselect' name='ordre' id='ordre' style='width:120px' onchange=\"ajaxMajTaxo('ordre');\">"; /* On cree une liste deroulante vide */
+										echo "<select style='width:170px;' data-placeholder='Choisir...' class='chosen-select-deselect' name='ordre' id='ordre' style='width:120px' onchange=\"ajaxMajTaxo('ordre');\">"; /* On cree une liste deroulante vide */
                                         echo "<option value></option>";
                                         $ordre = $taxonomie[0]['ordre'];
                                         if ($ordre == "") {
@@ -264,7 +264,7 @@ $echantillon=requete($bdd,$requete); /* value recupere la reponse de la requete 
 										<?php
 										/* on veut recuperer les valeurs de famille deja existantes dans la bdd */
 										echo "<label style='display: block; width:90px; float:left;' for='famille'>Famille </label>";
-										echo "<select style='width:120px;' data-placeholder='Choisir...' class='chosen-select-deselect' name='famille' id='famille' style='width:120px' onchange=\"ajaxMajTaxo('famille');\">"; /* On cree une liste deroulante vide */
+										echo "<select style='width:170px;' data-placeholder='Choisir...' class='chosen-select-deselect' name='famille' id='famille' style='width:120px' onchange=\"ajaxMajTaxo('famille');\">"; /* On cree une liste deroulante vide */
                                         echo "<option value></option>";
                                         $famille = $taxonomie[0]['famille'];
                                         if ($famille == "") {
@@ -286,7 +286,7 @@ $echantillon=requete($bdd,$requete); /* value recupere la reponse de la requete 
 										<?php
 										/* on veut recuperer les valeurs de sous-famille deja existantes dans la bdd */
 										echo "<label style='display: block; width:90px; float:left;' for='sousFamille'>Sous-famille </label>";
-										echo "<select style='width:120px;' data-placeholder='Choisir...' class='chosen-select-deselect' name='sousFamille' id='sousFamille' style='width:120px' onchange=\"ajaxMajTaxo('sousFamille');\">"; /* On cree une liste deroulante vide */
+										echo "<select style='width:170px;' data-placeholder='Choisir...' class='chosen-select-deselect' name='sousFamille' id='sousFamille' style='width:120px' onchange=\"ajaxMajTaxo('sousFamille');\">"; /* On cree une liste deroulante vide */
                                         echo "<option value></option>";
                                         $sousFamille = $taxonomie[0]['sousfamille'];
                                         if ($sousFamille == "") {
@@ -309,7 +309,7 @@ $echantillon=requete($bdd,$requete); /* value recupere la reponse de la requete 
 										<?php
 										/* on veut recuperer les valeurs de genre deja existantes dans la bdd */
 										echo "<label style='display: block; width:90px; float:left;' for='genre'>Genre </label>";
-										echo "<select style='width:120px;' data-placeholder='Choisir...' class='chosen-select-deselect' name='genre' id='genre' style='width:120px' onchange=\"ajaxMajTaxo('genre');\">"; /* On cree une liste deroulante vide */
+										echo "<select style='width:170px;' data-placeholder='Choisir...' class='chosen-select-deselect' name='genre' id='genre' style='width:120px' onchange=\"ajaxMajTaxo('genre');\">"; /* On cree une liste deroulante vide */
                                         echo "<option value></option>";
                                         $genre = $taxonomie[0]['genre'];
                                         if ($genre == "") {
@@ -332,7 +332,7 @@ $echantillon=requete($bdd,$requete); /* value recupere la reponse de la requete 
 										<?php
 										/* on veut recuperer les valeurs de genre deja existantes dans la bdd */
 										echo "<label style='display: block; width:90px; float:left;' for='espece'>Espèce </label>";
-										echo "<select style='width:120px;' data-placeholder='Choisir...' class='chosen-select-deselect' name='espece' id='espece' style='width:120px' onchange=\"ajaxMajTaxo('espece');\">"; /* On cree une liste deroulante vide */
+										echo "<select style='width:170px;' data-placeholder='Choisir...' class='chosen-select-deselect' name='espece' id='espece' style='width:120px' onchange=\"ajaxMajTaxo('espece');\">"; /* On cree une liste deroulante vide */
                                         echo "<option value></option>";
                                         $espece = $taxonomie[0]['espece'];
                                         if ($espece == "") {
@@ -355,7 +355,7 @@ $echantillon=requete($bdd,$requete); /* value recupere la reponse de la requete 
 										<!--<input style="float:right; margin-right:60px;" type = "button" value = "ajouter une taxonomie">-->
 										<!--<input style="display:block; margin:auto;" type = "button" value = "valider la taxonomie">-->
 									</div> <!-- ferme la col-sm -->
-									<div class = "col-sm-6" style = "margin-top:20px;">
+									<div class = "col-sm-6" style = "margin-top:70px;">
 									</br>
                     <?php
                  echo "<a href='";

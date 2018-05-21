@@ -258,7 +258,7 @@ include 'consultationModification.php';
 										<?php
 										/* on veut recuperer les valeurs de classe deja existantes dans la bdd */
 										echo "<label style='display: block; width:90px; float:left;' for='classe'>Classe </label>";
-										echo "<select style='width:120px;' data-placeholder='Choisir...' class='chosen-select-deselect' name='classe' id='classe' onchange=\"ajaxMajTaxo('classe');\">"; /* On cree une liste deroulante vide */
+										echo "<select style='width:170px;' data-placeholder='Choisir...' class='chosen-select-deselect' name='classe' id='classe' onchange=\"ajaxMajTaxo('classe');\">"; /* On cree une liste deroulante vide */
                                         echo "<option selected value></option>";
                                         echo "<option value=\"Indetermine\">Indetermine</option>";
                                         $requete='SELECT DISTINCT classe from Taxonomie WHERE classe !=\'\' ORDER BY classe';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
@@ -276,7 +276,7 @@ include 'consultationModification.php';
 										<?php
 										/* on veut recuperer les valeurs de ordre deja existantes dans la bdd */
 										echo "<label style='display: block; width:90px; float:left;' for='ordre'>Ordre </label>";
-										echo "<select style='width:120px;' data-placeholder='Choisir...' class='chosen-select-deselect' name='ordre' id='ordre' onchange=\"ajaxMajTaxo('ordre');\">"; /* On cree une liste deroulante vide */
+										echo "<select style='width:170px;' data-placeholder='Choisir...' class='chosen-select-deselect' name='ordre' id='ordre' onchange=\"ajaxMajTaxo('ordre');\">"; /* On cree une liste deroulante vide */
                                         echo "<option selected value></option>";
                                         echo "<option value=\"Indetermine\">Indetermine</option>";
                                         $requete='SELECT DISTINCT ordre from Taxonomie WHERE ordre != \'\' ORDER BY ordre';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
@@ -295,7 +295,7 @@ include 'consultationModification.php';
 										<?php
 										/* on veut recuperer les valeurs de famille deja existantes dans la bdd */
 										echo "<label style='display: block; width:90px; float:left;' for='famille'>Famille </label>";
-										echo "<select style='width:120px;' data-placeholder='Choisir...' class='chosen-select-deselect' name='famille' id='famille' onchange=\"ajaxMajTaxo('famille');\">"; /* On cree une liste deroulante vide */
+										echo "<select style='width:170px;' data-placeholder='Choisir...' class='chosen-select-deselect' name='famille' id='famille' onchange=\"ajaxMajTaxo('famille');\">"; /* On cree une liste deroulante vide */
                                         echo "<option selected value></option>";
                                         echo "<option value=\"Indetermine\">Indetermine</option>";
                                         $requete='SELECT DISTINCT famille from Taxonomie WHERE famille != \'\' ORDER BY famille';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
@@ -314,7 +314,7 @@ include 'consultationModification.php';
 										<?php
 										/* on veut recuperer les valeurs de sous-famille deja existantes dans la bdd */
 										echo "<label style='display: block; width:90px; float:left;' for='sousFamille'>Sous-famille </label>";
-										echo "<select style='width:120px;' data-placeholder='Choisir...' class='chosen-select-deselect' name='sousFamille' id='sousFamille' onchange=\"ajaxMajTaxo('sousFamille');\">"; /* On cree une liste deroulante vide */
+										echo "<select style='width:170px;' data-placeholder='Choisir...' class='chosen-select-deselect' name='sousFamille' id='sousFamille' onchange=\"ajaxMajTaxo('sousFamille');\">"; /* On cree une liste deroulante vide */
                                         echo "<option selected value></option>";
                                         echo "<option value=\"Indetermine\">Indetermine</option>";
                                         $requete='SELECT DISTINCT sousfamille from Taxonomie WHERE sousFamille != \'\' ORDER BY sousfamille';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
@@ -332,7 +332,7 @@ include 'consultationModification.php';
 										<?php
 										/* on veut recuperer les valeurs de genre deja existantes dans la bdd */
 										echo "<label style='display: block; width:90px; float:left;' for='genre'>Genre </label>";
-										echo "<select style='width:120px;' data-placeholder='Choisir...' class='chosen-select-deselect' name='genre' id='genre' onchange=\"ajaxMajTaxo('genre');\">"; /* On cree une liste deroulante vide */
+										echo "<select style='width:170px;' data-placeholder='Choisir...' class='chosen-select-deselect' name='genre' id='genre' onchange=\"ajaxMajTaxo('genre');\">"; /* On cree une liste deroulante vide */
                                         echo "<option selected value></option>";
                                         echo "<option value=\"Indetermine\">Indetermine</option>";
                                         $requete='SELECT DISTINCT genre from Taxonomie WHERE genre != \'\' ORDER BY genre';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
@@ -350,7 +350,7 @@ include 'consultationModification.php';
 										<?php
 										/* on veut recuperer les valeurs de genre deja existantes dans la bdd */
 										echo "<label style='display: block; width:90px; float:left;' for='espece'>Espèce </label>";
-										echo "<select style='width:120px;' data-placeholder='Choisir...' class='chosen-select-deselect' name='espece' id='espece' onchange=\"ajaxMajTaxo('espece');\">"; /* On cree une liste deroulante vide */
+										echo "<select style='width:170px;' data-placeholder='Choisir...' class='chosen-select-deselect' name='espece' id='espece' onchange=\"ajaxMajTaxo('espece');\">"; /* On cree une liste deroulante vide */
                                         echo "<option selected value></option>";
                                         echo "<option value=\"Indetermine\">Indetermine</option>";
                                         $requete='SELECT DISTINCT espece from Taxonomie WHERE espece != \'\' ORDER BY espece';  /* On prepare une requete permettant de recuperer l'ensemble des valeurs qu'on veut */
@@ -368,7 +368,7 @@ include 'consultationModification.php';
 										<!--<input style="float:right; margin-right:60px;" type = "button" value = "ajouter une taxonomie">-->
 										<!--<input style="display:block; margin:auto;" type = "button" value = "valider la taxonomie">-->
 									</div> <!-- ferme la col-sm -->
-									<div class = "col-sm-6" style = "margin-top:20px;">
+									<div class = "col-sm-6" style = "margin-top:70px;">
 									</br>
                   <a href="" onclick="window.open(this.href, 'newwindow',
                   'width=300,height=250'); return false;" id="lienImageTaxo" ><img src="" id="imageTaxo" /></a>
