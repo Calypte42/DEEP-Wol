@@ -53,11 +53,11 @@ include 'consultationModification.php';
 					    </br></br>
 
 							<label style="display: block; width:110px; float:left;">Latitude</label>
-							<input type="number" id ="latitude" name="latitude1" size="5" placeholder = "30"/>  <!-- type text pour simplifier la saisie -->
+							<input type="number" step="any" id ="latitude" name="latitude1" size="5" placeholder = "30"/>  <!-- type text pour simplifier la saisie -->
 							°
-							<input type="number" id ="latitude2" name="latitude2" size="5" placeholder = "30"/>  <!-- type text pour simplifier la saisie -->
+							<input type="number"  step="any"  id ="latitude2" name="latitude2" size="5" placeholder = "30"/>  <!-- type text pour simplifier la saisie -->
 							'
-							<input type="number" id ="latitude3" name="latitude3" size="5" placeholder = "30"/>  <!-- type text pour simplifier la saisie -->
+							<input type="number" step="any"  id ="latitude3" name="latitude3" size="5" placeholder = "30"/>  <!-- type text pour simplifier la saisie -->
 							"
 							<select name="orientationLatitude" id="orientationLatitude">
 								<option selected value="Nord">Nord</option>
@@ -67,11 +67,11 @@ include 'consultationModification.php';
 							</br></br>
 
 							<label style="display: block; width:110px; float:left;">Longitude</label>
-							<input type="number" id ="longitude" name="longitude1" size="5" placeholder = "20"/>  <!-- type text pour simplifier la saisie -->
+							<input type="number"  step="any" id ="longitude" name="longitude1" size="5" placeholder = "20"/>  <!-- type text pour simplifier la saisie -->
 							°
-							<input type="number" id ="longitude2" name="longitude2" size="5" placeholder = "20"/>  <!-- type text pour simplifier la saisie -->
+							<input type="number"  step="any" id ="longitude2" name="longitude2" size="5" placeholder = "20"/>  <!-- type text pour simplifier la saisie -->
 							'
-							<input type="number" id ="longitude3" name="longitude3" size="5" placeholder = "20"/>  <!-- type text pour simplifier la saisie -->
+							<input type="number"  step="any" id ="longitude3" name="longitude3" size="5" placeholder = "20"/>  <!-- type text pour simplifier la saisie -->
 							"
 							<select name="orientationLongitude" id="orientationLongitude">
 								<option selected value="Est">Est</option>
