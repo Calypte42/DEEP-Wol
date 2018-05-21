@@ -601,8 +601,8 @@ document.addEventListener('DOMContentLoaded', function() {
               new_html += '<th style="text-align:center;">Genre</th>';
               new_html += '<th style="text-align:center;">Espece</th>';
               new_html += '<th style="text-align:center;">Photo</th>';
-              new_html += '<th style="text-align:center;">Modifier</th>';
-              new_html += '<th style="text-align:center;"> Supprimer </th>';
+              /*new_html += '<th style="text-align:center;">Modifier</th>';
+              new_html += '<th style="text-align:center;"> Supprimer </th>';*/
               new_html += '</tr>';
               for (var i = 0; i < ret.resultat.length; i++) {
                   new_html += '<tr>';
@@ -619,7 +619,7 @@ document.addEventListener('DOMContentLoaded', function() {
                       new_html += '<td></td>';
                     }
 
-                  new_html += '<td> Modifier</td>';
+                  //new_html += '<td> Modifier</td>';
                   new_html += '</tr>';
               }
               new_html += '</table></div><br/>';
