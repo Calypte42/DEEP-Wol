@@ -151,7 +151,7 @@ include 'consultationModification.php';
 						<input type="number" id ="temperature" name="temperature" size = "5"/> °C</br></br> <!-- a voir pour rajouter un pas (pour decimal) step =""-->
 
 						<label>Problèmes rencontrés</label> </br>
-						<textarea id="probleme" name="probleme" rows = "5" cols = "40"></textarea>
+						<textarea id="probleme" name="probleme" rows = "5" cols = "40" maxlength="200"></textarea>
 
 						</br>
 						</br>
@@ -166,7 +166,7 @@ include 'consultationModification.php';
 						?>
 						</div>
 				</div>
-					
+
 				</p>
 				</form>
 			</div>

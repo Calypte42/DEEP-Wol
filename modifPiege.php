@@ -93,7 +93,7 @@ $piege=requete($bdd,$requete); /* value recupere la reponse de la requete */
 						<input type="number" id ="temperature" name="temperature" size = "5" value="<?=$piege[0]['temperature']?>"/> °C</br></br> <!-- a voir pour rajouter un pas (pour decimal) step =""-->
 
 						<label>Problèmes rencontrés</label> </br>
-						<textarea id="probleme" name="probleme" rows = "5" cols = "40"><?=$piege[0]['probleme']?></textarea>
+						<textarea id="probleme" name="probleme" rows = "5" cols = "40" maxlength="200"><?=$piege[0]['probleme']?></textarea>
 
 						</br>
 						</br>
@@ -102,7 +102,7 @@ $piege=requete($bdd,$requete); /* value recupere la reponse de la requete */
 
 						</div>
 				</div>
-					
+
 				</p>
 				</form>
 			</div>

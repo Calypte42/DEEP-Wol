@@ -1,0 +1,51 @@
+Guide de mise en place du site web DEEP-Wol :
+
+1. Précondition :
+
+Sur le serveur devront être installés et utilisable :
+
+  - PHP 5
+  - Le SGBD PostGreSQL
+
+
+2. Mise en place de la base de données :
+
+Pour faciliter la manipulation de la base de données nous recommandons
+l'utilisation de l'utilitaire phppgadmin.
+
+Il faut tout d'abord créer une nouvelle base de données du nom de votre choix
+puis sur cette nouvelle base executez le script creationBDD.sql situé dans le
+dossier BDD.
+
+3. Mise en place du site
+
+Tout d'abord modifiez le fichier login.php pour faire correspondre les informations
+avec ceux de votre base de données.
+
+$host : l'adresse du serveur
+$dbname : le nom de la base de données
+$username : le nom d'utilisateur de connexion à la base
+$password : le mot de passe de connexion à la base
+
+Assurez vous ensuite que l'ensemble des utilisateurs ont les droits en lecture et
+écriture sur les 3 dossiers files/ (electrophoregramme, fasta, et photo).
+Ce sont dans ces dossiers que seront stockés les différents fichiers postés par 
+les utilisateurs.
+
+4. Création des comptes
+
+Pour finaliser la mise en place il faut créer les différents comptes dans la base de données
+en précisant le login, le mot de passe et un role (admin ou user), en sachant qu'un compte admin
+aura un bouton d'accès a phppgadmin, le lien de ce bouton est configurable dans
+ le fichier javascript/verifAdmin.js
+
+
+ Le site devrait ensuite être fonctionnel.
+
+
+
+5. L'extraction
+
+L'extraction des données n'a pas été assez testé pour garantir les résultats.
+En cas de problème les modifications devrons sans doute être effectué sur
+le fichier telechargementCSV.php
